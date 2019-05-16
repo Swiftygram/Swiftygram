@@ -1,0 +1,11 @@
+framework module tdjson {
+  umbrella header "tdjson.h"
+
+  export *
+  module * { export * }
+}
+
+module tdjson.Swift {
+    header "tdjson-Swift.h"
+    requires objc
+}
