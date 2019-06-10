@@ -37,7 +37,7 @@ class PropertyContainer {
     
     init(documentation: String, type: PropertyType, name: String, isOptional: Bool) {
         self.documentation = documentation
-        self.type = TypeDecider.decide(for: documentation, name: name, type: type)
+        self.type = type
         self.name = name
         self.isOptional = isOptional
     }
@@ -47,18 +47,22 @@ class PropertyContainer {
 // MARK: - Parser
 extension PropertyContainer {
     
-    private static let propertyRegEx = try! NSRegularExpression(pattern: "\\/\\/\\/(.+)\n([^=;]+) ([^=;]+);", options: [])
-    private static let generalPropertyRexEx = try! NSRegularExpression(pattern: "^\\s*([^=\\/;\\{\\(\\*]+) ([^=\\/;\\{\\(\\*]+);", options: .anchorsMatchLines)
-    
-    class func parse(with tdLibProperties: [(name: String, type: String)], parameters: [String: String]) -> [PropertyContainer] {
+    class func parse(with tdLibProperties: [(name: String, type: String)], parameters: [String: String], className: String) -> [PropertyContainer] {
         return tdLibProperties.map({ (name, type) -> PropertyContainer in
             guard let documentation = parameters[name] else {
                 fatalError("Uncommented property \(name)")
             }
             
+            let propertyName = convertFromSnakeCase(name)
+            
+            let propertyType = TypeDecider.decide(for: className,
+                                                  documentation: documentation,
+                                                  name: propertyName,
+                                                  type: self.propertyType(for: type))
+            
             return PropertyContainer(documentation: documentation,
-                                     type: propertyType(for: type),
-                                     name: convertFromSnakeCase(name),
+                                     type: propertyType,
+                                     name: propertyName,
                                      isOptional: isOptional(documentation: documentation))
         })
     }

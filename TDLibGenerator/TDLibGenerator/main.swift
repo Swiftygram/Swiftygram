@@ -9,34 +9,19 @@
 import Foundation
 import Commander
 
-let main = command { (inputFolder: String, outputFolder: String) in
-    let inputFolderURL = URL(fileURLWithPath: inputFolder)
-    let outputFolderURL = URL(fileURLWithPath: outputFolder)
+private(set) var typeDecisionsURL = URL(fileURLWithPath: "")
+private(set) var outputFolderURL = URL(fileURLWithPath: "")
+
+let main = command { (tdApiPath: String, typeDecisionsFolder: String, outputFolder: String) in
+    typeDecisionsURL = URL(fileURLWithPath: typeDecisionsFolder)
+    outputFolderURL = URL(fileURLWithPath: outputFolder)
     
     try? FileManager.default.removeItem(at: outputFolderURL)
     try FileManager.default.createDirectory(at: outputFolderURL, withIntermediateDirectories: false, attributes: nil)
     
-    let source = try String(contentsOf: inputFolderURL.appendingPathComponent("td_api.tl"))
-    
-    let parser = HeadersParser(headersString: source,
-                               ignoredClasses: ["Error"],
-                               fullPathClasses: ["Date"],
-                               forceSubclass: ["Update"])
+    let source = try String(contentsOfFile: tdApiPath, encoding: .utf8)
 
-    HeadersParser.parse(source: source)
+    TLContainer.parse(source: source)
 }
 
 main.run()
-
-//let source = try! String(contentsOfFile: "/Users/ky1vstar/Downloads/Архив 2/TDLibGenerator/TDLibGenerator/td_api.h")
-//
-//let parser = HeadersParser(headersString: source,
-//                           ignoredClasses: ["Error"],
-//                           fullPathClasses: ["Date"],
-//                           forceSubclass: ["Update"])
-//
-//let classes = parser.parse()
-//
-//let generator = Generator(classes: classes)
-//
-//generator.generate()

@@ -40,8 +40,6 @@ class ObjectContainer {
 // MARK: - Parser
 extension ObjectContainer {
     
-    private static let returnTypeRegEx = try! NSRegularExpression(pattern: "using ReturnType = object_ptr<(.*)>;", options: [])
-    
     class func parse(with content: String, isFunction: Bool) -> ObjectContainer? {
         let lines = content.trimmed.components(separatedBy: "\n")
         
@@ -72,7 +70,8 @@ extension ObjectContainer {
             return (components[0], components[1])
         }
         
-        let properties = PropertyContainer.parse(with: tdLibProperties, parameters: params)
+        let className = match[1].uppercasedFirstLetter
+        let properties = PropertyContainer.parse(with: tdLibProperties, parameters: params, className: className)
         
         let superclassName: String
         var returnType: String?
@@ -89,7 +88,7 @@ extension ObjectContainer {
         }
         
         return ObjectContainer(documentation: documentation,
-                               name: match[1].uppercasedFirstLetter,
+                               name: className,
                                superclassName: superclassName,
                                properties: properties,
                                isAbstract: false,

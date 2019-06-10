@@ -9,20 +9,20 @@
 import Foundation
 
 class Generator {
+//
+//    let classes: HeadersParser.Result
+//
+//    init(classes: HeadersParser.Result) {
+//        self.classes = classes
+//    }
+//
+//    func generate() {
+//
+//        let res = generateEnum(for: classes.enums.first!)
+//
+//        try! res.write(toFile: "/Users/ky1vstar/Downloads/Архив 2/TDLibGenerator/Output/kek.swift", atomically: true, encoding: .utf8)
+//
     
-    let classes: HeadersParser.Result
-    
-    init(classes: HeadersParser.Result) {
-        self.classes = classes
-    }
-    
-    func generate() {
-        
-        let res = generateEnum(for: classes.enums.first!)
-        
-        try! res.write(toFile: "/Users/ky1vstar/Downloads/Архив 2/TDLibGenerator/Output/kek.swift", atomically: true, encoding: .utf8)
-        
-        
 //        for cls in classes {
 //            let output: String
 //
@@ -42,7 +42,7 @@ class Generator {
 //            }
 //
 //        }
-    }
+//    }
     
 //    func classForName(_ name: String) -> ObjectContainer {
 //        if let cls = classes.first(where: { $0.name == name }) {
