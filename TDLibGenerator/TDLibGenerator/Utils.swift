@@ -37,4 +37,23 @@ extension String {
         return uppercased() == self
     }
     
+    /// asds
+    ///
+    /// - Parameters:
+    ///   - other: Lol
+    func sharedPrefix(with other: String) -> String {
+        return (self.isEmpty || other.isEmpty || self.first! != other.first!) ? "" :
+            "\(self.first!)" + String(Array(self.dropFirst())).sharedPrefix(with: String(Array(other.dropFirst())))
+    }
+    
+}
+
+enum Lol {
+    
+    /// asds
+    ///
+    /// - Parameters:
+    ///   - value: Lol
+    case kek(value: String)
+    
 }

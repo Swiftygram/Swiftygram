@@ -23,4 +23,9 @@ struct AnyCodingKey: CodingKey {
         self.intValue = intValue
     }
     
+    init(string: String) {
+        stringValue = string
+        intValue = nil
+    }
+    
 }

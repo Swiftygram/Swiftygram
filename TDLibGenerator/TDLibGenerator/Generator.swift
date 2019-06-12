@@ -8,54 +8,64 @@
 
 import Foundation
 
+struct OutputPropertyType {
+    let name: String
+    let isSubclass: Bool
+}
+
 class Generator {
-//
-//    let classes: HeadersParser.Result
-//
-//    init(classes: HeadersParser.Result) {
-//        self.classes = classes
-//    }
-//
-//    func generate() {
-//
-//        let res = generateEnum(for: classes.enums.first!)
-//
-//        try! res.write(toFile: "/Users/ky1vstar/Downloads/Архив 2/TDLibGenerator/Output/kek.swift", atomically: true, encoding: .utf8)
-//
     
-//        for cls in classes {
-//            let output: String
-//
-//            switch cls.superclassName {
-//            case "Function":
-//                output = generateFunction(for: cls)
-//
-//            case "Object":
-//                output = cls.isAbstract && cls.shouldBeConvertedToEnum ? generateEnum(for: cls) : generateObject(for: cls)
-//
-//            default:
-//                if classForName(cls.superclassName).shouldBeConvertedToEnum {
-//                    continue
-//                }
-//
-//                output = generateObject(for: cls)
-//            }
-//
-//        }
-//    }
+    let container: TLContainer
     
-//    func classForName(_ name: String) -> ObjectContainer {
-//        if let cls = classes.first(where: { $0.name == name }) {
-//            return cls
-//        }
-//        
-//        fatalError("Undefined class: \(name)")
-//    }
-//    
-//    func superclassForName(_ name: String) -> ObjectContainer {
-//        let superclassName = classForName(name).superclassName
-//        
-//        return classForName(superclassName)
-//    }
+    init(container: TLContainer) {
+        self.container = container
+    }
+    
+    func generate() {
+        for object in container.enums {
+            let code = generateEnum(for: object)
+            
+            try! code.write(to: outputFolderURL.appendingPathComponent("\(object.name).swift"), atomically: true, encoding: .utf8)
+        }
+    }
+    
+    func outputPropertyType(for propertyType: PropertyType) -> OutputPropertyType {
+        switch propertyType {
+        case .swift(let value):
+            return OutputPropertyType(name: value, isSubclass: false)
+            
+        case .tdlib(let value):
+            let isSubclass = container.subclasses.contains(where: { $0.name == value })
+            let isEnum = container.enums.contains(where: { $0.name == value })
+            
+            return OutputPropertyType(name: "\(isEnum ? enumNamespace : objectNamespace).\(value)", isSubclass: isSubclass)
+            
+        case .array(let value):
+            let type = outputPropertyType(for: value)
+            
+            return OutputPropertyType(name: "[\(type.name)]", isSubclass: type.isSubclass)
+        }
+    }
+    
+    func decoder(for property: PropertyContainer, outputPropertyType: OutputPropertyType) -> String {
+        let method = property.isOptional ? "decodeIfPresent" : "decode"
+        let type = outputPropertyType.isSubclass ? "SubclassCodable<\(outputPropertyType.name)>" : outputPropertyType.name
+        
+        var str = "let \(property.name) = try container.\(method)(\(type).self, forKey: .init(string: \"\(property.name)\"))"
+        
+        if outputPropertyType.isSubclass {
+            str += ".value"
+        }
+        
+        return str
+    }
+    
+    func encoder(for property: PropertyContainer, outputPropertyType: OutputPropertyType) -> String {
+        let method = property.isOptional ? "encodeIfPresent" : "encode"
+        
+        let value = outputPropertyType.isSubclass ? "SubclassCodable(value: \(property.name)" : property.name
+        
+        return "try container.\(method)(\(value), forKey: .init(string: \"\(property.name)\"))"
+    }
     
 }

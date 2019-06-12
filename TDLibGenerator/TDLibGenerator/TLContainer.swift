@@ -8,9 +8,6 @@
 
 import Foundation
 
-private let forceSubclass = ["Update"]
-private let ignoredClasses = ["Error"]
-
 class TLContainer {
     
     let functions: [ObjectContainer]
@@ -143,66 +140,5 @@ extension TLContainer {
         
         return TLContainer(functions: functions, objects: objects, subclasses: subclasses, enums: enums)
     }
-    
-//    func parse() -> Result {
-//        classes = classRegEx.matches(in: headersString, options: [], range: NSMakeRange(0, headersNSString.length)).compactMap { result -> ObjectContainer? in
-//            let className = headersNSString.substring(with: result.range(at: 2))
-//
-//            if ignoredClasses.contains(className) {
-//                return nil
-//            }
-//            
-//            guard let classBody = self.classBody(with: result.range(at: 4).location) else {
-//                fatalError("Failed to parse class body")
-//            }
-//            
-//            var docs = headersNSString.substring(with: result.range(at: 1))
-//            if let range = docs.range(of: "/*", options: .backwards) {
-//                docs = String(docs[range.lowerBound...])
-//            }
-//            
-//            return ObjectContainer.parse(with: docs,
-//                                         name: className,
-//                                         superclassName: headersNSString.substring(with: result.range(at: 3)),
-//                                         classBody: classBody)
-//        }
-//        
-//        adjustClasses()
-//        
-//        var functions = [ObjectContainer]()
-//        var objects = [ObjectContainer]()
-//        var subclasses = [ObjectContainer]()
-//        var enums = [ObjectContainer]()
-//
-//        for cls in classes {
-//            switch cls.superclassName {
-//            case "Function":
-//                functions.append(cls)
-//
-//            case "Object":
-//                if cls.isAbstract {
-//                    if cls.shouldBeConvertedToEnum {
-//                        enums.append(cls)
-//                    } else {
-//                        subclasses.append(cls)
-//                    }
-//                } else {
-//                    objects.append(cls)
-//                }
-//                
-//            default:
-//                let superclass = classForName(cls.superclassName)
-//                superclass.subclasses.append(cls)
-//
-//            }
-//        }
-//
-//        
-//        try! JSONSerialization.data(withJSONObject: TypeDecider.urlDecisions, options: []).write(to: URL(fileURLWithPath: "/Users/ky1vstar/Downloads/Архив 2/TDLibGenerator/urlDecisions.json"))
-//        
-//        try! JSONSerialization.data(withJSONObject: TypeDecider.dateDecisions, options: []).write(to: URL(fileURLWithPath: "/Users/ky1vstar/Downloads/Архив 2/TDLibGenerator/dateDecisions.json"))
-//        
-//        return (functions, objects, subclasses, enums)
-//    }
-    
+
 }

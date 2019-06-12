@@ -8,8 +8,6 @@
 
 import Foundation
 
-private let maxPropertyCount = 5
-
 class ObjectContainer {
     
     let documentation: String

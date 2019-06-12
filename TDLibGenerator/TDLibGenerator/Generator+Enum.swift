@@ -10,19 +10,78 @@ import Foundation
 
 extension Generator {
     
-    func generateEnum(for cls: ObjectContainer) -> String {
-        var output = ["public extension TGEnum {"]
+    func generateEnum(for object: ObjectContainer) -> String {
+        var cases = [String]()
+        var decoders = [String]()
+        var encoders = [String]()
         
-        output.append("enum \(cls.name): TGEnumProtocol {")
-        
-        for subclass in cls.subclasses {
-            let caseName = self.caseName(for: cls.name, subclass: subclass.name)
+        for subclass in object.subclasses {
+            let caseName = self.caseName(for: object.name, subclass: subclass.name)
             let docs = docsForCase(subclass)
             
-            let str = "\(docs)\ncase \(caseName)"
+            var caseString = "\(docs)\ncase \(caseName)"
             
-            output.append(str)
+            decoders.append("case \"\(subclass.name.lowercasedFirstLetter)\":")
+            
+            encoders.append(contentsOf:
+                [
+                    "try container.encode(\"\(subclass.name.lowercasedFirstLetter)\", forKey: .init(string: \"@type\"))",
+                    ""
+                ]
+            )
+            var enocderCase = "case .\(caseName)"
+            
+            var decoderInit = "self = .\(caseName)"
+            
+            if !subclass.properties.isEmpty {
+                var enumProperties = [String]()
+                var decoderProperties = [String]()
+                var encoderProperties = [String]()
+                
+                for property in subclass.properties {
+                    let outputType = outputPropertyType(for: property.type)
+                    
+                    enumProperties.append("\(property.name): \(outputType.name)\(property.isOptional ? "?" : "")")
+                    
+                    decoders.append(decoder(for: property, outputPropertyType: outputType))
+                    
+                    encoders.append(encoder(for: property, outputPropertyType: outputType))
+                    
+                    decoderProperties.append("\(property.name): \(property.name)")
+                    
+                    encoderProperties.append("let \(property.name)")
+                }
+                
+                caseString += "(\(enumProperties.joined(separator: ", ")))"
+                
+                decoders.append("")
+                decoderInit += "(\(decoderProperties.joined(separator: ", ")))"
+                
+                enocderCase += "(\(encoderProperties.joined(separator: ", ")))"
+                encoders.append("")
+            }
+            
+            enocderCase += ":"
+            encoders.insert(enocderCase, at: 0)
+            
+            decoders.append(decoderInit)
+            decoders.append("")
+            
+            cases.append(caseString)
         }
+        
+        var output = ["public extension \(enumNamespace) {"]
+        
+        output.append("enum \(object.name): \(enumProtocol) {")
+        
+        // cases
+        output.append(contentsOf: cases)
+        
+        // decoder
+        output.append(decoderBody(with: decoders, type: object.name))
+        
+        // encoder
+        output.append(encoderBody(with: encoders, type: object.name))
         
         output.append("}")
         output.append("}")
@@ -31,7 +90,9 @@ extension Generator {
     }
     
     private func caseName(for superclass: String, subclass: String) -> String {
-        guard let range = subclass.range(of: superclass) else {
+        let prefix = superclass.sharedPrefix(with: subclass)
+        
+        guard let range = subclass.range(of: prefix) else {
             fatalError("Wrong case: \(superclass) \(subclass)")
         }
         
@@ -54,6 +115,51 @@ extension Generator {
         }
         
         return "/// " + lines.joined(separator: "\n/// ")
+    }
+    
+    private func decoderBody(with decoders: [String], type: String) -> String {
+        var output =
+            ["// MARK: - Decodable",
+             "public init(from decoder: Decoder) throws {",
+             "let container = try decoder.container(keyedBy: \(anyCodingKey).self)",
+                "let type = try container.decode(String.self, forKey: .init(string: \"@type\"))",
+                "",
+                "switch type {"]
+        
+        output.append(contentsOf: decoders)
+        
+        output.append(contentsOf:
+            [
+                "default:",
+                "throw DecodingError.typeMismatch(\(type).self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: \"Undefined \(type)\"))"
+            ])
+        
+        output.append(contentsOf:
+            [
+                "}",
+                "}"
+            ])
+        
+        return output.joined(separator: "\n")
+    }
+    
+    private func encoderBody(with encoders: [String], type: String) -> String {
+        var output =
+            ["// MARK: - Decodable",
+             "public func encode(to encoder: Encoder) throws {",
+             "var container = encoder.container(keyedBy: \(anyCodingKey).self)",
+                "",
+                "switch self {"]
+        
+        output.append(contentsOf: encoders)
+        
+        output.append(contentsOf:
+            [
+                "}",
+                "}"
+            ])
+        
+        return output.joined(separator: "\n")
     }
     
 }

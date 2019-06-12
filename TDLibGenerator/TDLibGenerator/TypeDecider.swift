@@ -18,6 +18,8 @@ class TypeDecider {
     private static var dateDecisions = decisions(for: "date")
     
     class func decide(for className: String, documentation: String, name: String, type: PropertyType) -> PropertyType {
+        return type
+        
         guard case .swift(let swiftType) = type else {
             return type
         }

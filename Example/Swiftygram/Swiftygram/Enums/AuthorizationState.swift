@@ -121,8 +121,8 @@ public extension TGEnum {
         
         // MARK: - Encodable
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: TGTypeKeys.self)
-            let type = try container.decode(String.self, forKey: .type)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .init(string: ""))
             
             if let value = AuthorizationState.autoCodableTypes.first(where: { $0.codableType == type }) {
                 self = value

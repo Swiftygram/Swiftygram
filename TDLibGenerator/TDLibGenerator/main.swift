@@ -9,8 +9,29 @@
 import Foundation
 import Commander
 
+// MARK: - Constants
+
+let enumNamespace = "TDEnum"
+let enumProtocol = "TDEnumProtocol"
+
+let objectNamespace = "TDObject"
+
+let functionNamespace = "TDFunction"
+let functionProtocol = "TDFunctionProtocol"
+
+let anyCodingKey = "AnyCodingKey"
+let subclassCodable = "SubclassCodable"
+
+let maxPropertyCount = 5
+let forceSubclass = ["Update"]
+let ignoredClasses = ["Error"]
+
+// MARK: - Global
+
 private(set) var typeDecisionsURL = URL(fileURLWithPath: "")
 private(set) var outputFolderURL = URL(fileURLWithPath: "")
+
+// MARK: - Main
 
 let main = command { (tdApiPath: String, typeDecisionsFolder: String, outputFolder: String) in
     typeDecisionsURL = URL(fileURLWithPath: typeDecisionsFolder)
@@ -21,7 +42,9 @@ let main = command { (tdApiPath: String, typeDecisionsFolder: String, outputFold
     
     let source = try String(contentsOfFile: tdApiPath, encoding: .utf8)
 
-    TLContainer.parse(source: source)
+    let container = TLContainer.parse(source: source)
+    
+    Generator(container: container).generate()
 }
 
 main.run()
