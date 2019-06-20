@@ -1,16 +1,23 @@
 PODS:
+  - Swiftygram (0.0.1):
+    - tdjson
   - tdjson (1.4.0)
 
 DEPENDENCIES:
-  - tdjson
+  - Swiftygram (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - tdjson
 
+EXTERNAL SOURCES:
+  Swiftygram:
+    :path: "../"
+
 SPEC CHECKSUMS:
+  Swiftygram: 865ea053895eb3b26ae984675d3f2ba1a445c6f4
   tdjson: 17a689e2c61199b7dac0de9310b3f53e00c14a8a
 
-PODFILE CHECKSUM: c9ed8c6653e18a3562e8fad76a502a39dca76bce
+PODFILE CHECKSUM: 71472979c3ce76ac57c1b12d9ed94391185e5d6b
 
 COCOAPODS: 1.7.1

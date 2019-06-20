@@ -18,20 +18,21 @@ extension Generator {
         for subclass in object.subclasses {
             let caseName = self.caseName(for: object.name, subclass: subclass.name)
             let docs = docsForCase(subclass)
+            let tdlibType = subclass.name.lowercasedFirstLetter
             
+            // case
             var caseString = "\(docs)\ncase \(caseName)"
             
-            decoders.append("case \"\(subclass.name.lowercasedFirstLetter)\":")
-            
-            encoders.append(contentsOf:
-                [
-                    "try container.encode(\"\(subclass.name.lowercasedFirstLetter)\", forKey: .init(string: \"@type\"))",
-                    ""
-                ]
-            )
-            var enocderCase = "case .\(caseName)"
-            
+            // decoder
+            decoders.append("case \"\(tdlibType)\":")
             var decoderInit = "self = .\(caseName)"
+            
+            // encoder
+            var encoderCase = "case .\(caseName)"
+            var caseEncoders = [
+                "try container.encode(\"\(tdlibType)\", forKey: .init(string: \"@type\"))",
+                ""
+            ]
             
             if !subclass.properties.isEmpty {
                 var enumProperties = [String]()
@@ -41,31 +42,39 @@ extension Generator {
                 for property in subclass.properties {
                     let outputType = outputPropertyType(for: property.type)
                     
+                    // case
                     enumProperties.append("\(property.name): \(outputType.name)\(property.isOptional ? "?" : "")")
                     
+                    // decoders
                     decoders.append(decoder(for: property, outputPropertyType: outputType))
-                    
-                    encoders.append(encoder(for: property, outputPropertyType: outputType))
                     
                     decoderProperties.append("\(property.name): \(property.name)")
                     
+                    // encoder
+                    caseEncoders.append(encoder(for: property, outputPropertyType: outputType))
+
                     encoderProperties.append("let \(property.name)")
                 }
                 
+                // case
                 caseString += "(\(enumProperties.joined(separator: ", ")))"
                 
+                // decoder
                 decoders.append("")
                 decoderInit += "(\(decoderProperties.joined(separator: ", ")))"
                 
-                enocderCase += "(\(encoderProperties.joined(separator: ", ")))"
-                encoders.append("")
+                // encoder
+                encoderCase += "(\(encoderProperties.joined(separator: ", ")))"
+                caseEncoders.append("")
             }
             
-            enocderCase += ":"
-            encoders.insert(enocderCase, at: 0)
-            
+            // decoder
             decoders.append(decoderInit)
             decoders.append("")
+            
+            // encoder
+            encoders.append("\(encoderCase):")
+            encoders.append(contentsOf: caseEncoders)
             
             cases.append(caseString)
         }
