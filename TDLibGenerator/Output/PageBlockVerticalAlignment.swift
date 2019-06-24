@@ -1,53 +1,57 @@
+//
+//  PageBlockVerticalAlignment.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum PageBlockVerticalAlignment: TDEnumProtocol {
+        ///  The content should be top-aligned
+        case top
 
-enum PageBlockVerticalAlignment: TDEnumProtocol {
+        ///  The content should be middle-aligned
+        case middle
 
-/// The content should be top-aligned
-case top
+        ///  The content should be bottom-aligned
+        case bottom
 
-/// The content should be middle-aligned
-case middle
+        // MARK: - Decodable
 
-/// The content should be bottom-aligned
-case bottom
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+            switch type {
+            case "pageBlockVerticalAlignmentTop":
+                self = .top
 
-switch type {
-case "pageBlockVerticalAlignmentTop":
-self = .top
+            case "pageBlockVerticalAlignmentMiddle":
+                self = .middle
 
-case "pageBlockVerticalAlignmentMiddle":
-self = .middle
+            case "pageBlockVerticalAlignmentBottom":
+                self = .bottom
 
-case "pageBlockVerticalAlignmentBottom":
-self = .bottom
+            default:
+                throw DecodingError.typeMismatch(PageBlockVerticalAlignment.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined PageBlockVerticalAlignment"))
+            }
+        }
 
-default:
-throw DecodingError.typeMismatch(PageBlockVerticalAlignment.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined PageBlockVerticalAlignment"))
-}
-}
+        // MARK: - Decodable
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-switch self {
-case .bottom:
-case .middle:
-case .top:
-try container.encode("pageBlockVerticalAlignmentTop", forKey: .init(string: "@type"))
+            switch self {
+            case .top:
+                try container.encode("pageBlockVerticalAlignmentTop", forKey: .type)
 
-try container.encode("pageBlockVerticalAlignmentMiddle", forKey: .init(string: "@type"))
+            case .middle:
+                try container.encode("pageBlockVerticalAlignmentMiddle", forKey: .type)
 
-try container.encode("pageBlockVerticalAlignmentBottom", forKey: .init(string: "@type"))
-
-}
-}
-
-}
-
+            case .bottom:
+                try container.encode("pageBlockVerticalAlignmentBottom", forKey: .type)
+            }
+        }
+    }
 }

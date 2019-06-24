@@ -1,71 +1,76 @@
+//
+//  CheckChatUsernameResult.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum CheckChatUsernameResult: TDEnumProtocol {
+        ///  The username can be set
+        case ok
 
-enum CheckChatUsernameResult: TDEnumProtocol {
+        ///  The username is invalid
+        case usernameInvalid
 
-/// The username can be set
-case ok
+        ///  The username is occupied
+        case usernameOccupied
 
-/// The username is invalid
-case usernameInvalid
+        ///  The user has too much public chats, one of them should be made
+        /// private first
+        case publicChatsTooMuch
 
-/// The username is occupied
-case usernameOccupied
+        ///  The user can't be a member of a public supergroup
+        case publicGroupsUnavailable
 
-/// The user has too much public chats, one of them should be made private first
-case publicChatsTooMuch
+        // MARK: - Decodable
 
-/// The user can't be a member of a public supergroup
-case publicGroupsUnavailable
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+            switch type {
+            case "checkChatUsernameResultOk":
+                self = .ok
 
-switch type {
-case "checkChatUsernameResultOk":
-self = .ok
+            case "checkChatUsernameResultUsernameInvalid":
+                self = .usernameInvalid
 
-case "checkChatUsernameResultUsernameInvalid":
-self = .usernameInvalid
+            case "checkChatUsernameResultUsernameOccupied":
+                self = .usernameOccupied
 
-case "checkChatUsernameResultUsernameOccupied":
-self = .usernameOccupied
+            case "checkChatUsernameResultPublicChatsTooMuch":
+                self = .publicChatsTooMuch
 
-case "checkChatUsernameResultPublicChatsTooMuch":
-self = .publicChatsTooMuch
+            case "checkChatUsernameResultPublicGroupsUnavailable":
+                self = .publicGroupsUnavailable
 
-case "checkChatUsernameResultPublicGroupsUnavailable":
-self = .publicGroupsUnavailable
+            default:
+                throw DecodingError.typeMismatch(CheckChatUsernameResult.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined CheckChatUsernameResult"))
+            }
+        }
 
-default:
-throw DecodingError.typeMismatch(CheckChatUsernameResult.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined CheckChatUsernameResult"))
-}
-}
+        // MARK: - Decodable
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-switch self {
-case .publicGroupsUnavailable:
-case .publicChatsTooMuch:
-case .usernameOccupied:
-case .usernameInvalid:
-case .ok:
-try container.encode("checkChatUsernameResultOk", forKey: .init(string: "@type"))
+            switch self {
+            case .ok:
+                try container.encode("checkChatUsernameResultOk", forKey: .type)
 
-try container.encode("checkChatUsernameResultUsernameInvalid", forKey: .init(string: "@type"))
+            case .usernameInvalid:
+                try container.encode("checkChatUsernameResultUsernameInvalid", forKey: .type)
 
-try container.encode("checkChatUsernameResultUsernameOccupied", forKey: .init(string: "@type"))
+            case .usernameOccupied:
+                try container.encode("checkChatUsernameResultUsernameOccupied", forKey: .type)
 
-try container.encode("checkChatUsernameResultPublicChatsTooMuch", forKey: .init(string: "@type"))
+            case .publicChatsTooMuch:
+                try container.encode("checkChatUsernameResultPublicChatsTooMuch", forKey: .type)
 
-try container.encode("checkChatUsernameResultPublicGroupsUnavailable", forKey: .init(string: "@type"))
-
-}
-}
-
-}
-
+            case .publicGroupsUnavailable:
+                try container.encode("checkChatUsernameResultPublicGroupsUnavailable", forKey: .type)
+            }
+        }
+    }
 }

@@ -1,71 +1,77 @@
+//
+//  ChatMembersFilter.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum ChatMembersFilter: TDEnumProtocol {
+        ///  Returns the creator and administrators
+        case administrators
 
-enum ChatMembersFilter: TDEnumProtocol {
+        ///  Returns all chat members, including restricted chat members
+        case members
 
-/// Returns the creator and administrators
-case administrators
+        ///  Returns users under certain restrictions in the chat; can be used
+        /// only by administrators in a supergroup
+        case restricted
 
-/// Returns all chat members, including restricted chat members
-case members
+        ///  Returns users banned from the chat; can be used only by
+        /// administrators in a supergroup or in a channel
+        case banned
 
-/// Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup
-case restricted
+        ///  Returns bot members of the chat
+        case bots
 
-/// Returns users banned from the chat; can be used only by administrators in a supergroup or in a channel
-case banned
+        // MARK: - Decodable
 
-/// Returns bot members of the chat
-case bots
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+            switch type {
+            case "chatMembersFilterAdministrators":
+                self = .administrators
 
-switch type {
-case "chatMembersFilterAdministrators":
-self = .administrators
+            case "chatMembersFilterMembers":
+                self = .members
 
-case "chatMembersFilterMembers":
-self = .members
+            case "chatMembersFilterRestricted":
+                self = .restricted
 
-case "chatMembersFilterRestricted":
-self = .restricted
+            case "chatMembersFilterBanned":
+                self = .banned
 
-case "chatMembersFilterBanned":
-self = .banned
+            case "chatMembersFilterBots":
+                self = .bots
 
-case "chatMembersFilterBots":
-self = .bots
+            default:
+                throw DecodingError.typeMismatch(ChatMembersFilter.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined ChatMembersFilter"))
+            }
+        }
 
-default:
-throw DecodingError.typeMismatch(ChatMembersFilter.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined ChatMembersFilter"))
-}
-}
+        // MARK: - Decodable
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-switch self {
-case .bots:
-case .banned:
-case .restricted:
-case .members:
-case .administrators:
-try container.encode("chatMembersFilterAdministrators", forKey: .init(string: "@type"))
+            switch self {
+            case .administrators:
+                try container.encode("chatMembersFilterAdministrators", forKey: .type)
 
-try container.encode("chatMembersFilterMembers", forKey: .init(string: "@type"))
+            case .members:
+                try container.encode("chatMembersFilterMembers", forKey: .type)
 
-try container.encode("chatMembersFilterRestricted", forKey: .init(string: "@type"))
+            case .restricted:
+                try container.encode("chatMembersFilterRestricted", forKey: .type)
 
-try container.encode("chatMembersFilterBanned", forKey: .init(string: "@type"))
+            case .banned:
+                try container.encode("chatMembersFilterBanned", forKey: .type)
 
-try container.encode("chatMembersFilterBots", forKey: .init(string: "@type"))
-
-}
-}
-
-}
-
+            case .bots:
+                try container.encode("chatMembersFilterBots", forKey: .type)
+            }
+        }
+    }
 }

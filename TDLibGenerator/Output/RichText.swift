@@ -1,269 +1,276 @@
+//
+//  RichText.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum RichText: TDEnumProtocol {
+        ///  A plain text
+        ///
+        ///  - text: Text
+        case plain(text: String)
+
+        ///  A bold rich text
+        ///
+        ///  - text: Text
+        case bold(text: TDEnum.RichText)
+
+        ///  An italicized rich text
+        ///
+        ///  - text: Text
+        case italic(text: TDEnum.RichText)
+
+        ///  An underlined rich text
+        ///
+        ///  - text: Text
+        case underline(text: TDEnum.RichText)
+
+        ///  A strike-through rich text
+        ///
+        ///  - text: Text
+        case strikethrough(text: TDEnum.RichText)
+
+        ///  A fixed-width rich text
+        ///
+        ///  - text: Text
+        case fixed(text: TDEnum.RichText)
+
+        ///  A rich text URL link
+        ///
+        ///  - text: Text
+        ///  - url: URL
+        case url(text: TDEnum.RichText, url: String)
+
+        ///  A rich text email link
+        ///
+        ///  - text: Text
+        ///  - emailAddress: Email address
+        case emailAddress(text: TDEnum.RichText, emailAddress: String)
 
-enum RichText: TDEnumProtocol {
-
-/// A plain text
-/// 
-/// - text: Text
-case plain(text: String)
-
-/// A bold rich text
-/// 
-/// - text: Text
-case bold(text: TDEnum.RichText)
-
-/// An italicized rich text
-/// 
-/// - text: Text
-case italic(text: TDEnum.RichText)
-
-/// An underlined rich text
-/// 
-/// - text: Text
-case underline(text: TDEnum.RichText)
-
-/// A strike-through rich text
-/// 
-/// - text: Text
-case strikethrough(text: TDEnum.RichText)
+        ///  A subscript rich text
+        ///
+        ///  - text: Text
+        case `subscript`(text: TDEnum.RichText)
 
-/// A fixed-width rich text
-/// 
-/// - text: Text
-case fixed(text: TDEnum.RichText)
+        ///  A superscript rich text
+        ///
+        ///  - text: Text
+        case superscript(text: TDEnum.RichText)
 
-/// A rich text URL link
-/// 
-/// - text: Text
-/// - url: URL
-case url(text: TDEnum.RichText, url: String)
+        ///  A marked rich text
+        ///
+        ///  - text: Text
+        case marked(text: TDEnum.RichText)
 
-/// A rich text email link
-/// 
-/// - text: Text
-/// - emailAddress: Email address
-case emailAddress(text: TDEnum.RichText, emailAddress: String)
+        ///  A rich text phone number
+        ///
+        ///  - text: Text
+        ///  - phoneNumber: Phone number
+        case phoneNumber(text: TDEnum.RichText, phoneNumber: String)
 
-/// A subscript rich text
-/// 
-/// - text: Text
-case subscript(text: TDEnum.RichText)
+        ///  A small image inside the text
+        ///
+        ///  - document: The image represented as a document. The image can be in
+        /// GIF, JPEG or PNG format
+        ///  - width: Width of a bounding box in which the image should be shown,
+        /// 0 if unknown
+        ///  - height: Height of a bounding box in which the image should be
+        /// shown, 0 if unknown
+        case icon(document: TDObject.Document, width: Int, height: Int)
 
-/// A superscript rich text
-/// 
-/// - text: Text
-case superscript(text: TDEnum.RichText)
+        ///  A rich text anchor
+        ///
+        ///  - text: Text
+        ///  - name: Anchor name
+        case anchor(text: TDEnum.RichText, name: String)
 
-/// A marked rich text
-/// 
-/// - text: Text
-case marked(text: TDEnum.RichText)
+        ///  A concatenation of rich texts
+        ///
+        ///  - texts: Texts
+        case s(texts: [TDEnum.RichText])
 
-/// A rich text phone number
-/// 
-/// - text: Text
-/// - phoneNumber: Phone number
-case phoneNumber(text: TDEnum.RichText, phoneNumber: String)
+        // MARK: - Decodable
 
-/// A small image inside the text
-/// 
-/// - document: The image represented as a document. The image can be in GIF, JPEG or PNG format
-/// - width: Width of a bounding box in which the image should be shown, 0 if unknown
-/// - height: Height of a bounding box in which the image should be shown, 0 if unknown
-case icon(document: TDObject.Document, width: Int, height: Int)
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-/// A rich text anchor
-/// 
-/// - text: Text
-/// - name: Anchor name
-case anchor(text: TDEnum.RichText, name: String)
+            switch type {
+            case "richTextPlain":
+                let text = try container.decode(String.self, forKey: .init(string: "text"))
 
-/// A concatenation of rich texts
-/// 
-/// - texts: Texts
-case s(texts: [TDEnum.RichText])
+                self = .plain(text: text)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+            case "richTextBold":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
 
-switch type {
-case "richTextPlain":
-let text = try container.decode(String.self, forKey: .init(string: "text"))
+                self = .bold(text: text)
 
-self = .plain(text: text)
+            case "richTextItalic":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
 
-case "richTextBold":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                self = .italic(text: text)
 
-self = .bold(text: text)
+            case "richTextUnderline":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
 
-case "richTextItalic":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                self = .underline(text: text)
 
-self = .italic(text: text)
+            case "richTextStrikethrough":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
 
-case "richTextUnderline":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                self = .strikethrough(text: text)
 
-self = .underline(text: text)
+            case "richTextFixed":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
 
-case "richTextStrikethrough":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                self = .fixed(text: text)
 
-self = .strikethrough(text: text)
+            case "richTextUrl":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                let url = try container.decode(String.self, forKey: .init(string: "url"))
 
-case "richTextFixed":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                self = .url(text: text, url: url)
 
-self = .fixed(text: text)
+            case "richTextEmailAddress":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                let emailAddress = try container.decode(String.self, forKey: .init(string: "emailAddress"))
 
-case "richTextUrl":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
-let url = try container.decode(String.self, forKey: .init(string: "url"))
+                self = .emailAddress(text: text, emailAddress: emailAddress)
 
-self = .url(text: text, url: url)
+            case "richTextSubscript":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
 
-case "richTextEmailAddress":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
-let emailAddress = try container.decode(String.self, forKey: .init(string: "emailAddress"))
+                self = .subscript(text: text)
 
-self = .emailAddress(text: text, emailAddress: emailAddress)
+            case "richTextSuperscript":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
 
-case "richTextSubscript":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                self = .superscript(text: text)
 
-self = .subscript(text: text)
+            case "richTextMarked":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
 
-case "richTextSuperscript":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                self = .marked(text: text)
 
-self = .superscript(text: text)
+            case "richTextPhoneNumber":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                let phoneNumber = try container.decode(String.self, forKey: .init(string: "phoneNumber"))
 
-case "richTextMarked":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                self = .phoneNumber(text: text, phoneNumber: phoneNumber)
 
-self = .marked(text: text)
+            case "richTextIcon":
+                let document = try container.decode(TDObject.Document.self, forKey: .init(string: "document"))
+                let width = try container.decode(Int.self, forKey: .init(string: "width"))
+                let height = try container.decode(Int.self, forKey: .init(string: "height"))
 
-case "richTextPhoneNumber":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
-let phoneNumber = try container.decode(String.self, forKey: .init(string: "phoneNumber"))
+                self = .icon(document: document, width: width, height: height)
 
-self = .phoneNumber(text: text, phoneNumber: phoneNumber)
+            case "richTextAnchor":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                let name = try container.decode(String.self, forKey: .init(string: "name"))
 
-case "richTextIcon":
-let document = try container.decode(TDObject.Document.self, forKey: .init(string: "document"))
-let width = try container.decode(Int.self, forKey: .init(string: "width"))
-let height = try container.decode(Int.self, forKey: .init(string: "height"))
+                self = .anchor(text: text, name: name)
 
-self = .icon(document: document, width: width, height: height)
+            case "richTexts":
+                let texts = try container.decode([TDEnum.RichText].self, forKey: .init(string: "texts"))
 
-case "richTextAnchor":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
-let name = try container.decode(String.self, forKey: .init(string: "name"))
+                self = .s(texts: texts)
 
-self = .anchor(text: text, name: name)
+            default:
+                throw DecodingError.typeMismatch(RichText.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined RichText"))
+            }
+        }
 
-case "richTexts":
-let texts = try container.decode([TDEnum.RichText].self, forKey: .init(string: "texts"))
+        // MARK: - Decodable
 
-self = .s(texts: texts)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-default:
-throw DecodingError.typeMismatch(RichText.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined RichText"))
-}
-}
+            switch self {
+            case let .plain(text):
+                try container.encode("richTextPlain", forKey: .type)
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(text, forKey: .init(string: "text"))
 
-switch self {
-case .s(let texts):
-case .anchor(let text, let name):
-case .icon(let document, let width, let height):
-case .phoneNumber(let text, let phoneNumber):
-case .marked(let text):
-case .superscript(let text):
-case .subscript(let text):
-case .emailAddress(let text, let emailAddress):
-case .url(let text, let url):
-case .fixed(let text):
-case .strikethrough(let text):
-case .underline(let text):
-case .italic(let text):
-case .bold(let text):
-case .plain(let text):
-try container.encode("richTextPlain", forKey: .init(string: "@type"))
+            case let .bold(text):
+                try container.encode("richTextBold", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(text, forKey: .init(string: "text"))
 
-try container.encode("richTextBold", forKey: .init(string: "@type"))
+            case let .italic(text):
+                try container.encode("richTextItalic", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(text, forKey: .init(string: "text"))
 
-try container.encode("richTextItalic", forKey: .init(string: "@type"))
+            case let .underline(text):
+                try container.encode("richTextUnderline", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(text, forKey: .init(string: "text"))
 
-try container.encode("richTextUnderline", forKey: .init(string: "@type"))
+            case let .strikethrough(text):
+                try container.encode("richTextStrikethrough", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(text, forKey: .init(string: "text"))
 
-try container.encode("richTextStrikethrough", forKey: .init(string: "@type"))
+            case let .fixed(text):
+                try container.encode("richTextFixed", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(text, forKey: .init(string: "text"))
 
-try container.encode("richTextFixed", forKey: .init(string: "@type"))
+            case let .url(text, url):
+                try container.encode("richTextUrl", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(url, forKey: .init(string: "url"))
 
-try container.encode("richTextUrl", forKey: .init(string: "@type"))
+            case let .emailAddress(text, emailAddress):
+                try container.encode("richTextEmailAddress", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
-try container.encode(url, forKey: .init(string: "url"))
+                try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(emailAddress, forKey: .init(string: "emailAddress"))
 
-try container.encode("richTextEmailAddress", forKey: .init(string: "@type"))
+            case let .subscript(text):
+                try container.encode("richTextSubscript", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
-try container.encode(emailAddress, forKey: .init(string: "emailAddress"))
+                try container.encode(text, forKey: .init(string: "text"))
 
-try container.encode("richTextSubscript", forKey: .init(string: "@type"))
+            case let .superscript(text):
+                try container.encode("richTextSuperscript", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(text, forKey: .init(string: "text"))
 
-try container.encode("richTextSuperscript", forKey: .init(string: "@type"))
+            case let .marked(text):
+                try container.encode("richTextMarked", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(text, forKey: .init(string: "text"))
 
-try container.encode("richTextMarked", forKey: .init(string: "@type"))
+            case let .phoneNumber(text, phoneNumber):
+                try container.encode("richTextPhoneNumber", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(phoneNumber, forKey: .init(string: "phoneNumber"))
 
-try container.encode("richTextPhoneNumber", forKey: .init(string: "@type"))
+            case let .icon(document, width, height):
+                try container.encode("richTextIcon", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
-try container.encode(phoneNumber, forKey: .init(string: "phoneNumber"))
+                try container.encode(document, forKey: .init(string: "document"))
+                try container.encode(width, forKey: .init(string: "width"))
+                try container.encode(height, forKey: .init(string: "height"))
 
-try container.encode("richTextIcon", forKey: .init(string: "@type"))
+            case let .anchor(text, name):
+                try container.encode("richTextAnchor", forKey: .type)
 
-try container.encode(document, forKey: .init(string: "document"))
-try container.encode(width, forKey: .init(string: "width"))
-try container.encode(height, forKey: .init(string: "height"))
+                try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(name, forKey: .init(string: "name"))
 
-try container.encode("richTextAnchor", forKey: .init(string: "@type"))
+            case let .s(texts):
+                try container.encode("richTexts", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
-try container.encode(name, forKey: .init(string: "name"))
-
-try container.encode("richTexts", forKey: .init(string: "@type"))
-
-try container.encode(texts, forKey: .init(string: "texts"))
-
-}
-}
-
-}
-
+                try container.encode(texts, forKey: .init(string: "texts"))
+            }
+        }
+    }
 }

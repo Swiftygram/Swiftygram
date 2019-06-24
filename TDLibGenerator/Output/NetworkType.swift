@@ -1,71 +1,75 @@
+//
+//  NetworkType.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum NetworkType: TDEnumProtocol {
+        ///  The network is not available
+        case none
 
-enum NetworkType: TDEnumProtocol {
+        ///  A mobile network
+        case mobile
 
-/// The network is not available
-case none
+        ///  A mobile roaming network
+        case mobileRoaming
 
-/// A mobile network
-case mobile
+        ///  A Wi-Fi network
+        case wiFi
 
-/// A mobile roaming network
-case mobileRoaming
+        ///  A different network type (e.g., Ethernet network)
+        case other
 
-/// A Wi-Fi network
-case wiFi
+        // MARK: - Decodable
 
-/// A different network type (e.g., Ethernet network)
-case other
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+            switch type {
+            case "networkTypeNone":
+                self = .none
 
-switch type {
-case "networkTypeNone":
-self = .none
+            case "networkTypeMobile":
+                self = .mobile
 
-case "networkTypeMobile":
-self = .mobile
+            case "networkTypeMobileRoaming":
+                self = .mobileRoaming
 
-case "networkTypeMobileRoaming":
-self = .mobileRoaming
+            case "networkTypeWiFi":
+                self = .wiFi
 
-case "networkTypeWiFi":
-self = .wiFi
+            case "networkTypeOther":
+                self = .other
 
-case "networkTypeOther":
-self = .other
+            default:
+                throw DecodingError.typeMismatch(NetworkType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined NetworkType"))
+            }
+        }
 
-default:
-throw DecodingError.typeMismatch(NetworkType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined NetworkType"))
-}
-}
+        // MARK: - Decodable
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-switch self {
-case .other:
-case .wiFi:
-case .mobileRoaming:
-case .mobile:
-case .none:
-try container.encode("networkTypeNone", forKey: .init(string: "@type"))
+            switch self {
+            case .none:
+                try container.encode("networkTypeNone", forKey: .type)
 
-try container.encode("networkTypeMobile", forKey: .init(string: "@type"))
+            case .mobile:
+                try container.encode("networkTypeMobile", forKey: .type)
 
-try container.encode("networkTypeMobileRoaming", forKey: .init(string: "@type"))
+            case .mobileRoaming:
+                try container.encode("networkTypeMobileRoaming", forKey: .type)
 
-try container.encode("networkTypeWiFi", forKey: .init(string: "@type"))
+            case .wiFi:
+                try container.encode("networkTypeWiFi", forKey: .type)
 
-try container.encode("networkTypeOther", forKey: .init(string: "@type"))
-
-}
-}
-
-}
-
+            case .other:
+                try container.encode("networkTypeOther", forKey: .type)
+            }
+        }
+    }
 }

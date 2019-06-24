@@ -1,53 +1,60 @@
+//
+//  KeyboardButtonType.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum KeyboardButtonType: TDEnumProtocol {
+        ///  A simple button, with text that should be sent when the button is
+        /// pressed
+        case text
 
-enum KeyboardButtonType: TDEnumProtocol {
+        ///  A button that sends the user's phone number when pressed; available
+        /// only in private chats
+        case requestPhoneNumber
 
-/// A simple button, with text that should be sent when the button is pressed
-case text
+        ///  A button that sends the user's location when pressed; available only
+        /// in private chats
+        case requestLocation
 
-/// A button that sends the user's phone number when pressed; available only in private chats
-case requestPhoneNumber
+        // MARK: - Decodable
 
-/// A button that sends the user's location when pressed; available only in private chats
-case requestLocation
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+            switch type {
+            case "keyboardButtonTypeText":
+                self = .text
 
-switch type {
-case "keyboardButtonTypeText":
-self = .text
+            case "keyboardButtonTypeRequestPhoneNumber":
+                self = .requestPhoneNumber
 
-case "keyboardButtonTypeRequestPhoneNumber":
-self = .requestPhoneNumber
+            case "keyboardButtonTypeRequestLocation":
+                self = .requestLocation
 
-case "keyboardButtonTypeRequestLocation":
-self = .requestLocation
+            default:
+                throw DecodingError.typeMismatch(KeyboardButtonType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined KeyboardButtonType"))
+            }
+        }
 
-default:
-throw DecodingError.typeMismatch(KeyboardButtonType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined KeyboardButtonType"))
-}
-}
+        // MARK: - Decodable
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-switch self {
-case .requestLocation:
-case .requestPhoneNumber:
-case .text:
-try container.encode("keyboardButtonTypeText", forKey: .init(string: "@type"))
+            switch self {
+            case .text:
+                try container.encode("keyboardButtonTypeText", forKey: .type)
 
-try container.encode("keyboardButtonTypeRequestPhoneNumber", forKey: .init(string: "@type"))
+            case .requestPhoneNumber:
+                try container.encode("keyboardButtonTypeRequestPhoneNumber", forKey: .type)
 
-try container.encode("keyboardButtonTypeRequestLocation", forKey: .init(string: "@type"))
-
-}
-}
-
-}
-
+            case .requestLocation:
+                try container.encode("keyboardButtonTypeRequestLocation", forKey: .type)
+            }
+        }
+    }
 }

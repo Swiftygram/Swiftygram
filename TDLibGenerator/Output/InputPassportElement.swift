@@ -1,221 +1,238 @@
+//
+//  InputPassportElement.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum InputPassportElement: TDEnumProtocol {
+        ///  A Telegram Passport element to be saved containing the user's
+        /// personal details
+        ///
+        ///  - personalDetails: Personal details of the user
+        case personalDetails(personalDetails: TDObject.PersonalDetails)
+
+        ///  A Telegram Passport element to be saved containing the user's
+        /// passport
+        ///
+        ///  - passport: The passport to be saved
+        case passport(passport: TDObject.InputIdentityDocument)
+
+        ///  A Telegram Passport element to be saved containing the user's driver
+        /// license
+        ///
+        ///  - driverLicense: The driver license to be saved
+        case driverLicense(driverLicense: TDObject.InputIdentityDocument)
+
+        ///  A Telegram Passport element to be saved containing the user's
+        /// identity card
+        ///
+        ///  - identityCard: The identity card to be saved
+        case identityCard(identityCard: TDObject.InputIdentityDocument)
+
+        ///  A Telegram Passport element to be saved containing the user's
+        /// internal passport
+        ///
+        ///  - internalPassport: The internal passport to be saved
+        case internalPassport(internalPassport: TDObject.InputIdentityDocument)
+
+        ///  A Telegram Passport element to be saved containing the user's address
+        ///
+        ///  - address: The address to be saved
+        case address(address: TDObject.Address)
 
-enum InputPassportElement: TDEnumProtocol {
+        ///  A Telegram Passport element to be saved containing the user's utility
+        /// bill
+        ///
+        ///  - utilityBill: The utility bill to be saved
+        case utilityBill(utilityBill: TDObject.InputPersonalDocument)
 
-/// A Telegram Passport element to be saved containing the user's personal details
-/// 
-/// - personalDetails: Personal details of the user
-case personalDetails(personalDetails: TDObject.PersonalDetails)
+        ///  A Telegram Passport element to be saved containing the user's bank
+        /// statement
+        ///
+        ///  - bankStatement: The bank statement to be saved
+        case bankStatement(bankStatement: TDObject.InputPersonalDocument)
 
-/// A Telegram Passport element to be saved containing the user's passport
-/// 
-/// - passport: The passport to be saved
-case passport(passport: TDObject.InputIdentityDocument)
+        ///  A Telegram Passport element to be saved containing the user's rental
+        /// agreement
+        ///
+        ///  - rentalAgreement: The rental agreement to be saved
+        case rentalAgreement(rentalAgreement: TDObject.InputPersonalDocument)
 
-/// A Telegram Passport element to be saved containing the user's driver license
-/// 
-/// - driverLicense: The driver license to be saved
-case driverLicense(driverLicense: TDObject.InputIdentityDocument)
+        ///  A Telegram Passport element to be saved containing the user's
+        /// passport registration
+        ///
+        ///  - passportRegistration: The passport registration page to be saved
+        case passportRegistration(passportRegistration: TDObject.InputPersonalDocument)
 
-/// A Telegram Passport element to be saved containing the user's identity card
-/// 
-/// - identityCard: The identity card to be saved
-case identityCard(identityCard: TDObject.InputIdentityDocument)
+        ///  A Telegram Passport element to be saved containing the user's
+        /// temporary registration
+        ///
+        ///  - temporaryRegistration: The temporary registration document to be
+        /// saved
+        case temporaryRegistration(temporaryRegistration: TDObject.InputPersonalDocument)
 
-/// A Telegram Passport element to be saved containing the user's internal passport
-/// 
-/// - internalPassport: The internal passport to be saved
-case internalPassport(internalPassport: TDObject.InputIdentityDocument)
+        ///  A Telegram Passport element to be saved containing the user's phone
+        /// number
+        ///
+        ///  - phoneNumber: The phone number to be saved
+        case phoneNumber(phoneNumber: String)
 
-/// A Telegram Passport element to be saved containing the user's address
-/// 
-/// - address: The address to be saved
-case address(address: TDObject.Address)
+        ///  A Telegram Passport element to be saved containing the user's email
+        /// address
+        ///
+        ///  - emailAddress: The email address to be saved
+        case emailAddress(emailAddress: String)
 
-/// A Telegram Passport element to be saved containing the user's utility bill
-/// 
-/// - utilityBill: The utility bill to be saved
-case utilityBill(utilityBill: TDObject.InputPersonalDocument)
+        // MARK: - Decodable
 
-/// A Telegram Passport element to be saved containing the user's bank statement
-/// 
-/// - bankStatement: The bank statement to be saved
-case bankStatement(bankStatement: TDObject.InputPersonalDocument)
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-/// A Telegram Passport element to be saved containing the user's rental agreement
-/// 
-/// - rentalAgreement: The rental agreement to be saved
-case rentalAgreement(rentalAgreement: TDObject.InputPersonalDocument)
+            switch type {
+            case "inputPassportElementPersonalDetails":
+                let personalDetails = try container.decode(TDObject.PersonalDetails.self, forKey: .init(string: "personalDetails"))
 
-/// A Telegram Passport element to be saved containing the user's passport registration
-/// 
-/// - passportRegistration: The passport registration page to be saved
-case passportRegistration(passportRegistration: TDObject.InputPersonalDocument)
+                self = .personalDetails(personalDetails: personalDetails)
 
-/// A Telegram Passport element to be saved containing the user's temporary registration
-/// 
-/// - temporaryRegistration: The temporary registration document to be saved
-case temporaryRegistration(temporaryRegistration: TDObject.InputPersonalDocument)
+            case "inputPassportElementPassport":
+                let passport = try container.decode(TDObject.InputIdentityDocument.self, forKey: .init(string: "passport"))
 
-/// A Telegram Passport element to be saved containing the user's phone number
-/// 
-/// - phoneNumber: The phone number to be saved
-case phoneNumber(phoneNumber: String)
+                self = .passport(passport: passport)
 
-/// A Telegram Passport element to be saved containing the user's email address
-/// 
-/// - emailAddress: The email address to be saved
-case emailAddress(emailAddress: String)
+            case "inputPassportElementDriverLicense":
+                let driverLicense = try container.decode(TDObject.InputIdentityDocument.self, forKey: .init(string: "driverLicense"))
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+                self = .driverLicense(driverLicense: driverLicense)
 
-switch type {
-case "inputPassportElementPersonalDetails":
-let personalDetails = try container.decode(TDObject.PersonalDetails.self, forKey: .init(string: "personalDetails"))
+            case "inputPassportElementIdentityCard":
+                let identityCard = try container.decode(TDObject.InputIdentityDocument.self, forKey: .init(string: "identityCard"))
 
-self = .personalDetails(personalDetails: personalDetails)
+                self = .identityCard(identityCard: identityCard)
 
-case "inputPassportElementPassport":
-let passport = try container.decode(TDObject.InputIdentityDocument.self, forKey: .init(string: "passport"))
+            case "inputPassportElementInternalPassport":
+                let internalPassport = try container.decode(TDObject.InputIdentityDocument.self, forKey: .init(string: "internalPassport"))
 
-self = .passport(passport: passport)
+                self = .internalPassport(internalPassport: internalPassport)
 
-case "inputPassportElementDriverLicense":
-let driverLicense = try container.decode(TDObject.InputIdentityDocument.self, forKey: .init(string: "driverLicense"))
+            case "inputPassportElementAddress":
+                let address = try container.decode(TDObject.Address.self, forKey: .init(string: "address"))
 
-self = .driverLicense(driverLicense: driverLicense)
+                self = .address(address: address)
 
-case "inputPassportElementIdentityCard":
-let identityCard = try container.decode(TDObject.InputIdentityDocument.self, forKey: .init(string: "identityCard"))
+            case "inputPassportElementUtilityBill":
+                let utilityBill = try container.decode(TDObject.InputPersonalDocument.self, forKey: .init(string: "utilityBill"))
 
-self = .identityCard(identityCard: identityCard)
+                self = .utilityBill(utilityBill: utilityBill)
 
-case "inputPassportElementInternalPassport":
-let internalPassport = try container.decode(TDObject.InputIdentityDocument.self, forKey: .init(string: "internalPassport"))
+            case "inputPassportElementBankStatement":
+                let bankStatement = try container.decode(TDObject.InputPersonalDocument.self, forKey: .init(string: "bankStatement"))
 
-self = .internalPassport(internalPassport: internalPassport)
+                self = .bankStatement(bankStatement: bankStatement)
 
-case "inputPassportElementAddress":
-let address = try container.decode(TDObject.Address.self, forKey: .init(string: "address"))
+            case "inputPassportElementRentalAgreement":
+                let rentalAgreement = try container.decode(TDObject.InputPersonalDocument.self, forKey: .init(string: "rentalAgreement"))
 
-self = .address(address: address)
+                self = .rentalAgreement(rentalAgreement: rentalAgreement)
 
-case "inputPassportElementUtilityBill":
-let utilityBill = try container.decode(TDObject.InputPersonalDocument.self, forKey: .init(string: "utilityBill"))
+            case "inputPassportElementPassportRegistration":
+                let passportRegistration = try container.decode(TDObject.InputPersonalDocument.self, forKey: .init(string: "passportRegistration"))
 
-self = .utilityBill(utilityBill: utilityBill)
+                self = .passportRegistration(passportRegistration: passportRegistration)
 
-case "inputPassportElementBankStatement":
-let bankStatement = try container.decode(TDObject.InputPersonalDocument.self, forKey: .init(string: "bankStatement"))
+            case "inputPassportElementTemporaryRegistration":
+                let temporaryRegistration = try container.decode(TDObject.InputPersonalDocument.self, forKey: .init(string: "temporaryRegistration"))
 
-self = .bankStatement(bankStatement: bankStatement)
+                self = .temporaryRegistration(temporaryRegistration: temporaryRegistration)
 
-case "inputPassportElementRentalAgreement":
-let rentalAgreement = try container.decode(TDObject.InputPersonalDocument.self, forKey: .init(string: "rentalAgreement"))
+            case "inputPassportElementPhoneNumber":
+                let phoneNumber = try container.decode(String.self, forKey: .init(string: "phoneNumber"))
 
-self = .rentalAgreement(rentalAgreement: rentalAgreement)
+                self = .phoneNumber(phoneNumber: phoneNumber)
 
-case "inputPassportElementPassportRegistration":
-let passportRegistration = try container.decode(TDObject.InputPersonalDocument.self, forKey: .init(string: "passportRegistration"))
+            case "inputPassportElementEmailAddress":
+                let emailAddress = try container.decode(String.self, forKey: .init(string: "emailAddress"))
 
-self = .passportRegistration(passportRegistration: passportRegistration)
+                self = .emailAddress(emailAddress: emailAddress)
 
-case "inputPassportElementTemporaryRegistration":
-let temporaryRegistration = try container.decode(TDObject.InputPersonalDocument.self, forKey: .init(string: "temporaryRegistration"))
+            default:
+                throw DecodingError.typeMismatch(InputPassportElement.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined InputPassportElement"))
+            }
+        }
 
-self = .temporaryRegistration(temporaryRegistration: temporaryRegistration)
+        // MARK: - Decodable
 
-case "inputPassportElementPhoneNumber":
-let phoneNumber = try container.decode(String.self, forKey: .init(string: "phoneNumber"))
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-self = .phoneNumber(phoneNumber: phoneNumber)
+            switch self {
+            case let .personalDetails(personalDetails):
+                try container.encode("inputPassportElementPersonalDetails", forKey: .type)
 
-case "inputPassportElementEmailAddress":
-let emailAddress = try container.decode(String.self, forKey: .init(string: "emailAddress"))
+                try container.encode(personalDetails, forKey: .init(string: "personalDetails"))
 
-self = .emailAddress(emailAddress: emailAddress)
+            case let .passport(passport):
+                try container.encode("inputPassportElementPassport", forKey: .type)
 
-default:
-throw DecodingError.typeMismatch(InputPassportElement.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined InputPassportElement"))
-}
-}
+                try container.encode(passport, forKey: .init(string: "passport"))
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+            case let .driverLicense(driverLicense):
+                try container.encode("inputPassportElementDriverLicense", forKey: .type)
 
-switch self {
-case .emailAddress(let emailAddress):
-case .phoneNumber(let phoneNumber):
-case .temporaryRegistration(let temporaryRegistration):
-case .passportRegistration(let passportRegistration):
-case .rentalAgreement(let rentalAgreement):
-case .bankStatement(let bankStatement):
-case .utilityBill(let utilityBill):
-case .address(let address):
-case .internalPassport(let internalPassport):
-case .identityCard(let identityCard):
-case .driverLicense(let driverLicense):
-case .passport(let passport):
-case .personalDetails(let personalDetails):
-try container.encode("inputPassportElementPersonalDetails", forKey: .init(string: "@type"))
+                try container.encode(driverLicense, forKey: .init(string: "driverLicense"))
 
-try container.encode(personalDetails, forKey: .init(string: "personalDetails"))
+            case let .identityCard(identityCard):
+                try container.encode("inputPassportElementIdentityCard", forKey: .type)
 
-try container.encode("inputPassportElementPassport", forKey: .init(string: "@type"))
+                try container.encode(identityCard, forKey: .init(string: "identityCard"))
 
-try container.encode(passport, forKey: .init(string: "passport"))
+            case let .internalPassport(internalPassport):
+                try container.encode("inputPassportElementInternalPassport", forKey: .type)
 
-try container.encode("inputPassportElementDriverLicense", forKey: .init(string: "@type"))
+                try container.encode(internalPassport, forKey: .init(string: "internalPassport"))
 
-try container.encode(driverLicense, forKey: .init(string: "driverLicense"))
+            case let .address(address):
+                try container.encode("inputPassportElementAddress", forKey: .type)
 
-try container.encode("inputPassportElementIdentityCard", forKey: .init(string: "@type"))
+                try container.encode(address, forKey: .init(string: "address"))
 
-try container.encode(identityCard, forKey: .init(string: "identityCard"))
+            case let .utilityBill(utilityBill):
+                try container.encode("inputPassportElementUtilityBill", forKey: .type)
 
-try container.encode("inputPassportElementInternalPassport", forKey: .init(string: "@type"))
+                try container.encode(utilityBill, forKey: .init(string: "utilityBill"))
 
-try container.encode(internalPassport, forKey: .init(string: "internalPassport"))
+            case let .bankStatement(bankStatement):
+                try container.encode("inputPassportElementBankStatement", forKey: .type)
 
-try container.encode("inputPassportElementAddress", forKey: .init(string: "@type"))
+                try container.encode(bankStatement, forKey: .init(string: "bankStatement"))
 
-try container.encode(address, forKey: .init(string: "address"))
+            case let .rentalAgreement(rentalAgreement):
+                try container.encode("inputPassportElementRentalAgreement", forKey: .type)
 
-try container.encode("inputPassportElementUtilityBill", forKey: .init(string: "@type"))
+                try container.encode(rentalAgreement, forKey: .init(string: "rentalAgreement"))
 
-try container.encode(utilityBill, forKey: .init(string: "utilityBill"))
+            case let .passportRegistration(passportRegistration):
+                try container.encode("inputPassportElementPassportRegistration", forKey: .type)
 
-try container.encode("inputPassportElementBankStatement", forKey: .init(string: "@type"))
+                try container.encode(passportRegistration, forKey: .init(string: "passportRegistration"))
 
-try container.encode(bankStatement, forKey: .init(string: "bankStatement"))
+            case let .temporaryRegistration(temporaryRegistration):
+                try container.encode("inputPassportElementTemporaryRegistration", forKey: .type)
 
-try container.encode("inputPassportElementRentalAgreement", forKey: .init(string: "@type"))
+                try container.encode(temporaryRegistration, forKey: .init(string: "temporaryRegistration"))
 
-try container.encode(rentalAgreement, forKey: .init(string: "rentalAgreement"))
+            case let .phoneNumber(phoneNumber):
+                try container.encode("inputPassportElementPhoneNumber", forKey: .type)
 
-try container.encode("inputPassportElementPassportRegistration", forKey: .init(string: "@type"))
+                try container.encode(phoneNumber, forKey: .init(string: "phoneNumber"))
 
-try container.encode(passportRegistration, forKey: .init(string: "passportRegistration"))
+            case let .emailAddress(emailAddress):
+                try container.encode("inputPassportElementEmailAddress", forKey: .type)
 
-try container.encode("inputPassportElementTemporaryRegistration", forKey: .init(string: "@type"))
-
-try container.encode(temporaryRegistration, forKey: .init(string: "temporaryRegistration"))
-
-try container.encode("inputPassportElementPhoneNumber", forKey: .init(string: "@type"))
-
-try container.encode(phoneNumber, forKey: .init(string: "phoneNumber"))
-
-try container.encode("inputPassportElementEmailAddress", forKey: .init(string: "@type"))
-
-try container.encode(emailAddress, forKey: .init(string: "emailAddress"))
-
-}
-}
-
-}
-
+                try container.encode(emailAddress, forKey: .init(string: "emailAddress"))
+            }
+        }
+    }
 }

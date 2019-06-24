@@ -1,44 +1,48 @@
+//
+//  TextParseMode.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum TextParseMode: TDEnumProtocol {
+        ///  The text should be parsed in markdown-style
+        case markdown
 
-enum TextParseMode: TDEnumProtocol {
+        ///  The text should be parsed in HTML-style
+        case hTML
 
-/// The text should be parsed in markdown-style
-case markdown
+        // MARK: - Decodable
 
-/// The text should be parsed in HTML-style
-case hTML
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+            switch type {
+            case "textParseModeMarkdown":
+                self = .markdown
 
-switch type {
-case "textParseModeMarkdown":
-self = .markdown
+            case "textParseModeHTML":
+                self = .hTML
 
-case "textParseModeHTML":
-self = .hTML
+            default:
+                throw DecodingError.typeMismatch(TextParseMode.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined TextParseMode"))
+            }
+        }
 
-default:
-throw DecodingError.typeMismatch(TextParseMode.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined TextParseMode"))
-}
-}
+        // MARK: - Decodable
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-switch self {
-case .hTML:
-case .markdown:
-try container.encode("textParseModeMarkdown", forKey: .init(string: "@type"))
+            switch self {
+            case .markdown:
+                try container.encode("textParseModeMarkdown", forKey: .type)
 
-try container.encode("textParseModeHTML", forKey: .init(string: "@type"))
-
-}
-}
-
-}
-
+            case .hTML:
+                try container.encode("textParseModeHTML", forKey: .type)
+            }
+        }
+    }
 }

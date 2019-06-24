@@ -1,554 +1,563 @@
+//
+//  PageBlock.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum PageBlock: TDEnumProtocol {
+        ///  The title of a page
+        ///
+        ///  - title: Title
+        case title(title: TDEnum.RichText)
+
+        ///  The subtitle of a page
+        ///
+        ///  - subtitle: Subtitle
+        case subtitle(subtitle: TDEnum.RichText)
+
+        ///  The author and publishing date of a page
+        ///
+        ///  - author: Author
+        ///  - publishDate: Point in time (Unix timestamp) when the article was
+        /// published; 0 if unknown
+        case authorDate(author: TDEnum.RichText, publishDate: Int)
+
+        ///  A header
+        ///
+        ///  - header: Header
+        case header(header: TDEnum.RichText)
+
+        ///  A subheader
+        ///
+        ///  - subheader: Subheader
+        case subheader(subheader: TDEnum.RichText)
+
+        ///  A kicker
+        ///
+        ///  - kicker: Kicker
+        case kicker(kicker: TDEnum.RichText)
+
+        ///  A text paragraph
+        ///
+        ///  - text: Paragraph text
+        case paragraph(text: TDEnum.RichText)
+
+        ///  A preformatted text paragraph
+        ///
+        ///  - text: Paragraph text
+        ///  - language: Programming language for which the text should be
+        /// formatted
+        case preformatted(text: TDEnum.RichText, language: String)
+
+        ///  The footer of a page
+        ///
+        ///  - footer: Footer
+        case footer(footer: TDEnum.RichText)
+
+        ///  An empty block separating a page
+        case divider
+
+        ///  An invisible anchor on a page, which can be used in a URL to open the
+        /// page from the specified anchor
+        ///
+        ///  - name: Name of the anchor
+        case anchor(name: String)
+
+        ///  A list of data blocks
+        ///
+        ///  - items: The items of the list
+        case list(items: [TDObject.PageBlockListItem])
+
+        ///  A block quote
+        ///
+        ///  - text: Quote text
+        ///  - credit: Quote credit
+        case blockQuote(text: TDEnum.RichText, credit: TDEnum.RichText)
+
+        ///  A pull quote
+        ///
+        ///  - text: Quote text
+        ///  - credit: Quote credit
+        case pullQuote(text: TDEnum.RichText, credit: TDEnum.RichText)
+
+        ///  An animation
+        ///
+        ///  - animation: Animation file; may be null
+        ///  - caption: Animation caption
+        ///  - needAutoplay: True, if the animation should be played automatically
+        case animation(animation: TDObject.Animation, caption: TDObject.PageBlockCaption, needAutoplay: Bool)
+
+        ///  An audio file
+        ///
+        ///  - audio: Audio file; may be null
+        ///  - caption: Audio file caption
+        case audio(audio: TDObject.Audio, caption: TDObject.PageBlockCaption)
+
+        ///  A photo
+        ///
+        ///  - photo: Photo file; may be null
+        ///  - caption: Photo caption
+        ///  - url: URL that needs to be opened when the photo is clicked
+        case photo(photo: TDObject.Photo, caption: TDObject.PageBlockCaption, url: String)
+
+        ///  A video
+        ///
+        ///  - video: Video file; may be null
+        ///  - caption: Video caption
+        ///  - needAutoplay: True, if the video should be played automatically
+        ///  - isLooped: True, if the video should be looped
+        case video(video: TDObject.Video, caption: TDObject.PageBlockCaption, needAutoplay: Bool, isLooped: Bool)
+
+        ///  A page cover
+        ///
+        ///  - cover: Cover
+        case cover(cover: TDEnum.PageBlock)
+
+        ///  An embedded web page
+        ///
+        ///  - url: Web page URL, if available
+        ///  - html: HTML-markup of the embedded page
+        ///  - posterPhoto: Poster photo, if available; may be null
+        ///  - width: Block width, 0 if unknown
+        ///  - height: Block height, 0 if unknown
+        ///  - caption: Block caption
+        ///  - isFullWidth: True, if the block should be full width
+        ///  - allowScrolling: True, if scrolling should be allowed
+        case embedded(url: String?, html: String, posterPhoto: TDObject.Photo?, width: Int, height: Int, caption: TDObject.PageBlockCaption, isFullWidth: Bool, allowScrolling: Bool)
+
+        ///  An embedded post
+        ///
+        ///  - url: Web page URL
+        ///  - author: Post author
+        ///  - authorPhoto: Post author photo
+        ///  - date: Point in time (Unix timestamp) when the post was created; 0
+        /// if unknown
+        ///  - pageBlocks: Post content
+        ///  - caption: Post caption
+        case embeddedPost(url: String, author: String, authorPhoto: TDObject.Photo, date: Int, pageBlocks: [TDEnum.PageBlock], caption: TDObject.PageBlockCaption)
+
+        ///  A collage
+        ///
+        ///  - pageBlocks: Collage item contents
+        ///  - caption: Block caption
+        case collage(pageBlocks: [TDEnum.PageBlock], caption: TDObject.PageBlockCaption)
+
+        ///  A slideshow
+        ///
+        ///  - pageBlocks: Slideshow item contents
+        ///  - caption: Block caption
+        case slideshow(pageBlocks: [TDEnum.PageBlock], caption: TDObject.PageBlockCaption)
+
+        ///  A link to a chat
+        ///
+        ///  - title: Chat title
+        ///  - photo: Chat photo; may be null
+        ///  - username: Chat username, by which all other information about the
+        /// chat should be resolved
+        case chatLink(title: String, photo: TDObject.ChatPhoto, username: String)
+
+        ///  A table
+        ///
+        ///  - caption: Table caption
+        ///  - cells: Table cells
+        ///  - isBordered: True, if the table is bordered
+        ///  - isStriped: True, if the table is striped
+        case table(caption: TDEnum.RichText, cells: [[TDObject.PageBlockTableCell]], isBordered: Bool, isStriped: Bool)
+
+        ///  A collapsible block
+        ///
+        ///  - header: Always visible heading for the block
+        ///  - pageBlocks: Block contents
+        ///  - isOpen: True, if the block is open by default
+        case details(header: TDEnum.RichText, pageBlocks: [TDEnum.PageBlock], isOpen: Bool)
+
+        ///  Related articles
+        ///
+        ///  - header: Block header
+        ///  - articles: List of related articles
+        case relatedArticles(header: TDEnum.RichText, articles: [TDObject.PageBlockRelatedArticle])
 
-enum PageBlock: TDEnumProtocol {
-
-/// The title of a page
-/// 
-/// - title: Title
-case title(title: TDEnum.RichText)
-
-/// The subtitle of a page
-/// 
-/// - subtitle: Subtitle
-case subtitle(subtitle: TDEnum.RichText)
-
-/// The author and publishing date of a page
-/// 
-/// - author: Author
-/// - publishDate: Point in time (Unix timestamp) when the article was published; 0 if unknown
-case authorDate(author: TDEnum.RichText, publishDate: Int)
-
-/// A header
-/// 
-/// - header: Header
-case header(header: TDEnum.RichText)
-
-/// A subheader
-/// 
-/// - subheader: Subheader
-case subheader(subheader: TDEnum.RichText)
-
-/// A kicker
-/// 
-/// - kicker: Kicker
-case kicker(kicker: TDEnum.RichText)
-
-/// A text paragraph
-/// 
-/// - text: Paragraph text
-case paragraph(text: TDEnum.RichText)
-
-/// A preformatted text paragraph
-/// 
-/// - text: Paragraph text
-/// - language: Programming language for which the text should be formatted
-case preformatted(text: TDEnum.RichText, language: String)
-
-/// The footer of a page
-/// 
-/// - footer: Footer
-case footer(footer: TDEnum.RichText)
-
-/// An empty block separating a page
-case divider
-
-/// An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor
-/// 
-/// - name: Name of the anchor
-case anchor(name: String)
-
-/// A list of data blocks
-/// 
-/// - items: The items of the list
-case list(items: [TDObject.PageBlockListItem])
-
-/// A block quote
-/// 
-/// - text: Quote text
-/// - credit: Quote credit
-case blockQuote(text: TDEnum.RichText, credit: TDEnum.RichText)
-
-/// A pull quote
-/// 
-/// - text: Quote text
-/// - credit: Quote credit
-case pullQuote(text: TDEnum.RichText, credit: TDEnum.RichText)
-
-/// An animation
-/// 
-/// - animation: Animation file; may be null
-/// - caption: Animation caption
-/// - needAutoplay: True, if the animation should be played automatically
-case animation(animation: TDObject.Animation, caption: TDObject.PageBlockCaption, needAutoplay: Bool)
-
-/// An audio file
-/// 
-/// - audio: Audio file; may be null
-/// - caption: Audio file caption
-case audio(audio: TDObject.Audio, caption: TDObject.PageBlockCaption)
-
-/// A photo
-/// 
-/// - photo: Photo file; may be null
-/// - caption: Photo caption
-/// - url: URL that needs to be opened when the photo is clicked
-case photo(photo: TDObject.Photo, caption: TDObject.PageBlockCaption, url: String)
-
-/// A video
-/// 
-/// - video: Video file; may be null
-/// - caption: Video caption
-/// - needAutoplay: True, if the video should be played automatically
-/// - isLooped: True, if the video should be looped
-case video(video: TDObject.Video, caption: TDObject.PageBlockCaption, needAutoplay: Bool, isLooped: Bool)
-
-/// A page cover
-/// 
-/// - cover: Cover
-case cover(cover: TDEnum.PageBlock)
-
-/// An embedded web page
-/// 
-/// - url: Web page URL, if available
-/// - html: HTML-markup of the embedded page
-/// - posterPhoto: Poster photo, if available; may be null
-/// - width: Block width, 0 if unknown
-/// - height: Block height, 0 if unknown
-/// - caption: Block caption
-/// - isFullWidth: True, if the block should be full width
-/// - allowScrolling: True, if scrolling should be allowed
-case embedded(url: String?, html: String, posterPhoto: TDObject.Photo?, width: Int, height: Int, caption: TDObject.PageBlockCaption, isFullWidth: Bool, allowScrolling: Bool)
-
-/// An embedded post
-/// 
-/// - url: Web page URL
-/// - author: Post author
-/// - authorPhoto: Post author photo
-/// - date: Point in time (Unix timestamp) when the post was created; 0 if unknown
-/// - pageBlocks: Post content
-/// - caption: Post caption
-case embeddedPost(url: String, author: String, authorPhoto: TDObject.Photo, date: Int, pageBlocks: [TDEnum.PageBlock], caption: TDObject.PageBlockCaption)
-
-/// A collage
-/// 
-/// - pageBlocks: Collage item contents
-/// - caption: Block caption
-case collage(pageBlocks: [TDEnum.PageBlock], caption: TDObject.PageBlockCaption)
-
-/// A slideshow
-/// 
-/// - pageBlocks: Slideshow item contents
-/// - caption: Block caption
-case slideshow(pageBlocks: [TDEnum.PageBlock], caption: TDObject.PageBlockCaption)
-
-/// A link to a chat
-/// 
-/// - title: Chat title
-/// - photo: Chat photo; may be null
-/// - username: Chat username, by which all other information about the chat should be resolved
-case chatLink(title: String, photo: TDObject.ChatPhoto, username: String)
-
-/// A table
-/// 
-/// - caption: Table caption
-/// - cells: Table cells
-/// - isBordered: True, if the table is bordered
-/// - isStriped: True, if the table is striped
-case table(caption: TDEnum.RichText, cells: [[TDObject.PageBlockTableCell]], isBordered: Bool, isStriped: Bool)
-
-/// A collapsible block
-/// 
-/// - header: Always visible heading for the block
-/// - pageBlocks: Block contents
-/// - isOpen: True, if the block is open by default
-case details(header: TDEnum.RichText, pageBlocks: [TDEnum.PageBlock], isOpen: Bool)
-
-/// Related articles
-/// 
-/// - header: Block header
-/// - articles: List of related articles
-case relatedArticles(header: TDEnum.RichText, articles: [TDObject.PageBlockRelatedArticle])
-
-/// A map
-/// 
-/// - location: Location of the map center
-/// - zoom: Map zoom level
-/// - width: Map width
-/// - height: Map height
-/// - caption: Block caption
-case map(location: TDObject.Location, zoom: Int, width: Int, height: Int, caption: TDObject.PageBlockCaption)
+        ///  A map
+        ///
+        ///  - location: Location of the map center
+        ///  - zoom: Map zoom level
+        ///  - width: Map width
+        ///  - height: Map height
+        ///  - caption: Block caption
+        case map(location: TDObject.Location, zoom: Int, width: Int, height: Int, caption: TDObject.PageBlockCaption)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+        // MARK: - Decodable
 
-switch type {
-case "pageBlockTitle":
-let title = try container.decode(TDEnum.RichText.self, forKey: .init(string: "title"))
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-self = .title(title: title)
+            switch type {
+            case "pageBlockTitle":
+                let title = try container.decode(TDEnum.RichText.self, forKey: .init(string: "title"))
 
-case "pageBlockSubtitle":
-let subtitle = try container.decode(TDEnum.RichText.self, forKey: .init(string: "subtitle"))
+                self = .title(title: title)
 
-self = .subtitle(subtitle: subtitle)
+            case "pageBlockSubtitle":
+                let subtitle = try container.decode(TDEnum.RichText.self, forKey: .init(string: "subtitle"))
 
-case "pageBlockAuthorDate":
-let author = try container.decode(TDEnum.RichText.self, forKey: .init(string: "author"))
-let publishDate = try container.decode(Int.self, forKey: .init(string: "publishDate"))
-
-self = .authorDate(author: author, publishDate: publishDate)
+                self = .subtitle(subtitle: subtitle)
 
-case "pageBlockHeader":
-let header = try container.decode(TDEnum.RichText.self, forKey: .init(string: "header"))
+            case "pageBlockAuthorDate":
+                let author = try container.decode(TDEnum.RichText.self, forKey: .init(string: "author"))
+                let publishDate = try container.decode(Int.self, forKey: .init(string: "publishDate"))
+
+                self = .authorDate(author: author, publishDate: publishDate)
 
-self = .header(header: header)
-
-case "pageBlockSubheader":
-let subheader = try container.decode(TDEnum.RichText.self, forKey: .init(string: "subheader"))
-
-self = .subheader(subheader: subheader)
-
-case "pageBlockKicker":
-let kicker = try container.decode(TDEnum.RichText.self, forKey: .init(string: "kicker"))
-
-self = .kicker(kicker: kicker)
-
-case "pageBlockParagraph":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+            case "pageBlockHeader":
+                let header = try container.decode(TDEnum.RichText.self, forKey: .init(string: "header"))
 
-self = .paragraph(text: text)
+                self = .header(header: header)
+
+            case "pageBlockSubheader":
+                let subheader = try container.decode(TDEnum.RichText.self, forKey: .init(string: "subheader"))
+
+                self = .subheader(subheader: subheader)
+
+            case "pageBlockKicker":
+                let kicker = try container.decode(TDEnum.RichText.self, forKey: .init(string: "kicker"))
+
+                self = .kicker(kicker: kicker)
+
+            case "pageBlockParagraph":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
 
-case "pageBlockPreformatted":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
-let language = try container.decode(String.self, forKey: .init(string: "language"))
+                self = .paragraph(text: text)
 
-self = .preformatted(text: text, language: language)
+            case "pageBlockPreformatted":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                let language = try container.decode(String.self, forKey: .init(string: "language"))
 
-case "pageBlockFooter":
-let footer = try container.decode(TDEnum.RichText.self, forKey: .init(string: "footer"))
+                self = .preformatted(text: text, language: language)
 
-self = .footer(footer: footer)
+            case "pageBlockFooter":
+                let footer = try container.decode(TDEnum.RichText.self, forKey: .init(string: "footer"))
 
-case "pageBlockDivider":
-self = .divider
+                self = .footer(footer: footer)
 
-case "pageBlockAnchor":
-let name = try container.decode(String.self, forKey: .init(string: "name"))
+            case "pageBlockDivider":
+                self = .divider
 
-self = .anchor(name: name)
+            case "pageBlockAnchor":
+                let name = try container.decode(String.self, forKey: .init(string: "name"))
 
-case "pageBlockList":
-let items = try container.decode([TDObject.PageBlockListItem].self, forKey: .init(string: "items"))
+                self = .anchor(name: name)
 
-self = .list(items: items)
+            case "pageBlockList":
+                let items = try container.decode([TDObject.PageBlockListItem].self, forKey: .init(string: "items"))
 
-case "pageBlockBlockQuote":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
-let credit = try container.decode(TDEnum.RichText.self, forKey: .init(string: "credit"))
+                self = .list(items: items)
 
-self = .blockQuote(text: text, credit: credit)
+            case "pageBlockBlockQuote":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                let credit = try container.decode(TDEnum.RichText.self, forKey: .init(string: "credit"))
 
-case "pageBlockPullQuote":
-let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
-let credit = try container.decode(TDEnum.RichText.self, forKey: .init(string: "credit"))
+                self = .blockQuote(text: text, credit: credit)
 
-self = .pullQuote(text: text, credit: credit)
+            case "pageBlockPullQuote":
+                let text = try container.decode(TDEnum.RichText.self, forKey: .init(string: "text"))
+                let credit = try container.decode(TDEnum.RichText.self, forKey: .init(string: "credit"))
 
-case "pageBlockAnimation":
-let animation = try container.decode(TDObject.Animation.self, forKey: .init(string: "animation"))
-let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
-let needAutoplay = try container.decode(Bool.self, forKey: .init(string: "needAutoplay"))
+                self = .pullQuote(text: text, credit: credit)
 
-self = .animation(animation: animation, caption: caption, needAutoplay: needAutoplay)
+            case "pageBlockAnimation":
+                let animation = try container.decode(TDObject.Animation.self, forKey: .init(string: "animation"))
+                let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
+                let needAutoplay = try container.decode(Bool.self, forKey: .init(string: "needAutoplay"))
 
-case "pageBlockAudio":
-let audio = try container.decode(TDObject.Audio.self, forKey: .init(string: "audio"))
-let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
+                self = .animation(animation: animation, caption: caption, needAutoplay: needAutoplay)
 
-self = .audio(audio: audio, caption: caption)
+            case "pageBlockAudio":
+                let audio = try container.decode(TDObject.Audio.self, forKey: .init(string: "audio"))
+                let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
 
-case "pageBlockPhoto":
-let photo = try container.decode(TDObject.Photo.self, forKey: .init(string: "photo"))
-let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
-let url = try container.decode(String.self, forKey: .init(string: "url"))
+                self = .audio(audio: audio, caption: caption)
 
-self = .photo(photo: photo, caption: caption, url: url)
+            case "pageBlockPhoto":
+                let photo = try container.decode(TDObject.Photo.self, forKey: .init(string: "photo"))
+                let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
+                let url = try container.decode(String.self, forKey: .init(string: "url"))
 
-case "pageBlockVideo":
-let video = try container.decode(TDObject.Video.self, forKey: .init(string: "video"))
-let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
-let needAutoplay = try container.decode(Bool.self, forKey: .init(string: "needAutoplay"))
-let isLooped = try container.decode(Bool.self, forKey: .init(string: "isLooped"))
-
-self = .video(video: video, caption: caption, needAutoplay: needAutoplay, isLooped: isLooped)
-
-case "pageBlockCover":
-let cover = try container.decode(TDEnum.PageBlock.self, forKey: .init(string: "cover"))
-
-self = .cover(cover: cover)
-
-case "pageBlockEmbedded":
-let url = try container.decodeIfPresent(String.self, forKey: .init(string: "url"))
-let html = try container.decode(String.self, forKey: .init(string: "html"))
-let posterPhoto = try container.decodeIfPresent(TDObject.Photo.self, forKey: .init(string: "posterPhoto"))
-let width = try container.decode(Int.self, forKey: .init(string: "width"))
-let height = try container.decode(Int.self, forKey: .init(string: "height"))
-let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
-let isFullWidth = try container.decode(Bool.self, forKey: .init(string: "isFullWidth"))
-let allowScrolling = try container.decode(Bool.self, forKey: .init(string: "allowScrolling"))
-
-self = .embedded(url: url, html: html, posterPhoto: posterPhoto, width: width, height: height, caption: caption, isFullWidth: isFullWidth, allowScrolling: allowScrolling)
-
-case "pageBlockEmbeddedPost":
-let url = try container.decode(String.self, forKey: .init(string: "url"))
-let author = try container.decode(String.self, forKey: .init(string: "author"))
-let authorPhoto = try container.decode(TDObject.Photo.self, forKey: .init(string: "authorPhoto"))
-let date = try container.decode(Int.self, forKey: .init(string: "date"))
-let pageBlocks = try container.decode([TDEnum.PageBlock].self, forKey: .init(string: "pageBlocks"))
-let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
-
-self = .embeddedPost(url: url, author: author, authorPhoto: authorPhoto, date: date, pageBlocks: pageBlocks, caption: caption)
-
-case "pageBlockCollage":
-let pageBlocks = try container.decode([TDEnum.PageBlock].self, forKey: .init(string: "pageBlocks"))
-let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
-
-self = .collage(pageBlocks: pageBlocks, caption: caption)
-
-case "pageBlockSlideshow":
-let pageBlocks = try container.decode([TDEnum.PageBlock].self, forKey: .init(string: "pageBlocks"))
-let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
-
-self = .slideshow(pageBlocks: pageBlocks, caption: caption)
-
-case "pageBlockChatLink":
-let title = try container.decode(String.self, forKey: .init(string: "title"))
-let photo = try container.decode(TDObject.ChatPhoto.self, forKey: .init(string: "photo"))
-let username = try container.decode(String.self, forKey: .init(string: "username"))
+                self = .photo(photo: photo, caption: caption, url: url)
 
-self = .chatLink(title: title, photo: photo, username: username)
+            case "pageBlockVideo":
+                let video = try container.decode(TDObject.Video.self, forKey: .init(string: "video"))
+                let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
+                let needAutoplay = try container.decode(Bool.self, forKey: .init(string: "needAutoplay"))
+                let isLooped = try container.decode(Bool.self, forKey: .init(string: "isLooped"))
 
-case "pageBlockTable":
-let caption = try container.decode(TDEnum.RichText.self, forKey: .init(string: "caption"))
-let cells = try container.decode([[TDObject.PageBlockTableCell]].self, forKey: .init(string: "cells"))
-let isBordered = try container.decode(Bool.self, forKey: .init(string: "isBordered"))
-let isStriped = try container.decode(Bool.self, forKey: .init(string: "isStriped"))
+                self = .video(video: video, caption: caption, needAutoplay: needAutoplay, isLooped: isLooped)
 
-self = .table(caption: caption, cells: cells, isBordered: isBordered, isStriped: isStriped)
+            case "pageBlockCover":
+                let cover = try container.decode(TDEnum.PageBlock.self, forKey: .init(string: "cover"))
 
-case "pageBlockDetails":
-let header = try container.decode(TDEnum.RichText.self, forKey: .init(string: "header"))
-let pageBlocks = try container.decode([TDEnum.PageBlock].self, forKey: .init(string: "pageBlocks"))
-let isOpen = try container.decode(Bool.self, forKey: .init(string: "isOpen"))
+                self = .cover(cover: cover)
 
-self = .details(header: header, pageBlocks: pageBlocks, isOpen: isOpen)
+            case "pageBlockEmbedded":
+                let url = try container.decodeIfPresent(String.self, forKey: .init(string: "url"))
+                let html = try container.decode(String.self, forKey: .init(string: "html"))
+                let posterPhoto = try container.decodeIfPresent(TDObject.Photo.self, forKey: .init(string: "posterPhoto"))
+                let width = try container.decode(Int.self, forKey: .init(string: "width"))
+                let height = try container.decode(Int.self, forKey: .init(string: "height"))
+                let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
+                let isFullWidth = try container.decode(Bool.self, forKey: .init(string: "isFullWidth"))
+                let allowScrolling = try container.decode(Bool.self, forKey: .init(string: "allowScrolling"))
 
-case "pageBlockRelatedArticles":
-let header = try container.decode(TDEnum.RichText.self, forKey: .init(string: "header"))
-let articles = try container.decode([TDObject.PageBlockRelatedArticle].self, forKey: .init(string: "articles"))
+                self = .embedded(url: url, html: html, posterPhoto: posterPhoto, width: width, height: height, caption: caption, isFullWidth: isFullWidth, allowScrolling: allowScrolling)
 
-self = .relatedArticles(header: header, articles: articles)
+            case "pageBlockEmbeddedPost":
+                let url = try container.decode(String.self, forKey: .init(string: "url"))
+                let author = try container.decode(String.self, forKey: .init(string: "author"))
+                let authorPhoto = try container.decode(TDObject.Photo.self, forKey: .init(string: "authorPhoto"))
+                let date = try container.decode(Int.self, forKey: .init(string: "date"))
+                let pageBlocks = try container.decode([TDEnum.PageBlock].self, forKey: .init(string: "pageBlocks"))
+                let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
 
-case "pageBlockMap":
-let location = try container.decode(TDObject.Location.self, forKey: .init(string: "location"))
-let zoom = try container.decode(Int.self, forKey: .init(string: "zoom"))
-let width = try container.decode(Int.self, forKey: .init(string: "width"))
-let height = try container.decode(Int.self, forKey: .init(string: "height"))
-let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
+                self = .embeddedPost(url: url, author: author, authorPhoto: authorPhoto, date: date, pageBlocks: pageBlocks, caption: caption)
 
-self = .map(location: location, zoom: zoom, width: width, height: height, caption: caption)
+            case "pageBlockCollage":
+                let pageBlocks = try container.decode([TDEnum.PageBlock].self, forKey: .init(string: "pageBlocks"))
+                let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
 
-default:
-throw DecodingError.typeMismatch(PageBlock.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined PageBlock"))
-}
-}
+                self = .collage(pageBlocks: pageBlocks, caption: caption)
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+            case "pageBlockSlideshow":
+                let pageBlocks = try container.decode([TDEnum.PageBlock].self, forKey: .init(string: "pageBlocks"))
+                let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
 
-switch self {
-case .map(let location, let zoom, let width, let height, let caption):
-case .relatedArticles(let header, let articles):
-case .details(let header, let pageBlocks, let isOpen):
-case .table(let caption, let cells, let isBordered, let isStriped):
-case .chatLink(let title, let photo, let username):
-case .slideshow(let pageBlocks, let caption):
-case .collage(let pageBlocks, let caption):
-case .embeddedPost(let url, let author, let authorPhoto, let date, let pageBlocks, let caption):
-case .embedded(let url, let html, let posterPhoto, let width, let height, let caption, let isFullWidth, let allowScrolling):
-case .cover(let cover):
-case .video(let video, let caption, let needAutoplay, let isLooped):
-case .photo(let photo, let caption, let url):
-case .audio(let audio, let caption):
-case .animation(let animation, let caption, let needAutoplay):
-case .pullQuote(let text, let credit):
-case .blockQuote(let text, let credit):
-case .list(let items):
-case .anchor(let name):
-case .divider:
-case .footer(let footer):
-case .preformatted(let text, let language):
-case .paragraph(let text):
-case .kicker(let kicker):
-case .subheader(let subheader):
-case .header(let header):
-case .authorDate(let author, let publishDate):
-case .subtitle(let subtitle):
-case .title(let title):
-try container.encode("pageBlockTitle", forKey: .init(string: "@type"))
+                self = .slideshow(pageBlocks: pageBlocks, caption: caption)
 
-try container.encode(title, forKey: .init(string: "title"))
+            case "pageBlockChatLink":
+                let title = try container.decode(String.self, forKey: .init(string: "title"))
+                let photo = try container.decode(TDObject.ChatPhoto.self, forKey: .init(string: "photo"))
+                let username = try container.decode(String.self, forKey: .init(string: "username"))
 
-try container.encode("pageBlockSubtitle", forKey: .init(string: "@type"))
+                self = .chatLink(title: title, photo: photo, username: username)
 
-try container.encode(subtitle, forKey: .init(string: "subtitle"))
+            case "pageBlockTable":
+                let caption = try container.decode(TDEnum.RichText.self, forKey: .init(string: "caption"))
+                let cells = try container.decode([[TDObject.PageBlockTableCell]].self, forKey: .init(string: "cells"))
+                let isBordered = try container.decode(Bool.self, forKey: .init(string: "isBordered"))
+                let isStriped = try container.decode(Bool.self, forKey: .init(string: "isStriped"))
 
-try container.encode("pageBlockAuthorDate", forKey: .init(string: "@type"))
+                self = .table(caption: caption, cells: cells, isBordered: isBordered, isStriped: isStriped)
 
-try container.encode(author, forKey: .init(string: "author"))
-try container.encode(publishDate, forKey: .init(string: "publishDate"))
+            case "pageBlockDetails":
+                let header = try container.decode(TDEnum.RichText.self, forKey: .init(string: "header"))
+                let pageBlocks = try container.decode([TDEnum.PageBlock].self, forKey: .init(string: "pageBlocks"))
+                let isOpen = try container.decode(Bool.self, forKey: .init(string: "isOpen"))
 
-try container.encode("pageBlockHeader", forKey: .init(string: "@type"))
+                self = .details(header: header, pageBlocks: pageBlocks, isOpen: isOpen)
 
-try container.encode(header, forKey: .init(string: "header"))
+            case "pageBlockRelatedArticles":
+                let header = try container.decode(TDEnum.RichText.self, forKey: .init(string: "header"))
+                let articles = try container.decode([TDObject.PageBlockRelatedArticle].self, forKey: .init(string: "articles"))
 
-try container.encode("pageBlockSubheader", forKey: .init(string: "@type"))
+                self = .relatedArticles(header: header, articles: articles)
 
-try container.encode(subheader, forKey: .init(string: "subheader"))
+            case "pageBlockMap":
+                let location = try container.decode(TDObject.Location.self, forKey: .init(string: "location"))
+                let zoom = try container.decode(Int.self, forKey: .init(string: "zoom"))
+                let width = try container.decode(Int.self, forKey: .init(string: "width"))
+                let height = try container.decode(Int.self, forKey: .init(string: "height"))
+                let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
 
-try container.encode("pageBlockKicker", forKey: .init(string: "@type"))
+                self = .map(location: location, zoom: zoom, width: width, height: height, caption: caption)
 
-try container.encode(kicker, forKey: .init(string: "kicker"))
+            default:
+                throw DecodingError.typeMismatch(PageBlock.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined PageBlock"))
+            }
+        }
 
-try container.encode("pageBlockParagraph", forKey: .init(string: "@type"))
+        // MARK: - Decodable
 
-try container.encode(text, forKey: .init(string: "text"))
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-try container.encode("pageBlockPreformatted", forKey: .init(string: "@type"))
+            switch self {
+            case let .title(title):
+                try container.encode("pageBlockTitle", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
-try container.encode(language, forKey: .init(string: "language"))
+                try container.encode(title, forKey: .init(string: "title"))
 
-try container.encode("pageBlockFooter", forKey: .init(string: "@type"))
+            case let .subtitle(subtitle):
+                try container.encode("pageBlockSubtitle", forKey: .type)
 
-try container.encode(footer, forKey: .init(string: "footer"))
+                try container.encode(subtitle, forKey: .init(string: "subtitle"))
 
-try container.encode("pageBlockDivider", forKey: .init(string: "@type"))
+            case let .authorDate(author, publishDate):
+                try container.encode("pageBlockAuthorDate", forKey: .type)
 
-try container.encode("pageBlockAnchor", forKey: .init(string: "@type"))
+                try container.encode(author, forKey: .init(string: "author"))
+                try container.encode(publishDate, forKey: .init(string: "publishDate"))
 
-try container.encode(name, forKey: .init(string: "name"))
+            case let .header(header):
+                try container.encode("pageBlockHeader", forKey: .type)
 
-try container.encode("pageBlockList", forKey: .init(string: "@type"))
+                try container.encode(header, forKey: .init(string: "header"))
 
-try container.encode(items, forKey: .init(string: "items"))
+            case let .subheader(subheader):
+                try container.encode("pageBlockSubheader", forKey: .type)
 
-try container.encode("pageBlockBlockQuote", forKey: .init(string: "@type"))
+                try container.encode(subheader, forKey: .init(string: "subheader"))
 
-try container.encode(text, forKey: .init(string: "text"))
-try container.encode(credit, forKey: .init(string: "credit"))
+            case let .kicker(kicker):
+                try container.encode("pageBlockKicker", forKey: .type)
 
-try container.encode("pageBlockPullQuote", forKey: .init(string: "@type"))
+                try container.encode(kicker, forKey: .init(string: "kicker"))
 
-try container.encode(text, forKey: .init(string: "text"))
-try container.encode(credit, forKey: .init(string: "credit"))
+            case let .paragraph(text):
+                try container.encode("pageBlockParagraph", forKey: .type)
 
-try container.encode("pageBlockAnimation", forKey: .init(string: "@type"))
+                try container.encode(text, forKey: .init(string: "text"))
 
-try container.encode(animation, forKey: .init(string: "animation"))
-try container.encode(caption, forKey: .init(string: "caption"))
-try container.encode(needAutoplay, forKey: .init(string: "needAutoplay"))
+            case let .preformatted(text, language):
+                try container.encode("pageBlockPreformatted", forKey: .type)
 
-try container.encode("pageBlockAudio", forKey: .init(string: "@type"))
+                try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(language, forKey: .init(string: "language"))
 
-try container.encode(audio, forKey: .init(string: "audio"))
-try container.encode(caption, forKey: .init(string: "caption"))
+            case let .footer(footer):
+                try container.encode("pageBlockFooter", forKey: .type)
 
-try container.encode("pageBlockPhoto", forKey: .init(string: "@type"))
+                try container.encode(footer, forKey: .init(string: "footer"))
 
-try container.encode(photo, forKey: .init(string: "photo"))
-try container.encode(caption, forKey: .init(string: "caption"))
-try container.encode(url, forKey: .init(string: "url"))
+            case .divider:
+                try container.encode("pageBlockDivider", forKey: .type)
 
-try container.encode("pageBlockVideo", forKey: .init(string: "@type"))
+            case let .anchor(name):
+                try container.encode("pageBlockAnchor", forKey: .type)
 
-try container.encode(video, forKey: .init(string: "video"))
-try container.encode(caption, forKey: .init(string: "caption"))
-try container.encode(needAutoplay, forKey: .init(string: "needAutoplay"))
-try container.encode(isLooped, forKey: .init(string: "isLooped"))
+                try container.encode(name, forKey: .init(string: "name"))
 
-try container.encode("pageBlockCover", forKey: .init(string: "@type"))
+            case let .list(items):
+                try container.encode("pageBlockList", forKey: .type)
 
-try container.encode(cover, forKey: .init(string: "cover"))
+                try container.encode(items, forKey: .init(string: "items"))
 
-try container.encode("pageBlockEmbedded", forKey: .init(string: "@type"))
+            case let .blockQuote(text, credit):
+                try container.encode("pageBlockBlockQuote", forKey: .type)
 
-try container.encodeIfPresent(url, forKey: .init(string: "url"))
-try container.encode(html, forKey: .init(string: "html"))
-try container.encodeIfPresent(posterPhoto, forKey: .init(string: "posterPhoto"))
-try container.encode(width, forKey: .init(string: "width"))
-try container.encode(height, forKey: .init(string: "height"))
-try container.encode(caption, forKey: .init(string: "caption"))
-try container.encode(isFullWidth, forKey: .init(string: "isFullWidth"))
-try container.encode(allowScrolling, forKey: .init(string: "allowScrolling"))
+                try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(credit, forKey: .init(string: "credit"))
 
-try container.encode("pageBlockEmbeddedPost", forKey: .init(string: "@type"))
+            case let .pullQuote(text, credit):
+                try container.encode("pageBlockPullQuote", forKey: .type)
 
-try container.encode(url, forKey: .init(string: "url"))
-try container.encode(author, forKey: .init(string: "author"))
-try container.encode(authorPhoto, forKey: .init(string: "authorPhoto"))
-try container.encode(date, forKey: .init(string: "date"))
-try container.encode(pageBlocks, forKey: .init(string: "pageBlocks"))
-try container.encode(caption, forKey: .init(string: "caption"))
+                try container.encode(text, forKey: .init(string: "text"))
+                try container.encode(credit, forKey: .init(string: "credit"))
 
-try container.encode("pageBlockCollage", forKey: .init(string: "@type"))
+            case let .animation(animation, caption, needAutoplay):
+                try container.encode("pageBlockAnimation", forKey: .type)
 
-try container.encode(pageBlocks, forKey: .init(string: "pageBlocks"))
-try container.encode(caption, forKey: .init(string: "caption"))
+                try container.encode(animation, forKey: .init(string: "animation"))
+                try container.encode(caption, forKey: .init(string: "caption"))
+                try container.encode(needAutoplay, forKey: .init(string: "needAutoplay"))
 
-try container.encode("pageBlockSlideshow", forKey: .init(string: "@type"))
+            case let .audio(audio, caption):
+                try container.encode("pageBlockAudio", forKey: .type)
 
-try container.encode(pageBlocks, forKey: .init(string: "pageBlocks"))
-try container.encode(caption, forKey: .init(string: "caption"))
+                try container.encode(audio, forKey: .init(string: "audio"))
+                try container.encode(caption, forKey: .init(string: "caption"))
 
-try container.encode("pageBlockChatLink", forKey: .init(string: "@type"))
+            case let .photo(photo, caption, url):
+                try container.encode("pageBlockPhoto", forKey: .type)
 
-try container.encode(title, forKey: .init(string: "title"))
-try container.encode(photo, forKey: .init(string: "photo"))
-try container.encode(username, forKey: .init(string: "username"))
+                try container.encode(photo, forKey: .init(string: "photo"))
+                try container.encode(caption, forKey: .init(string: "caption"))
+                try container.encode(url, forKey: .init(string: "url"))
 
-try container.encode("pageBlockTable", forKey: .init(string: "@type"))
+            case let .video(video, caption, needAutoplay, isLooped):
+                try container.encode("pageBlockVideo", forKey: .type)
 
-try container.encode(caption, forKey: .init(string: "caption"))
-try container.encode(cells, forKey: .init(string: "cells"))
-try container.encode(isBordered, forKey: .init(string: "isBordered"))
-try container.encode(isStriped, forKey: .init(string: "isStriped"))
+                try container.encode(video, forKey: .init(string: "video"))
+                try container.encode(caption, forKey: .init(string: "caption"))
+                try container.encode(needAutoplay, forKey: .init(string: "needAutoplay"))
+                try container.encode(isLooped, forKey: .init(string: "isLooped"))
 
-try container.encode("pageBlockDetails", forKey: .init(string: "@type"))
+            case let .cover(cover):
+                try container.encode("pageBlockCover", forKey: .type)
 
-try container.encode(header, forKey: .init(string: "header"))
-try container.encode(pageBlocks, forKey: .init(string: "pageBlocks"))
-try container.encode(isOpen, forKey: .init(string: "isOpen"))
+                try container.encode(cover, forKey: .init(string: "cover"))
 
-try container.encode("pageBlockRelatedArticles", forKey: .init(string: "@type"))
+            case let .embedded(url, html, posterPhoto, width, height, caption, isFullWidth, allowScrolling):
+                try container.encode("pageBlockEmbedded", forKey: .type)
 
-try container.encode(header, forKey: .init(string: "header"))
-try container.encode(articles, forKey: .init(string: "articles"))
+                try container.encodeIfPresent(url, forKey: .init(string: "url"))
+                try container.encode(html, forKey: .init(string: "html"))
+                try container.encodeIfPresent(posterPhoto, forKey: .init(string: "posterPhoto"))
+                try container.encode(width, forKey: .init(string: "width"))
+                try container.encode(height, forKey: .init(string: "height"))
+                try container.encode(caption, forKey: .init(string: "caption"))
+                try container.encode(isFullWidth, forKey: .init(string: "isFullWidth"))
+                try container.encode(allowScrolling, forKey: .init(string: "allowScrolling"))
 
-try container.encode("pageBlockMap", forKey: .init(string: "@type"))
+            case let .embeddedPost(url, author, authorPhoto, date, pageBlocks, caption):
+                try container.encode("pageBlockEmbeddedPost", forKey: .type)
 
-try container.encode(location, forKey: .init(string: "location"))
-try container.encode(zoom, forKey: .init(string: "zoom"))
-try container.encode(width, forKey: .init(string: "width"))
-try container.encode(height, forKey: .init(string: "height"))
-try container.encode(caption, forKey: .init(string: "caption"))
+                try container.encode(url, forKey: .init(string: "url"))
+                try container.encode(author, forKey: .init(string: "author"))
+                try container.encode(authorPhoto, forKey: .init(string: "authorPhoto"))
+                try container.encode(date, forKey: .init(string: "date"))
+                try container.encode(pageBlocks, forKey: .init(string: "pageBlocks"))
+                try container.encode(caption, forKey: .init(string: "caption"))
 
-}
-}
+            case let .collage(pageBlocks, caption):
+                try container.encode("pageBlockCollage", forKey: .type)
 
-}
+                try container.encode(pageBlocks, forKey: .init(string: "pageBlocks"))
+                try container.encode(caption, forKey: .init(string: "caption"))
 
+            case let .slideshow(pageBlocks, caption):
+                try container.encode("pageBlockSlideshow", forKey: .type)
+
+                try container.encode(pageBlocks, forKey: .init(string: "pageBlocks"))
+                try container.encode(caption, forKey: .init(string: "caption"))
+
+            case let .chatLink(title, photo, username):
+                try container.encode("pageBlockChatLink", forKey: .type)
+
+                try container.encode(title, forKey: .init(string: "title"))
+                try container.encode(photo, forKey: .init(string: "photo"))
+                try container.encode(username, forKey: .init(string: "username"))
+
+            case let .table(caption, cells, isBordered, isStriped):
+                try container.encode("pageBlockTable", forKey: .type)
+
+                try container.encode(caption, forKey: .init(string: "caption"))
+                try container.encode(cells, forKey: .init(string: "cells"))
+                try container.encode(isBordered, forKey: .init(string: "isBordered"))
+                try container.encode(isStriped, forKey: .init(string: "isStriped"))
+
+            case let .details(header, pageBlocks, isOpen):
+                try container.encode("pageBlockDetails", forKey: .type)
+
+                try container.encode(header, forKey: .init(string: "header"))
+                try container.encode(pageBlocks, forKey: .init(string: "pageBlocks"))
+                try container.encode(isOpen, forKey: .init(string: "isOpen"))
+
+            case let .relatedArticles(header, articles):
+                try container.encode("pageBlockRelatedArticles", forKey: .type)
+
+                try container.encode(header, forKey: .init(string: "header"))
+                try container.encode(articles, forKey: .init(string: "articles"))
+
+            case let .map(location, zoom, width, height, caption):
+                try container.encode("pageBlockMap", forKey: .type)
+
+                try container.encode(location, forKey: .init(string: "location"))
+                try container.encode(zoom, forKey: .init(string: "zoom"))
+                try container.encode(width, forKey: .init(string: "width"))
+                try container.encode(height, forKey: .init(string: "height"))
+                try container.encode(caption, forKey: .init(string: "caption"))
+            }
+        }
+    }
 }

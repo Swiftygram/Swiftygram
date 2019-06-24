@@ -1,53 +1,60 @@
+//
+//  NotificationSettingsScope.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum NotificationSettingsScope: TDEnumProtocol {
+        ///  Notification settings applied to all private and secret chats when
+        /// the corresponding chat setting has a default value
+        case privateChats
 
-enum NotificationSettingsScope: TDEnumProtocol {
+        ///  Notification settings applied to all basic groups and supergroups
+        /// when the corresponding chat setting has a default value
+        case groupChats
 
-/// Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
-case privateChats
+        ///  Notification settings applied to all channels when the corresponding
+        /// chat setting has a default value
+        case channelChats
 
-/// Notification settings applied to all basic groups and supergroups when the corresponding chat setting has a default value
-case groupChats
+        // MARK: - Decodable
 
-/// Notification settings applied to all channels when the corresponding chat setting has a default value
-case channelChats
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+            switch type {
+            case "notificationSettingsScopePrivateChats":
+                self = .privateChats
 
-switch type {
-case "notificationSettingsScopePrivateChats":
-self = .privateChats
+            case "notificationSettingsScopeGroupChats":
+                self = .groupChats
 
-case "notificationSettingsScopeGroupChats":
-self = .groupChats
+            case "notificationSettingsScopeChannelChats":
+                self = .channelChats
 
-case "notificationSettingsScopeChannelChats":
-self = .channelChats
+            default:
+                throw DecodingError.typeMismatch(NotificationSettingsScope.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined NotificationSettingsScope"))
+            }
+        }
 
-default:
-throw DecodingError.typeMismatch(NotificationSettingsScope.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined NotificationSettingsScope"))
-}
-}
+        // MARK: - Decodable
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-switch self {
-case .channelChats:
-case .groupChats:
-case .privateChats:
-try container.encode("notificationSettingsScopePrivateChats", forKey: .init(string: "@type"))
+            switch self {
+            case .privateChats:
+                try container.encode("notificationSettingsScopePrivateChats", forKey: .type)
 
-try container.encode("notificationSettingsScopeGroupChats", forKey: .init(string: "@type"))
+            case .groupChats:
+                try container.encode("notificationSettingsScopeGroupChats", forKey: .type)
 
-try container.encode("notificationSettingsScopeChannelChats", forKey: .init(string: "@type"))
-
-}
-}
-
-}
-
+            case .channelChats:
+                try container.encode("notificationSettingsScopeChannelChats", forKey: .type)
+            }
+        }
+    }
 }

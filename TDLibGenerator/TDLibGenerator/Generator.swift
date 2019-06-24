@@ -24,9 +24,15 @@ class Generator {
     func generate() {
         for object in container.enums {
             let code = generateEnum(for: object)
-            
+
             try! code.write(to: outputFolderURL.appendingPathComponent("\(object.name).swift"), atomically: true, encoding: .utf8)
         }
+        
+//        for object in container.subclasses {
+//            let code = generateObject(for: object)
+//            
+//            try! code.write(to: outputFolderURL.appendingPathComponent("\(object.name).swift"), atomically: true, encoding: .utf8)
+//        }
     }
     
     func outputPropertyType(for propertyType: PropertyType) -> OutputPropertyType {
@@ -49,9 +55,9 @@ class Generator {
     
     func decoder(for property: PropertyContainer, outputPropertyType: OutputPropertyType) -> String {
         let method = property.isOptional ? "decodeIfPresent" : "decode"
-        let type = outputPropertyType.isSubclass ? "SubclassCodable<\(outputPropertyType.name)>" : outputPropertyType.name
+        let type = outputPropertyType.isSubclass ? "\(subclassCodable)<\(outputPropertyType.name)>" : outputPropertyType.name
         
-        var str = "let \(property.name) = try container.\(method)(\(type).self, forKey: .init(string: \"\(property.name)\"))"
+        var str = "let \(property.name.swiftEscapedIfNeeded) = try container.\(method)(\(type).self, forKey: .init(string: \"\(property.name)\"))"
         
         if outputPropertyType.isSubclass {
             str += ".value"
@@ -63,7 +69,7 @@ class Generator {
     func encoder(for property: PropertyContainer, outputPropertyType: OutputPropertyType) -> String {
         let method = property.isOptional ? "encodeIfPresent" : "encode"
         
-        let value = outputPropertyType.isSubclass ? "SubclassCodable(value: \(property.name)" : property.name
+        let value = outputPropertyType.isSubclass ? "\(subclassCodable)(value: \(property.name)" : property.name
         
         return "try container.\(method)(\(value), forKey: .init(string: \"\(property.name)\"))"
     }

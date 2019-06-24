@@ -1,80 +1,84 @@
+//
+//  OptionValue.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum OptionValue: TDEnumProtocol {
+        ///  Represents a boolean option
+        ///
+        ///  - value: The value of the option
+        case boolean(value: Bool)
 
-enum OptionValue: TDEnumProtocol {
+        ///  Represents an unknown option or an option which has a default value
+        case empty
 
-/// Represents a boolean option
-/// 
-/// - value: The value of the option
-case boolean(value: Bool)
+        ///  Represents an integer option
+        ///
+        ///  - value: The value of the option
+        case integer(value: Int)
 
-/// Represents an unknown option or an option which has a default value
-case empty
+        ///  Represents a string option
+        ///
+        ///  - value: The value of the option
+        case string(value: String)
 
-/// Represents an integer option
-/// 
-/// - value: The value of the option
-case integer(value: Int)
+        // MARK: - Decodable
 
-/// Represents a string option
-/// 
-/// - value: The value of the option
-case string(value: String)
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+            switch type {
+            case "optionValueBoolean":
+                let value = try container.decode(Bool.self, forKey: .init(string: "value"))
 
-switch type {
-case "optionValueBoolean":
-let value = try container.decode(Bool.self, forKey: .init(string: "value"))
+                self = .boolean(value: value)
 
-self = .boolean(value: value)
+            case "optionValueEmpty":
+                self = .empty
 
-case "optionValueEmpty":
-self = .empty
+            case "optionValueInteger":
+                let value = try container.decode(Int.self, forKey: .init(string: "value"))
 
-case "optionValueInteger":
-let value = try container.decode(Int.self, forKey: .init(string: "value"))
+                self = .integer(value: value)
 
-self = .integer(value: value)
+            case "optionValueString":
+                let value = try container.decode(String.self, forKey: .init(string: "value"))
 
-case "optionValueString":
-let value = try container.decode(String.self, forKey: .init(string: "value"))
+                self = .string(value: value)
 
-self = .string(value: value)
+            default:
+                throw DecodingError.typeMismatch(OptionValue.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined OptionValue"))
+            }
+        }
 
-default:
-throw DecodingError.typeMismatch(OptionValue.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined OptionValue"))
-}
-}
+        // MARK: - Decodable
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-switch self {
-case .string(let value):
-case .integer(let value):
-case .empty:
-case .boolean(let value):
-try container.encode("optionValueBoolean", forKey: .init(string: "@type"))
+            switch self {
+            case let .boolean(value):
+                try container.encode("optionValueBoolean", forKey: .type)
 
-try container.encode(value, forKey: .init(string: "value"))
+                try container.encode(value, forKey: .init(string: "value"))
 
-try container.encode("optionValueEmpty", forKey: .init(string: "@type"))
+            case .empty:
+                try container.encode("optionValueEmpty", forKey: .type)
 
-try container.encode("optionValueInteger", forKey: .init(string: "@type"))
+            case let .integer(value):
+                try container.encode("optionValueInteger", forKey: .type)
 
-try container.encode(value, forKey: .init(string: "value"))
+                try container.encode(value, forKey: .init(string: "value"))
 
-try container.encode("optionValueString", forKey: .init(string: "@type"))
+            case let .string(value):
+                try container.encode("optionValueString", forKey: .type)
 
-try container.encode(value, forKey: .init(string: "value"))
-
-}
-}
-
-}
-
+                try container.encode(value, forKey: .init(string: "value"))
+            }
+        }
+    }
 }

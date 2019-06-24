@@ -1,44 +1,49 @@
+//
+//  MessageSendingState.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum MessageSendingState: TDEnumProtocol {
+        ///  The message is being sent now, but has not yet been delivered to the
+        /// server
+        case pending
 
-enum MessageSendingState: TDEnumProtocol {
+        ///  The message failed to be sent
+        case failed
 
-/// The message is being sent now, but has not yet been delivered to the server
-case pending
+        // MARK: - Decodable
 
-/// The message failed to be sent
-case failed
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+            switch type {
+            case "messageSendingStatePending":
+                self = .pending
 
-switch type {
-case "messageSendingStatePending":
-self = .pending
+            case "messageSendingStateFailed":
+                self = .failed
 
-case "messageSendingStateFailed":
-self = .failed
+            default:
+                throw DecodingError.typeMismatch(MessageSendingState.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined MessageSendingState"))
+            }
+        }
 
-default:
-throw DecodingError.typeMismatch(MessageSendingState.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined MessageSendingState"))
-}
-}
+        // MARK: - Decodable
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-switch self {
-case .failed:
-case .pending:
-try container.encode("messageSendingStatePending", forKey: .init(string: "@type"))
+            switch self {
+            case .pending:
+                try container.encode("messageSendingStatePending", forKey: .type)
 
-try container.encode("messageSendingStateFailed", forKey: .init(string: "@type"))
-
-}
-}
-
-}
-
+            case .failed:
+                try container.encode("messageSendingStateFailed", forKey: .type)
+            }
+        }
+    }
 }

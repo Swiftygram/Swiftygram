@@ -1,86 +1,90 @@
+//
+//  ChatReportReason.swift
+//  Swiftygram
+//  Created by ky1vstar on 6/24/19.
+//  Copyright © 2019 ky1vstar. All rights reserved.
+//
+
 public extension TDEnum {
+    enum ChatReportReason: TDEnumProtocol {
+        ///  The chat contains spam messages
+        case spam
 
-enum ChatReportReason: TDEnumProtocol {
+        ///  The chat promotes violence
+        case violence
 
-/// The chat contains spam messages
-case spam
+        ///  The chat contains pornographic messages
+        case pornography
 
-/// The chat promotes violence
-case violence
+        ///  The chat has child abuse related content
+        case childAbuse
 
-/// The chat contains pornographic messages
-case pornography
+        ///  The chat contains copyrighted content
+        case copyright
 
-/// The chat has child abuse related content
-case childAbuse
+        ///  A custom reason provided by the user
+        ///
+        ///  - text: Report text
+        case custom(text: String)
 
-/// The chat contains copyrighted content
-case copyright
+        // MARK: - Decodable
 
-/// A custom reason provided by the user
-/// 
-/// - text: Report text
-case custom(text: String)
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            let type = try container.decode(String.self, forKey: .type)
 
-// MARK: - Decodable
-public init(from decoder: Decoder) throws {
-let container = try decoder.container(keyedBy: AnyCodingKey.self)
-let type = try container.decode(String.self, forKey: .init(string: "@type"))
+            switch type {
+            case "chatReportReasonSpam":
+                self = .spam
 
-switch type {
-case "chatReportReasonSpam":
-self = .spam
+            case "chatReportReasonViolence":
+                self = .violence
 
-case "chatReportReasonViolence":
-self = .violence
+            case "chatReportReasonPornography":
+                self = .pornography
 
-case "chatReportReasonPornography":
-self = .pornography
+            case "chatReportReasonChildAbuse":
+                self = .childAbuse
 
-case "chatReportReasonChildAbuse":
-self = .childAbuse
+            case "chatReportReasonCopyright":
+                self = .copyright
 
-case "chatReportReasonCopyright":
-self = .copyright
+            case "chatReportReasonCustom":
+                let text = try container.decode(String.self, forKey: .init(string: "text"))
 
-case "chatReportReasonCustom":
-let text = try container.decode(String.self, forKey: .init(string: "text"))
+                self = .custom(text: text)
 
-self = .custom(text: text)
+            default:
+                throw DecodingError.typeMismatch(ChatReportReason.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined ChatReportReason"))
+            }
+        }
 
-default:
-throw DecodingError.typeMismatch(ChatReportReason.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined ChatReportReason"))
-}
-}
+        // MARK: - Decodable
 
-// MARK: - Decodable
-public func encode(to encoder: Encoder) throws {
-var container = encoder.container(keyedBy: AnyCodingKey.self)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
 
-switch self {
-case .custom(let text):
-case .copyright:
-case .childAbuse:
-case .pornography:
-case .violence:
-case .spam:
-try container.encode("chatReportReasonSpam", forKey: .init(string: "@type"))
+            switch self {
+            case .spam:
+                try container.encode("chatReportReasonSpam", forKey: .type)
 
-try container.encode("chatReportReasonViolence", forKey: .init(string: "@type"))
+            case .violence:
+                try container.encode("chatReportReasonViolence", forKey: .type)
 
-try container.encode("chatReportReasonPornography", forKey: .init(string: "@type"))
+            case .pornography:
+                try container.encode("chatReportReasonPornography", forKey: .type)
 
-try container.encode("chatReportReasonChildAbuse", forKey: .init(string: "@type"))
+            case .childAbuse:
+                try container.encode("chatReportReasonChildAbuse", forKey: .type)
 
-try container.encode("chatReportReasonCopyright", forKey: .init(string: "@type"))
+            case .copyright:
+                try container.encode("chatReportReasonCopyright", forKey: .type)
 
-try container.encode("chatReportReasonCustom", forKey: .init(string: "@type"))
+            case let .custom(text):
+                try container.encode("chatReportReasonCustom", forKey: .type)
 
-try container.encode(text, forKey: .init(string: "text"))
-
-}
-}
-
-}
-
+                try container.encode(text, forKey: .init(string: "text"))
+            }
+        }
+    }
 }

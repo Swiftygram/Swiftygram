@@ -21,7 +21,7 @@ extension Generator {
             let tdlibType = subclass.name.lowercasedFirstLetter
             
             // case
-            var caseString = "\(docs)\ncase \(caseName)"
+            var caseString = "\(docs)\ncase \(caseName.swiftEscapedIfNeeded)"
             
             // decoder
             decoders.append("case \"\(tdlibType)\":")
@@ -30,7 +30,7 @@ extension Generator {
             // encoder
             var encoderCase = "case .\(caseName)"
             var caseEncoders = [
-                "try container.encode(\"\(tdlibType)\", forKey: .init(string: \"@type\"))",
+                "try container.encode(\"\(tdlibType)\", forKey: .type)",
                 ""
             ]
             
@@ -123,7 +123,7 @@ extension Generator {
             lines.append("- \(property.name): \(property.documentation)")
         }
         
-        return "/// " + lines.joined(separator: "\n/// ")
+        return "/// " + lines.flatMap({ $0.breakLines(with: maxDocsLineLength) }).joined(separator: "\n/// ")
     }
     
     private func decoderBody(with decoders: [String], type: String) -> String {
@@ -131,7 +131,7 @@ extension Generator {
             ["// MARK: - Decodable",
              "public init(from decoder: Decoder) throws {",
              "let container = try decoder.container(keyedBy: \(anyCodingKey).self)",
-                "let type = try container.decode(String.self, forKey: .init(string: \"@type\"))",
+                "let type = try container.decode(String.self, forKey: .type)",
                 "",
                 "switch type {"]
         
@@ -151,7 +151,6 @@ extension Generator {
         
         return output.joined(separator: "\n")
     }
-    
     private func encoderBody(with encoders: [String], type: String) -> String {
         var output =
             ["// MARK: - Decodable",
