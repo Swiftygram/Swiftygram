@@ -26,6 +26,19 @@ indirect enum PropertyType {
         }
     }
     
+    var nestedSwiftType: String? {
+        switch self {
+        case .swift(let type):
+            return type
+            
+        case .array(let nested):
+            return nested.nestedSwiftType
+            
+        default:
+            return nil
+        }
+    }
+    
 }
 
 class PropertyContainer {
@@ -60,10 +73,12 @@ extension PropertyContainer {
                                                   name: propertyName,
                                                   type: self.propertyType(for: type))
             
+            let isOptional = self.isOptional(documentation: documentation, propertyType: propertyType)
+            
             return PropertyContainer(documentation: documentation,
                                      type: propertyType,
                                      name: propertyName,
-                                     isOptional: isOptional(documentation: documentation))
+                                     isOptional: isOptional)
         })
     }
     
@@ -94,12 +109,15 @@ extension PropertyContainer {
         }
     }
     
-    private class func isOptional(documentation: String) -> Bool {
+    private class func isOptional(documentation: String, propertyType: PropertyType) -> Bool {
         return documentation.range(of: "\\Wnull\\w", options: [.caseInsensitive, .regularExpression]) != nil ||
             documentation.range(of: "optional\\w", options: [.caseInsensitive, .regularExpression]) != nil ||
             documentation.range(of: "\\wif it exists\\w", options: [.caseInsensitive, .regularExpression]) != nil ||
             documentation.range(of: "if applicable") != nil ||
-            documentation.range(of: "if available") != nil
+            documentation.range(of: "if available") != nil ||
+            (documentation.range(of: "0 if unknown") != nil && propertyType.nestedSwiftType == "Date")
+        
+//        0 if never
     }
     
     private static func convertFromSnakeCase(_ stringKey: String) -> String {

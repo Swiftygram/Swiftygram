@@ -10,6 +10,8 @@ import Foundation
 
 struct AnyCodingKey: CodingKey {
     
+    static let type = AnyCodingKey(string: "@type")
+    
     var stringValue: String
     var intValue: Int?
     

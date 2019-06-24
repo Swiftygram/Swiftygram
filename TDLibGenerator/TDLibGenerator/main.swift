@@ -58,6 +58,8 @@ let main = command { (tdApiPath: String, typeDecisionsFolder: String, outputFold
     
     Generator(container: container).generate()
     
+    TypeDecider.save()
+    
     let headers = [
         "",
         "{file}",

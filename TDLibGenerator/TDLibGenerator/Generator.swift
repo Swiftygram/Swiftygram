@@ -13,6 +13,11 @@ struct OutputPropertyType {
     let isSubclass: Bool
 }
 
+/**
+ Kek
+ 
+ - ReturnType: kek
+ */
 class Generator {
     
     let container: TLContainer
@@ -22,17 +27,29 @@ class Generator {
     }
     
     func generate() {
-        for object in container.enums {
-            let code = generateEnum(for: object)
-
-            try! code.write(to: outputFolderURL.appendingPathComponent("\(object.name).swift"), atomically: true, encoding: .utf8)
-        }
-        
-//        for object in container.subclasses {
-//            let code = generateObject(for: object)
-//            
+//        for object in container.enums {
+//            let code = generateEnum(for: object)
+//
 //            try! code.write(to: outputFolderURL.appendingPathComponent("\(object.name).swift"), atomically: true, encoding: .utf8)
 //        }
+        
+        for object in container.subclasses {
+            let code = generateObject(for: object)
+            
+            try! code.write(to: outputFolderURL.appendingPathComponent("\(object.name).swift"), atomically: true, encoding: .utf8)
+        }
+    }
+    
+    func docsForType(_ type: ObjectContainer) -> String {
+        var output = "/**\n\(type.documentation)"
+        
+        if let returnType = type.returnType {
+            let propertyType = outputPropertyType(for: PropertyType.tdlib(returnType))
+            
+            output += "\n\n- ReturnType: \(propertyType)"
+        }
+        
+        return "\(output)\n*/"
     }
     
     func outputPropertyType(for propertyType: PropertyType) -> OutputPropertyType {

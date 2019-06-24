@@ -81,7 +81,7 @@ extension Generator {
         
         var output = ["public extension \(enumNamespace) {"]
         
-        output.append("enum \(object.name): \(enumProtocol) {")
+        output.append("\(docsForType(object))\nenum \(object.name): \(enumProtocol) {")
         
         // cases
         output.append(contentsOf: cases)
@@ -123,7 +123,7 @@ extension Generator {
             lines.append("- \(property.name): \(property.documentation)")
         }
         
-        return "/// " + lines.flatMap({ $0.breakLines(with: maxDocsLineLength) }).joined(separator: "\n/// ")
+        return "/**\n" + lines.joined(separator: "\n") + "\n*/"
     }
     
     private func decoderBody(with decoders: [String], type: String) -> String {

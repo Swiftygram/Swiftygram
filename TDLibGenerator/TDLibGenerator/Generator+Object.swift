@@ -26,11 +26,11 @@ extension Generator {
     private func generateProtocol(for cls: ObjectContainer) -> String {
         return [
             "public extension \(objectNamespace) {",
+            docsForType(cls),
             "typealias \(cls.name) = __\(cls.name)",
             "}",
             "",
-            "public protocol __\(cls.name): \(objectProtocol) {",
-            "}"
+            "public protocol __\(cls.name): \(objectProtocol) {}"
         ].joined(separator: "\n")
     }
     
