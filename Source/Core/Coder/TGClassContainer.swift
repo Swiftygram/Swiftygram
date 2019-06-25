@@ -10,14 +10,13 @@ import Foundation
 
 class TGClassContainer {
     
-    static let allClasses: [Any.Type] = [TGObject.Ok.self,
-                                         TGObject.TdlibParameters.self,
-                                         TGObject.TermsOfService.self,
-                                         TGObject.Update.UpdateAuthorizationState.self]
+    static let allClasses: [Any.Type] = [TDObject.UpdateAuthorizationState.self]
     
     class func codableSubclasses<T>(for superclass: T.Type) -> [Codable.Type] {
         return allClasses.compactMap({ type in
-            if type is T.Type, let codableType = type as? Codable.Type {
+            print(superclass)
+            print(type is T.Type)
+            if /*type is T.Type, */let codableType = type as? Codable.Type {
                 return codableType
             }
             return nil

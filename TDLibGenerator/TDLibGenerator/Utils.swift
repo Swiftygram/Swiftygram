@@ -116,4 +116,8 @@ extension String {
         return lines
     }
     
+    var multilineComment: String {
+        return "/**\n" + self + "\n*/"
+    }
+    
 }

@@ -12,14 +12,14 @@ public typealias TGCompletableResultHandler = (TGCompletableResult) -> ()
 
 public enum TGCompletableResult {
     
-    case jsonObject([String: Any])
+    case data(Data)
     case failure(Error)
     
 }
 
 public enum TGResult<T> {
     
-    case success(object: T, jsonObject: [String: Any])
+    case success(object: T)
     case failure(Error)
     
 }

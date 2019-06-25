@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "&quot;$PROJECT_DIR/td_api.tl&quot; &quot;$PROJECT_DIR/TypeDecisions&quot; &quot;$PROJECT_DIR/Output&quot;"
+            argument = "&quot;$PROJECT_DIR/td_api.tl&quot; &quot;$PROJECT_DIR/TypeDecisions&quot; &quot;$PROJECT_DIR/../Source/API&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

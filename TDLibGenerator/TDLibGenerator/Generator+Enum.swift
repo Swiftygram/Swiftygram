@@ -43,17 +43,17 @@ extension Generator {
                     let outputType = outputPropertyType(for: property.type)
                     
                     // case
-                    enumProperties.append("\(property.name): \(outputType.name)\(property.isOptional ? "?" : "")")
+                    enumProperties.append("\(property.name): \(outputType.name)\(property.optionalSuffix)")
                     
                     // decoders
                     decoders.append(decoder(for: property, outputPropertyType: outputType))
                     
-                    decoderProperties.append("\(property.name): \(property.name)")
+                    decoderProperties.append("\(property.name): \(property.name.swiftEscapedIfNeeded)")
                     
                     // encoder
                     caseEncoders.append(encoder(for: property, outputPropertyType: outputType))
 
-                    encoderProperties.append("let \(property.name)")
+                    encoderProperties.append("let \(property.name.swiftEscapedIfNeeded)")
                 }
                 
                 // case
@@ -123,7 +123,7 @@ extension Generator {
             lines.append("- \(property.name): \(property.documentation)")
         }
         
-        return "/**\n" + lines.joined(separator: "\n") + "\n*/"
+        return lines.joined(separator: "\n").multilineComment
     }
     
     private func decoderBody(with decoders: [String], type: String) -> String {
@@ -153,7 +153,7 @@ extension Generator {
     }
     private func encoderBody(with encoders: [String], type: String) -> String {
         var output =
-            ["// MARK: - Decodable",
+            ["// MARK: - Encodable",
              "public func encode(to encoder: Encoder) throws {",
              "var container = encoder.container(keyedBy: \(anyCodingKey).self)",
                 "",

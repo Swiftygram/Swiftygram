@@ -47,6 +47,14 @@ extension KeyedDecodingContainerProtocol {
         throw DecodingError.keyNotFound(key, DecodingError.Context(codingPath: codingPath, debugDescription: "Failed to parse Int64"))
     }
     
+    func decodeInt64ArrayIfPresent(forKey key: Self.Key) throws -> [Int64]? {
+        return nil
+    }
+    
+    func decodeInt64Array(forKey key: Self.Key) throws -> [Int64] {
+        return []
+    }
+    
     func decodeDateIfPresent(forKey key: Self.Key) throws -> Date? {
         guard let time = try decodeIfPresent(Int.self, forKey: key),
             time > 0 else {
@@ -76,6 +84,12 @@ extension KeyedEncodingContainerProtocol {
     
     mutating func encodeInt64(_ value: Int64, forKey key: Self.Key) throws {
         try encode("\(value)", forKey: key)
+    }
+    
+    mutating func encodeInt64ArrayIfPresent(_ value: [Int64]?, forKey key: Self.Key) throws {
+    }
+    
+    mutating func encodeInt64Array(_ value: [Int64], forKey key: Self.Key) throws {
     }
     
     mutating func encodeDateIfPresent(_ value: Date?, forKey key: Self.Key) throws {

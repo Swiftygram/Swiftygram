@@ -11,7 +11,7 @@ import Foundation
 extension Generator {
     
     func generateFunction(for cls: ObjectContainer) -> String {
-        return ""
+        return generateObject(for: cls)
     }
     
 }

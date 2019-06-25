@@ -9,7 +9,7 @@
 import Foundation
 
 /// Enums namespace
-public class TGEnum {}
+public class TDEnum {}
 
 /// Basic protocol for all enums
 public protocol TDEnumProtocol: TDObjectProtocol {}

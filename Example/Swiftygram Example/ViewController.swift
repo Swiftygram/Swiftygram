@@ -16,17 +16,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let f = TGFunction.SetTdlibParameters(parameters: TGObject.TdlibParameters())
-        
-        client.execute(f) { result in
-            switch result {
-            case .success(_, _):
-                break
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        let f = TGFunction.SetTdlibParameters(parameters: TGObject.TdlibParameters())
+//        
+//        client.execute(f) { result in
+//            switch result {
+//            case .success(_, _):
+//                break
+//                
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
 
 

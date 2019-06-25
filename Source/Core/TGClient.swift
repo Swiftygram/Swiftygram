@@ -33,26 +33,19 @@ public class TGClient {
     }
     
     // MARK: - Functions executor
-    public func execute<Function, ResponseType>(_ function: Function, completionHandler: ((TGResult<ResponseType>) -> ())? = nil) where Function: TGFunctionProtocol<ResponseType> {
+    public func execute<Function>(_ function: Function, completionHandler: ((TGResult<Function.ReturnType>) -> ())? = nil) where Function: TDFunctionProtocol {
         codableQueue.async {
-            let requestJSON: [String: Any]
+            var queryId: UInt64?
             var responseHandler: TGCompletableResultHandler?
-            
-            do {
-                requestJSON = try DictionaryEncoder().encode(function)
-            } catch {
-                completionHandler?(.failure(error))
-                return
-            }
-            
+
             if let completionHandler = completionHandler {
                 responseHandler = { result in
                     switch result {
-                    case .jsonObject(let jsonObject):
+                    case .data(let data):
                         do {
-                            let object = try DictionaryDecoder().decode(ResponseType.self, from: jsonObject)
+                            let object = try JSONDecoder.swiftygram.decode(Function.ReturnType.self, from: data)
                             
-                            completionHandler(.success(object: object, jsonObject: jsonObject))
+                            completionHandler(.success(object: object))
                         } catch {
                             completionHandler(.failure(error))
                         }
@@ -61,34 +54,29 @@ public class TGClient {
                         completionHandler(.failure(error))
                     }
                 }
+                
+                queryId = self.pushCompletionHandler(responseHandler!)
             }
             
-            self.execute(requestJSON, completionHandler: responseHandler)
-        }
-    }
-    
-    public func execute(_ json: [String: Any], completionHandler: TGCompletableResultHandler? = nil) {
-        codableQueue.async {
-            var json = json
-            var queryId: UInt64?
-            
-            if let completionHandler = completionHandler {
-                queryId = self.pushCompletionHandler(completionHandler)
-                json["@extra"] = queryId
-            }
+            let wrappedFunction = FunctionWrapper(function: function, queryId: queryId)
             
             do {
-                let data = try JSONSerialization.data(withJSONObject: json, options: [])
+                let data = try JSONEncoder.swiftygram.encode(wrappedFunction)
                 
-                data.withUnsafeBytes({
-                    td_json_client_send(self.client, $0)
-                })
-                
+                self.execute(data)
             } catch {
                 if let queryId = queryId, let completionHandler = self.completionHandler(for: queryId) {
                     completionHandler(.failure(error))
                 }
             }
+        }
+    }
+    
+    public func execute(_ data: Data) {
+        codableQueue.async {
+            data.withUnsafeBytes({
+                td_json_client_send(self.client, $0)
+            })
         }
     }
     
@@ -114,52 +102,47 @@ public class TGClient {
     
     // MARK: - Data processing
     private func processData(_ data: Data) {
-        let jsonObject: [String: Any]
-        let objectType: String?
+        let response: TDLibResponse
         
         do {
-            guard let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                return
-            }
-            
-            jsonObject = dict
-            objectType = jsonObject["@type"] as? String
+            response = try JSONDecoder.swiftygram.decode(TDLibResponse.self, from: data)
         } catch {
             print("Error while processing response: \(error)")
             return
         }
         
-        if let type = objectType, type.hasPrefix("update") {
-            processUpdate(jsonObject)
+        if let type = response.type, type.hasPrefix("update") {
+            processUpdate(data)
             return
         }
         
-        guard let queryId = jsonObject["@extra"] as? UInt64,
+        guard let queryId = response.queryId,
             let completionHandler = self.completionHandler(for: queryId) else {
                 return
         }
         
-        if objectType == TGObject.Error.type {
+        if response.type == TDObject.Error.type {
             do {
-                let error = try DictionaryDecoder().decode(TGObject.Error.self, from: jsonObject)
-                
+                let error = try JSONDecoder.swiftygram.decode(TDObject.Error.self, from: data)
+
                 completionHandler(.failure(error))
             } catch {
                 completionHandler(.failure(error))
             }
-            
+
             return
         }
         
-        completionHandler(.jsonObject(jsonObject))
+        completionHandler(.data(data))
     }
     
     // MARK: - Update processing
-    private func processUpdate(_ jsonObject: [String: Any]) {
-        let updateObject: TGObject.Update
+    private func processUpdate(_ data: Data) {
+        let updateObject: TDObject.Update
         
         do {
-            updateObject = try DictionaryDecoder().decode(TGSubclassCodable<TGObject.Update>.self, from: jsonObject).value
+            updateObject = try JSONDecoder.swiftygram.decode(SubclassCodable<TDObject.Update>.self, from: data).value
+            print(updateObject)
         } catch {
             print("Failed to parse Update")
         }

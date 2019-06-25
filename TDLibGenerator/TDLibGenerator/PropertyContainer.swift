@@ -48,6 +48,10 @@ class PropertyContainer {
     let name: String
     let isOptional: Bool
     
+    var optionalSuffix: String {
+        return isOptional ? "?" : ""
+    }
+    
     init(documentation: String, type: PropertyType, name: String, isOptional: Bool) {
         self.documentation = documentation
         self.type = type

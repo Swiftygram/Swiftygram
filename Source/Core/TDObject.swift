@@ -9,7 +9,19 @@
 import Foundation
 
 /// Objects namespace
-public class TGObject {}
+public class TDObject {}
 
 /// Base protocol for all objects
 public protocol TDObjectProtocol: Codable {}
+
+extension TDObjectProtocol {
+    
+    static var type: String {
+        let t = "\(self)"
+        
+        return t.prefix(1).lowercased() + t.dropFirst()
+    }
+    
+    static var hashable: HashableType { return HashableType(self) }
+    
+}
