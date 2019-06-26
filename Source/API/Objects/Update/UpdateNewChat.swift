@@ -1,7 +1,7 @@
 //
-//  UpdateNewChat.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ public extension TDObject {
         /**
          The chat
          */
-        public let chat: TDObject.Chat
+        public var chat: TDObject.Chat
 
         /**
          A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the client. The chat field changes will be reported through separate updates

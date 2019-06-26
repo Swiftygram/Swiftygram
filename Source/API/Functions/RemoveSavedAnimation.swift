@@ -1,7 +1,7 @@
 //
-//  RemoveSavedAnimation.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Animation file to be removed
          */
-        public let animation: TDEnum.InputFile
+        public var animation: TDEnum.InputFile
 
         /**
          Removes an animation from the list of saved animations

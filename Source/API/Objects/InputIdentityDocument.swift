@@ -1,7 +1,7 @@
 //
-//  InputIdentityDocument.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,32 +13,32 @@ public extension TDObject {
         /**
          Document number; 1-24 characters
          */
-        public let number: String
+        public var number: String
 
         /**
          Document expiry date, if available
          */
-        public let expiryDate: TDObject.Date?
+        public var expiryDate: TDObject.Date?
 
         /**
          Front side of the document
          */
-        public let frontSide: TDEnum.InputFile
+        public var frontSide: TDEnum.InputFile
 
         /**
          Reverse side of the document; only for driver license and identity card
          */
-        public let reverseSide: TDEnum.InputFile
+        public var reverseSide: TDEnum.InputFile
 
         /**
          Selfie with the document, if available
          */
-        public let selfie: TDEnum.InputFile?
+        public var selfie: TDEnum.InputFile?
 
         /**
          List of files containing a certified English translation of the document
          */
-        public let translation: [TDEnum.InputFile]
+        public var translation: [TDEnum.InputFile]
 
         /**
          An identity document to be saved to Telegram Passport

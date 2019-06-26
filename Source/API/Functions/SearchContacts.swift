@@ -1,7 +1,7 @@
 //
-//  SearchContacts.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Query to search for; may be empty to return all contacts
          */
-        public let query: String
+        public var query: String
 
         /**
          Maximum number of users to be returned
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Searches for the specified query in the first names, last names and usernames of the known user contacts

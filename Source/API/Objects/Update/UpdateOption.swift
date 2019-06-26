@@ -1,7 +1,7 @@
 //
-//  UpdateOption.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          The option name
          */
-        public let name: String
+        public var name: String
 
         /**
          The new option value
          */
-        public let value: TDEnum.OptionValue
+        public var value: TDEnum.OptionValue
 
         /**
          An option changed its value

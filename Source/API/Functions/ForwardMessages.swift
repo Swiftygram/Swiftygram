@@ -1,7 +1,7 @@
 //
-//  ForwardMessages.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,32 +20,32 @@ public extension TDFunction {
         /**
          Identifier of the chat to which to forward messages
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the chat from which to forward messages
          */
-        public let fromChatId: Int64
+        public var fromChatId: Int64
 
         /**
          Identifiers of the messages to forward
          */
-        public let messageIds: [Int64]
+        public var messageIds: [Int64]
 
         /**
          Pass true to disable notification for the message, doesn't work if messages are forwarded to a secret chat
          */
-        public let disableNotification: Bool
+        public var disableNotification: Bool
 
         /**
          Pass true if the message is sent from the background
          */
-        public let fromBackground: Bool
+        public var fromBackground: Bool
 
         /**
          True, if the messages should be grouped into an album after forwarding. For this to work, no more than 10 messages may be forwarded, and all of them must be photo or video messages
          */
-        public let asAlbum: Bool
+        public var asAlbum: Bool
 
         /**
          Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message

@@ -1,7 +1,7 @@
 //
-//  SetLogStream.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          New log stream
          */
-        public let logStream: TDEnum.LogStream
+        public var logStream: TDEnum.LogStream
 
         /**
          Sets new log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously

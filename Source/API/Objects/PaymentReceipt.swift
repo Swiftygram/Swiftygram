@@ -1,7 +1,7 @@
 //
-//  PaymentReceipt.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,32 +13,32 @@ public extension TDObject {
         /**
          Point in time (Unix timestamp) when the payment was made
          */
-        public let date: Foundation.Date
+        public var date: Foundation.Date
 
         /**
          User identifier of the payment provider bot
          */
-        public let paymentsProviderUserId: Int
+        public var paymentsProviderUserId: Int
 
         /**
          Contains information about the invoice
          */
-        public let invoice: TDObject.Invoice
+        public var invoice: TDObject.Invoice
 
         /**
          Contains order information; may be null
          */
-        public let orderInfo: TDObject.OrderInfo
+        public var orderInfo: TDObject.OrderInfo?
 
         /**
          Chosen shipping option; may be null
          */
-        public let shippingOption: TDObject.ShippingOption
+        public var shippingOption: TDObject.ShippingOption?
 
         /**
          Title of the saved credentials
          */
-        public let credentialsTitle: String
+        public var credentialsTitle: String
 
         /**
          Contains information about a successful payment
@@ -50,7 +50,7 @@ public extension TDObject {
          - Parameter shippingOption: Chosen shipping option; may be null
          - Parameter credentialsTitle: Title of the saved credentials
          */
-        public init(date: Foundation.Date, paymentsProviderUserId: Int, invoice: TDObject.Invoice, orderInfo: TDObject.OrderInfo, shippingOption: TDObject.ShippingOption, credentialsTitle: String) {
+        public init(date: Foundation.Date, paymentsProviderUserId: Int, invoice: TDObject.Invoice, orderInfo: TDObject.OrderInfo?, shippingOption: TDObject.ShippingOption?, credentialsTitle: String) {
             self.date = date
             self.paymentsProviderUserId = paymentsProviderUserId
             self.invoice = invoice
@@ -67,8 +67,8 @@ public extension TDObject {
             date = try container.decodeDate(forKey: .init(string: "date"))
             paymentsProviderUserId = try container.decode(Int.self, forKey: .init(string: "paymentsProviderUserId"))
             invoice = try container.decode(TDObject.Invoice.self, forKey: .init(string: "invoice"))
-            orderInfo = try container.decode(TDObject.OrderInfo.self, forKey: .init(string: "orderInfo"))
-            shippingOption = try container.decode(TDObject.ShippingOption.self, forKey: .init(string: "shippingOption"))
+            orderInfo = try container.decodeIfPresent(TDObject.OrderInfo.self, forKey: .init(string: "orderInfo"))
+            shippingOption = try container.decodeIfPresent(TDObject.ShippingOption.self, forKey: .init(string: "shippingOption"))
             credentialsTitle = try container.decode(String.self, forKey: .init(string: "credentialsTitle"))
         }
 
@@ -80,8 +80,8 @@ public extension TDObject {
             try container.encodeDate(date, forKey: .init(string: "date"))
             try container.encode(paymentsProviderUserId, forKey: .init(string: "paymentsProviderUserId"))
             try container.encode(invoice, forKey: .init(string: "invoice"))
-            try container.encode(orderInfo, forKey: .init(string: "orderInfo"))
-            try container.encode(shippingOption, forKey: .init(string: "shippingOption"))
+            try container.encodeIfPresent(orderInfo, forKey: .init(string: "orderInfo"))
+            try container.encodeIfPresent(shippingOption, forKey: .init(string: "shippingOption"))
             try container.encode(credentialsTitle, forKey: .init(string: "credentialsTitle"))
         }
     }

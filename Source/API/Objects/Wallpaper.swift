@@ -1,7 +1,7 @@
 //
-//  Wallpaper.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Unique persistent wallpaper identifier
          */
-        public let id: Int
+        public var id: Int
 
         /**
          Available variants of the wallpaper in different sizes. These photos can only be downloaded; they can't be sent in a message
          */
-        public let sizes: [TDObject.PhotoSize]
+        public var sizes: [TDObject.PhotoSize]
 
         /**
          Main color of the wallpaper in RGB24 format; should be treated as background color if no photos are specified
          */
-        public let color: Int
+        public var color: Int
 
         /**
          Contains information about a wallpaper

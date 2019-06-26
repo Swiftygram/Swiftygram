@@ -1,7 +1,7 @@
 //
-//  EncryptedPassportElement.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,47 +13,47 @@ public extension TDObject {
         /**
          Type of Telegram Passport element
          */
-        public let type: TDEnum.PassportElementType
+        public var type: TDEnum.PassportElementType
 
         /**
          Encrypted JSON-encoded data about the user
          */
-        public let data: String
+        public var data: String
 
         /**
          The front side of an identity document
          */
-        public let frontSide: TDObject.DatedFile
+        public var frontSide: TDObject.DatedFile
 
         /**
          The reverse side of an identity document; may be null
          */
-        public let reverseSide: TDObject.DatedFile
+        public var reverseSide: TDObject.DatedFile?
 
         /**
          Selfie with the document; may be null
          */
-        public let selfie: TDObject.DatedFile
+        public var selfie: TDObject.DatedFile?
 
         /**
          List of files containing a certified English translation of the document
          */
-        public let translation: [TDObject.DatedFile]
+        public var translation: [TDObject.DatedFile]
 
         /**
          List of attached files
          */
-        public let files: [TDObject.DatedFile]
+        public var files: [TDObject.DatedFile]
 
         /**
          Unencrypted data, phone number or email address
          */
-        public let value: String
+        public var value: String
 
         /**
          Hash of the entire element
          */
-        public let hash: String
+        public var hash: String
 
         /**
          Contains information about an encrypted Telegram Passport element; for bots only
@@ -68,7 +68,7 @@ public extension TDObject {
          - Parameter value: Unencrypted data, phone number or email address
          - Parameter hash: Hash of the entire element
          */
-        public init(type: TDEnum.PassportElementType, data: String, frontSide: TDObject.DatedFile, reverseSide: TDObject.DatedFile, selfie: TDObject.DatedFile, translation: [TDObject.DatedFile], files: [TDObject.DatedFile], value: String, hash: String) {
+        public init(type: TDEnum.PassportElementType, data: String, frontSide: TDObject.DatedFile, reverseSide: TDObject.DatedFile?, selfie: TDObject.DatedFile?, translation: [TDObject.DatedFile], files: [TDObject.DatedFile], value: String, hash: String) {
             self.type = type
             self.data = data
             self.frontSide = frontSide

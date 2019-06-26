@@ -1,7 +1,7 @@
 //
-//  Game.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,37 +13,37 @@ public extension TDObject {
         /**
          Game ID
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          Game short name. To share a game use the URL https://t.me/{bot_username}?game={game_short_name}
          */
-        public let shortName: String
+        public var shortName: String
 
         /**
          Game title
          */
-        public let title: String
+        public var title: String
 
         /**
          Game text, usually containing scoreboards for a game
          */
-        public let text: TDObject.FormattedText
+        public var text: TDObject.FormattedText
 
         /**
          Game description
          */
-        public let description: String
+        public var description: String
 
         /**
          Game photo
          */
-        public let photo: TDObject.Photo
+        public var photo: TDObject.Photo
 
         /**
          Game animation; may be null
          */
-        public let animation: TDObject.Animation
+        public var animation: TDObject.Animation?
 
         /**
          Describes a game
@@ -56,7 +56,7 @@ public extension TDObject {
          - Parameter photo: Game photo
          - Parameter animation: Game animation; may be null
          */
-        public init(id: Int64, shortName: String, title: String, text: TDObject.FormattedText, description: String, photo: TDObject.Photo, animation: TDObject.Animation) {
+        public init(id: Int64, shortName: String, title: String, text: TDObject.FormattedText, description: String, photo: TDObject.Photo, animation: TDObject.Animation?) {
             self.id = id
             self.shortName = shortName
             self.title = title
@@ -77,7 +77,7 @@ public extension TDObject {
             text = try container.decode(TDObject.FormattedText.self, forKey: .init(string: "text"))
             description = try container.decode(String.self, forKey: .init(string: "description"))
             photo = try container.decode(TDObject.Photo.self, forKey: .init(string: "photo"))
-            animation = try container.decode(TDObject.Animation.self, forKey: .init(string: "animation"))
+            animation = try container.decodeIfPresent(TDObject.Animation.self, forKey: .init(string: "animation"))
         }
 
         // MARK: - Encodable
@@ -91,7 +91,7 @@ public extension TDObject {
             try container.encode(text, forKey: .init(string: "text"))
             try container.encode(description, forKey: .init(string: "description"))
             try container.encode(photo, forKey: .init(string: "photo"))
-            try container.encode(animation, forKey: .init(string: "animation"))
+            try container.encodeIfPresent(animation, forKey: .init(string: "animation"))
         }
     }
 }

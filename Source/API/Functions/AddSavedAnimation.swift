@@ -1,7 +1,7 @@
 //
-//  AddSavedAnimation.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          The animation file to be added. Only animations known to the server (i.e. successfully sent via a message) can be added to the list
          */
-        public let animation: TDEnum.InputFile
+        public var animation: TDEnum.InputFile
 
         /**
          Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first. Only non-secret video animations with MIME type "video/mp4" can be added to the list

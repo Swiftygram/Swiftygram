@@ -1,7 +1,7 @@
 //
-//  StorageStatisticsByFileType.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          File type
          */
-        public let fileType: TDEnum.FileType
+        public var fileType: TDEnum.FileType
 
         /**
          Total size of the files
          */
-        public let size: Int64
+        public var size: Int64
 
         /**
          Total number of files
          */
-        public let count: Int
+        public var count: Int
 
         /**
          Contains the storage usage statistics for a specific file type

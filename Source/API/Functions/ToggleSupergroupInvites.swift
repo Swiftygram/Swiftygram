@@ -1,7 +1,7 @@
 //
-//  ToggleSupergroupInvites.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Identifier of the supergroup
          */
-        public let supergroupId: Int
+        public var supergroupId: Int
 
         /**
          New value of anyone_can_invite
          */
-        public let anyoneCanInvite: Bool
+        public var anyoneCanInvite: Bool
 
         /**
          Toggles whether all members of a supergroup can add new members; requires appropriate administrator rights in the supergroup.

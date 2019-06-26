@@ -1,7 +1,7 @@
 //
-//  UpdateMessageContentOpened.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Message identifier
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the TTL timer for self-destructing messages

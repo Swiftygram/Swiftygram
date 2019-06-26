@@ -1,7 +1,7 @@
 //
-//  ConnectedWebsite.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,47 +13,47 @@ public extension TDObject {
         /**
          Website identifier
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          The domain name of the website
          */
-        public let domainName: String
+        public var domainName: String
 
         /**
          User identifier of a bot linked with the website
          */
-        public let botUserId: Int
+        public var botUserId: Int
 
         /**
          The version of a browser used to log in
          */
-        public let browser: String
+        public var browser: String
 
         /**
          Operating system the browser is running on
          */
-        public let platform: String
+        public var platform: String
 
         /**
          Point in time (Unix timestamp) when the user was logged in
          */
-        public let logInDate: Foundation.Date
+        public var logInDate: Foundation.Date
 
         /**
          Point in time (Unix timestamp) when obtained authorization was last used
          */
-        public let lastActiveDate: Foundation.Date
+        public var lastActiveDate: Foundation.Date
 
         /**
          IP address from which the user was logged in, in human-readable format
          */
-        public let ip: String
+        public var ip: String
 
         /**
          Human-readable description of a country and a region, from which the user was logged in, based on the IP address
          */
-        public let location: String
+        public var location: String
 
         /**
          Contains information about one website the current user is logged in with Telegram

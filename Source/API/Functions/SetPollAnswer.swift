@@ -1,7 +1,7 @@
 //
-//  SetPollAnswer.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Identifier of the chat to which the poll belongs
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the message containing the poll
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          0-based identifiers of options, chosen by the user. Currently user can't choose more than 1 option
          */
-        public let optionIds: [Int]
+        public var optionIds: [Int]
 
         /**
          Changes user answer to a poll

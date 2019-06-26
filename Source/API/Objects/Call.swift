@@ -1,7 +1,7 @@
 //
-//  Call.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          Call identifier, not persistent
          */
-        public let id: Int
+        public var id: Int
 
         /**
          Peer user identifier
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          True, if the call is outgoing
          */
-        public let isOutgoing: Bool
+        public var isOutgoing: Bool
 
         /**
          Call state
          */
-        public let state: TDEnum.CallState
+        public var state: TDEnum.CallState
 
         /**
          Describes a call

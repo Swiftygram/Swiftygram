@@ -1,7 +1,7 @@
 //
-//  Invoice.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,52 +13,52 @@ public extension TDObject {
         /**
          ISO 4217 currency code
          */
-        public let currency: String
+        public var currency: String
 
         /**
          A list of objects used to calculate the total price of the product
          */
-        public let priceParts: [TDObject.LabeledPricePart]
+        public var priceParts: [TDObject.LabeledPricePart]
 
         /**
          True, if the payment is a test payment
          */
-        public let isTest: Bool
+        public var isTest: Bool
 
         /**
          True, if the user's name is needed for payment
          */
-        public let needName: Bool
+        public var needName: Bool
 
         /**
          True, if the user's phone number is needed for payment
          */
-        public let needPhoneNumber: Bool
+        public var needPhoneNumber: Bool
 
         /**
          True, if the user's email address is needed for payment
          */
-        public let needEmailAddress: Bool
+        public var needEmailAddress: Bool
 
         /**
          True, if the user's shipping address is needed for payment
          */
-        public let needShippingAddress: Bool
+        public var needShippingAddress: Bool
 
         /**
          True, if the user's phone number will be sent to the provider
          */
-        public let sendPhoneNumberToProvider: Bool
+        public var sendPhoneNumberToProvider: Bool
 
         /**
          True, if the user's email address will be sent to the provider
          */
-        public let sendEmailAddressToProvider: Bool
+        public var sendEmailAddressToProvider: Bool
 
         /**
          True, if the total price depends on the shipping method
          */
-        public let isFlexible: Bool
+        public var isFlexible: Bool
 
         /**
          Product invoice

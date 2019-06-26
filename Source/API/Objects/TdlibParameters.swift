@@ -1,7 +1,7 @@
 //
-//  TdlibParameters.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,77 +13,77 @@ public extension TDObject {
         /**
          If set to true, the Telegram test environment will be used instead of the production environment
          */
-        public let useTestDc: Bool
+        public var useTestDc: Bool
 
         /**
          The path to the directory for the persistent database; if empty, the current working directory will be used
          */
-        public let databaseDirectory: String
+        public var databaseDirectory: String
 
         /**
          The path to the directory for storing files; if empty, database_directory will be used
          */
-        public let filesDirectory: String
+        public var filesDirectory: String
 
         /**
          If set to true, information about downloaded and uploaded files will be saved between application restarts
          */
-        public let useFileDatabase: Bool
+        public var useFileDatabase: Bool
 
         /**
          If set to true, the library will maintain a cache of users, basic groups, supergroups, channels and secret chats. Implies use_file_database
          */
-        public let useChatInfoDatabase: Bool
+        public var useChatInfoDatabase: Bool
 
         /**
          If set to true, the library will maintain a cache of chats and messages. Implies use_chat_info_database
          */
-        public let useMessageDatabase: Bool
+        public var useMessageDatabase: Bool
 
         /**
          If set to true, support for secret chats will be enabled
          */
-        public let useSecretChats: Bool
+        public var useSecretChats: Bool
 
         /**
          Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
          */
-        public let apiId: Int
+        public var apiId: Int
 
         /**
          Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
          */
-        public let apiHash: String
+        public var apiHash: String
 
         /**
          IETF language tag of the user's operating system language; must be non-empty
          */
-        public let systemLanguageCode: String
+        public var systemLanguageCode: String
 
         /**
          Model of the device the application is being run on; must be non-empty
          */
-        public let deviceModel: String
+        public var deviceModel: String
 
         /**
          Version of the operating system the application is being run on; must be non-empty
          */
-        public let systemVersion: String
+        public var systemVersion: String
 
         /**
          Application version; must be non-empty
          */
-        public let applicationVersion: String
+        public var applicationVersion: String
 
         /**
          If set to true, old files will automatically be deleted
          */
-        public let enableStorageOptimizer: Bool
+        public var enableStorageOptimizer: Bool
 
         /**
          If set to true, original file names will be ignored. Otherwise, downloaded files will be saved under names as close as possible to the original name
          */
-        public let ignoreFileNames: Bool
+        public var ignoreFileNames: Bool
 
         /**
          Contains parameters for TDLib initialization

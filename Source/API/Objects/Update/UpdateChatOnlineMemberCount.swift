@@ -1,7 +1,7 @@
 //
-//  UpdateChatOnlineMemberCount.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Identifier of the chat
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          New number of online members in the chat, or 0 if unknown
          */
-        public let onlineMemberCount: Int
+        public var onlineMemberCount: Int
 
         /**
          The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed

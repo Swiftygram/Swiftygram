@@ -1,7 +1,7 @@
 //
-//  StorageStatisticsFast.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Approximate total size of files
          */
-        public let filesSize: Int64
+        public var filesSize: Int64
 
         /**
          Approximate number of files
          */
-        public let fileCount: Int
+        public var fileCount: Int
 
         /**
          Size of the database
          */
-        public let databaseSize: Int64
+        public var databaseSize: Int64
 
         /**
          Size of the language pack database
          */
-        public let languagePackDatabaseSize: Int64
+        public var languagePackDatabaseSize: Int64
 
         /**
          Size of the TDLib internal log
          */
-        public let logSize: Int64
+        public var logSize: Int64
 
         /**
          Contains approximate storage usage statistics, excluding files of unknown file type

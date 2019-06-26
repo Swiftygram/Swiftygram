@@ -1,7 +1,7 @@
 //
-//  PassportAuthorizationForm.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Unique identifier of the authorization form
          */
-        public let id: Int
+        public var id: Int
 
         /**
          Information about the Telegram Passport elements that need to be provided to complete the form
          */
-        public let requiredElements: [TDObject.PassportRequiredElement]
+        public var requiredElements: [TDObject.PassportRequiredElement]
 
         /**
          URL for the privacy policy of the service; may be empty
          */
-        public let privacyPolicyUrl: String
+        public var privacyPolicyUrl: String
 
         /**
          Contains information about a Telegram Passport authorization form that was requested

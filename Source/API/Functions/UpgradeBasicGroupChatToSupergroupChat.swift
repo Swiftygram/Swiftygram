@@ -1,7 +1,7 @@
 //
-//  UpgradeBasicGroupChatToSupergroupChat.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Identifier of the chat to upgrade
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom. Deactivates the original basic group

@@ -1,7 +1,7 @@
 //
-//  SetChatTitle.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          New title of the chat; 1-128 characters
          */
-        public let title: String
+        public var title: String
 
         /**
          Changes the chat title. Supported only for basic groups, supergroups and channels. Requires administrator rights in basic groups and the appropriate administrator rights in supergroups and channels. The title will not be changed until the request to the server has been completed

@@ -1,7 +1,7 @@
 //
-//  GetPreferredCountryLanguage.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          A two-letter ISO 3166-1 alpha-2 country code
          */
-        public let countryCode: String
+        public var countryCode: String
 
         /**
          Returns an IETF language tag of the language preferred in the country, which should be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown

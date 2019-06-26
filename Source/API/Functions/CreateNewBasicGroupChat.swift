@@ -1,7 +1,7 @@
 //
-//  CreateNewBasicGroupChat.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Identifiers of users to be added to the basic group
          */
-        public let userIds: [Int]
+        public var userIds: [Int]
 
         /**
          Title of the new basic group; 1-128 characters
          */
-        public let title: String
+        public var title: String
 
         /**
          Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat

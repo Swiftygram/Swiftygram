@@ -1,7 +1,7 @@
 //
-//  AddNetworkStatistics.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          The network statistics entry with the data to be added to statistics
          */
-        public let entry: TDEnum.NetworkStatisticsEntry
+        public var entry: TDEnum.NetworkStatisticsEntry
 
         /**
          Adds the specified data to data usage statistics. Can be called before authorization

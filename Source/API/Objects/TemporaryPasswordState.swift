@@ -1,7 +1,7 @@
 //
-//  TemporaryPasswordState.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          True, if a temporary password is available
          */
-        public let hasPassword: Bool
+        public var hasPassword: Bool
 
         /**
          Time left before the temporary password expires, in seconds
          */
-        public let validFor: Int
+        public var validFor: Int
 
         /**
          Returns information about the availability of a temporary password, which can be used for payments

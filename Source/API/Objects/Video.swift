@@ -1,7 +1,7 @@
 //
-//  Video.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,47 +13,47 @@ public extension TDObject {
         /**
          Duration of the video, in seconds; as defined by the sender
          */
-        public let duration: Int
+        public var duration: Int
 
         /**
          Video width; as defined by the sender
          */
-        public let width: Int
+        public var width: Int
 
         /**
          Video height; as defined by the sender
          */
-        public let height: Int
+        public var height: Int
 
         /**
          Original name of the file; as defined by the sender
          */
-        public let fileName: String
+        public var fileName: String
 
         /**
          MIME type of the file; as defined by the sender
          */
-        public let mimeType: String
+        public var mimeType: String
 
         /**
          True, if stickers were added to the photo
          */
-        public let hasStickers: Bool
+        public var hasStickers: Bool
 
         /**
          True, if the video should be tried to be streamed
          */
-        public let supportsStreaming: Bool
+        public var supportsStreaming: Bool
 
         /**
          Video thumbnail; as defined by the sender; may be null
          */
-        public let thumbnail: TDObject.PhotoSize
+        public var thumbnail: TDObject.PhotoSize?
 
         /**
          File containing the video
          */
-        public let video: TDObject.File
+        public var video: TDObject.File
 
         /**
          Describes a video file
@@ -68,7 +68,7 @@ public extension TDObject {
          - Parameter thumbnail: Video thumbnail; as defined by the sender; may be null
          - Parameter video: File containing the video
          */
-        public init(duration: Int, width: Int, height: Int, fileName: String, mimeType: String, hasStickers: Bool, supportsStreaming: Bool, thumbnail: TDObject.PhotoSize, video: TDObject.File) {
+        public init(duration: Int, width: Int, height: Int, fileName: String, mimeType: String, hasStickers: Bool, supportsStreaming: Bool, thumbnail: TDObject.PhotoSize?, video: TDObject.File) {
             self.duration = duration
             self.width = width
             self.height = height

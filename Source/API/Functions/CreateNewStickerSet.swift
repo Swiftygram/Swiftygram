@@ -1,7 +1,7 @@
 //
-//  CreateNewStickerSet.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,27 +20,27 @@ public extension TDFunction {
         /**
          Sticker set owner
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          Sticker set title; 1-64 characters
          */
-        public let title: String
+        public var title: String
 
         /**
          Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive); 1-64 characters
          */
-        public let name: String
+        public var name: String
 
         /**
          True, if stickers are masks
          */
-        public let isMasks: Bool
+        public var isMasks: Bool
 
         /**
          List of stickers to be added to the set
          */
-        public let stickers: [TDObject.InputSticker]
+        public var stickers: [TDObject.InputSticker]
 
         /**
          Creates a new sticker set; for bots only. Returns the newly created sticker set

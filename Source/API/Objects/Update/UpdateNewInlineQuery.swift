@@ -1,7 +1,7 @@
 //
-//  UpdateNewInlineQuery.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Unique query identifier
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          Identifier of the user who sent the query
          */
-        public let senderUserId: Int
+        public var senderUserId: Int
 
         /**
          User location, provided by the client; may be null
          */
-        public let userLocation: TDObject.Location
+        public var userLocation: TDObject.Location?
 
         /**
          Text of the query
          */
-        public let query: String
+        public var query: String
 
         /**
          Offset of the first entry to return
          */
-        public let offset: String
+        public var offset: String
 
         /**
          A new incoming inline query; for bots only
@@ -44,7 +44,7 @@ public extension TDObject {
          - Parameter query: Text of the query
          - Parameter offset: Offset of the first entry to return
          */
-        public init(id: Int64, senderUserId: Int, userLocation: TDObject.Location, query: String, offset: String) {
+        public init(id: Int64, senderUserId: Int, userLocation: TDObject.Location?, query: String, offset: String) {
             self.id = id
             self.senderUserId = senderUserId
             self.userLocation = userLocation
@@ -59,7 +59,7 @@ public extension TDObject {
 
             id = try container.decodeInt64(forKey: .init(string: "id"))
             senderUserId = try container.decode(Int.self, forKey: .init(string: "senderUserId"))
-            userLocation = try container.decode(TDObject.Location.self, forKey: .init(string: "userLocation"))
+            userLocation = try container.decodeIfPresent(TDObject.Location.self, forKey: .init(string: "userLocation"))
             query = try container.decode(String.self, forKey: .init(string: "query"))
             offset = try container.decode(String.self, forKey: .init(string: "offset"))
         }
@@ -71,7 +71,7 @@ public extension TDObject {
 
             try container.encodeInt64(id, forKey: .init(string: "id"))
             try container.encode(senderUserId, forKey: .init(string: "senderUserId"))
-            try container.encode(userLocation, forKey: .init(string: "userLocation"))
+            try container.encodeIfPresent(userLocation, forKey: .init(string: "userLocation"))
             try container.encode(query, forKey: .init(string: "query"))
             try container.encode(offset, forKey: .init(string: "offset"))
         }

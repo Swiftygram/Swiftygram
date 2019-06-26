@@ -1,7 +1,7 @@
 //
-//  ReportChat.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          The reason for reporting the chat
          */
-        public let reason: TDEnum.ChatReportReason
+        public var reason: TDEnum.ChatReportReason
 
         /**
          Identifiers of reported messages, if any
          */
-        public let messageIds: [Int64]
+        public var messageIds: [Int64]
 
         /**
          Reports a chat to the Telegram moderators. Supported only for supergroups, channels, or private chats with bots, since other chats can't be checked by moderators

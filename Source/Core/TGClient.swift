@@ -83,6 +83,10 @@ final public class TGClient {
     }
     
     private func send(data: Data) {
+        var data = data
+        
+        data.append(0)
+        
         data.withUnsafeBytes({
             td_json_client_send(self.client, $0)
         })
@@ -165,6 +169,8 @@ final public class TGClient {
         do {
             updateObject = try JSONDecoder.swiftygram.decode(SubclassCodable<TDObject.Update>.self, from: data).value
         } catch {
+            let kek = String(data: data, encoding: .utf8)!
+            print(kek)
             print("Failed to parse Update")
             return
         }

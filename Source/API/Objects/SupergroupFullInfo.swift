@@ -1,7 +1,7 @@
 //
-//  SupergroupFullInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,72 +13,72 @@ public extension TDObject {
         /**
          Supergroup or channel description
          */
-        public let description: String
+        public var description: String
 
         /**
          Number of members in the supergroup or channel; 0 if unknown
          */
-        public let memberCount: Int
+        public var memberCount: Int
 
         /**
          Number of privileged users in the supergroup or channel; 0 if unknown
          */
-        public let administratorCount: Int
+        public var administratorCount: Int
 
         /**
          Number of restricted users in the supergroup; 0 if unknown
          */
-        public let restrictedCount: Int
+        public var restrictedCount: Int
 
         /**
          Number of users banned from chat; 0 if unknown
          */
-        public let bannedCount: Int
+        public var bannedCount: Int
 
         /**
          True, if members of the chat can be retrieved
          */
-        public let canGetMembers: Bool
+        public var canGetMembers: Bool
 
         /**
          True, if the chat can be made public
          */
-        public let canSetUsername: Bool
+        public var canSetUsername: Bool
 
         /**
          True, if the supergroup sticker set can be changed
          */
-        public let canSetStickerSet: Bool
+        public var canSetStickerSet: Bool
 
         /**
          True, if the channel statistics is available through getChatStatisticsUrl
          */
-        public let canViewStatistics: Bool
+        public var canViewStatistics: Bool
 
         /**
          True, if new chat members will have access to old messages. In public supergroups and both public and private channels, old messages are always available, so this option affects only private supergroups. The value of this field is only available for chat administrators
          */
-        public let isAllHistoryAvailable: Bool
+        public var isAllHistoryAvailable: Bool
 
         /**
          Identifier of the supergroup sticker set; 0 if none
          */
-        public let stickerSetId: Int64
+        public var stickerSetId: Int64
 
         /**
          Invite link for this chat
          */
-        public let inviteLink: String
+        public var inviteLink: String
 
         /**
          Identifier of the basic group from which supergroup was upgraded; 0 if none
          */
-        public let upgradedFromBasicGroupId: Int
+        public var upgradedFromBasicGroupId: Int
 
         /**
          Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
          */
-        public let upgradedFromMaxMessageId: Int64
+        public var upgradedFromMaxMessageId: Int64
 
         /**
          Contains full information about a supergroup or channel

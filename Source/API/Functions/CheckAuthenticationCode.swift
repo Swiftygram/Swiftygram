@@ -1,7 +1,7 @@
 //
-//  CheckAuthenticationCode.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          The verification code received via SMS, Telegram message, phone call, or flash call
          */
-        public let code: String
+        public var code: String
 
         /**
          If the user is not yet registered, the first name of the user; 1-64 characters. You can also pass an empty string for unregistered user there to check verification code validness. In the latter case PHONE_NUMBER_UNOCCUPIED error will be returned for a valid code
          */
-        public let firstName: String
+        public var firstName: String
 
         /**
          If the user is not yet registered; the last name of the user; optional; 0-64 characters
          */
-        public let lastName: String
+        public var lastName: String
 
         /**
          Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode

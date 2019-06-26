@@ -1,7 +1,7 @@
 //
-//  PushMessageContent.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -24,7 +24,7 @@ public extension TDEnum {
          - caption: Animation caption
          - isPinned: True, if the message is a pinned message with the specified content
          */
-        case animation(animation: TDObject.Animation, caption: String, isPinned: Bool)
+        case animation(animation: TDObject.Animation?, caption: String, isPinned: Bool)
 
         /**
          An audio message
@@ -32,7 +32,7 @@ public extension TDEnum {
          - audio: Message content; may be null
          - isPinned: True, if the message is a pinned message with the specified content
          */
-        case audio(audio: TDObject.Audio, isPinned: Bool)
+        case audio(audio: TDObject.Audio?, isPinned: Bool)
 
         /**
          A message with a user contact
@@ -53,7 +53,7 @@ public extension TDEnum {
          - document: Message content; may be null
          - isPinned: True, if the message is a pinned message with the specified content
          */
-        case document(document: TDObject.Document, isPinned: Bool)
+        case document(document: TDObject.Document?, isPinned: Bool)
 
         /**
          A message with a game
@@ -96,7 +96,7 @@ public extension TDEnum {
          - isSecret: True, if the photo is secret
          - isPinned: True, if the message is a pinned message with the specified content
          */
-        case photo(photo: TDObject.Photo, caption: String, isSecret: Bool, isPinned: Bool)
+        case photo(photo: TDObject.Photo?, caption: String, isSecret: Bool, isPinned: Bool)
 
         /**
          A message with a poll
@@ -118,7 +118,7 @@ public extension TDEnum {
          - emoji: Emoji corresponding to the sticker; may be empty
          - isPinned: True, if the message is a pinned message with the specified content
          */
-        case sticker(sticker: TDObject.Sticker, emoji: String, isPinned: Bool)
+        case sticker(sticker: TDObject.Sticker?, emoji: String, isPinned: Bool)
 
         /**
          A text message
@@ -136,7 +136,7 @@ public extension TDEnum {
          - isSecret: True, if the video is secret
          - isPinned: True, if the message is a pinned message with the specified content
          */
-        case video(video: TDObject.Video, caption: String, isSecret: Bool, isPinned: Bool)
+        case video(video: TDObject.Video?, caption: String, isSecret: Bool, isPinned: Bool)
 
         /**
          A video note message
@@ -144,7 +144,7 @@ public extension TDEnum {
          - videoNote: Message content; may be null
          - isPinned: True, if the message is a pinned message with the specified content
          */
-        case videoNote(videoNote: TDObject.VideoNote, isPinned: Bool)
+        case videoNote(videoNote: TDObject.VideoNote?, isPinned: Bool)
 
         /**
          A voice note message
@@ -152,7 +152,7 @@ public extension TDEnum {
          - voiceNote: Message content; may be null
          - isPinned: True, if the message is a pinned message with the specified content
          */
-        case voiceNote(voiceNote: TDObject.VoiceNote, isPinned: Bool)
+        case voiceNote(voiceNote: TDObject.VoiceNote?, isPinned: Bool)
 
         /**
          A newly created basic group
@@ -223,14 +223,14 @@ public extension TDEnum {
                 self = .hidden(isPinned: isPinned)
 
             case "pushMessageContentAnimation":
-                let animation = try container.decode(TDObject.Animation.self, forKey: .init(string: "animation"))
+                let animation = try container.decodeIfPresent(TDObject.Animation.self, forKey: .init(string: "animation"))
                 let caption = try container.decode(String.self, forKey: .init(string: "caption"))
                 let isPinned = try container.decode(Bool.self, forKey: .init(string: "isPinned"))
 
                 self = .animation(animation: animation, caption: caption, isPinned: isPinned)
 
             case "pushMessageContentAudio":
-                let audio = try container.decode(TDObject.Audio.self, forKey: .init(string: "audio"))
+                let audio = try container.decodeIfPresent(TDObject.Audio.self, forKey: .init(string: "audio"))
                 let isPinned = try container.decode(Bool.self, forKey: .init(string: "isPinned"))
 
                 self = .audio(audio: audio, isPinned: isPinned)
@@ -245,7 +245,7 @@ public extension TDEnum {
                 self = .contactRegistered
 
             case "pushMessageContentDocument":
-                let document = try container.decode(TDObject.Document.self, forKey: .init(string: "document"))
+                let document = try container.decodeIfPresent(TDObject.Document.self, forKey: .init(string: "document"))
                 let isPinned = try container.decode(Bool.self, forKey: .init(string: "isPinned"))
 
                 self = .document(document: document, isPinned: isPinned)
@@ -276,7 +276,7 @@ public extension TDEnum {
                 self = .location(isLive: isLive, isPinned: isPinned)
 
             case "pushMessageContentPhoto":
-                let photo = try container.decode(TDObject.Photo.self, forKey: .init(string: "photo"))
+                let photo = try container.decodeIfPresent(TDObject.Photo.self, forKey: .init(string: "photo"))
                 let caption = try container.decode(String.self, forKey: .init(string: "caption"))
                 let isSecret = try container.decode(Bool.self, forKey: .init(string: "isSecret"))
                 let isPinned = try container.decode(Bool.self, forKey: .init(string: "isPinned"))
@@ -293,7 +293,7 @@ public extension TDEnum {
                 self = .screenshotTaken
 
             case "pushMessageContentSticker":
-                let sticker = try container.decode(TDObject.Sticker.self, forKey: .init(string: "sticker"))
+                let sticker = try container.decodeIfPresent(TDObject.Sticker.self, forKey: .init(string: "sticker"))
                 let emoji = try container.decode(String.self, forKey: .init(string: "emoji"))
                 let isPinned = try container.decode(Bool.self, forKey: .init(string: "isPinned"))
 
@@ -306,7 +306,7 @@ public extension TDEnum {
                 self = .text(text: text, isPinned: isPinned)
 
             case "pushMessageContentVideo":
-                let video = try container.decode(TDObject.Video.self, forKey: .init(string: "video"))
+                let video = try container.decodeIfPresent(TDObject.Video.self, forKey: .init(string: "video"))
                 let caption = try container.decode(String.self, forKey: .init(string: "caption"))
                 let isSecret = try container.decode(Bool.self, forKey: .init(string: "isSecret"))
                 let isPinned = try container.decode(Bool.self, forKey: .init(string: "isPinned"))
@@ -314,13 +314,13 @@ public extension TDEnum {
                 self = .video(video: video, caption: caption, isSecret: isSecret, isPinned: isPinned)
 
             case "pushMessageContentVideoNote":
-                let videoNote = try container.decode(TDObject.VideoNote.self, forKey: .init(string: "videoNote"))
+                let videoNote = try container.decodeIfPresent(TDObject.VideoNote.self, forKey: .init(string: "videoNote"))
                 let isPinned = try container.decode(Bool.self, forKey: .init(string: "isPinned"))
 
                 self = .videoNote(videoNote: videoNote, isPinned: isPinned)
 
             case "pushMessageContentVoiceNote":
-                let voiceNote = try container.decode(TDObject.VoiceNote.self, forKey: .init(string: "voiceNote"))
+                let voiceNote = try container.decodeIfPresent(TDObject.VoiceNote.self, forKey: .init(string: "voiceNote"))
                 let isPinned = try container.decode(Bool.self, forKey: .init(string: "isPinned"))
 
                 self = .voiceNote(voiceNote: voiceNote, isPinned: isPinned)
@@ -384,14 +384,14 @@ public extension TDEnum {
             case let .animation(animation, caption, isPinned):
                 try container.encode("pushMessageContentAnimation", forKey: .type)
 
-                try container.encode(animation, forKey: .init(string: "animation"))
+                try container.encodeIfPresent(animation, forKey: .init(string: "animation"))
                 try container.encode(caption, forKey: .init(string: "caption"))
                 try container.encode(isPinned, forKey: .init(string: "isPinned"))
 
             case let .audio(audio, isPinned):
                 try container.encode("pushMessageContentAudio", forKey: .type)
 
-                try container.encode(audio, forKey: .init(string: "audio"))
+                try container.encodeIfPresent(audio, forKey: .init(string: "audio"))
                 try container.encode(isPinned, forKey: .init(string: "isPinned"))
 
             case let .contact(name, isPinned):
@@ -406,7 +406,7 @@ public extension TDEnum {
             case let .document(document, isPinned):
                 try container.encode("pushMessageContentDocument", forKey: .type)
 
-                try container.encode(document, forKey: .init(string: "document"))
+                try container.encodeIfPresent(document, forKey: .init(string: "document"))
                 try container.encode(isPinned, forKey: .init(string: "isPinned"))
 
             case let .game(title, isPinned):
@@ -437,7 +437,7 @@ public extension TDEnum {
             case let .photo(photo, caption, isSecret, isPinned):
                 try container.encode("pushMessageContentPhoto", forKey: .type)
 
-                try container.encode(photo, forKey: .init(string: "photo"))
+                try container.encodeIfPresent(photo, forKey: .init(string: "photo"))
                 try container.encode(caption, forKey: .init(string: "caption"))
                 try container.encode(isSecret, forKey: .init(string: "isSecret"))
                 try container.encode(isPinned, forKey: .init(string: "isPinned"))
@@ -454,7 +454,7 @@ public extension TDEnum {
             case let .sticker(sticker, emoji, isPinned):
                 try container.encode("pushMessageContentSticker", forKey: .type)
 
-                try container.encode(sticker, forKey: .init(string: "sticker"))
+                try container.encodeIfPresent(sticker, forKey: .init(string: "sticker"))
                 try container.encode(emoji, forKey: .init(string: "emoji"))
                 try container.encode(isPinned, forKey: .init(string: "isPinned"))
 
@@ -467,7 +467,7 @@ public extension TDEnum {
             case let .video(video, caption, isSecret, isPinned):
                 try container.encode("pushMessageContentVideo", forKey: .type)
 
-                try container.encode(video, forKey: .init(string: "video"))
+                try container.encodeIfPresent(video, forKey: .init(string: "video"))
                 try container.encode(caption, forKey: .init(string: "caption"))
                 try container.encode(isSecret, forKey: .init(string: "isSecret"))
                 try container.encode(isPinned, forKey: .init(string: "isPinned"))
@@ -475,13 +475,13 @@ public extension TDEnum {
             case let .videoNote(videoNote, isPinned):
                 try container.encode("pushMessageContentVideoNote", forKey: .type)
 
-                try container.encode(videoNote, forKey: .init(string: "videoNote"))
+                try container.encodeIfPresent(videoNote, forKey: .init(string: "videoNote"))
                 try container.encode(isPinned, forKey: .init(string: "isPinned"))
 
             case let .voiceNote(voiceNote, isPinned):
                 try container.encode("pushMessageContentVoiceNote", forKey: .type)
 
-                try container.encode(voiceNote, forKey: .init(string: "voiceNote"))
+                try container.encodeIfPresent(voiceNote, forKey: .init(string: "voiceNote"))
                 try container.encode(isPinned, forKey: .init(string: "isPinned"))
 
             case .basicGroupChatCreate:

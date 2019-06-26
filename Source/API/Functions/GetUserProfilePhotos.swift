@@ -1,7 +1,7 @@
 //
-//  GetUserProfilePhotos.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          User identifier
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          The number of photos to skip; must be non-negative
          */
-        public let offset: Int
+        public var offset: Int
 
         /**
          Maximum number of photos to be returned; up to 100
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Returns the profile photos of a user. The result of this query may be outdated: some photos might have been deleted already

@@ -1,7 +1,7 @@
 //
-//  ViewMessages.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          The identifiers of the messages being viewed
          */
-        public let messageIds: [Int64]
+        public var messageIds: [Int64]
 
         /**
          True, if messages in closed chats should be marked as read
          */
-        public let forceRead: Bool
+        public var forceRead: Bool
 
         /**
          Informs TDLib that messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)

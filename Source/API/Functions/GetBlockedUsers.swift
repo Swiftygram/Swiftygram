@@ -1,7 +1,7 @@
 //
-//  GetBlockedUsers.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Number of users to skip in the result; must be non-negative
          */
-        public let offset: Int
+        public var offset: Int
 
         /**
          Maximum number of users to return; up to 100
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Returns users that were blocked by the current user

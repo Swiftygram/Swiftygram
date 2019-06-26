@@ -1,7 +1,7 @@
 //
-//  SearchChats.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Query to search for. If the query is empty, returns up to 20 recently found chats
          */
-        public let query: String
+        public var query: String
 
         /**
          Maximum number of chats to be returned
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the chat list

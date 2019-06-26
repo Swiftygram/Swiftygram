@@ -1,7 +1,7 @@
 //
-//  SetPassportElement.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Input Telegram Passport element
          */
-        public let element: TDEnum.InputPassportElement
+        public var element: TDEnum.InputPassportElement
 
         /**
          Password of the current user
          */
-        public let password: String
+        public var password: String
 
         /**
          Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first

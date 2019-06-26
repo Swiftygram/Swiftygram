@@ -1,7 +1,7 @@
 //
-//  Photo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          True, if stickers were added to the photo
          */
-        public let hasStickers: Bool
+        public var hasStickers: Bool
 
         /**
          Available variants of the photo, in different sizes
          */
-        public let sizes: [TDObject.PhotoSize]
+        public var sizes: [TDObject.PhotoSize]
 
         /**
          Describes a photo

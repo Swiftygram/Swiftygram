@@ -1,7 +1,7 @@
 //
-//  UpdateFileGenerationStart.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          Unique identifier for the generation process
          */
-        public let generationId: Int64
+        public var generationId: Int64
 
         /**
          The path to a file from which a new file is generated; may be empty
          */
-        public let originalPath: String
+        public var originalPath: String
 
         /**
          The path to a file that should be created and where the new file should be generated
          */
-        public let destinationPath: String
+        public var destinationPath: String
 
         /**
          String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded by the client
          */
-        public let conversion: String
+        public var conversion: String
 
         /**
          The file generation process needs to be started by the client

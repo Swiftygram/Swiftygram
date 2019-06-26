@@ -1,7 +1,7 @@
 //
-//  CheckRecoveryEmailAddressCode.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Verification code
          */
-        public let code: String
+        public var code: String
 
         /**
          Checks the 2-step verification recovery email address verification code

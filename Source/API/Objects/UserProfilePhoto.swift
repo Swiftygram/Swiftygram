@@ -1,7 +1,7 @@
 //
-//  UserProfilePhoto.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Unique user profile photo identifier
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          Point in time (Unix timestamp) when the photo has been added
          */
-        public let addedDate: Foundation.Date
+        public var addedDate: Foundation.Date
 
         /**
          Available variants of the user photo, in different sizes
          */
-        public let sizes: [TDObject.PhotoSize]
+        public var sizes: [TDObject.PhotoSize]
 
         /**
          Contains full information about a user profile photo

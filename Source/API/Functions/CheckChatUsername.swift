@@ -1,7 +1,7 @@
 //
-//  CheckChatUsername.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if chat is being created
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Username to be checked
          */
-        public let username: String
+        public var username: String
 
         /**
          Checks whether a username can be set for a chat

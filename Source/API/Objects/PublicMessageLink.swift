@@ -1,7 +1,7 @@
 //
-//  PublicMessageLink.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Message link
          */
-        public let link: String
+        public var link: String
 
         /**
          HTML-code for embedding the message
          */
-        public let html: String
+        public var html: String
 
         /**
          Contains a public HTTPS link to a message in a public supergroup or channel

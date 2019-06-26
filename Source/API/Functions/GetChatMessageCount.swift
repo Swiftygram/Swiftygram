@@ -1,7 +1,7 @@
 //
-//  GetChatMessageCount.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Identifier of the chat in which to count messages
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Filter for message content; searchMessagesFilterEmpty is unsupported in this function
          */
-        public let filter: TDEnum.SearchMessagesFilter
+        public var filter: TDEnum.SearchMessagesFilter
 
         /**
          If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
          */
-        public let returnLocal: Bool
+        public var returnLocal: Bool
 
         /**
          Returns approximate number of messages of the specified type in the chat

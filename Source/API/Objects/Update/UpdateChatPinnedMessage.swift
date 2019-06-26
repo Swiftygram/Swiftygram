@@ -1,7 +1,7 @@
 //
-//  UpdateChatPinnedMessage.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          The new identifier of the pinned message; 0 if there is no pinned message in the chat
          */
-        public let pinnedMessageId: Int64
+        public var pinnedMessageId: Int64
 
         /**
          The chat pinned message was changed

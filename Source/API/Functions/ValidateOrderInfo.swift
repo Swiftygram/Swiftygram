@@ -1,7 +1,7 @@
 //
-//  ValidateOrderInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,22 +20,22 @@ public extension TDFunction {
         /**
          Chat identifier of the Invoice message
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Message identifier
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          The order information, provided by the user
          */
-        public let orderInfo: TDObject.OrderInfo
+        public var orderInfo: TDObject.OrderInfo
 
         /**
          True, if the order information can be saved
          */
-        public let allowSave: Bool
+        public var allowSave: Bool
 
         /**
          Validates the order information provided by a user and returns the available shipping options for a flexible invoice

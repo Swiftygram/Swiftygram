@@ -1,7 +1,7 @@
 //
-//  DraftMessage.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Identifier of the message to reply to; 0 if none
          */
-        public let replyToMessageId: Int64
+        public var replyToMessageId: Int64
 
         /**
          Content of the message draft; this should always be of type inputMessageText
          */
-        public let inputMessageText: TDEnum.InputMessageContent
+        public var inputMessageText: TDEnum.InputMessageContent
 
         /**
          Contains information about a message draft

@@ -1,7 +1,7 @@
 //
-//  UpdateChatReplyMarkup.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
          */
-        public let replyMarkupMessageId: Int64
+        public var replyMarkupMessageId: Int64
 
         /**
          The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user

@@ -1,7 +1,7 @@
 //
-//  SetProfilePhoto.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Profile photo to set. inputFileId and inputFileRemote may still be unsupported
          */
-        public let photo: TDEnum.InputFile
+        public var photo: TDEnum.InputFile
 
         /**
          Uploads a new profile photo for the current user. If something changes, updateUser will be sent

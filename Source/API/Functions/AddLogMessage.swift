@@ -1,7 +1,7 @@
 //
-//  AddLogMessage.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Minimum verbosity level needed for the message to be logged, 0-1023
          */
-        public let verbosityLevel: Int
+        public var verbosityLevel: Int
 
         /**
          Text of a message to log
          */
-        public let text: String
+        public var text: String
 
         /**
          Adds a message to TDLib internal log. This is an offline method. Can be called before authorization. Can be called synchronously

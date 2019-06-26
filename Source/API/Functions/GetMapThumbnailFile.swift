@@ -1,7 +1,7 @@
 //
-//  GetMapThumbnailFile.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,32 +20,32 @@ public extension TDFunction {
         /**
          Location of the map center
          */
-        public let location: TDObject.Location
+        public var location: TDObject.Location
 
         /**
          Map zoom level; 13-20
          */
-        public let zoom: Int
+        public var zoom: Int
 
         /**
          Map width in pixels before applying scale; 16-1024
          */
-        public let width: Int
+        public var width: Int
 
         /**
          Map height in pixels before applying scale; 16-1024
          */
-        public let height: Int
+        public var height: Int
 
         /**
          Map scale; 1-3
          */
-        public let scale: Int
+        public var scale: Int
 
         /**
          Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded

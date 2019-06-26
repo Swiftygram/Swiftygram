@@ -1,7 +1,7 @@
 //
-//  DiscardCall.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,22 +20,22 @@ public extension TDFunction {
         /**
          Call identifier
          */
-        public let callId: Int
+        public var callId: Int
 
         /**
          True, if the user was disconnected
          */
-        public let isDisconnected: Bool
+        public var isDisconnected: Bool
 
         /**
          The call duration, in seconds
          */
-        public let duration: Int
+        public var duration: Int
 
         /**
          Identifier of the connection used during the call
          */
-        public let connectionId: Int64
+        public var connectionId: Int64
 
         /**
          Discards a call

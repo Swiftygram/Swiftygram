@@ -1,7 +1,7 @@
 //
-//  UpdateTermsOfService.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Identifier of the terms of service
          */
-        public let termsOfServiceId: String
+        public var termsOfServiceId: String
 
         /**
          The new terms of service
          */
-        public let termsOfService: TDObject.TermsOfService
+        public var termsOfService: TDObject.TermsOfService
 
         /**
          New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method should be called with the reason "Decline ToS update"

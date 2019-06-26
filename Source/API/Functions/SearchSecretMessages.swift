@@ -1,7 +1,7 @@
 //
-//  SearchSecretMessages.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,27 +20,27 @@ public extension TDFunction {
         /**
          Identifier of the chat in which to search. Specify 0 to search in all secret chats
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Query to search for. If empty, searchChatMessages should be used instead
          */
-        public let query: String
+        public var query: String
 
         /**
          The identifier from the result of a previous request, use 0 to get results from the last message
          */
-        public let fromSearchId: Int64
+        public var fromSearchId: Int64
 
         /**
          Maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          A filter for the content of messages in the search results
          */
-        public let filter: TDEnum.SearchMessagesFilter
+        public var filter: TDEnum.SearchMessagesFilter
 
         /**
          Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance the number of returned messages is chosen by the library

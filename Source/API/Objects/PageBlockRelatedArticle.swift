@@ -1,7 +1,7 @@
 //
-//  PageBlockRelatedArticle.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,32 +13,32 @@ public extension TDObject {
         /**
          Related article URL
          */
-        public let url: URL
+        public var url: URL
 
         /**
          Article title; may be empty
          */
-        public let title: String
+        public var title: String
 
         /**
          Article description; may be empty
          */
-        public let description: String
+        public var description: String
 
         /**
          Article photo; may be null
          */
-        public let photo: TDObject.Photo
+        public var photo: TDObject.Photo?
 
         /**
          Article author; may be empty
          */
-        public let author: String
+        public var author: String
 
         /**
          Point in time (Unix timestamp) when the article was published; 0 if unknown
          */
-        public let publishDate: Foundation.Date?
+        public var publishDate: Foundation.Date?
 
         /**
          Contains information about a related article
@@ -50,7 +50,7 @@ public extension TDObject {
          - Parameter author: Article author; may be empty
          - Parameter publishDate: Point in time (Unix timestamp) when the article was published; 0 if unknown
          */
-        public init(url: URL, title: String, description: String, photo: TDObject.Photo, author: String, publishDate: Foundation.Date?) {
+        public init(url: URL, title: String, description: String, photo: TDObject.Photo?, author: String, publishDate: Foundation.Date?) {
             self.url = url
             self.title = title
             self.description = description
@@ -67,7 +67,7 @@ public extension TDObject {
             url = try container.decode(URL.self, forKey: .init(string: "url"))
             title = try container.decode(String.self, forKey: .init(string: "title"))
             description = try container.decode(String.self, forKey: .init(string: "description"))
-            photo = try container.decode(TDObject.Photo.self, forKey: .init(string: "photo"))
+            photo = try container.decodeIfPresent(TDObject.Photo.self, forKey: .init(string: "photo"))
             author = try container.decode(String.self, forKey: .init(string: "author"))
             publishDate = try container.decodeDateIfPresent(forKey: .init(string: "publishDate"))
         }
@@ -80,7 +80,7 @@ public extension TDObject {
             try container.encode(url, forKey: .init(string: "url"))
             try container.encode(title, forKey: .init(string: "title"))
             try container.encode(description, forKey: .init(string: "description"))
-            try container.encode(photo, forKey: .init(string: "photo"))
+            try container.encodeIfPresent(photo, forKey: .init(string: "photo"))
             try container.encode(author, forKey: .init(string: "author"))
             try container.encodeDateIfPresent(publishDate, forKey: .init(string: "publishDate"))
         }

@@ -1,7 +1,7 @@
 //
-//  GetWebPageInstantView.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          The web page URL
          */
-        public let url: URL
+        public var url: URL
 
         /**
          If true, the full instant view for the web page will be returned
          */
-        public let forceFull: Bool
+        public var forceFull: Bool
 
         /**
          Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page

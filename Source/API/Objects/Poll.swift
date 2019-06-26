@@ -1,7 +1,7 @@
 //
-//  Poll.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Unique poll identifier
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          Poll question, 1-255 characters
          */
-        public let question: String
+        public var question: String
 
         /**
          List of poll answer options
          */
-        public let options: [TDObject.PollOption]
+        public var options: [TDObject.PollOption]
 
         /**
          Total number of voters, participating in the poll
          */
-        public let totalVoterCount: Int
+        public var totalVoterCount: Int
 
         /**
          True, if the poll is closed
          */
-        public let isClosed: Bool
+        public var isClosed: Bool
 
         /**
          Describes a poll

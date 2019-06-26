@@ -1,7 +1,7 @@
 //
-//  GetPublicMessageLink.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Identifier of the chat to which the message belongs
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the message
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          Pass true if a link for a whole media album should be returned
          */
-        public let forAlbum: Bool
+        public var forAlbum: Bool
 
         /**
          Returns a public HTTPS link to a message. Available only for messages in public supergroups and channels

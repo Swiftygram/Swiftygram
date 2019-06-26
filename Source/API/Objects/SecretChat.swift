@@ -1,7 +1,7 @@
 //
-//  SecretChat.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,37 +13,37 @@ public extension TDObject {
         /**
          Secret chat identifier
          */
-        public let id: Int
+        public var id: Int
 
         /**
          Identifier of the chat partner
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          State of the secret chat
          */
-        public let state: TDEnum.SecretChatState
+        public var state: TDEnum.SecretChatState
 
         /**
          True, if the chat was created by the current user; otherwise false
          */
-        public let isOutbound: Bool
+        public var isOutbound: Bool
 
         /**
          Current message Time To Live setting (self-destruct timer) for the chat, in seconds
          */
-        public let ttl: Int
+        public var ttl: Int
 
         /**
          Hash of the currently used key for comparison with the hash of the chat partner's key. This is a string of 36 bytes, which must be used to make a 12x12 square image with a color depth of 4. The first 16 bytes should be used to make a central 8x8 square, while the remaining 20 bytes should be used to construct a 2-pixel-wide border around that square.-Alternatively, the first 32 bytes of the hash can be converted to the hexadecimal format and printed as 32 2-digit hex numbers
          */
-        public let keyHash: String
+        public var keyHash: String
 
         /**
          Secret chat layer; determines features supported by the other client. Video notes are supported if the layer >= 66
          */
-        public let layer: Int
+        public var layer: Int
 
         /**
          Represents a secret chat

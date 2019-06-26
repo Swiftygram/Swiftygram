@@ -1,7 +1,7 @@
 //
-//  CheckChatInviteLink.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Invite link to be checked; should begin with "https://t.me/joinchat/", "https://telegram.me/joinchat/", or "https://telegram.dog/joinchat/"
          */
-        public let inviteLink: String
+        public var inviteLink: String
 
         /**
          Checks the validity of an invite link for a chat and returns information about the corresponding chat

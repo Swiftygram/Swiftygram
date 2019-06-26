@@ -1,7 +1,7 @@
 //
-//  GetChatEventLog.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,32 +20,32 @@ public extension TDFunction {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Search query by which to filter events
          */
-        public let query: String
+        public var query: String
 
         /**
          Identifier of an event from which to return results. Use 0 to get results from the latest events
          */
-        public let fromEventId: Int64
+        public var fromEventId: Int64
 
         /**
          Maximum number of events to return; up to 100
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          The types of events to return. By default, all types will be returned
          */
-        public let filters: TDObject.ChatEventLogFilters
+        public var filters: TDObject.ChatEventLogFilters
 
         /**
          User identifiers by which to filter events. By default, events relating to all users will be returned
          */
-        public let userIds: [Int]
+        public var userIds: [Int]
 
         /**
          Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing event_id)

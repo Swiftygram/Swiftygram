@@ -1,7 +1,7 @@
 //
-//  GetInlineQueryResults.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,27 +20,27 @@ public extension TDFunction {
         /**
          The identifier of the target bot
          */
-        public let botUserId: Int
+        public var botUserId: Int
 
         /**
          Identifier of the chat, where the query was sent
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Location of the user, only if needed
          */
-        public let userLocation: TDObject.Location
+        public var userLocation: TDObject.Location
 
         /**
          Text of the query
          */
-        public let query: String
+        public var query: String
 
         /**
          Offset of the first entry to return
          */
-        public let offset: String
+        public var offset: String
 
         /**
          Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires

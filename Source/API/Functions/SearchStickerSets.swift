@@ -1,7 +1,7 @@
 //
-//  SearchStickerSets.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Query to search for
          */
-        public let query: String
+        public var query: String
 
         /**
          Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results

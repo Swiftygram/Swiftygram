@@ -1,7 +1,7 @@
 //
-//  CancelUploadFile.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Identifier of the file to stop uploading
          */
-        public let fileId: Int
+        public var fileId: Int
 
         /**
          Stops the uploading of a file. Supported only for files uploaded by using uploadFile. For other files the behavior is undefined

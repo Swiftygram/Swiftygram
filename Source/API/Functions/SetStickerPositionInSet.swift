@@ -1,7 +1,7 @@
 //
-//  SetStickerPositionInSet.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Sticker
          */
-        public let sticker: TDEnum.InputFile
+        public var sticker: TDEnum.InputFile
 
         /**
          New position of the sticker in the set, zero-based
          */
-        public let position: Int
+        public var position: Int
 
         /**
          Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot

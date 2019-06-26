@@ -1,7 +1,7 @@
 //
-//  StorageStatistics.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Total size of files
          */
-        public let size: Int64
+        public var size: Int64
 
         /**
          Total number of files
          */
-        public let count: Int
+        public var count: Int
 
         /**
          Statistics split by chats
          */
-        public let byChat: [TDObject.StorageStatisticsByChat]
+        public var byChat: [TDObject.StorageStatisticsByChat]
 
         /**
          Contains the exact storage usage statistics split by chats and file type

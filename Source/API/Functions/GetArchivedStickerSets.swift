@@ -1,7 +1,7 @@
 //
-//  GetArchivedStickerSets.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Pass true to return mask stickers sets; pass false to return ordinary sticker sets
          */
-        public let isMasks: Bool
+        public var isMasks: Bool
 
         /**
          Identifier of the sticker set from which to return the result
          */
-        public let offsetStickerSetId: Int64
+        public var offsetStickerSetId: Int64
 
         /**
          Maximum number of sticker sets to return
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Returns a list of archived sticker sets

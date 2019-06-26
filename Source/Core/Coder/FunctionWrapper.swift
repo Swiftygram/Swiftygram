@@ -49,7 +49,11 @@ struct TDLibResponse: Decodable {
 
 extension JSONEncoder {
     
-    static let swiftygram = JSONEncoder()
+    static var swiftygram: JSONEncoder {
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        return encoder
+    }
     
 }
 

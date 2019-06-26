@@ -1,7 +1,7 @@
 //
-//  GetInstalledStickerSets.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Pass true to return mask sticker sets; pass false to return ordinary sticker sets
          */
-        public let isMasks: Bool
+        public var isMasks: Bool
 
         /**
          Returns a list of installed sticker sets

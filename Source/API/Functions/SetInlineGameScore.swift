@@ -1,7 +1,7 @@
 //
-//  SetInlineGameScore.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,27 +20,27 @@ public extension TDFunction {
         /**
          Inline message identifier
          */
-        public let inlineMessageId: String
+        public var inlineMessageId: String
 
         /**
          True, if the message should be edited
          */
-        public let editMessage: Bool
+        public var editMessage: Bool
 
         /**
          User identifier
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          The new score
          */
-        public let score: Int
+        public var score: Int
 
         /**
          Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
          */
-        public let force: Bool
+        public var force: Bool
 
         /**
          Updates the game score of the specified user in a game; for bots only

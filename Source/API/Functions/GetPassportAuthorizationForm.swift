@@ -1,7 +1,7 @@
 //
-//  GetPassportAuthorizationForm.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,22 +20,22 @@ public extension TDFunction {
         /**
          User identifier of the service's bot
          */
-        public let botUserId: Int
+        public var botUserId: Int
 
         /**
          Telegram Passport element types requested by the service
          */
-        public let scope: String
+        public var scope: String
 
         /**
          Service's public_key
          */
-        public let publicKey: String
+        public var publicKey: String
 
         /**
          Authorization form nonce provided by the service
          */
-        public let nonce: String
+        public var nonce: String
 
         /**
          Returns a Telegram Passport authorization form for sharing data with a service

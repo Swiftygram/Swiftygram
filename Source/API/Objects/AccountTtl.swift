@@ -1,7 +1,7 @@
 //
-//  AccountTtl.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ public extension TDObject {
         /**
          Number of days of inactivity before the account will be flagged for deletion; should range from 30-366 days
          */
-        public let days: Int
+        public var days: Int
 
         /**
          Contains information about the period of inactivity after which the current user's account will automatically be deleted

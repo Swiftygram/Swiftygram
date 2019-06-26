@@ -1,7 +1,7 @@
 //
-//  LocalizationTargetInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ public extension TDObject {
         /**
          List of available language packs for this application
          */
-        public let languagePacks: [TDObject.LanguagePackInfo]
+        public var languagePacks: [TDObject.LanguagePackInfo]
 
         /**
          Contains information about the current localization target

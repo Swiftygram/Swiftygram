@@ -1,7 +1,7 @@
 //
-//  DatedFile.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          The file
          */
-        public let file: TDObject.File
+        public var file: TDObject.File
 
         /**
          Point in time (Unix timestamp) when the file was uploaded
          */
-        public let date: Foundation.Date
+        public var date: Foundation.Date
 
         /**
          File with the date it was uploaded

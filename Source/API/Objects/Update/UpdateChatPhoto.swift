@@ -1,7 +1,7 @@
 //
-//  UpdateChatPhoto.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          The new chat photo; may be null
          */
-        public let photo: TDObject.ChatPhoto
+        public var photo: TDObject.ChatPhoto?
 
         /**
          A chat photo was changed
@@ -26,7 +26,7 @@ public extension TDObject {
          - Parameter chatId: Chat identifier
          - Parameter photo: The new chat photo; may be null
          */
-        public init(chatId: Int64, photo: TDObject.ChatPhoto) {
+        public init(chatId: Int64, photo: TDObject.ChatPhoto?) {
             self.chatId = chatId
             self.photo = photo
         }
@@ -37,7 +37,7 @@ public extension TDObject {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
 
             chatId = try container.decodeInt64(forKey: .init(string: "chatId"))
-            photo = try container.decode(TDObject.ChatPhoto.self, forKey: .init(string: "photo"))
+            photo = try container.decodeIfPresent(TDObject.ChatPhoto.self, forKey: .init(string: "photo"))
         }
 
         // MARK: - Encodable
@@ -46,7 +46,7 @@ public extension TDObject {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
 
             try container.encodeInt64(chatId, forKey: .init(string: "chatId"))
-            try container.encode(photo, forKey: .init(string: "photo"))
+            try container.encodeIfPresent(photo, forKey: .init(string: "photo"))
         }
     }
 }

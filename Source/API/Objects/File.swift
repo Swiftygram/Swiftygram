@@ -1,7 +1,7 @@
 //
-//  File.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Unique file identifier
          */
-        public let id: Int
+        public var id: Int
 
         /**
          File size; 0 if unknown
          */
-        public let size: Int
+        public var size: Int
 
         /**
          Expected file size in case the exact file size is unknown, but an approximate size is known. Can be used to show download/upload progress
          */
-        public let expectedSize: Int
+        public var expectedSize: Int
 
         /**
          Information about the local copy of the file
          */
-        public let local: TDObject.LocalFile
+        public var local: TDObject.LocalFile
 
         /**
          Information about the remote copy of the file
          */
-        public let remote: TDObject.RemoteFile
+        public var remote: TDObject.RemoteFile
 
         /**
          Represents a file

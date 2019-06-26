@@ -1,7 +1,7 @@
 //
-//  UpdateUserChatAction.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of a user performing an action
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          The action description
          */
-        public let action: TDEnum.ChatAction
+        public var action: TDEnum.ChatAction
 
         /**
          User activity in the chat has changed

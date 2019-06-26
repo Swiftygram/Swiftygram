@@ -1,7 +1,7 @@
 //
-//  GetSupergroupFullInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Supergroup or channel identifier
          */
-        public let supergroupId: Int
+        public var supergroupId: Int
 
         /**
          Returns full information about a supergroup or channel by its identifier, cached for up to 1 minute

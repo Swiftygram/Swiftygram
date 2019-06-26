@@ -1,7 +1,7 @@
 //
-//  AuthorizationState.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -34,7 +34,7 @@ public extension TDEnum {
          - termsOfService: Telegram terms of service, which should be accepted before user can continue registration; may be null
          - codeInfo: Information about the authorization code that was sent
          */
-        case waitCode(isRegistered: Bool, termsOfService: TDObject.TermsOfService, codeInfo: TDObject.AuthenticationCodeInfo)
+        case waitCode(isRegistered: Bool, termsOfService: TDObject.TermsOfService?, codeInfo: TDObject.AuthenticationCodeInfo)
 
         /**
          The user has been authorized, but needs to enter a password to start using the application
@@ -85,7 +85,7 @@ public extension TDEnum {
 
             case "authorizationStateWaitCode":
                 let isRegistered = try container.decode(Bool.self, forKey: .init(string: "isRegistered"))
-                let termsOfService = try container.decode(TDObject.TermsOfService.self, forKey: .init(string: "termsOfService"))
+                let termsOfService = try container.decodeIfPresent(TDObject.TermsOfService.self, forKey: .init(string: "termsOfService"))
                 let codeInfo = try container.decode(TDObject.AuthenticationCodeInfo.self, forKey: .init(string: "codeInfo"))
 
                 self = .waitCode(isRegistered: isRegistered, termsOfService: termsOfService, codeInfo: codeInfo)
@@ -135,7 +135,7 @@ public extension TDEnum {
                 try container.encode("authorizationStateWaitCode", forKey: .type)
 
                 try container.encode(isRegistered, forKey: .init(string: "isRegistered"))
-                try container.encode(termsOfService, forKey: .init(string: "termsOfService"))
+                try container.encodeIfPresent(termsOfService, forKey: .init(string: "termsOfService"))
                 try container.encode(codeInfo, forKey: .init(string: "codeInfo"))
 
             case let .waitPassword(passwordHint, hasRecoveryEmailAddress, recoveryEmailAddressPattern):

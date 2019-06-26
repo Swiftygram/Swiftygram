@@ -1,7 +1,7 @@
 //
-//  PageBlock.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -117,7 +117,7 @@ public extension TDEnum {
          - caption: Animation caption
          - needAutoplay: True, if the animation should be played automatically
          */
-        case animation(animation: TDObject.Animation, caption: TDObject.PageBlockCaption, needAutoplay: Bool)
+        case animation(animation: TDObject.Animation?, caption: TDObject.PageBlockCaption, needAutoplay: Bool)
 
         /**
          An audio file
@@ -125,7 +125,7 @@ public extension TDEnum {
          - audio: Audio file; may be null
          - caption: Audio file caption
          */
-        case audio(audio: TDObject.Audio, caption: TDObject.PageBlockCaption)
+        case audio(audio: TDObject.Audio?, caption: TDObject.PageBlockCaption)
 
         /**
          A photo
@@ -134,7 +134,7 @@ public extension TDEnum {
          - caption: Photo caption
          - url: URL that needs to be opened when the photo is clicked
          */
-        case photo(photo: TDObject.Photo, caption: TDObject.PageBlockCaption, url: URL)
+        case photo(photo: TDObject.Photo?, caption: TDObject.PageBlockCaption, url: URL)
 
         /**
          A video
@@ -144,7 +144,7 @@ public extension TDEnum {
          - needAutoplay: True, if the video should be played automatically
          - isLooped: True, if the video should be looped
          */
-        case video(video: TDObject.Video, caption: TDObject.PageBlockCaption, needAutoplay: Bool, isLooped: Bool)
+        case video(video: TDObject.Video?, caption: TDObject.PageBlockCaption, needAutoplay: Bool, isLooped: Bool)
 
         /**
          A page cover
@@ -202,7 +202,7 @@ public extension TDEnum {
          - photo: Chat photo; may be null
          - username: Chat username, by which all other information about the chat should be resolved
          */
-        case chatLink(title: String, photo: TDObject.ChatPhoto, username: String)
+        case chatLink(title: String, photo: TDObject.ChatPhoto?, username: String)
 
         /**
          A table
@@ -322,27 +322,27 @@ public extension TDEnum {
                 self = .pullQuote(text: text, credit: credit)
 
             case "pageBlockAnimation":
-                let animation = try container.decode(TDObject.Animation.self, forKey: .init(string: "animation"))
+                let animation = try container.decodeIfPresent(TDObject.Animation.self, forKey: .init(string: "animation"))
                 let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
                 let needAutoplay = try container.decode(Bool.self, forKey: .init(string: "needAutoplay"))
 
                 self = .animation(animation: animation, caption: caption, needAutoplay: needAutoplay)
 
             case "pageBlockAudio":
-                let audio = try container.decode(TDObject.Audio.self, forKey: .init(string: "audio"))
+                let audio = try container.decodeIfPresent(TDObject.Audio.self, forKey: .init(string: "audio"))
                 let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
 
                 self = .audio(audio: audio, caption: caption)
 
             case "pageBlockPhoto":
-                let photo = try container.decode(TDObject.Photo.self, forKey: .init(string: "photo"))
+                let photo = try container.decodeIfPresent(TDObject.Photo.self, forKey: .init(string: "photo"))
                 let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
                 let url = try container.decode(URL.self, forKey: .init(string: "url"))
 
                 self = .photo(photo: photo, caption: caption, url: url)
 
             case "pageBlockVideo":
-                let video = try container.decode(TDObject.Video.self, forKey: .init(string: "video"))
+                let video = try container.decodeIfPresent(TDObject.Video.self, forKey: .init(string: "video"))
                 let caption = try container.decode(TDObject.PageBlockCaption.self, forKey: .init(string: "caption"))
                 let needAutoplay = try container.decode(Bool.self, forKey: .init(string: "needAutoplay"))
                 let isLooped = try container.decode(Bool.self, forKey: .init(string: "isLooped"))
@@ -390,7 +390,7 @@ public extension TDEnum {
 
             case "pageBlockChatLink":
                 let title = try container.decode(String.self, forKey: .init(string: "title"))
-                let photo = try container.decode(TDObject.ChatPhoto.self, forKey: .init(string: "photo"))
+                let photo = try container.decodeIfPresent(TDObject.ChatPhoto.self, forKey: .init(string: "photo"))
                 let username = try container.decode(String.self, forKey: .init(string: "username"))
 
                 self = .chatLink(title: title, photo: photo, username: username)
@@ -511,27 +511,27 @@ public extension TDEnum {
             case let .animation(animation, caption, needAutoplay):
                 try container.encode("pageBlockAnimation", forKey: .type)
 
-                try container.encode(animation, forKey: .init(string: "animation"))
+                try container.encodeIfPresent(animation, forKey: .init(string: "animation"))
                 try container.encode(caption, forKey: .init(string: "caption"))
                 try container.encode(needAutoplay, forKey: .init(string: "needAutoplay"))
 
             case let .audio(audio, caption):
                 try container.encode("pageBlockAudio", forKey: .type)
 
-                try container.encode(audio, forKey: .init(string: "audio"))
+                try container.encodeIfPresent(audio, forKey: .init(string: "audio"))
                 try container.encode(caption, forKey: .init(string: "caption"))
 
             case let .photo(photo, caption, url):
                 try container.encode("pageBlockPhoto", forKey: .type)
 
-                try container.encode(photo, forKey: .init(string: "photo"))
+                try container.encodeIfPresent(photo, forKey: .init(string: "photo"))
                 try container.encode(caption, forKey: .init(string: "caption"))
                 try container.encode(url, forKey: .init(string: "url"))
 
             case let .video(video, caption, needAutoplay, isLooped):
                 try container.encode("pageBlockVideo", forKey: .type)
 
-                try container.encode(video, forKey: .init(string: "video"))
+                try container.encodeIfPresent(video, forKey: .init(string: "video"))
                 try container.encode(caption, forKey: .init(string: "caption"))
                 try container.encode(needAutoplay, forKey: .init(string: "needAutoplay"))
                 try container.encode(isLooped, forKey: .init(string: "isLooped"))
@@ -579,7 +579,7 @@ public extension TDEnum {
                 try container.encode("pageBlockChatLink", forKey: .type)
 
                 try container.encode(title, forKey: .init(string: "title"))
-                try container.encode(photo, forKey: .init(string: "photo"))
+                try container.encodeIfPresent(photo, forKey: .init(string: "photo"))
                 try container.encode(username, forKey: .init(string: "username"))
 
             case let .table(caption, cells, isBordered, isStriped):

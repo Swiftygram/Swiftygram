@@ -1,7 +1,7 @@
 //
-//  SearchChatMessages.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,37 +20,37 @@ public extension TDFunction {
         /**
          Identifier of the chat in which to search messages
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Query to search for
          */
-        public let query: String
+        public var query: String
 
         /**
          If not 0, only messages sent by the specified user will be returned. Not supported in secret chats
          */
-        public let senderUserId: Int
+        public var senderUserId: Int
 
         /**
          Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
          */
-        public let fromMessageId: Int64
+        public var fromMessageId: Int64
 
         /**
          Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
          */
-        public let offset: Int
+        public var offset: Int
 
         /**
          The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Filter for message content in the search results
          */
-        public let filter: TDEnum.SearchMessagesFilter
+        public var filter: TDEnum.SearchMessagesFilter
 
         /**
          Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query-(searchSecretMessages should be used instead), or without an enabled message database. For optimal performance the number of returned messages is chosen by the library

@@ -1,7 +1,7 @@
 //
-//  UpdateChatReadInbox.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the last read incoming message
          */
-        public let lastReadInboxMessageId: Int64
+        public var lastReadInboxMessageId: Int64
 
         /**
          The number of unread messages left in the chat
          */
-        public let unreadCount: Int
+        public var unreadCount: Int
 
         /**
          Incoming messages were read or number of unread messages has been changed

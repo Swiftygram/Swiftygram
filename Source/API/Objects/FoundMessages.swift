@@ -1,7 +1,7 @@
 //
-//  FoundMessages.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          List of messages
          */
-        public let messages: [TDObject.Message]
+        public var messages: [TDObject.Message]
 
         /**
          Value to pass as from_search_id to get more results
          */
-        public let nextFromSearchId: Int64
+        public var nextFromSearchId: Int64
 
         /**
          Contains a list of messages found by a search

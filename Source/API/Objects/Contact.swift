@@ -1,7 +1,7 @@
 //
-//  Contact.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Phone number of the user
          */
-        public let phoneNumber: String
+        public var phoneNumber: String
 
         /**
          First name of the user; 1-255 characters in length
          */
-        public let firstName: String
+        public var firstName: String
 
         /**
          Last name of the user
          */
-        public let lastName: String
+        public var lastName: String
 
         /**
          Additional data about the user in a form of vCard; 0-2048 bytes in length
          */
-        public let vcard: String
+        public var vcard: String
 
         /**
          Identifier of the user, if known; otherwise 0
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          Describes a user contact

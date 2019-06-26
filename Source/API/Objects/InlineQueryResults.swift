@@ -1,7 +1,7 @@
 //
-//  InlineQueryResults.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Unique identifier of the inline query
          */
-        public let inlineQueryId: Int64
+        public var inlineQueryId: Int64
 
         /**
          The offset for the next request. If empty, there are no more results
          */
-        public let nextOffset: String
+        public var nextOffset: String
 
         /**
          Results of the query
          */
-        public let results: [TDEnum.InlineQueryResult]
+        public var results: [TDEnum.InlineQueryResult]
 
         /**
          If non-empty, this text should be shown on the button, which opens a private chat with the bot and sends the bot a start message with the switch_pm_parameter
          */
-        public let switchPmText: String
+        public var switchPmText: String
 
         /**
          Parameter for the bot start message
          */
-        public let switchPmParameter: String
+        public var switchPmParameter: String
 
         /**
          Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query

@@ -1,7 +1,7 @@
 //
-//  SetPassword.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,27 +20,27 @@ public extension TDFunction {
         /**
          Previous password of the user
          */
-        public let oldPassword: String
+        public var oldPassword: String
 
         /**
          New password of the user; may be empty to remove the password
          */
-        public let newPassword: String
+        public var newPassword: String
 
         /**
          New password hint; may be empty
          */
-        public let newHint: String
+        public var newHint: String
 
         /**
          Pass true if the recovery email address should be changed
          */
-        public let setRecoveryEmailAddress: Bool
+        public var setRecoveryEmailAddress: Bool
 
         /**
          New recovery email address; may be empty
          */
-        public let newRecoveryEmailAddress: String
+        public var newRecoveryEmailAddress: String
 
         /**
          Changes the password for the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed

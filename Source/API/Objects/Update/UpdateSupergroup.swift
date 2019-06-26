@@ -1,7 +1,7 @@
 //
-//  UpdateSupergroup.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ public extension TDObject {
         /**
          New data about the supergroup
          */
-        public let supergroup: TDObject.Supergroup
+        public var supergroup: TDObject.Supergroup
 
         /**
          Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the client

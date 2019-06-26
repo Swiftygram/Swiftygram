@@ -1,7 +1,7 @@
 //
-//  LanguagePackInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,67 +13,67 @@ public extension TDObject {
         /**
          Unique language pack identifier
          */
-        public let id: String
+        public var id: String
 
         /**
          Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it should be fetched from base language pack. Unsupported in custom language packs
          */
-        public let baseLanguagePackId: String
+        public var baseLanguagePackId: String
 
         /**
          Language name
          */
-        public let name: String
+        public var name: String
 
         /**
          Name of the language in that language
          */
-        public let nativeName: String
+        public var nativeName: String
 
         /**
          A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
          */
-        public let pluralCode: String
+        public var pluralCode: String
 
         /**
          True, if the language pack is official
          */
-        public let isOfficial: Bool
+        public var isOfficial: Bool
 
         /**
          True, if the language pack strings are RTL
          */
-        public let isRtl: Bool
+        public var isRtl: Bool
 
         /**
          True, if the language pack is a beta language pack
          */
-        public let isBeta: Bool
+        public var isBeta: Bool
 
         /**
          True, if the language pack is installed by the current user
          */
-        public let isInstalled: Bool
+        public var isInstalled: Bool
 
         /**
          Total number of non-deleted strings from the language pack
          */
-        public let totalStringCount: Int
+        public var totalStringCount: Int
 
         /**
          Total number of translated strings from the language pack
          */
-        public let translatedStringCount: Int
+        public var translatedStringCount: Int
 
         /**
          Total number of non-deleted strings from the language pack available locally
          */
-        public let localStringCount: Int
+        public var localStringCount: Int
 
         /**
          Link to language translation interface; empty for custom local language packs
          */
-        public let translationUrl: URL
+        public var translationUrl: URL
 
         /**
          Contains information about a language pack

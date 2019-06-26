@@ -1,7 +1,7 @@
 //
-//  PollOption.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Option text, 1-100 characters
          */
-        public let text: String
+        public var text: String
 
         /**
          Number of voters for this option, available only for closed or voted polls
          */
-        public let voterCount: Int
+        public var voterCount: Int
 
         /**
          The percentage of votes for this option, 0-100
          */
-        public let votePercentage: Int
+        public var votePercentage: Int
 
         /**
          True, if the option was chosen by the user
          */
-        public let isChosen: Bool
+        public var isChosen: Bool
 
         /**
          True, if the option is being chosen by a pending setPollAnswer request
          */
-        public let isBeingChosen: Bool
+        public var isBeingChosen: Bool
 
         /**
          Describes one answer option of a poll

@@ -1,7 +1,7 @@
 //
-//  OpenMessageContent.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Chat identifier of the message
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the message with the opened content
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed

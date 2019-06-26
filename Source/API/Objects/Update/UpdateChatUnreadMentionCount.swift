@@ -1,7 +1,7 @@
 //
-//  UpdateChatUnreadMentionCount.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          The number of unread mention messages left in the chat
          */
-        public let unreadMentionCount: Int
+        public var unreadMentionCount: Int
 
         /**
          The chat unread_mention_count has changed

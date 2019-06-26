@@ -1,7 +1,7 @@
 //
-//  ChangePhoneNumber.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          The new phone number of the user in international format
          */
-        public let phoneNumber: String
+        public var phoneNumber: String
 
         /**
          Pass true if the code can be sent via flash call to the specified phone number
          */
-        public let allowFlashCall: Bool
+        public var allowFlashCall: Bool
 
         /**
          Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false
          */
-        public let isCurrentPhoneNumber: Bool
+        public var isCurrentPhoneNumber: Bool
 
         /**
          Changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code

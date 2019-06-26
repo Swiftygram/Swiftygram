@@ -1,7 +1,7 @@
 //
-//  StopPoll.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Identifier of the chat to which the poll belongs
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the message containing the poll
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          The new message reply markup; for bots only
          */
-        public let replyMarkup: TDEnum.ReplyMarkup
+        public var replyMarkup: TDEnum.ReplyMarkup
 
         /**
          Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set

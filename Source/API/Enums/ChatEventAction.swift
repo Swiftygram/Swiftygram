@@ -1,7 +1,7 @@
 //
-//  ChatEventAction.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -103,7 +103,7 @@ public extension TDEnum {
          - oldPhoto: Previous chat photo value; may be null
          - newPhoto: New chat photo value; may be null
          */
-        case photoChanged(oldPhoto: TDObject.ChatPhoto, newPhoto: TDObject.ChatPhoto)
+        case photoChanged(oldPhoto: TDObject.ChatPhoto?, newPhoto: TDObject.ChatPhoto?)
 
         /**
          The anyone_can_invite setting of a supergroup chat was toggled
@@ -205,8 +205,8 @@ public extension TDEnum {
                 self = .usernameChanged(oldUsername: oldUsername, newUsername: newUsername)
 
             case "chatEventPhotoChanged":
-                let oldPhoto = try container.decode(TDObject.ChatPhoto.self, forKey: .init(string: "oldPhoto"))
-                let newPhoto = try container.decode(TDObject.ChatPhoto.self, forKey: .init(string: "newPhoto"))
+                let oldPhoto = try container.decodeIfPresent(TDObject.ChatPhoto.self, forKey: .init(string: "oldPhoto"))
+                let newPhoto = try container.decodeIfPresent(TDObject.ChatPhoto.self, forKey: .init(string: "newPhoto"))
 
                 self = .photoChanged(oldPhoto: oldPhoto, newPhoto: newPhoto)
 
@@ -308,8 +308,8 @@ public extension TDEnum {
             case let .photoChanged(oldPhoto, newPhoto):
                 try container.encode("chatEventPhotoChanged", forKey: .type)
 
-                try container.encode(oldPhoto, forKey: .init(string: "oldPhoto"))
-                try container.encode(newPhoto, forKey: .init(string: "newPhoto"))
+                try container.encodeIfPresent(oldPhoto, forKey: .init(string: "oldPhoto"))
+                try container.encodeIfPresent(newPhoto, forKey: .init(string: "newPhoto"))
 
             case let .invitesToggled(anyoneCanInvite):
                 try container.encode("chatEventInvitesToggled", forKey: .type)

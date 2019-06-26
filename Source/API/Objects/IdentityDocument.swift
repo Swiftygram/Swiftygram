@@ -1,7 +1,7 @@
 //
-//  IdentityDocument.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,32 +13,32 @@ public extension TDObject {
         /**
          Document number; 1-24 characters
          */
-        public let number: String
+        public var number: String
 
         /**
          Document expiry date; may be null
          */
-        public let expiryDate: TDObject.Date
+        public var expiryDate: TDObject.Date?
 
         /**
          Front side of the document
          */
-        public let frontSide: TDObject.DatedFile
+        public var frontSide: TDObject.DatedFile
 
         /**
          Reverse side of the document; only for driver license and identity card
          */
-        public let reverseSide: TDObject.DatedFile
+        public var reverseSide: TDObject.DatedFile
 
         /**
          Selfie with the document; may be null
          */
-        public let selfie: TDObject.DatedFile
+        public var selfie: TDObject.DatedFile?
 
         /**
          List of files containing a certified English translation of the document
          */
-        public let translation: [TDObject.DatedFile]
+        public var translation: [TDObject.DatedFile]
 
         /**
          An identity document
@@ -50,7 +50,7 @@ public extension TDObject {
          - Parameter selfie: Selfie with the document; may be null
          - Parameter translation: List of files containing a certified English translation of the document
          */
-        public init(number: String, expiryDate: TDObject.Date, frontSide: TDObject.DatedFile, reverseSide: TDObject.DatedFile, selfie: TDObject.DatedFile, translation: [TDObject.DatedFile]) {
+        public init(number: String, expiryDate: TDObject.Date?, frontSide: TDObject.DatedFile, reverseSide: TDObject.DatedFile, selfie: TDObject.DatedFile?, translation: [TDObject.DatedFile]) {
             self.number = number
             self.expiryDate = expiryDate
             self.frontSide = frontSide

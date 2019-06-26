@@ -1,7 +1,7 @@
 //
-//  AddCustomServerLanguagePack.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
          */
-        public let languagePackId: String
+        public var languagePackId: String
 
         /**
          Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization

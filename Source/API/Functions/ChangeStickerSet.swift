@@ -1,7 +1,7 @@
 //
-//  ChangeStickerSet.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Identifier of the sticker set
          */
-        public let setId: Int64
+        public var setId: Int64
 
         /**
          The new value of is_installed
          */
-        public let isInstalled: Bool
+        public var isInstalled: Bool
 
         /**
          The new value of is_archived. A sticker set can't be installed and archived simultaneously
          */
-        public let isArchived: Bool
+        public var isArchived: Bool
 
         /**
          Installs/uninstalls or activates/archives a sticker set

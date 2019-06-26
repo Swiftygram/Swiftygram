@@ -1,7 +1,7 @@
 //
-//  RemoveNotification.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Identifier of notification group to which the notification belongs
          */
-        public let notificationGroupId: Int
+        public var notificationGroupId: Int
 
         /**
          Identifier of removed notification
          */
-        public let notificationId: Int
+        public var notificationId: Int
 
         /**
          Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user

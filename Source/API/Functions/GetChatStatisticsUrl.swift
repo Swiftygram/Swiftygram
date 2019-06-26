@@ -1,7 +1,7 @@
 //
-//  GetChatStatisticsUrl.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Parameters from "tg://statsrefresh?params=******" link
          */
-        public let parameters: String
+        public var parameters: String
 
         /**
          Pass true if a URL with the dark theme must be returned
          */
-        public let isDark: Bool
+        public var isDark: Bool
 
         /**
          Returns URL with the chat statistics. Currently this method can be used only for channels

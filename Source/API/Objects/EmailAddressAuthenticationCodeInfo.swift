@@ -1,7 +1,7 @@
 //
-//  EmailAddressAuthenticationCodeInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Pattern of the email address to which an authentication code was sent
          */
-        public let emailAddressPattern: String
+        public var emailAddressPattern: String
 
         /**
          Length of the code; 0 if unknown
          */
-        public let length: Int
+        public var length: Int
 
         /**
          Information about the email address authentication code that was sent

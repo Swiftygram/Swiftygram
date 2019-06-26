@@ -1,7 +1,7 @@
 //
-//  GetCallbackQueryAnswer.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Identifier of the chat with the message
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the message from which the query originated
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          Query payload
          */
-        public let payload: TDEnum.CallbackQueryPayload
+        public var payload: TDEnum.CallbackQueryPayload
 
         /**
          Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires

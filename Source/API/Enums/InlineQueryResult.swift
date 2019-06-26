@@ -1,7 +1,7 @@
 //
-//  InlineQueryResult.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDEnum {
          - description: A short description of the result
          - thumbnail: Result thumbnail; may be null
          */
-        case article(id: String, url: URL, hideUrl: Bool, title: String, description: String, thumbnail: TDObject.PhotoSize)
+        case article(id: String, url: URL, hideUrl: Bool, title: String, description: String, thumbnail: TDObject.PhotoSize?)
 
         /**
          Represents a user contact
@@ -29,7 +29,7 @@ public extension TDEnum {
          - contact: A user contact
          - thumbnail: Result thumbnail; may be null
          */
-        case contact(id: String, contact: TDObject.Contact, thumbnail: TDObject.PhotoSize)
+        case contact(id: String, contact: TDObject.Contact, thumbnail: TDObject.PhotoSize?)
 
         /**
          Represents a point on the map
@@ -39,7 +39,7 @@ public extension TDEnum {
          - title: Title of the result
          - thumbnail: Result thumbnail; may be null
          */
-        case location(id: String, location: TDObject.Location, title: String, thumbnail: TDObject.PhotoSize)
+        case location(id: String, location: TDObject.Location, title: String, thumbnail: TDObject.PhotoSize?)
 
         /**
          Represents information about a venue
@@ -48,7 +48,7 @@ public extension TDEnum {
          - venue: Venue result
          - thumbnail: Result thumbnail; may be null
          */
-        case venue(id: String, venue: TDObject.Venue, thumbnail: TDObject.PhotoSize)
+        case venue(id: String, venue: TDObject.Venue, thumbnail: TDObject.PhotoSize?)
 
         /**
          Represents information about a game
@@ -135,14 +135,14 @@ public extension TDEnum {
                 let hideUrl = try container.decode(Bool.self, forKey: .init(string: "hideUrl"))
                 let title = try container.decode(String.self, forKey: .init(string: "title"))
                 let description = try container.decode(String.self, forKey: .init(string: "description"))
-                let thumbnail = try container.decode(TDObject.PhotoSize.self, forKey: .init(string: "thumbnail"))
+                let thumbnail = try container.decodeIfPresent(TDObject.PhotoSize.self, forKey: .init(string: "thumbnail"))
 
                 self = .article(id: id, url: url, hideUrl: hideUrl, title: title, description: description, thumbnail: thumbnail)
 
             case "inlineQueryResultContact":
                 let id = try container.decode(String.self, forKey: .init(string: "id"))
                 let contact = try container.decode(TDObject.Contact.self, forKey: .init(string: "contact"))
-                let thumbnail = try container.decode(TDObject.PhotoSize.self, forKey: .init(string: "thumbnail"))
+                let thumbnail = try container.decodeIfPresent(TDObject.PhotoSize.self, forKey: .init(string: "thumbnail"))
 
                 self = .contact(id: id, contact: contact, thumbnail: thumbnail)
 
@@ -150,14 +150,14 @@ public extension TDEnum {
                 let id = try container.decode(String.self, forKey: .init(string: "id"))
                 let location = try container.decode(TDObject.Location.self, forKey: .init(string: "location"))
                 let title = try container.decode(String.self, forKey: .init(string: "title"))
-                let thumbnail = try container.decode(TDObject.PhotoSize.self, forKey: .init(string: "thumbnail"))
+                let thumbnail = try container.decodeIfPresent(TDObject.PhotoSize.self, forKey: .init(string: "thumbnail"))
 
                 self = .location(id: id, location: location, title: title, thumbnail: thumbnail)
 
             case "inlineQueryResultVenue":
                 let id = try container.decode(String.self, forKey: .init(string: "id"))
                 let venue = try container.decode(TDObject.Venue.self, forKey: .init(string: "venue"))
-                let thumbnail = try container.decode(TDObject.PhotoSize.self, forKey: .init(string: "thumbnail"))
+                let thumbnail = try container.decodeIfPresent(TDObject.PhotoSize.self, forKey: .init(string: "thumbnail"))
 
                 self = .venue(id: id, venue: venue, thumbnail: thumbnail)
 
@@ -236,14 +236,14 @@ public extension TDEnum {
                 try container.encode(hideUrl, forKey: .init(string: "hideUrl"))
                 try container.encode(title, forKey: .init(string: "title"))
                 try container.encode(description, forKey: .init(string: "description"))
-                try container.encode(thumbnail, forKey: .init(string: "thumbnail"))
+                try container.encodeIfPresent(thumbnail, forKey: .init(string: "thumbnail"))
 
             case let .contact(id, contact, thumbnail):
                 try container.encode("inlineQueryResultContact", forKey: .type)
 
                 try container.encode(id, forKey: .init(string: "id"))
                 try container.encode(contact, forKey: .init(string: "contact"))
-                try container.encode(thumbnail, forKey: .init(string: "thumbnail"))
+                try container.encodeIfPresent(thumbnail, forKey: .init(string: "thumbnail"))
 
             case let .location(id, location, title, thumbnail):
                 try container.encode("inlineQueryResultLocation", forKey: .type)
@@ -251,14 +251,14 @@ public extension TDEnum {
                 try container.encode(id, forKey: .init(string: "id"))
                 try container.encode(location, forKey: .init(string: "location"))
                 try container.encode(title, forKey: .init(string: "title"))
-                try container.encode(thumbnail, forKey: .init(string: "thumbnail"))
+                try container.encodeIfPresent(thumbnail, forKey: .init(string: "thumbnail"))
 
             case let .venue(id, venue, thumbnail):
                 try container.encode("inlineQueryResultVenue", forKey: .type)
 
                 try container.encode(id, forKey: .init(string: "id"))
                 try container.encode(venue, forKey: .init(string: "venue"))
-                try container.encode(thumbnail, forKey: .init(string: "thumbnail"))
+                try container.encodeIfPresent(thumbnail, forKey: .init(string: "thumbnail"))
 
             case let .game(id, game):
                 try container.encode("inlineQueryResultGame", forKey: .type)

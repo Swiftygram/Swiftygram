@@ -1,7 +1,7 @@
 //
-//  DeleteMessages.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifiers of the messages to be deleted
          */
-        public let messageIds: [Int64]
+        public var messageIds: [Int64]
 
         /**
          Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
          */
-        public let revoke: Bool
+        public var revoke: Bool
 
         /**
          Deletes messages

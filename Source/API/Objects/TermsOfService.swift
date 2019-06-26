@@ -1,7 +1,7 @@
 //
-//  TermsOfService.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Text of the terms of service
          */
-        public let text: TDObject.FormattedText
+        public var text: TDObject.FormattedText
 
         /**
          Mininum age of a user to be able to accept the terms; 0 if any
          */
-        public let minUserAge: Int
+        public var minUserAge: Int
 
         /**
          True, if a blocking popup with terms of service must be shown to the user
          */
-        public let showPopup: Bool
+        public var showPopup: Bool
 
         /**
          Contains Telegram terms of service

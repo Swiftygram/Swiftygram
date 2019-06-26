@@ -1,7 +1,7 @@
 //
-//  SendInlineQueryResultMessage.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,37 +20,37 @@ public extension TDFunction {
         /**
          Target chat
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of a message to reply to or 0
          */
-        public let replyToMessageId: Int64
+        public var replyToMessageId: Int64
 
         /**
          Pass true to disable notification for the message. Not supported in secret chats
          */
-        public let disableNotification: Bool
+        public var disableNotification: Bool
 
         /**
          Pass true if the message is sent from background
          */
-        public let fromBackground: Bool
+        public var fromBackground: Bool
 
         /**
          Identifier of the inline query
          */
-        public let queryId: Int64
+        public var queryId: Int64
 
         /**
          Identifier of the inline result
          */
-        public let resultId: String
+        public var resultId: String
 
         /**
          If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
          */
-        public let hideViaBot: Bool
+        public var hideViaBot: Bool
 
         /**
          Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message

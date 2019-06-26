@@ -1,7 +1,7 @@
 //
-//  ChatNotificationSettings.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,52 +13,52 @@ public extension TDObject {
         /**
          If true, mute_for is ignored and the value for the relevant type of chat is used instead
          */
-        public let useDefaultMuteFor: Bool
+        public var useDefaultMuteFor: Bool
 
         /**
          Time left before notifications will be unmuted, in seconds
          */
-        public let muteFor: Int
+        public var muteFor: Int
 
         /**
          If true, sound is ignored and the value for the relevant type of chat is used instead
          */
-        public let useDefaultSound: Bool
+        public var useDefaultSound: Bool
 
         /**
          The name of an audio file to be used for notification sounds; only applies to iOS applications
          */
-        public let sound: String
+        public var sound: String
 
         /**
          If true, show_preview is ignored and the value for the relevant type of chat is used instead
          */
-        public let useDefaultShowPreview: Bool
+        public var useDefaultShowPreview: Bool
 
         /**
          True, if message content should be displayed in notifications
          */
-        public let showPreview: Bool
+        public var showPreview: Bool
 
         /**
          If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat is used instead
          */
-        public let useDefaultDisablePinnedMessageNotifications: Bool
+        public var useDefaultDisablePinnedMessageNotifications: Bool
 
         /**
          If true, notifications for incoming pinned messages will be created as for an ordinary unread message
          */
-        public let disablePinnedMessageNotifications: Bool
+        public var disablePinnedMessageNotifications: Bool
 
         /**
          If true, disable_mention_notifications is ignored and the value for the relevant type of chat is used instead
          */
-        public let useDefaultDisableMentionNotifications: Bool
+        public var useDefaultDisableMentionNotifications: Bool
 
         /**
          If true, notifications for messages with mentions will be created as for an ordinary unread message
          */
-        public let disableMentionNotifications: Bool
+        public var disableMentionNotifications: Bool
 
         /**
          Contains information about notification settings for a chat

@@ -1,7 +1,7 @@
 //
-//  UpdateActiveNotifications.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ public extension TDObject {
         /**
          Lists of active notification groups
          */
-        public let groups: [TDObject.NotificationGroup]
+        public var groups: [TDObject.NotificationGroup]
 
         /**
          Contains active notifications that was shown on previous application launches. This update is sent only if a message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update

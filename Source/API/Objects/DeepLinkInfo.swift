@@ -1,7 +1,7 @@
 //
-//  DeepLinkInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Text to be shown to the user
          */
-        public let text: TDObject.FormattedText
+        public var text: TDObject.FormattedText
 
         /**
          True, if user should be asked to update the application
          */
-        public let needUpdateApplication: Bool
+        public var needUpdateApplication: Bool
 
         /**
          Contains information about a tg:// deep link

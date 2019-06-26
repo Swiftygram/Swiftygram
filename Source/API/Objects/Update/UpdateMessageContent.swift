@@ -1,7 +1,7 @@
 //
-//  UpdateMessageContent.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Message identifier
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          New message content
          */
-        public let newContent: TDEnum.MessageContent
+        public var newContent: TDEnum.MessageContent
 
         /**
          The message content has changed

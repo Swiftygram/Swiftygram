@@ -1,7 +1,7 @@
 //
-//  NotificationGroup.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Unique persistent auto-incremented from 1 identifier of the notification group
          */
-        public let id: Int
+        public var id: Int
 
         /**
          Type of the group
          */
-        public let type: TDEnum.NotificationGroupType
+        public var type: TDEnum.NotificationGroupType
 
         /**
          Identifier of a chat to which all notifications in the group belong
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Total number of active notifications in the group
          */
-        public let totalCount: Int
+        public var totalCount: Int
 
         /**
          The list of active notifications
          */
-        public let notifications: [TDObject.Notification]
+        public var notifications: [TDObject.Notification]
 
         /**
          Describes a group of notifications

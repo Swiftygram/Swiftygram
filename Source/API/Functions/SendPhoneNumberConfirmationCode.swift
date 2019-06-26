@@ -1,7 +1,7 @@
 //
-//  SendPhoneNumberConfirmationCode.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,22 +20,22 @@ public extension TDFunction {
         /**
          Value of the "hash" parameter from the link
          */
-        public let hash: String
+        public var hash: String
 
         /**
          Value of the "phone" parameter from the link
          */
-        public let phoneNumber: String
+        public var phoneNumber: String
 
         /**
          Pass true if the authentication code may be sent via flash call to the specified phone number
          */
-        public let allowFlashCall: Bool
+        public var allowFlashCall: Bool
 
         /**
          Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false
          */
-        public let isCurrentPhoneNumber: Bool
+        public var isCurrentPhoneNumber: Bool
 
         /**
          Sends phone number confirmation code. Should be called when user presses "https://t.me/confirmphone?phone=*******&hash=**********" or "tg://confirmphone?phone=*******&hash=**********" link

@@ -1,7 +1,7 @@
 //
-//  GetLocalizationTargetInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          If true, returns only locally available information without sending network requests
          */
-        public let onlyLocal: Bool
+        public var onlyLocal: Bool
 
         /**
          Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization

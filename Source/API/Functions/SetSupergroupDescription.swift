@@ -1,7 +1,7 @@
 //
-//  SetSupergroupDescription.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Identifier of the supergroup or channel
          */
-        public let supergroupId: Int
+        public var supergroupId: Int
 
         /**
          New supergroup or channel description; 0-255 characters
          */
-        public let description: String
+        public var description: String
 
         /**
          Changes information about a supergroup or channel; requires appropriate administrator rights

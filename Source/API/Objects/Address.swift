@@ -1,7 +1,7 @@
 //
-//  Address.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,32 +13,32 @@ public extension TDObject {
         /**
          A two-letter ISO 3166-1 alpha-2 country code
          */
-        public let countryCode: String
+        public var countryCode: String
 
         /**
          State, if applicable
          */
-        public let state: String?
+        public var state: String?
 
         /**
          City
          */
-        public let city: String
+        public var city: String
 
         /**
          First line of the address
          */
-        public let streetLine1: String
+        public var streetLine1: String
 
         /**
          Second line of the address
          */
-        public let streetLine2: String
+        public var streetLine2: String
 
         /**
          Address postal code
          */
-        public let postalCode: String
+        public var postalCode: String
 
         /**
          Describes an address

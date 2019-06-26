@@ -1,7 +1,7 @@
 //
-//  SetFileGenerationProgress.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          The identifier of the generation process
          */
-        public let generationId: Int64
+        public var generationId: Int64
 
         /**
          Expected size of the generated file, in bytes; 0 if unknown
          */
-        public let expectedSize: Int
+        public var expectedSize: Int
 
         /**
          The number of bytes already generated
          */
-        public let localPrefixSize: Int
+        public var localPrefixSize: Int
 
         /**
          Informs TDLib on a file generation prograss

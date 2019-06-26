@@ -1,7 +1,7 @@
 //
-//  UserFullInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,37 +13,37 @@ public extension TDObject {
         /**
          True, if the user is blacklisted by the current user
          */
-        public let isBlocked: Bool
+        public var isBlocked: Bool
 
         /**
          True, if the user can be called
          */
-        public let canBeCalled: Bool
+        public var canBeCalled: Bool
 
         /**
          True, if the user can't be called due to their privacy settings
          */
-        public let hasPrivateCalls: Bool
+        public var hasPrivateCalls: Bool
 
         /**
          A short user bio
          */
-        public let bio: String
+        public var bio: String
 
         /**
          For bots, the text that is included with the link when users share the bot
          */
-        public let shareText: String
+        public var shareText: String
 
         /**
          Number of group chats where both the other user and the current user are a member; 0 for the current user
          */
-        public let groupInCommonCount: Int
+        public var groupInCommonCount: Int
 
         /**
          If the user is a bot, information about the bot; may be null
          */
-        public let botInfo: TDObject.BotInfo
+        public var botInfo: TDObject.BotInfo?
 
         /**
          Contains full information about a user (except the full list of profile photos)
@@ -56,7 +56,7 @@ public extension TDObject {
          - Parameter groupInCommonCount: Number of group chats where both the other user and the current user are a member; 0 for the current user
          - Parameter botInfo: If the user is a bot, information about the bot; may be null
          */
-        public init(isBlocked: Bool, canBeCalled: Bool, hasPrivateCalls: Bool, bio: String, shareText: String, groupInCommonCount: Int, botInfo: TDObject.BotInfo) {
+        public init(isBlocked: Bool, canBeCalled: Bool, hasPrivateCalls: Bool, bio: String, shareText: String, groupInCommonCount: Int, botInfo: TDObject.BotInfo?) {
             self.isBlocked = isBlocked
             self.canBeCalled = canBeCalled
             self.hasPrivateCalls = hasPrivateCalls

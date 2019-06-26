@@ -1,7 +1,7 @@
 //
-//  CreateTemporaryPassword.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Persistent user password
          */
-        public let password: String
+        public var password: String
 
         /**
          Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
          */
-        public let validFor: Int
+        public var validFor: Int
 
         /**
          Creates a new temporary password for processing payments

@@ -1,7 +1,7 @@
 //
-//  GetLanguagePackString.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,22 +20,22 @@ public extension TDFunction {
         /**
          Path to the language pack database in which strings are stored
          */
-        public let languagePackDatabasePath: String
+        public var languagePackDatabasePath: String
 
         /**
          Localization target to which the language pack belongs
          */
-        public let localizationTarget: String
+        public var localizationTarget: String
 
         /**
          Language pack identifier
          */
-        public let languagePackId: String
+        public var languagePackId: String
 
         /**
          Language pack key of the string to be returned
          */
-        public let key: String
+        public var key: String
 
         /**
          Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. This is an offline method. Can be called before authorization. Can be called synchronously

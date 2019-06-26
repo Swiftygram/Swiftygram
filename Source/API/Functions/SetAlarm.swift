@@ -1,7 +1,7 @@
 //
-//  SetAlarm.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Number of seconds before the function returns
          */
-        public let seconds: Double
+        public var seconds: Double
 
         /**
          Succeeds after a specified amount of time has passed. Can be called before authorization. Can be called before initialization

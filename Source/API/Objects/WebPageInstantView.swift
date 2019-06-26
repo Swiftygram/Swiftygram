@@ -1,7 +1,7 @@
 //
-//  WebPageInstantView.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Content of the web page
          */
-        public let pageBlocks: [TDEnum.PageBlock]
+        public var pageBlocks: [TDEnum.PageBlock]
 
         /**
          Version of the instant view, currently can be 1 or 2
          */
-        public let version: Int
+        public var version: Int
 
         /**
          Instant view URL; may be different from WebPage.url and must be used for the correct anchors handling
          */
-        public let url: URL
+        public var url: URL
 
         /**
          True, if the instant view must be shown from right to left
          */
-        public let isRtl: Bool
+        public var isRtl: Bool
 
         /**
          True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
          */
-        public let isFull: Bool
+        public var isFull: Bool
 
         /**
          Describes an instant view page for a web page

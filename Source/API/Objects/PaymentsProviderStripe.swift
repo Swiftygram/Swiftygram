@@ -1,7 +1,7 @@
 //
-//  PaymentsProviderStripe.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          Stripe API publishable key
          */
-        public let publishableKey: String
+        public var publishableKey: String
 
         /**
          True, if the user country must be provided
          */
-        public let needCountry: Bool
+        public var needCountry: Bool
 
         /**
          True, if the user ZIP/postal code must be provided
          */
-        public let needPostalCode: Bool
+        public var needPostalCode: Bool
 
         /**
          True, if the cardholder name must be provided
          */
-        public let needCardholderName: Bool
+        public var needCardholderName: Bool
 
         /**
          Stripe payment provider

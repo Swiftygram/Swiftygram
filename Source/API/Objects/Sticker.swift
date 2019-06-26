@@ -1,7 +1,7 @@
 //
-//  Sticker.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,42 +13,42 @@ public extension TDObject {
         /**
          The identifier of the sticker set to which the sticker belongs; 0 if none
          */
-        public let setId: Int64
+        public var setId: Int64
 
         /**
          Sticker width; as defined by the sender
          */
-        public let width: Int
+        public var width: Int
 
         /**
          Sticker height; as defined by the sender
          */
-        public let height: Int
+        public var height: Int
 
         /**
          Emoji corresponding to the sticker
          */
-        public let emoji: String
+        public var emoji: String
 
         /**
          True, if the sticker is a mask
          */
-        public let isMask: Bool
+        public var isMask: Bool
 
         /**
          Position where the mask should be placed; may be null
          */
-        public let maskPosition: TDObject.MaskPosition
+        public var maskPosition: TDObject.MaskPosition?
 
         /**
          Sticker thumbnail in WEBP or JPEG format; may be null
          */
-        public let thumbnail: TDObject.PhotoSize
+        public var thumbnail: TDObject.PhotoSize?
 
         /**
          File containing the sticker
          */
-        public let sticker: TDObject.File
+        public var sticker: TDObject.File
 
         /**
          Describes a sticker
@@ -62,7 +62,7 @@ public extension TDObject {
          - Parameter thumbnail: Sticker thumbnail in WEBP or JPEG format; may be null
          - Parameter sticker: File containing the sticker
          */
-        public init(setId: Int64, width: Int, height: Int, emoji: String, isMask: Bool, maskPosition: TDObject.MaskPosition, thumbnail: TDObject.PhotoSize, sticker: TDObject.File) {
+        public init(setId: Int64, width: Int, height: Int, emoji: String, isMask: Bool, maskPosition: TDObject.MaskPosition?, thumbnail: TDObject.PhotoSize?, sticker: TDObject.File) {
             self.setId = setId
             self.width = width
             self.height = height
@@ -83,8 +83,8 @@ public extension TDObject {
             height = try container.decode(Int.self, forKey: .init(string: "height"))
             emoji = try container.decode(String.self, forKey: .init(string: "emoji"))
             isMask = try container.decode(Bool.self, forKey: .init(string: "isMask"))
-            maskPosition = try container.decode(TDObject.MaskPosition.self, forKey: .init(string: "maskPosition"))
-            thumbnail = try container.decode(TDObject.PhotoSize.self, forKey: .init(string: "thumbnail"))
+            maskPosition = try container.decodeIfPresent(TDObject.MaskPosition.self, forKey: .init(string: "maskPosition"))
+            thumbnail = try container.decodeIfPresent(TDObject.PhotoSize.self, forKey: .init(string: "thumbnail"))
             sticker = try container.decode(TDObject.File.self, forKey: .init(string: "sticker"))
         }
 
@@ -98,8 +98,8 @@ public extension TDObject {
             try container.encode(height, forKey: .init(string: "height"))
             try container.encode(emoji, forKey: .init(string: "emoji"))
             try container.encode(isMask, forKey: .init(string: "isMask"))
-            try container.encode(maskPosition, forKey: .init(string: "maskPosition"))
-            try container.encode(thumbnail, forKey: .init(string: "thumbnail"))
+            try container.encodeIfPresent(maskPosition, forKey: .init(string: "maskPosition"))
+            try container.encodeIfPresent(thumbnail, forKey: .init(string: "thumbnail"))
             try container.encode(sticker, forKey: .init(string: "sticker"))
         }
     }

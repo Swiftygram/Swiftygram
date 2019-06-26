@@ -1,7 +1,7 @@
 //
-//  InputInlineQueryResult.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -23,7 +23,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case animatedGif(id: String, title: String, thumbnailUrl: URL, gifUrl: URL, gifDuration: Int, gifWidth: Int, gifHeight: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case animatedGif(id: String, title: String, thumbnailUrl: URL, gifUrl: URL, gifDuration: Int, gifWidth: Int, gifHeight: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         /**
          Represents a link to an animated (i.e. without sound) H.264/MPEG-4 AVC video
@@ -38,7 +38,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case animatedMpeg4(id: String, title: String, thumbnailUrl: URL, mpeg4Url: URL, mpeg4Duration: Int, mpeg4Width: Int, mpeg4Height: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case animatedMpeg4(id: String, title: String, thumbnailUrl: URL, mpeg4Url: URL, mpeg4Duration: Int, mpeg4Width: Int, mpeg4Height: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         /**
          Represents a link to an article or web page
@@ -54,7 +54,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case article(id: String, url: URL, hideUrl: Bool, title: String, description: String, thumbnailUrl: URL, thumbnailWidth: Int, thumbnailHeight: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case article(id: String, url: URL, hideUrl: Bool, title: String, description: String, thumbnailUrl: URL, thumbnailWidth: Int, thumbnailHeight: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         /**
          Represents a link to an MP3 audio file
@@ -67,7 +67,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAudio, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case audio(id: String, title: String, performer: String, audioUrl: URL, audioDuration: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case audio(id: String, title: String, performer: String, audioUrl: URL, audioDuration: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         /**
          Represents a user contact
@@ -80,7 +80,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case contact(id: String, contact: TDObject.Contact, thumbnailUrl: URL, thumbnailWidth: Int, thumbnailHeight: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case contact(id: String, contact: TDObject.Contact, thumbnailUrl: URL, thumbnailWidth: Int, thumbnailHeight: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         /**
          Represents a link to a file
@@ -96,7 +96,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageDocument, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case document(id: String, title: String, description: String, documentUrl: URL, mimeType: String, thumbnailUrl: URL, thumbnailWidth: Int, thumbnailHeight: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case document(id: String, title: String, description: String, documentUrl: URL, mimeType: String, thumbnailUrl: URL, thumbnailWidth: Int, thumbnailHeight: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         /**
          Represents a game
@@ -105,7 +105,7 @@ public extension TDEnum {
          - gameShortName: Short name of the game
          - replyMarkup: Message reply markup. Must be of type replyMarkupInlineKeyboard or null
          */
-        case game(id: String, gameShortName: String, replyMarkup: TDEnum.ReplyMarkup)
+        case game(id: String, gameShortName: String, replyMarkup: TDEnum.ReplyMarkup?)
 
         /**
          Represents a point on the map
@@ -120,7 +120,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case location(id: String, location: TDObject.Location, livePeriod: Int, title: String, thumbnailUrl: URL, thumbnailWidth: Int, thumbnailHeight: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case location(id: String, location: TDObject.Location, livePeriod: Int, title: String, thumbnailUrl: URL, thumbnailWidth: Int, thumbnailHeight: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         /**
          Represents link to a JPEG image
@@ -135,7 +135,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessagePhoto, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case photo(id: String, title: String, description: String, thumbnailUrl: URL, photoUrl: URL, photoWidth: Int, photoHeight: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case photo(id: String, title: String, description: String, thumbnailUrl: URL, photoUrl: URL, photoWidth: Int, photoHeight: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         /**
          Represents a link to a WEBP sticker
@@ -148,7 +148,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, inputMessageSticker, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case sticker(id: String, thumbnailUrl: URL, stickerUrl: URL, stickerWidth: Int, stickerHeight: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case sticker(id: String, thumbnailUrl: URL, stickerUrl: URL, stickerWidth: Int, stickerHeight: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         /**
          Represents information about a venue
@@ -161,7 +161,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case venue(id: String, venue: TDObject.Venue, thumbnailUrl: URL, thumbnailWidth: Int, thumbnailHeight: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case venue(id: String, venue: TDObject.Venue, thumbnailUrl: URL, thumbnailWidth: Int, thumbnailHeight: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         /**
          Represents a link to a page containing an embedded video player or a video file
@@ -178,7 +178,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVideo, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case video(id: String, title: String, description: String, thumbnailUrl: URL, videoUrl: URL, mimeType: String, videoWidth: Int, videoHeight: Int, videoDuration: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case video(id: String, title: String, description: String, thumbnailUrl: URL, videoUrl: URL, mimeType: String, videoWidth: Int, videoHeight: Int, videoDuration: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         /**
          Represents a link to an opus-encoded audio file within an OGG container, single channel audio
@@ -190,7 +190,7 @@ public extension TDEnum {
          - replyMarkup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
          - inputMessageContent: The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVoiceNote, InputMessageLocation, InputMessageVenue or InputMessageContact
          */
-        case voiceNote(id: String, title: String, voiceNoteUrl: URL, voiceNoteDuration: Int, replyMarkup: TDEnum.ReplyMarkup, inputMessageContent: TDEnum.InputMessageContent)
+        case voiceNote(id: String, title: String, voiceNoteUrl: URL, voiceNoteDuration: Int, replyMarkup: TDEnum.ReplyMarkup?, inputMessageContent: TDEnum.InputMessageContent)
 
         // MARK: - Decodable
 
@@ -207,7 +207,7 @@ public extension TDEnum {
                 let gifDuration = try container.decode(Int.self, forKey: .init(string: "gifDuration"))
                 let gifWidth = try container.decode(Int.self, forKey: .init(string: "gifWidth"))
                 let gifHeight = try container.decode(Int.self, forKey: .init(string: "gifHeight"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .animatedGif(id: id, title: title, thumbnailUrl: thumbnailUrl, gifUrl: gifUrl, gifDuration: gifDuration, gifWidth: gifWidth, gifHeight: gifHeight, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -220,7 +220,7 @@ public extension TDEnum {
                 let mpeg4Duration = try container.decode(Int.self, forKey: .init(string: "mpeg4Duration"))
                 let mpeg4Width = try container.decode(Int.self, forKey: .init(string: "mpeg4Width"))
                 let mpeg4Height = try container.decode(Int.self, forKey: .init(string: "mpeg4Height"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .animatedMpeg4(id: id, title: title, thumbnailUrl: thumbnailUrl, mpeg4Url: mpeg4Url, mpeg4Duration: mpeg4Duration, mpeg4Width: mpeg4Width, mpeg4Height: mpeg4Height, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -234,7 +234,7 @@ public extension TDEnum {
                 let thumbnailUrl = try container.decode(URL.self, forKey: .init(string: "thumbnailUrl"))
                 let thumbnailWidth = try container.decode(Int.self, forKey: .init(string: "thumbnailWidth"))
                 let thumbnailHeight = try container.decode(Int.self, forKey: .init(string: "thumbnailHeight"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .article(id: id, url: url, hideUrl: hideUrl, title: title, description: description, thumbnailUrl: thumbnailUrl, thumbnailWidth: thumbnailWidth, thumbnailHeight: thumbnailHeight, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -245,7 +245,7 @@ public extension TDEnum {
                 let performer = try container.decode(String.self, forKey: .init(string: "performer"))
                 let audioUrl = try container.decode(URL.self, forKey: .init(string: "audioUrl"))
                 let audioDuration = try container.decode(Int.self, forKey: .init(string: "audioDuration"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .audio(id: id, title: title, performer: performer, audioUrl: audioUrl, audioDuration: audioDuration, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -256,7 +256,7 @@ public extension TDEnum {
                 let thumbnailUrl = try container.decode(URL.self, forKey: .init(string: "thumbnailUrl"))
                 let thumbnailWidth = try container.decode(Int.self, forKey: .init(string: "thumbnailWidth"))
                 let thumbnailHeight = try container.decode(Int.self, forKey: .init(string: "thumbnailHeight"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .contact(id: id, contact: contact, thumbnailUrl: thumbnailUrl, thumbnailWidth: thumbnailWidth, thumbnailHeight: thumbnailHeight, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -270,7 +270,7 @@ public extension TDEnum {
                 let thumbnailUrl = try container.decode(URL.self, forKey: .init(string: "thumbnailUrl"))
                 let thumbnailWidth = try container.decode(Int.self, forKey: .init(string: "thumbnailWidth"))
                 let thumbnailHeight = try container.decode(Int.self, forKey: .init(string: "thumbnailHeight"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .document(id: id, title: title, description: description, documentUrl: documentUrl, mimeType: mimeType, thumbnailUrl: thumbnailUrl, thumbnailWidth: thumbnailWidth, thumbnailHeight: thumbnailHeight, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -278,7 +278,7 @@ public extension TDEnum {
             case "inputInlineQueryResultGame":
                 let id = try container.decode(String.self, forKey: .init(string: "id"))
                 let gameShortName = try container.decode(String.self, forKey: .init(string: "gameShortName"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
 
                 self = .game(id: id, gameShortName: gameShortName, replyMarkup: replyMarkup)
 
@@ -290,7 +290,7 @@ public extension TDEnum {
                 let thumbnailUrl = try container.decode(URL.self, forKey: .init(string: "thumbnailUrl"))
                 let thumbnailWidth = try container.decode(Int.self, forKey: .init(string: "thumbnailWidth"))
                 let thumbnailHeight = try container.decode(Int.self, forKey: .init(string: "thumbnailHeight"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .location(id: id, location: location, livePeriod: livePeriod, title: title, thumbnailUrl: thumbnailUrl, thumbnailWidth: thumbnailWidth, thumbnailHeight: thumbnailHeight, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -303,7 +303,7 @@ public extension TDEnum {
                 let photoUrl = try container.decode(URL.self, forKey: .init(string: "photoUrl"))
                 let photoWidth = try container.decode(Int.self, forKey: .init(string: "photoWidth"))
                 let photoHeight = try container.decode(Int.self, forKey: .init(string: "photoHeight"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .photo(id: id, title: title, description: description, thumbnailUrl: thumbnailUrl, photoUrl: photoUrl, photoWidth: photoWidth, photoHeight: photoHeight, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -314,7 +314,7 @@ public extension TDEnum {
                 let stickerUrl = try container.decode(URL.self, forKey: .init(string: "stickerUrl"))
                 let stickerWidth = try container.decode(Int.self, forKey: .init(string: "stickerWidth"))
                 let stickerHeight = try container.decode(Int.self, forKey: .init(string: "stickerHeight"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .sticker(id: id, thumbnailUrl: thumbnailUrl, stickerUrl: stickerUrl, stickerWidth: stickerWidth, stickerHeight: stickerHeight, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -325,7 +325,7 @@ public extension TDEnum {
                 let thumbnailUrl = try container.decode(URL.self, forKey: .init(string: "thumbnailUrl"))
                 let thumbnailWidth = try container.decode(Int.self, forKey: .init(string: "thumbnailWidth"))
                 let thumbnailHeight = try container.decode(Int.self, forKey: .init(string: "thumbnailHeight"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .venue(id: id, venue: venue, thumbnailUrl: thumbnailUrl, thumbnailWidth: thumbnailWidth, thumbnailHeight: thumbnailHeight, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -340,7 +340,7 @@ public extension TDEnum {
                 let videoWidth = try container.decode(Int.self, forKey: .init(string: "videoWidth"))
                 let videoHeight = try container.decode(Int.self, forKey: .init(string: "videoHeight"))
                 let videoDuration = try container.decode(Int.self, forKey: .init(string: "videoDuration"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .video(id: id, title: title, description: description, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, mimeType: mimeType, videoWidth: videoWidth, videoHeight: videoHeight, videoDuration: videoDuration, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -350,7 +350,7 @@ public extension TDEnum {
                 let title = try container.decode(String.self, forKey: .init(string: "title"))
                 let voiceNoteUrl = try container.decode(URL.self, forKey: .init(string: "voiceNoteUrl"))
                 let voiceNoteDuration = try container.decode(Int.self, forKey: .init(string: "voiceNoteDuration"))
-                let replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+                let replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
                 let inputMessageContent = try container.decode(TDEnum.InputMessageContent.self, forKey: .init(string: "inputMessageContent"))
 
                 self = .voiceNote(id: id, title: title, voiceNoteUrl: voiceNoteUrl, voiceNoteDuration: voiceNoteDuration, replyMarkup: replyMarkup, inputMessageContent: inputMessageContent)
@@ -376,7 +376,7 @@ public extension TDEnum {
                 try container.encode(gifDuration, forKey: .init(string: "gifDuration"))
                 try container.encode(gifWidth, forKey: .init(string: "gifWidth"))
                 try container.encode(gifHeight, forKey: .init(string: "gifHeight"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
 
             case let .animatedMpeg4(id, title, thumbnailUrl, mpeg4Url, mpeg4Duration, mpeg4Width, mpeg4Height, replyMarkup, inputMessageContent):
@@ -389,7 +389,7 @@ public extension TDEnum {
                 try container.encode(mpeg4Duration, forKey: .init(string: "mpeg4Duration"))
                 try container.encode(mpeg4Width, forKey: .init(string: "mpeg4Width"))
                 try container.encode(mpeg4Height, forKey: .init(string: "mpeg4Height"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
 
             case let .article(id, url, hideUrl, title, description, thumbnailUrl, thumbnailWidth, thumbnailHeight, replyMarkup, inputMessageContent):
@@ -403,7 +403,7 @@ public extension TDEnum {
                 try container.encode(thumbnailUrl, forKey: .init(string: "thumbnailUrl"))
                 try container.encode(thumbnailWidth, forKey: .init(string: "thumbnailWidth"))
                 try container.encode(thumbnailHeight, forKey: .init(string: "thumbnailHeight"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
 
             case let .audio(id, title, performer, audioUrl, audioDuration, replyMarkup, inputMessageContent):
@@ -414,7 +414,7 @@ public extension TDEnum {
                 try container.encode(performer, forKey: .init(string: "performer"))
                 try container.encode(audioUrl, forKey: .init(string: "audioUrl"))
                 try container.encode(audioDuration, forKey: .init(string: "audioDuration"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
 
             case let .contact(id, contact, thumbnailUrl, thumbnailWidth, thumbnailHeight, replyMarkup, inputMessageContent):
@@ -425,7 +425,7 @@ public extension TDEnum {
                 try container.encode(thumbnailUrl, forKey: .init(string: "thumbnailUrl"))
                 try container.encode(thumbnailWidth, forKey: .init(string: "thumbnailWidth"))
                 try container.encode(thumbnailHeight, forKey: .init(string: "thumbnailHeight"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
 
             case let .document(id, title, description, documentUrl, mimeType, thumbnailUrl, thumbnailWidth, thumbnailHeight, replyMarkup, inputMessageContent):
@@ -439,7 +439,7 @@ public extension TDEnum {
                 try container.encode(thumbnailUrl, forKey: .init(string: "thumbnailUrl"))
                 try container.encode(thumbnailWidth, forKey: .init(string: "thumbnailWidth"))
                 try container.encode(thumbnailHeight, forKey: .init(string: "thumbnailHeight"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
 
             case let .game(id, gameShortName, replyMarkup):
@@ -447,7 +447,7 @@ public extension TDEnum {
 
                 try container.encode(id, forKey: .init(string: "id"))
                 try container.encode(gameShortName, forKey: .init(string: "gameShortName"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
 
             case let .location(id, location, livePeriod, title, thumbnailUrl, thumbnailWidth, thumbnailHeight, replyMarkup, inputMessageContent):
                 try container.encode("inputInlineQueryResultLocation", forKey: .type)
@@ -459,7 +459,7 @@ public extension TDEnum {
                 try container.encode(thumbnailUrl, forKey: .init(string: "thumbnailUrl"))
                 try container.encode(thumbnailWidth, forKey: .init(string: "thumbnailWidth"))
                 try container.encode(thumbnailHeight, forKey: .init(string: "thumbnailHeight"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
 
             case let .photo(id, title, description, thumbnailUrl, photoUrl, photoWidth, photoHeight, replyMarkup, inputMessageContent):
@@ -472,7 +472,7 @@ public extension TDEnum {
                 try container.encode(photoUrl, forKey: .init(string: "photoUrl"))
                 try container.encode(photoWidth, forKey: .init(string: "photoWidth"))
                 try container.encode(photoHeight, forKey: .init(string: "photoHeight"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
 
             case let .sticker(id, thumbnailUrl, stickerUrl, stickerWidth, stickerHeight, replyMarkup, inputMessageContent):
@@ -483,7 +483,7 @@ public extension TDEnum {
                 try container.encode(stickerUrl, forKey: .init(string: "stickerUrl"))
                 try container.encode(stickerWidth, forKey: .init(string: "stickerWidth"))
                 try container.encode(stickerHeight, forKey: .init(string: "stickerHeight"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
 
             case let .venue(id, venue, thumbnailUrl, thumbnailWidth, thumbnailHeight, replyMarkup, inputMessageContent):
@@ -494,7 +494,7 @@ public extension TDEnum {
                 try container.encode(thumbnailUrl, forKey: .init(string: "thumbnailUrl"))
                 try container.encode(thumbnailWidth, forKey: .init(string: "thumbnailWidth"))
                 try container.encode(thumbnailHeight, forKey: .init(string: "thumbnailHeight"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
 
             case let .video(id, title, description, thumbnailUrl, videoUrl, mimeType, videoWidth, videoHeight, videoDuration, replyMarkup, inputMessageContent):
@@ -509,7 +509,7 @@ public extension TDEnum {
                 try container.encode(videoWidth, forKey: .init(string: "videoWidth"))
                 try container.encode(videoHeight, forKey: .init(string: "videoHeight"))
                 try container.encode(videoDuration, forKey: .init(string: "videoDuration"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
 
             case let .voiceNote(id, title, voiceNoteUrl, voiceNoteDuration, replyMarkup, inputMessageContent):
@@ -519,7 +519,7 @@ public extension TDEnum {
                 try container.encode(title, forKey: .init(string: "title"))
                 try container.encode(voiceNoteUrl, forKey: .init(string: "voiceNoteUrl"))
                 try container.encode(voiceNoteDuration, forKey: .init(string: "voiceNoteDuration"))
-                try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+                try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
             }
         }

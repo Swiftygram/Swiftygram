@@ -1,7 +1,7 @@
 //
-//  Animation.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,37 +13,37 @@ public extension TDObject {
         /**
          Duration of the animation, in seconds; as defined by the sender
          */
-        public let duration: Int
+        public var duration: Int
 
         /**
          Width of the animation
          */
-        public let width: Int
+        public var width: Int
 
         /**
          Height of the animation
          */
-        public let height: Int
+        public var height: Int
 
         /**
          Original name of the file; as defined by the sender
          */
-        public let fileName: String
+        public var fileName: String
 
         /**
          MIME type of the file, usually "image/gif" or "video/mp4"
          */
-        public let mimeType: String
+        public var mimeType: String
 
         /**
          Animation thumbnail; may be null
          */
-        public let thumbnail: TDObject.PhotoSize
+        public var thumbnail: TDObject.PhotoSize?
 
         /**
          File containing the animation
          */
-        public let animation: TDObject.File
+        public var animation: TDObject.File
 
         /**
          Describes an animation file. The animation must be encoded in GIF or MPEG4 format
@@ -56,7 +56,7 @@ public extension TDObject {
          - Parameter thumbnail: Animation thumbnail; may be null
          - Parameter animation: File containing the animation
          */
-        public init(duration: Int, width: Int, height: Int, fileName: String, mimeType: String, thumbnail: TDObject.PhotoSize, animation: TDObject.File) {
+        public init(duration: Int, width: Int, height: Int, fileName: String, mimeType: String, thumbnail: TDObject.PhotoSize?, animation: TDObject.File) {
             self.duration = duration
             self.width = width
             self.height = height

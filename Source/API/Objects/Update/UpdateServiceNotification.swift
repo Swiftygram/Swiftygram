@@ -1,7 +1,7 @@
 //
-//  UpdateServiceNotification.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method
          */
-        public let type: String
+        public var type: String
 
         /**
          Notification content
          */
-        public let content: TDEnum.MessageContent
+        public var content: TDEnum.MessageContent
 
         /**
          Service notification from the server. Upon receiving this the client must show a popup with the content of the notification

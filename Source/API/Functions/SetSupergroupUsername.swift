@@ -1,7 +1,7 @@
 //
-//  SetSupergroupUsername.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Identifier of the supergroup or channel
          */
-        public let supergroupId: Int
+        public var supergroupId: Int
 
         /**
          New value of the username. Use an empty string to remove the username
          */
-        public let username: String
+        public var username: String
 
         /**
          Changes the username of a supergroup or channel, requires creator privileges in the supergroup or channel

@@ -1,7 +1,7 @@
 //
-//  PersonalDetails.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,52 +13,52 @@ public extension TDObject {
         /**
          First name of the user written in English; 1-255 characters
          */
-        public let firstName: String
+        public var firstName: String
 
         /**
          Middle name of the user written in English; 0-255 characters
          */
-        public let middleName: String
+        public var middleName: String
 
         /**
          Last name of the user written in English; 1-255 characters
          */
-        public let lastName: String
+        public var lastName: String
 
         /**
          Native first name of the user; 1-255 characters
          */
-        public let nativeFirstName: String
+        public var nativeFirstName: String
 
         /**
          Native middle name of the user; 0-255 characters
          */
-        public let nativeMiddleName: String
+        public var nativeMiddleName: String
 
         /**
          Native last name of the user; 1-255 characters
          */
-        public let nativeLastName: String
+        public var nativeLastName: String
 
         /**
          Birthdate of the user
          */
-        public let birthdate: TDObject.Date
+        public var birthdate: TDObject.Date
 
         /**
          Gender of the user, "male" or "female"
          */
-        public let gender: String
+        public var gender: String
 
         /**
          A two-letter ISO 3166-1 alpha-2 country code of the user's country
          */
-        public let countryCode: String
+        public var countryCode: String
 
         /**
          A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
          */
-        public let residenceCountryCode: String
+        public var residenceCountryCode: String
 
         /**
          Contains the user's personal details

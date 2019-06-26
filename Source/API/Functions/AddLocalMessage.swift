@@ -1,7 +1,7 @@
 //
-//  AddLocalMessage.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,27 +20,27 @@ public extension TDFunction {
         /**
          Target chat
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the user who will be shown as the sender of the message; may be 0 for channel posts
          */
-        public let senderUserId: Int
+        public var senderUserId: Int
 
         /**
          Identifier of the message to reply to or 0
          */
-        public let replyToMessageId: Int64
+        public var replyToMessageId: Int64
 
         /**
          Pass true to disable notification for the message
          */
-        public let disableNotification: Bool
+        public var disableNotification: Bool
 
         /**
          The content of the message to be added
          */
-        public let inputMessageContent: TDEnum.InputMessageContent
+        public var inputMessageContent: TDEnum.InputMessageContent
 
         /**
          Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message

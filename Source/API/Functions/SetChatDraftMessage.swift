@@ -1,7 +1,7 @@
 //
-//  SetChatDraftMessage.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          New draft message; may be null
          */
-        public let draftMessage: TDObject.DraftMessage
+        public var draftMessage: TDObject.DraftMessage?
 
         /**
          Changes the draft message in a chat
@@ -33,7 +33,7 @@ public extension TDFunction {
          - Parameter chatId: Chat identifier
          - Parameter draftMessage: New draft message; may be null
          */
-        public init(chatId: Int64, draftMessage: TDObject.DraftMessage) {
+        public init(chatId: Int64, draftMessage: TDObject.DraftMessage?) {
             self.chatId = chatId
             self.draftMessage = draftMessage
         }
@@ -44,7 +44,7 @@ public extension TDFunction {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
 
             chatId = try container.decodeInt64(forKey: .init(string: "chatId"))
-            draftMessage = try container.decode(TDObject.DraftMessage.self, forKey: .init(string: "draftMessage"))
+            draftMessage = try container.decodeIfPresent(TDObject.DraftMessage.self, forKey: .init(string: "draftMessage"))
         }
 
         // MARK: - Encodable
@@ -53,7 +53,7 @@ public extension TDFunction {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
 
             try container.encodeInt64(chatId, forKey: .init(string: "chatId"))
-            try container.encode(draftMessage, forKey: .init(string: "draftMessage"))
+            try container.encodeIfPresent(draftMessage, forKey: .init(string: "draftMessage"))
         }
     }
 }

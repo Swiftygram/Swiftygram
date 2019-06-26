@@ -1,7 +1,7 @@
 //
-//  UpdateChatIsSponsored.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          New value of is_sponsored
          */
-        public let isSponsored: Bool
+        public var isSponsored: Bool
 
         /**
          New value of chat order
          */
-        public let order: Int64
+        public var order: Int64
 
         /**
          A chat's is_sponsored field has changed

@@ -1,7 +1,7 @@
 //
-//  CallConnection.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Reflector identifier
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          IPv4 reflector address
          */
-        public let ip: String
+        public var ip: String
 
         /**
          IPv6 reflector address
          */
-        public let ipv6: String
+        public var ipv6: String
 
         /**
          Reflector port number
          */
-        public let port: Int
+        public var port: Int
 
         /**
          Connection peer tag
          */
-        public let peerTag: String
+        public var peerTag: String
 
         /**
          Describes the address of UDP reflectors

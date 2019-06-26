@@ -1,7 +1,7 @@
 //
-//  ReorderInstalledStickerSets.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Pass true to change the order of mask sticker sets; pass false to change the order of ordinary sticker sets
          */
-        public let isMasks: Bool
+        public var isMasks: Bool
 
         /**
          Identifiers of installed sticker sets in the new correct order
          */
-        public let stickerSetIds: [Int64]
+        public var stickerSetIds: [Int64]
 
         /**
          Changes the order of installed sticker sets

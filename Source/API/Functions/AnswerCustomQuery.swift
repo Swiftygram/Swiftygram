@@ -1,7 +1,7 @@
 //
-//  AnswerCustomQuery.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Identifier of a custom query
          */
-        public let customQueryId: Int64
+        public var customQueryId: Int64
 
         /**
          JSON-serialized answer to the query
          */
-        public let data: String
+        public var data: String
 
         /**
          Answers a custom query; for bots only

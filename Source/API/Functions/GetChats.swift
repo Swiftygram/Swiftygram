@@ -1,7 +1,7 @@
 //
-//  GetChats.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Chat order to return chats from
          */
-        public let offsetOrder: Int64
+        public var offsetOrder: Int64
 
         /**
          Chat identifier to return chats from
          */
-        public let offsetChatId: Int64
+        public var offsetChatId: Int64
 
         /**
          The maximum number of chats to be returned. It is possible that fewer chats than the limit are returned even if the end of the list is not reached
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Returns an ordered list of chats. Chats are sorted by the pair (order, chat_id) in decreasing order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1).-For optimal performance the number of returned chats is chosen by the library.

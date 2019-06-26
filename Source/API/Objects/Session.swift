@@ -1,7 +1,7 @@
 //
-//  Session.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,77 +13,77 @@ public extension TDObject {
         /**
          Session identifier
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          True, if this session is the current session
          */
-        public let isCurrent: Bool
+        public var isCurrent: Bool
 
         /**
          True, if a password is needed to complete authorization of the session
          */
-        public let isPasswordPending: Bool
+        public var isPasswordPending: Bool
 
         /**
          Telegram API identifier, as provided by the application
          */
-        public let apiId: Int
+        public var apiId: Int
 
         /**
          Name of the application, as provided by the application
          */
-        public let applicationName: String
+        public var applicationName: String
 
         /**
          The version of the application, as provided by the application
          */
-        public let applicationVersion: String
+        public var applicationVersion: String
 
         /**
          True, if the application is an official application or uses the api_id of an official application
          */
-        public let isOfficialApplication: Bool
+        public var isOfficialApplication: Bool
 
         /**
          Model of the device the application has been run or is running on, as provided by the application
          */
-        public let deviceModel: String
+        public var deviceModel: String
 
         /**
          Operating system the application has been run or is running on, as provided by the application
          */
-        public let platform: String
+        public var platform: String
 
         /**
          Version of the operating system the application has been run or is running on, as provided by the application
          */
-        public let systemVersion: String
+        public var systemVersion: String
 
         /**
          Point in time (Unix timestamp) when the user has logged in
          */
-        public let logInDate: Foundation.Date
+        public var logInDate: Foundation.Date
 
         /**
          Point in time (Unix timestamp) when the session was last used
          */
-        public let lastActiveDate: Foundation.Date
+        public var lastActiveDate: Foundation.Date
 
         /**
          IP address from which the session was created, in human-readable format
          */
-        public let ip: String
+        public var ip: String
 
         /**
          A two-letter country code for the country from which the session was created, based on the IP address
          */
-        public let country: String
+        public var country: String
 
         /**
          Region code from which the session was created, based on the IP address
          */
-        public let region: String
+        public var region: String
 
         /**
          Contains information about one session in a Telegram application used by the current user. Sessions should be shown to the user in the returned order

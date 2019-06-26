@@ -1,7 +1,7 @@
 //
-//  EditMessageLiveLocation.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,22 +20,22 @@ public extension TDFunction {
         /**
          The chat the message belongs to
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the message
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          The new message reply markup; for bots only
          */
-        public let replyMarkup: TDEnum.ReplyMarkup
+        public var replyMarkup: TDEnum.ReplyMarkup
 
         /**
          New location content of the message; may be null. Pass null to stop sharing the live location
          */
-        public let location: TDObject.Location
+        public var location: TDObject.Location
 
         /**
          Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side

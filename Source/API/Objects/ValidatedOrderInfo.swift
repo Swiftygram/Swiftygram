@@ -1,7 +1,7 @@
 //
-//  ValidatedOrderInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Temporary identifier of the order information
          */
-        public let orderInfoId: String
+        public var orderInfoId: String
 
         /**
          Available shipping options
          */
-        public let shippingOptions: [TDObject.ShippingOption]
+        public var shippingOptions: [TDObject.ShippingOption]
 
         /**
          Contains a temporary identifier of validated order information, which is stored for one hour. Also contains the available shipping options

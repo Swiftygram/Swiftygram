@@ -1,7 +1,7 @@
 //
-//  ToggleSupergroupSignMessages.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Identifier of the channel
          */
-        public let supergroupId: Int
+        public var supergroupId: Int
 
         /**
          New value of sign_messages
          */
-        public let signMessages: Bool
+        public var signMessages: Bool
 
         /**
          Toggles sender signatures messages sent in a channel; requires appropriate administrator rights in the channel.

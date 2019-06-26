@@ -1,7 +1,7 @@
 //
-//  Location.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Latitude of the location in degrees; as defined by the sender
          */
-        public let latitude: Double
+        public var latitude: Double
 
         /**
          Longitude of the location, in degrees; as defined by the sender
          */
-        public let longitude: Double
+        public var longitude: Double
 
         /**
          Describes a location on planet Earth

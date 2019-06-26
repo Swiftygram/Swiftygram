@@ -1,7 +1,7 @@
 //
-//  RegisterDevice.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Device token
          */
-        public let deviceToken: TDEnum.DeviceToken
+        public var deviceToken: TDEnum.DeviceToken
 
         /**
          List of user identifiers of other users currently using the client
          */
-        public let otherUserIds: [Int]
+        public var otherUserIds: [Int]
 
         /**
          Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription

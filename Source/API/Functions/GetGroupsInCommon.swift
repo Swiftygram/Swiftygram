@@ -1,7 +1,7 @@
 //
-//  GetGroupsInCommon.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          User identifier
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          Chat identifier starting from which to return chats; use 0 for the first request
          */
-        public let offsetChatId: Int64
+        public var offsetChatId: Int64
 
         /**
          Maximum number of chats to be returned; up to 100
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Returns a list of common group chats with a given user. Chats are sorted by their type and creation date

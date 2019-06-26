@@ -1,7 +1,7 @@
 //
-//  GetMessages.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Identifier of the chat the messages belong to
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifiers of the messages to get
          */
-        public let messageIds: [Int64]
+        public var messageIds: [Int64]
 
         /**
          Returns information about messages. If a message is not found, returns null on the corresponding position of the result

@@ -1,7 +1,7 @@
 //
-//  Error.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user
          */
-        public let code: Int
+        public var code: Int
 
         /**
          Error message; subject to future changes
          */
-        public let message: String
+        public var message: String
 
         /**
          An object of this type can be returned on every function call, in case of an error

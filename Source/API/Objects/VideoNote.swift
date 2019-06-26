@@ -1,7 +1,7 @@
 //
-//  VideoNote.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          Duration of the video, in seconds; as defined by the sender
          */
-        public let duration: Int
+        public var duration: Int
 
         /**
          Video width and height; as defined by the sender
          */
-        public let length: Int
+        public var length: Int
 
         /**
          Video thumbnail; as defined by the sender; may be null
          */
-        public let thumbnail: TDObject.PhotoSize
+        public var thumbnail: TDObject.PhotoSize?
 
         /**
          File containing the video
          */
-        public let video: TDObject.File
+        public var video: TDObject.File
 
         /**
          Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format
@@ -38,7 +38,7 @@ public extension TDObject {
          - Parameter thumbnail: Video thumbnail; as defined by the sender; may be null
          - Parameter video: File containing the video
          */
-        public init(duration: Int, length: Int, thumbnail: TDObject.PhotoSize, video: TDObject.File) {
+        public init(duration: Int, length: Int, thumbnail: TDObject.PhotoSize?, video: TDObject.File) {
             self.duration = duration
             self.length = length
             self.thumbnail = thumbnail

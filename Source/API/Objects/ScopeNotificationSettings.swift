@@ -1,7 +1,7 @@
 //
-//  ScopeNotificationSettings.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Time left before notifications will be unmuted, in seconds
          */
-        public let muteFor: Int
+        public var muteFor: Int
 
         /**
          The name of an audio file to be used for notification sounds; only applies to iOS applications
          */
-        public let sound: String
+        public var sound: String
 
         /**
          True, if message content should be displayed in notifications
          */
-        public let showPreview: Bool
+        public var showPreview: Bool
 
         /**
          True, if notifications for incoming pinned messages will be created as for an ordinary unread message
          */
-        public let disablePinnedMessageNotifications: Bool
+        public var disablePinnedMessageNotifications: Bool
 
         /**
          True, if notifications for messages with mentions will be created as for an ordinary unread message
          */
-        public let disableMentionNotifications: Bool
+        public var disableMentionNotifications: Bool
 
         /**
          Contains information about notification settings for several chats

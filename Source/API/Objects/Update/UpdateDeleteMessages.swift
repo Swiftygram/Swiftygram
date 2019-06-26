@@ -1,7 +1,7 @@
 //
-//  UpdateDeleteMessages.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifiers of the deleted messages
          */
-        public let messageIds: [Int64]
+        public var messageIds: [Int64]
 
         /**
          True, if the messages are permanently deleted by a user (as opposed to just becoming inaccessible)
          */
-        public let isPermanent: Bool
+        public var isPermanent: Bool
 
         /**
          True, if the messages are deleted only from the cache and can possibly be retrieved again in the future
          */
-        public let fromCache: Bool
+        public var fromCache: Bool
 
         /**
          Some messages were deleted

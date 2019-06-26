@@ -1,7 +1,7 @@
 //
-//  GetWebPagePreview.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Message text with formatting
          */
-        public let text: TDObject.FormattedText
+        public var text: TDObject.FormattedText
 
         /**
          Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview

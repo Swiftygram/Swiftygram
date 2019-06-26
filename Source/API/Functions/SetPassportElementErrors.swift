@@ -1,7 +1,7 @@
 //
-//  SetPassportElementErrors.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          User identifier
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          The errors
          */
-        public let errors: [TDObject.InputPassportElementError]
+        public var errors: [TDObject.InputPassportElementError]
 
         /**
          Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed

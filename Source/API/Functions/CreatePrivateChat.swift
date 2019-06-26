@@ -1,7 +1,7 @@
 //
-//  CreatePrivateChat.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          User identifier
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
          */
-        public let force: Bool
+        public var force: Bool
 
         /**
          Returns an existing chat corresponding to a given user

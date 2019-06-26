@@ -1,7 +1,7 @@
 //
-//  PageBlockCaption.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Content of the caption
          */
-        public let text: TDEnum.RichText
+        public var text: TDEnum.RichText
 
         /**
          Block credit (like HTML tag <cite>)
          */
-        public let credit: TDEnum.RichText
+        public var credit: TDEnum.RichText
 
         /**
          Contains a caption of an instant view web page block, consisting of a text and a trailing credit

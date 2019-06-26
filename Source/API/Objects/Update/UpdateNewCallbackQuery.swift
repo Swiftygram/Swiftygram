@@ -1,7 +1,7 @@
 //
-//  UpdateNewCallbackQuery.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,32 +13,32 @@ public extension TDObject {
         /**
          Unique query identifier
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          Identifier of the user who sent the query
          */
-        public let senderUserId: Int
+        public var senderUserId: Int
 
         /**
          Identifier of the chat, in which the query was sent
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the message, from which the query originated
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          Identifier that uniquely corresponds to the chat to which the message was sent
          */
-        public let chatInstance: Int64
+        public var chatInstance: Int64
 
         /**
          Query payload
          */
-        public let payload: TDEnum.CallbackQueryPayload
+        public var payload: TDEnum.CallbackQueryPayload
 
         /**
          A new incoming callback query; for bots only

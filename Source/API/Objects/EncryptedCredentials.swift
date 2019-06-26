@@ -1,7 +1,7 @@
 //
-//  EncryptedCredentials.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          The encrypted credentials
          */
-        public let data: String
+        public var data: String
 
         /**
          The decrypted data hash
          */
-        public let hash: String
+        public var hash: String
 
         /**
          Secret for data decryption, encrypted with the service's public key
          */
-        public let secret: String
+        public var secret: String
 
         /**
          Contains encrypted Telegram Passport data credentials

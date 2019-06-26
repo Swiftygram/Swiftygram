@@ -1,7 +1,7 @@
 //
-//  AuthenticationCodeInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          A phone number that is being authenticated
          */
-        public let phoneNumber: String
+        public var phoneNumber: String
 
         /**
          Describes the way the code was sent to the user
          */
-        public let type: TDEnum.AuthenticationCodeType
+        public var type: TDEnum.AuthenticationCodeType
 
         /**
          Describes the way the next code will be sent to the user; may be null
          */
-        public let nextType: TDEnum.AuthenticationCodeType
+        public var nextType: TDEnum.AuthenticationCodeType?
 
         /**
          Timeout before the code should be re-sent, in seconds
          */
-        public let timeout: Int
+        public var timeout: Int
 
         /**
          Information about the authentication code that was sent
@@ -38,7 +38,7 @@ public extension TDObject {
          - Parameter nextType: Describes the way the next code will be sent to the user; may be null
          - Parameter timeout: Timeout before the code should be re-sent, in seconds
          */
-        public init(phoneNumber: String, type: TDEnum.AuthenticationCodeType, nextType: TDEnum.AuthenticationCodeType, timeout: Int) {
+        public init(phoneNumber: String, type: TDEnum.AuthenticationCodeType, nextType: TDEnum.AuthenticationCodeType?, timeout: Int) {
             self.phoneNumber = phoneNumber
             self.type = type
             self.nextType = nextType

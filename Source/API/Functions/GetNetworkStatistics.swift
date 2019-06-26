@@ -1,7 +1,7 @@
 //
-//  GetNetworkStatistics.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          If true, returns only data for the current library launch
          */
-        public let onlyCurrent: Bool
+        public var onlyCurrent: Bool
 
         /**
          Returns network data usage statistics. Can be called before authorization

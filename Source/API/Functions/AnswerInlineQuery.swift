@@ -1,7 +1,7 @@
 //
-//  AnswerInlineQuery.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,37 +20,37 @@ public extension TDFunction {
         /**
          Identifier of the inline query
          */
-        public let inlineQueryId: Int64
+        public var inlineQueryId: Int64
 
         /**
          True, if the result of the query can be cached for the specified user
          */
-        public let isPersonal: Bool
+        public var isPersonal: Bool
 
         /**
          The results of the query
          */
-        public let results: [TDEnum.InputInlineQueryResult]
+        public var results: [TDEnum.InputInlineQueryResult]
 
         /**
          Allowed time to cache the results of the query, in seconds
          */
-        public let cacheTime: Int
+        public var cacheTime: Int
 
         /**
          Offset for the next inline query; pass an empty string if there are no more results
          */
-        public let nextOffset: String
+        public var nextOffset: String
 
         /**
          If non-empty, this text should be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
          */
-        public let switchPmText: String
+        public var switchPmText: String
 
         /**
          The parameter for the bot start message
          */
-        public let switchPmParameter: String
+        public var switchPmParameter: String
 
         /**
          Sets the result of an inline query; for bots only

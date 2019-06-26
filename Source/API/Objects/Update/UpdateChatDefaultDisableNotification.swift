@@ -1,7 +1,7 @@
 //
-//  UpdateChatDefaultDisableNotification.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          The new default_disable_notification value
          */
-        public let defaultDisableNotification: Bool
+        public var defaultDisableNotification: Bool
 
         /**
          The value of the default disable_notification parameter, used when a message is sent to the chat, was changed

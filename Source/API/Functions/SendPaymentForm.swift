@@ -1,7 +1,7 @@
 //
-//  SendPaymentForm.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,27 +20,27 @@ public extension TDFunction {
         /**
          Chat identifier of the Invoice message
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Message identifier
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          Identifier returned by ValidateOrderInfo, or an empty string
          */
-        public let orderInfoId: String
+        public var orderInfoId: String
 
         /**
          Identifier of a chosen shipping option, if applicable
          */
-        public let shippingOptionId: String?
+        public var shippingOptionId: String?
 
         /**
          The credentials chosen by user for payment
          */
-        public let credentials: TDEnum.InputCredentials
+        public var credentials: TDEnum.InputCredentials
 
         /**
          Sends a filled-out payment form to the bot for final verification

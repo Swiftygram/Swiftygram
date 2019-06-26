@@ -1,7 +1,7 @@
 //
-//  KeyboardButton.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Text of the button
          */
-        public let text: String
+        public var text: String
 
         /**
          Type of the button
          */
-        public let type: TDEnum.KeyboardButtonType
+        public var type: TDEnum.KeyboardButtonType
 
         /**
          Represents a single button in a bot keyboard

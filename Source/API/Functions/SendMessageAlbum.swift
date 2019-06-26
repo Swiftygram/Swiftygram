@@ -1,7 +1,7 @@
 //
-//  SendMessageAlbum.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,27 +20,27 @@ public extension TDFunction {
         /**
          Target chat
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of a message to reply to or 0
          */
-        public let replyToMessageId: Int64
+        public var replyToMessageId: Int64
 
         /**
          Pass true to disable notification for the messages. Not supported in secret chats
          */
-        public let disableNotification: Bool
+        public var disableNotification: Bool
 
         /**
          Pass true if the messages are sent from the background
          */
-        public let fromBackground: Bool
+        public var fromBackground: Bool
 
         /**
          Contents of messages to be sent
          */
-        public let inputMessageContents: [TDEnum.InputMessageContent]
+        public var inputMessageContents: [TDEnum.InputMessageContent]
 
         /**
          Sends messages grouped together into an album. Currently only photo and video messages can be grouped into an album. Returns sent messages

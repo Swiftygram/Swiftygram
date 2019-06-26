@@ -1,7 +1,7 @@
 //
-//  InputThumbnail.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Thumbnail file to send. Sending thumbnails by file_id is currently not supported
          */
-        public let thumbnail: TDEnum.InputFile
+        public var thumbnail: TDEnum.InputFile
 
         /**
          Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
          */
-        public let width: Int
+        public var width: Int
 
         /**
          Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
          */
-        public let height: Int
+        public var height: Int
 
         /**
          A thumbnail to be sent along with a file; should be in JPEG or WEBP format for stickers, and less than 200 kB in size

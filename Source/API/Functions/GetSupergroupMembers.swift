@@ -1,7 +1,7 @@
 //
-//  GetSupergroupMembers.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,22 +20,22 @@ public extension TDFunction {
         /**
          Identifier of the supergroup or channel
          */
-        public let supergroupId: Int
+        public var supergroupId: Int
 
         /**
          The type of users to return. By default, supergroupMembersRecent
          */
-        public let filter: TDEnum.SupergroupMembersFilter
+        public var filter: TDEnum.SupergroupMembersFilter
 
         /**
          Number of users to skip
          */
-        public let offset: Int
+        public var offset: Int
 
         /**
          The maximum number of users be returned; up to 200
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Returns information about members or banned users in a supergroup or channel. Can be used only if SupergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters

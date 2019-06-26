@@ -1,7 +1,7 @@
 //
-//  CallProtocol.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          True, if UDP peer-to-peer connections are supported
          */
-        public let udpP2P: Bool
+        public var udpP2P: Bool
 
         /**
          True, if connection through UDP reflectors is supported
          */
-        public let udpReflector: Bool
+        public var udpReflector: Bool
 
         /**
          Minimum supported API layer; use 65
          */
-        public let minLayer: Int
+        public var minLayer: Int
 
         /**
          Maximum supported API layer; use 65
          */
-        public let maxLayer: Int
+        public var maxLayer: Int
 
         /**
          Specifies the supported call protocols

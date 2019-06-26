@@ -1,7 +1,7 @@
 //
-//  UpdateRecentStickers.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated
          */
-        public let isAttached: Bool
+        public var isAttached: Bool
 
         /**
          The new list of file identifiers of recently used stickers
          */
-        public let stickerIds: [Int]
+        public var stickerIds: [Int]
 
         /**
          The list of recently used stickers was updated

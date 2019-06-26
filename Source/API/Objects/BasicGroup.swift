@@ -1,7 +1,7 @@
 //
-//  BasicGroup.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,32 +13,32 @@ public extension TDObject {
         /**
          Group identifier
          */
-        public let id: Int
+        public var id: Int
 
         /**
          Number of members in the group
          */
-        public let memberCount: Int
+        public var memberCount: Int
 
         /**
          Status of the current user in the group
          */
-        public let status: TDEnum.ChatMemberStatus
+        public var status: TDEnum.ChatMemberStatus
 
         /**
          True, if all members have been granted administrator rights in the group
          */
-        public let everyoneIsAdministrator: Bool
+        public var everyoneIsAdministrator: Bool
 
         /**
          True, if the group is active
          */
-        public let isActive: Bool
+        public var isActive: Bool
 
         /**
          Identifier of the supergroup to which this group was upgraded; 0 if none
          */
-        public let upgradedToSupergroupId: Int
+        public var upgradedToSupergroupId: Int
 
         /**
          Represents a basic group of 0-200 users (must be upgraded to a supergroup to accommodate more than 200 users)

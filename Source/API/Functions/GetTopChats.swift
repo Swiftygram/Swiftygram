@@ -1,7 +1,7 @@
 //
-//  GetTopChats.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Category of chats to be returned
          */
-        public let category: TDEnum.TopChatCategory
+        public var category: TDEnum.TopChatCategory
 
         /**
          Maximum number of chats to be returned; up to 30
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Returns a list of frequently used chats. Supported only if the chat info database is enabled

@@ -1,7 +1,7 @@
 //
-//  UpdateNotificationGroup.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,42 +13,42 @@ public extension TDObject {
         /**
          Unique notification group identifier
          */
-        public let notificationGroupId: Int
+        public var notificationGroupId: Int
 
         /**
          New type of the notification group
          */
-        public let type: TDEnum.NotificationGroupType
+        public var type: TDEnum.NotificationGroupType
 
         /**
          Identifier of a chat to which all notifications in the group belong
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Chat identifier, which notification settings must be applied to the added notifications
          */
-        public let notificationSettingsChatId: Int64
+        public var notificationSettingsChatId: Int64
 
         /**
          True, if the notifications should be shown without sound
          */
-        public let isSilent: Bool
+        public var isSilent: Bool
 
         /**
          Total number of unread notifications in the group, can be bigger than number of active notifications
          */
-        public let totalCount: Int
+        public var totalCount: Int
 
         /**
          List of added group notifications, sorted by notification ID
          */
-        public let addedNotifications: [TDObject.Notification]
+        public var addedNotifications: [TDObject.Notification]
 
         /**
          Identifiers of removed group notifications, sorted by notification ID
          */
-        public let removedNotificationIds: [Int]
+        public var removedNotificationIds: [Int]
 
         /**
          A list of active notifications in a notification group has changed

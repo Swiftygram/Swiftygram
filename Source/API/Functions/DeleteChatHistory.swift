@@ -1,7 +1,7 @@
 //
-//  DeleteChatHistory.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Pass true if the chat should be removed from the chat list
          */
-        public let removeFromChatList: Bool
+        public var removeFromChatList: Bool
 
         /**
          Pass true to try to delete chat history for all users
          */
-        public let revoke: Bool
+        public var revoke: Bool
 
         /**
          Deletes all messages in the chat. Use Chat.can_be_deleted_only_for_self and Chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat

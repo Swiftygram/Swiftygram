@@ -1,7 +1,7 @@
 //
-//  GetGameHighScores.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          The chat that contains the message with the game
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the message
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          User identifier
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only

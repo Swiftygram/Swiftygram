@@ -1,7 +1,7 @@
 //
-//  GetChatNotificationSettingsExceptions.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          If specified, only chats from the specified scope will be returned
          */
-        public let scope: TDEnum.NotificationSettingsScope
+        public var scope: TDEnum.NotificationSettingsScope
 
         /**
          If true, also chats with non-default sound will be returned
          */
-        public let compareSound: Bool
+        public var compareSound: Bool
 
         /**
          Returns list of chats with non-default notification settings

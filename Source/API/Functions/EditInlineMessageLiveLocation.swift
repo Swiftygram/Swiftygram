@@ -1,7 +1,7 @@
 //
-//  EditInlineMessageLiveLocation.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Inline message identifier
          */
-        public let inlineMessageId: String
+        public var inlineMessageId: String
 
         /**
          The new message reply markup
          */
-        public let replyMarkup: TDEnum.ReplyMarkup
+        public var replyMarkup: TDEnum.ReplyMarkup
 
         /**
          New location content of the message; may be null. Pass null to stop sharing the live location
          */
-        public let location: TDObject.Location
+        public var location: TDObject.Location
 
         /**
          Edits the content of a live location in an inline message sent via a bot; for bots only

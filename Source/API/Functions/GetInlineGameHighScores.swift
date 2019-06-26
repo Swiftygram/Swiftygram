@@ -1,7 +1,7 @@
 //
-//  GetInlineGameHighScores.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Inline message identifier
          */
-        public let inlineMessageId: String
+        public var inlineMessageId: String
 
         /**
          User identifier
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          Returns game high scores and some part of the high score table in the range of the specified user; for bots only

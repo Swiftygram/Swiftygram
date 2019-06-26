@@ -1,7 +1,7 @@
 //
-//  GetScopeNotificationSettings.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Types of chats for which to return the notification settings information
          */
-        public let scope: TDEnum.NotificationSettingsScope
+        public var scope: TDEnum.NotificationSettingsScope
 
         /**
          Returns the notification settings for chats of a given type

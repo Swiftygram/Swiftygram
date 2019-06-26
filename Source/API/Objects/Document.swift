@@ -1,7 +1,7 @@
 //
-//  Document.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          Original name of the file; as defined by the sender
          */
-        public let fileName: String
+        public var fileName: String
 
         /**
          MIME type of the file; as defined by the sender
          */
-        public let mimeType: String
+        public var mimeType: String
 
         /**
          Document thumbnail; as defined by the sender; may be null
          */
-        public let thumbnail: TDObject.PhotoSize
+        public var thumbnail: TDObject.PhotoSize?
 
         /**
          File containing the document
          */
-        public let document: TDObject.File
+        public var document: TDObject.File
 
         /**
          Describes a document of any type
@@ -38,7 +38,7 @@ public extension TDObject {
          - Parameter thumbnail: Document thumbnail; as defined by the sender; may be null
          - Parameter document: File containing the document
          */
-        public init(fileName: String, mimeType: String, thumbnail: TDObject.PhotoSize, document: TDObject.File) {
+        public init(fileName: String, mimeType: String, thumbnail: TDObject.PhotoSize?, document: TDObject.File) {
             self.fileName = fileName
             self.mimeType = mimeType
             self.thumbnail = thumbnail

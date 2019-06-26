@@ -1,7 +1,7 @@
 //
-//  Chat.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,112 +13,112 @@ public extension TDObject {
         /**
          Chat unique identifier
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          Type of the chat
          */
-        public let type: TDEnum.ChatType
+        public var type: TDEnum.ChatType
 
         /**
          Chat title
          */
-        public let title: String
+        public var title: String
 
         /**
          Chat photo; may be null
          */
-        public let photo: TDObject.ChatPhoto
+        public var photo: TDObject.ChatPhoto?
 
         /**
          Last message in the chat; may be null
          */
-        public let lastMessage: TDObject.Message
+        public var lastMessage: TDObject.Message?
 
         /**
          Descending parameter by which chats are sorted in the main chat list. If the order number of two chats is the same, they must be sorted in descending order by ID. If 0, the position of the chat in the list is undetermined
          */
-        public let order: Int64
+        public var order: Int64
 
         /**
          True, if the chat is pinned
          */
-        public let isPinned: Bool
+        public var isPinned: Bool
 
         /**
          True, if the chat is marked as unread
          */
-        public let isMarkedAsUnread: Bool
+        public var isMarkedAsUnread: Bool
 
         /**
          True, if the chat is sponsored by the user's MTProxy server
          */
-        public let isSponsored: Bool
+        public var isSponsored: Bool
 
         /**
          True, if the chat messages can be deleted only for the current user while other users will continue to see the messages
          */
-        public let canBeDeletedOnlyForSelf: Bool
+        public var canBeDeletedOnlyForSelf: Bool
 
         /**
          True, if the chat messages can be deleted for all users
          */
-        public let canBeDeletedForAllUsers: Bool
+        public var canBeDeletedForAllUsers: Bool
 
         /**
          True, if the chat can be reported to Telegram moderators through reportChat
          */
-        public let canBeReported: Bool
+        public var canBeReported: Bool
 
         /**
          Default value of the disable_notification parameter, used when a message is sent to the chat
          */
-        public let defaultDisableNotification: Bool
+        public var defaultDisableNotification: Bool
 
         /**
          Number of unread messages in the chat
          */
-        public let unreadCount: Int
+        public var unreadCount: Int
 
         /**
          Identifier of the last read incoming message
          */
-        public let lastReadInboxMessageId: Int64
+        public var lastReadInboxMessageId: Int64
 
         /**
          Identifier of the last read outgoing message
          */
-        public let lastReadOutboxMessageId: Int64
+        public var lastReadOutboxMessageId: Int64
 
         /**
          Number of unread messages with a mention/reply in the chat
          */
-        public let unreadMentionCount: Int
+        public var unreadMentionCount: Int
 
         /**
          Notification settings for this chat
          */
-        public let notificationSettings: TDObject.ChatNotificationSettings
+        public var notificationSettings: TDObject.ChatNotificationSettings
 
         /**
          Identifier of the pinned message in the chat; 0 if none
          */
-        public let pinnedMessageId: Int64
+        public var pinnedMessageId: Int64
 
         /**
          Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
          */
-        public let replyMarkupMessageId: Int64
+        public var replyMarkupMessageId: Int64
 
         /**
          A draft of a message in the chat; may be null
          */
-        public let draftMessage: TDObject.DraftMessage
+        public var draftMessage: TDObject.DraftMessage?
 
         /**
          Contains client-specific data associated with the chat. (For example, the chat position or local chat notification settings can be stored here.) Persistent if a message database is used
          */
-        public let clientData: String
+        public var clientData: String
 
         /**
          A chat. (Can be a private chat, basic group, supergroup, or secret chat)
@@ -146,7 +146,7 @@ public extension TDObject {
          - Parameter draftMessage: A draft of a message in the chat; may be null
          - Parameter clientData: Contains client-specific data associated with the chat. (For example, the chat position or local chat notification settings can be stored here.) Persistent if a message database is used
          */
-        public init(id: Int64, type: TDEnum.ChatType, title: String, photo: TDObject.ChatPhoto, lastMessage: TDObject.Message, order: Int64, isPinned: Bool, isMarkedAsUnread: Bool, isSponsored: Bool, canBeDeletedOnlyForSelf: Bool, canBeDeletedForAllUsers: Bool, canBeReported: Bool, defaultDisableNotification: Bool, unreadCount: Int, lastReadInboxMessageId: Int64, lastReadOutboxMessageId: Int64, unreadMentionCount: Int, notificationSettings: TDObject.ChatNotificationSettings, pinnedMessageId: Int64, replyMarkupMessageId: Int64, draftMessage: TDObject.DraftMessage, clientData: String) {
+        public init(id: Int64, type: TDEnum.ChatType, title: String, photo: TDObject.ChatPhoto?, lastMessage: TDObject.Message?, order: Int64, isPinned: Bool, isMarkedAsUnread: Bool, isSponsored: Bool, canBeDeletedOnlyForSelf: Bool, canBeDeletedForAllUsers: Bool, canBeReported: Bool, defaultDisableNotification: Bool, unreadCount: Int, lastReadInboxMessageId: Int64, lastReadOutboxMessageId: Int64, unreadMentionCount: Int, notificationSettings: TDObject.ChatNotificationSettings, pinnedMessageId: Int64, replyMarkupMessageId: Int64, draftMessage: TDObject.DraftMessage?, clientData: String) {
             self.id = id
             self.type = type
             self.title = title
@@ -179,8 +179,8 @@ public extension TDObject {
             id = try container.decodeInt64(forKey: .init(string: "id"))
             type = try container.decode(TDEnum.ChatType.self, forKey: .init(string: "type"))
             title = try container.decode(String.self, forKey: .init(string: "title"))
-            photo = try container.decode(TDObject.ChatPhoto.self, forKey: .init(string: "photo"))
-            lastMessage = try container.decode(TDObject.Message.self, forKey: .init(string: "lastMessage"))
+            photo = try container.decodeIfPresent(TDObject.ChatPhoto.self, forKey: .init(string: "photo"))
+            lastMessage = try container.decodeIfPresent(TDObject.Message.self, forKey: .init(string: "lastMessage"))
             order = try container.decodeInt64(forKey: .init(string: "order"))
             isPinned = try container.decode(Bool.self, forKey: .init(string: "isPinned"))
             isMarkedAsUnread = try container.decode(Bool.self, forKey: .init(string: "isMarkedAsUnread"))
@@ -196,7 +196,7 @@ public extension TDObject {
             notificationSettings = try container.decode(TDObject.ChatNotificationSettings.self, forKey: .init(string: "notificationSettings"))
             pinnedMessageId = try container.decodeInt64(forKey: .init(string: "pinnedMessageId"))
             replyMarkupMessageId = try container.decodeInt64(forKey: .init(string: "replyMarkupMessageId"))
-            draftMessage = try container.decode(TDObject.DraftMessage.self, forKey: .init(string: "draftMessage"))
+            draftMessage = try container.decodeIfPresent(TDObject.DraftMessage.self, forKey: .init(string: "draftMessage"))
             clientData = try container.decode(String.self, forKey: .init(string: "clientData"))
         }
 
@@ -208,8 +208,8 @@ public extension TDObject {
             try container.encodeInt64(id, forKey: .init(string: "id"))
             try container.encode(type, forKey: .init(string: "type"))
             try container.encode(title, forKey: .init(string: "title"))
-            try container.encode(photo, forKey: .init(string: "photo"))
-            try container.encode(lastMessage, forKey: .init(string: "lastMessage"))
+            try container.encodeIfPresent(photo, forKey: .init(string: "photo"))
+            try container.encodeIfPresent(lastMessage, forKey: .init(string: "lastMessage"))
             try container.encodeInt64(order, forKey: .init(string: "order"))
             try container.encode(isPinned, forKey: .init(string: "isPinned"))
             try container.encode(isMarkedAsUnread, forKey: .init(string: "isMarkedAsUnread"))
@@ -225,7 +225,7 @@ public extension TDObject {
             try container.encode(notificationSettings, forKey: .init(string: "notificationSettings"))
             try container.encodeInt64(pinnedMessageId, forKey: .init(string: "pinnedMessageId"))
             try container.encodeInt64(replyMarkupMessageId, forKey: .init(string: "replyMarkupMessageId"))
-            try container.encode(draftMessage, forKey: .init(string: "draftMessage"))
+            try container.encodeIfPresent(draftMessage, forKey: .init(string: "draftMessage"))
             try container.encode(clientData, forKey: .init(string: "clientData"))
         }
     }

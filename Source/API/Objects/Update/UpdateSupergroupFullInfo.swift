@@ -1,7 +1,7 @@
 //
-//  UpdateSupergroupFullInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Identifier of the supergroup or channel
          */
-        public let supergroupId: Int
+        public var supergroupId: Int
 
         /**
          New full information about the supergroup
          */
-        public let supergroupFullInfo: TDObject.SupergroupFullInfo
+        public var supergroupFullInfo: TDObject.SupergroupFullInfo
 
         /**
          Some data from supergroupFullInfo has been changed

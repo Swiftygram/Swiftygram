@@ -1,7 +1,7 @@
 //
-//  ChatMember.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          User identifier of the chat member
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
          */
-        public let inviterUserId: Int
+        public var inviterUserId: Int
 
         /**
          Point in time (Unix timestamp) when the user joined a chat
          */
-        public let joinedChatDate: Foundation.Date
+        public var joinedChatDate: Foundation.Date
 
         /**
          Status of the member in the chat
          */
-        public let status: TDEnum.ChatMemberStatus
+        public var status: TDEnum.ChatMemberStatus
 
         /**
          If the user is a bot, information about the bot; may be null. Can be null even for a bot if the bot is not a chat member
          */
-        public let botInfo: TDObject.BotInfo
+        public var botInfo: TDObject.BotInfo
 
         /**
          A user with information about joining/leaving a chat

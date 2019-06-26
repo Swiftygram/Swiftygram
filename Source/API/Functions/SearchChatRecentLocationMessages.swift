@@ -1,7 +1,7 @@
 //
-//  SearchChatRecentLocationMessages.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Maximum number of messages to be returned
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user

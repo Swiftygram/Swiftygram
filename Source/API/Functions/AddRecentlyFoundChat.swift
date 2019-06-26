@@ -1,7 +1,7 @@
 //
-//  AddRecentlyFoundChat.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Identifier of the chat to add
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first

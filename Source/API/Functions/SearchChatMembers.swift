@@ -1,7 +1,7 @@
 //
-//  SearchChatMembers.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,22 +20,22 @@ public extension TDFunction {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Query to search for
          */
-        public let query: String
+        public var query: String
 
         /**
          The maximum number of users to be returned
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          The type of users to return. By default, chatMembersFilterMembers
          */
-        public let filter: TDEnum.ChatMembersFilter
+        public var filter: TDEnum.ChatMembersFilter
 
         /**
          Searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels

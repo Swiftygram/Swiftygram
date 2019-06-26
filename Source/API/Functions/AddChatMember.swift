@@ -1,7 +1,7 @@
 //
-//  AddChatMember.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the user
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
          */
-        public let forwardLimit: Int
+        public var forwardLimit: Int
 
         /**
          Adds a new member to a chat. Members can't be added to private or secret chats. Members will not be added until the chat state has been synchronized with the server

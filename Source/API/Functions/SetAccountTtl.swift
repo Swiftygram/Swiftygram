@@ -1,7 +1,7 @@
 //
-//  SetAccountTtl.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          New account TTL
          */
-        public let ttl: TDObject.AccountTtl
+        public var ttl: TDObject.AccountTtl
 
         /**
          Changes the period of inactivity after which the account of the current user will automatically be deleted

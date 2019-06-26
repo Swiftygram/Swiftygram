@@ -1,7 +1,7 @@
 //
-//  EditCustomLanguagePackInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          New information about the custom local language pack
          */
-        public let info: TDObject.LanguagePackInfo
+        public var info: TDObject.LanguagePackInfo
 
         /**
          Edits information about a custom local language pack in the current localization target. Can be called before authorization

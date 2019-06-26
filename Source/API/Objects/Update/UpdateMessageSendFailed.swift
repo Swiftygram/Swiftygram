@@ -1,7 +1,7 @@
 //
-//  UpdateMessageSendFailed.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          Contains information about the message that failed to send
          */
-        public let message: TDObject.Message
+        public var message: TDObject.Message
 
         /**
          The previous temporary message identifier
          */
-        public let oldMessageId: Int64
+        public var oldMessageId: Int64
 
         /**
          An error code
          */
-        public let errorCode: Int
+        public var errorCode: Int
 
         /**
          Error message
          */
-        public let errorMessage: String
+        public var errorMessage: String
 
         /**
          A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update

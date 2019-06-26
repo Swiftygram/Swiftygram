@@ -1,7 +1,7 @@
 //
-//  PushReceiverId.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ public extension TDObject {
         /**
          The globally unique identifier of push notification subscription
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          Contains a globally unique push receiver identifier, which can be used to identify which account has received a push notification

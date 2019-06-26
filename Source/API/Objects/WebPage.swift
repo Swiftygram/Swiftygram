@@ -1,7 +1,7 @@
 //
-//  WebPage.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,107 +13,107 @@ public extension TDObject {
         /**
          Original URL of the link
          */
-        public let url: URL
+        public var url: URL
 
         /**
          URL to display
          */
-        public let displayUrl: URL
+        public var displayUrl: URL
 
         /**
          Type of the web page. Can be: article, photo, audio, video, document, profile, app, or something else
          */
-        public let type: String
+        public var type: String
 
         /**
          Short name of the site (e.g., Google Docs, App Store)
          */
-        public let siteName: String
+        public var siteName: String
 
         /**
          Title of the content
          */
-        public let title: String
+        public var title: String
 
         /**
          Description of the content
          */
-        public let description: String
+        public var description: String
 
         /**
          Image representing the content; may be null
          */
-        public let photo: TDObject.Photo
+        public var photo: TDObject.Photo?
 
         /**
          URL to show in the embedded preview
          */
-        public let embedUrl: URL
+        public var embedUrl: URL
 
         /**
          MIME type of the embedded preview, (e.g., text/html or video/mp4)
          */
-        public let embedType: String
+        public var embedType: String
 
         /**
          Width of the embedded preview
          */
-        public let embedWidth: Int
+        public var embedWidth: Int
 
         /**
          Height of the embedded preview
          */
-        public let embedHeight: Int
+        public var embedHeight: Int
 
         /**
          Duration of the content, in seconds
          */
-        public let duration: Int
+        public var duration: Int
 
         /**
          Author of the content
          */
-        public let author: String
+        public var author: String
 
         /**
          Preview of the content as an animation, if available; may be null
          */
-        public let animation: TDObject.Animation?
+        public var animation: TDObject.Animation?
 
         /**
          Preview of the content as an audio file, if available; may be null
          */
-        public let audio: TDObject.Audio?
+        public var audio: TDObject.Audio?
 
         /**
          Preview of the content as a document, if available (currently only available for small PDF files and ZIP archives); may be null
          */
-        public let document: TDObject.Document?
+        public var document: TDObject.Document?
 
         /**
          Preview of the content as a sticker for small WEBP files, if available; may be null
          */
-        public let sticker: TDObject.Sticker?
+        public var sticker: TDObject.Sticker?
 
         /**
          Preview of the content as a video, if available; may be null
          */
-        public let video: TDObject.Video?
+        public var video: TDObject.Video?
 
         /**
          Preview of the content as a video note, if available; may be null
          */
-        public let videoNote: TDObject.VideoNote?
+        public var videoNote: TDObject.VideoNote?
 
         /**
          Preview of the content as a voice note, if available; may be null
          */
-        public let voiceNote: TDObject.VoiceNote?
+        public var voiceNote: TDObject.VoiceNote?
 
         /**
          Version of instant view, available for the web page (currently can be 1 or 2), 0 if none
          */
-        public let instantViewVersion: Int
+        public var instantViewVersion: Int
 
         /**
          Describes a web page preview
@@ -140,7 +140,7 @@ public extension TDObject {
          - Parameter voiceNote: Preview of the content as a voice note, if available; may be null
          - Parameter instantViewVersion: Version of instant view, available for the web page (currently can be 1 or 2), 0 if none
          */
-        public init(url: URL, displayUrl: URL, type: String, siteName: String, title: String, description: String, photo: TDObject.Photo, embedUrl: URL, embedType: String, embedWidth: Int, embedHeight: Int, duration: Int, author: String, animation: TDObject.Animation?, audio: TDObject.Audio?, document: TDObject.Document?, sticker: TDObject.Sticker?, video: TDObject.Video?, videoNote: TDObject.VideoNote?, voiceNote: TDObject.VoiceNote?, instantViewVersion: Int) {
+        public init(url: URL, displayUrl: URL, type: String, siteName: String, title: String, description: String, photo: TDObject.Photo?, embedUrl: URL, embedType: String, embedWidth: Int, embedHeight: Int, duration: Int, author: String, animation: TDObject.Animation?, audio: TDObject.Audio?, document: TDObject.Document?, sticker: TDObject.Sticker?, video: TDObject.Video?, videoNote: TDObject.VideoNote?, voiceNote: TDObject.VoiceNote?, instantViewVersion: Int) {
             self.url = url
             self.displayUrl = displayUrl
             self.type = type

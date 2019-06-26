@@ -1,7 +1,7 @@
 //
-//  UpdateMessageSendAcknowledged.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          The chat identifier of the sent message
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          A temporary message identifier
          */
-        public let messageId: Int64
+        public var messageId: Int64
 
         /**
          A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message

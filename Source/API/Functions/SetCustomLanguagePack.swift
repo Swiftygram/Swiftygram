@@ -1,7 +1,7 @@
 //
-//  SetCustomLanguagePack.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
          */
-        public let info: TDObject.LanguagePackInfo
+        public var info: TDObject.LanguagePackInfo
 
         /**
          Strings of the new language pack
          */
-        public let strings: [TDObject.LanguagePackString]
+        public var strings: [TDObject.LanguagePackString]
 
         /**
          Adds or changes a custom local language pack to the current localization target

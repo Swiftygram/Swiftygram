@@ -1,7 +1,7 @@
 //
-//  FormattedText.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          The text
          */
-        public let text: String
+        public var text: String
 
         /**
          Entities contained in the text
          */
-        public let entities: [TDObject.TextEntity]
+        public var entities: [TDObject.TextEntity]
 
         /**
          A text with some entities

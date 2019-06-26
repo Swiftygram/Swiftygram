@@ -1,7 +1,7 @@
 //
-//  EditInlineMessageCaption.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Inline message identifier
          */
-        public let inlineMessageId: String
+        public var inlineMessageId: String
 
         /**
          The new message reply markup
          */
-        public let replyMarkup: TDEnum.ReplyMarkup
+        public var replyMarkup: TDEnum.ReplyMarkup
 
         /**
          New message content caption; 0-GetOption("message_caption_length_max") characters
          */
-        public let caption: TDObject.FormattedText
+        public var caption: TDObject.FormattedText
 
         /**
          Edits the caption of an inline message sent via a bot; for bots only

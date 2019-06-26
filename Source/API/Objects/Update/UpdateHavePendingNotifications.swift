@@ -1,7 +1,7 @@
 //
-//  UpdateHavePendingNotifications.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          True, if there are some delayed notification updates, which will be sent soon
          */
-        public let haveDelayedNotifications: Bool
+        public var haveDelayedNotifications: Bool
 
         /**
          True, if there can be some yet unreceived notifications, which are being fetched from the server
          */
-        public let haveUnreceivedNotifications: Bool
+        public var haveUnreceivedNotifications: Bool
 
         /**
          Describes, whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications

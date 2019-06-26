@@ -1,7 +1,7 @@
 //
-//  PassportElementError.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Type of the Telegram Passport element which has the error
          */
-        public let type: TDEnum.PassportElementType
+        public var type: TDEnum.PassportElementType
 
         /**
          Error message
          */
-        public let message: String
+        public var message: String
 
         /**
          Error source
          */
-        public let source: TDEnum.PassportElementErrorSource
+        public var source: TDEnum.PassportElementErrorSource
 
         /**
          Contains the description of an error in a Telegram Passport element

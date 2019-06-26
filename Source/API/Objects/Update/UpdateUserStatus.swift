@@ -1,7 +1,7 @@
 //
-//  UpdateUserStatus.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          User identifier
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          New status of the user
          */
-        public let status: TDEnum.UserStatus
+        public var status: TDEnum.UserStatus
 
         /**
          The user went online or offline

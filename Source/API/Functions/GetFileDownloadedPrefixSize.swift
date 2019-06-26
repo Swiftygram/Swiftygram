@@ -1,7 +1,7 @@
 //
-//  GetFileDownloadedPrefixSize.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Identifier of the file
          */
-        public let fileId: Int
+        public var fileId: Int
 
         /**
          Offset from which downloaded prefix size should be calculated
          */
-        public let offset: Int
+        public var offset: Int
 
         /**
          Returns file downloaded prefix size from a given offset

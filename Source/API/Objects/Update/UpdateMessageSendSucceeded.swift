@@ -1,7 +1,7 @@
 //
-//  UpdateMessageSendSucceeded.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Information about the sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
          */
-        public let message: TDObject.Message
+        public var message: TDObject.Message
 
         /**
          The previous temporary message identifier
          */
-        public let oldMessageId: Int64
+        public var oldMessageId: Int64
 
         /**
          A message has been successfully sent

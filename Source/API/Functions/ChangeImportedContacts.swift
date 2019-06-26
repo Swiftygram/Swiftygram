@@ -1,7 +1,7 @@
 //
-//  ChangeImportedContacts.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          The new list of contacts, contact's vCard are ignored and are not imported
          */
-        public let contacts: [TDObject.Contact]
+        public var contacts: [TDObject.Contact]
 
         /**
          Changes imported contacts using the list of current user contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts.-Query result depends on the result of the previous query, so only one query is possible at the same time

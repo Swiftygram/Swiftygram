@@ -1,7 +1,7 @@
 //
-//  ChatInviteLinkInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,37 +13,37 @@ public extension TDObject {
         /**
          Chat identifier of the invite link; 0 if the user is not a member of this chat
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Contains information about the type of the chat
          */
-        public let type: TDEnum.ChatType
+        public var type: TDEnum.ChatType
 
         /**
          Title of the chat
          */
-        public let title: String
+        public var title: String
 
         /**
          Chat photo; may be null
          */
-        public let photo: TDObject.ChatPhoto
+        public var photo: TDObject.ChatPhoto?
 
         /**
          Number of members
          */
-        public let memberCount: Int
+        public var memberCount: Int
 
         /**
          User identifiers of some chat members that may be known to the current user
          */
-        public let memberUserIds: [Int]
+        public var memberUserIds: [Int]
 
         /**
          True, if the chat is a public supergroup or channel with a username
          */
-        public let isPublic: Bool
+        public var isPublic: Bool
 
         /**
          Contains information about a chat invite link
@@ -56,7 +56,7 @@ public extension TDObject {
          - Parameter memberUserIds: User identifiers of some chat members that may be known to the current user
          - Parameter isPublic: True, if the chat is a public supergroup or channel with a username
          */
-        public init(chatId: Int64, type: TDEnum.ChatType, title: String, photo: TDObject.ChatPhoto, memberCount: Int, memberUserIds: [Int], isPublic: Bool) {
+        public init(chatId: Int64, type: TDEnum.ChatType, title: String, photo: TDObject.ChatPhoto?, memberCount: Int, memberUserIds: [Int], isPublic: Bool) {
             self.chatId = chatId
             self.type = type
             self.title = title
@@ -74,7 +74,7 @@ public extension TDObject {
             chatId = try container.decodeInt64(forKey: .init(string: "chatId"))
             type = try container.decode(TDEnum.ChatType.self, forKey: .init(string: "type"))
             title = try container.decode(String.self, forKey: .init(string: "title"))
-            photo = try container.decode(TDObject.ChatPhoto.self, forKey: .init(string: "photo"))
+            photo = try container.decodeIfPresent(TDObject.ChatPhoto.self, forKey: .init(string: "photo"))
             memberCount = try container.decode(Int.self, forKey: .init(string: "memberCount"))
             memberUserIds = try container.decode([Int].self, forKey: .init(string: "memberUserIds"))
             isPublic = try container.decode(Bool.self, forKey: .init(string: "isPublic"))
@@ -88,7 +88,7 @@ public extension TDObject {
             try container.encodeInt64(chatId, forKey: .init(string: "chatId"))
             try container.encode(type, forKey: .init(string: "type"))
             try container.encode(title, forKey: .init(string: "title"))
-            try container.encode(photo, forKey: .init(string: "photo"))
+            try container.encodeIfPresent(photo, forKey: .init(string: "photo"))
             try container.encode(memberCount, forKey: .init(string: "memberCount"))
             try container.encode(memberUserIds, forKey: .init(string: "memberUserIds"))
             try container.encode(isPublic, forKey: .init(string: "isPublic"))

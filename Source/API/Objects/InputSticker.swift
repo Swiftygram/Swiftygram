@@ -1,7 +1,7 @@
 //
-//  InputSticker.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          PNG image with the sticker; must be up to 512 kB in size and fit in a 512x512 square
          */
-        public let pngSticker: TDEnum.InputFile
+        public var pngSticker: TDEnum.InputFile
 
         /**
          Emoji corresponding to the sticker
          */
-        public let emojis: String
+        public var emojis: String
 
         /**
          For masks, position where the mask should be placed; may be null
          */
-        public let maskPosition: TDObject.MaskPosition
+        public var maskPosition: TDObject.MaskPosition?
 
         /**
          Describes a sticker that should be added to a sticker set
@@ -32,7 +32,7 @@ public extension TDObject {
          - Parameter emojis: Emoji corresponding to the sticker
          - Parameter maskPosition: For masks, position where the mask should be placed; may be null
          */
-        public init(pngSticker: TDEnum.InputFile, emojis: String, maskPosition: TDObject.MaskPosition) {
+        public init(pngSticker: TDEnum.InputFile, emojis: String, maskPosition: TDObject.MaskPosition?) {
             self.pngSticker = pngSticker
             self.emojis = emojis
             self.maskPosition = maskPosition

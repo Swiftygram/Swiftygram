@@ -1,7 +1,7 @@
 //
-//  MessageContent.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -16,7 +16,7 @@ public extension TDEnum {
          - text: Text of the message
          - webPage: A preview of the web page that's mentioned in the text; may be null
          */
-        case text(text: TDObject.FormattedText, webPage: TDObject.WebPage)
+        case text(text: TDObject.FormattedText, webPage: TDObject.WebPage?)
 
         /**
          An animation message (GIF-style).
@@ -146,7 +146,7 @@ public extension TDEnum {
          - needShippingAddress: True, if the shipping address should be specified
          - receiptMessageId: The identifier of the message with the receipt, after the product has been purchased
          */
-        case invoice(title: String, description: String, photo: TDObject.Photo, currency: String, totalAmount: Int64, startParameter: String, isTest: Bool, needShippingAddress: Bool, receiptMessageId: Int64)
+        case invoice(title: String, description: String, photo: TDObject.Photo?, currency: String, totalAmount: Int64, startParameter: String, isTest: Bool, needShippingAddress: Bool, receiptMessageId: Int64)
 
         /**
          A message with information about an ended call
@@ -280,7 +280,7 @@ public extension TDEnum {
          - telegramPaymentChargeId: Telegram payment identifier
          - providerPaymentChargeId: Provider payment identifier
          */
-        case paymentSuccessfulBot(invoiceMessageId: Int64, currency: String, totalAmount: Int64, invoicePayload: String, shippingOptionId: String, orderInfo: TDObject.OrderInfo, telegramPaymentChargeId: String, providerPaymentChargeId: String)
+        case paymentSuccessfulBot(invoiceMessageId: Int64, currency: String, totalAmount: Int64, invoicePayload: String, shippingOptionId: String, orderInfo: TDObject.OrderInfo?, telegramPaymentChargeId: String, providerPaymentChargeId: String)
 
         /**
          A contact has registered with Telegram
@@ -323,7 +323,7 @@ public extension TDEnum {
             switch type {
             case "messageText":
                 let text = try container.decode(TDObject.FormattedText.self, forKey: .init(string: "text"))
-                let webPage = try container.decode(TDObject.WebPage.self, forKey: .init(string: "webPage"))
+                let webPage = try container.decodeIfPresent(TDObject.WebPage.self, forKey: .init(string: "webPage"))
 
                 self = .text(text: text, webPage: webPage)
 
@@ -415,7 +415,7 @@ public extension TDEnum {
             case "messageInvoice":
                 let title = try container.decode(String.self, forKey: .init(string: "title"))
                 let description = try container.decode(String.self, forKey: .init(string: "description"))
-                let photo = try container.decode(TDObject.Photo.self, forKey: .init(string: "photo"))
+                let photo = try container.decodeIfPresent(TDObject.Photo.self, forKey: .init(string: "photo"))
                 let currency = try container.decode(String.self, forKey: .init(string: "currency"))
                 let totalAmount = try container.decodeInt64(forKey: .init(string: "totalAmount"))
                 let startParameter = try container.decode(String.self, forKey: .init(string: "startParameter"))
@@ -517,7 +517,7 @@ public extension TDEnum {
                 let totalAmount = try container.decodeInt64(forKey: .init(string: "totalAmount"))
                 let invoicePayload = try container.decode(String.self, forKey: .init(string: "invoicePayload"))
                 let shippingOptionId = try container.decode(String.self, forKey: .init(string: "shippingOptionId"))
-                let orderInfo = try container.decode(TDObject.OrderInfo.self, forKey: .init(string: "orderInfo"))
+                let orderInfo = try container.decodeIfPresent(TDObject.OrderInfo.self, forKey: .init(string: "orderInfo"))
                 let telegramPaymentChargeId = try container.decode(String.self, forKey: .init(string: "telegramPaymentChargeId"))
                 let providerPaymentChargeId = try container.decode(String.self, forKey: .init(string: "providerPaymentChargeId"))
 
@@ -560,7 +560,7 @@ public extension TDEnum {
                 try container.encode("messageText", forKey: .type)
 
                 try container.encode(text, forKey: .init(string: "text"))
-                try container.encode(webPage, forKey: .init(string: "webPage"))
+                try container.encodeIfPresent(webPage, forKey: .init(string: "webPage"))
 
             case let .animation(animation, caption, isSecret):
                 try container.encode("messageAnimation", forKey: .type)
@@ -652,7 +652,7 @@ public extension TDEnum {
 
                 try container.encode(title, forKey: .init(string: "title"))
                 try container.encode(description, forKey: .init(string: "description"))
-                try container.encode(photo, forKey: .init(string: "photo"))
+                try container.encodeIfPresent(photo, forKey: .init(string: "photo"))
                 try container.encode(currency, forKey: .init(string: "currency"))
                 try container.encodeInt64(totalAmount, forKey: .init(string: "totalAmount"))
                 try container.encode(startParameter, forKey: .init(string: "startParameter"))
@@ -754,7 +754,7 @@ public extension TDEnum {
                 try container.encodeInt64(totalAmount, forKey: .init(string: "totalAmount"))
                 try container.encode(invoicePayload, forKey: .init(string: "invoicePayload"))
                 try container.encode(shippingOptionId, forKey: .init(string: "shippingOptionId"))
-                try container.encode(orderInfo, forKey: .init(string: "orderInfo"))
+                try container.encodeIfPresent(orderInfo, forKey: .init(string: "orderInfo"))
                 try container.encode(telegramPaymentChargeId, forKey: .init(string: "telegramPaymentChargeId"))
                 try container.encode(providerPaymentChargeId, forKey: .init(string: "providerPaymentChargeId"))
 

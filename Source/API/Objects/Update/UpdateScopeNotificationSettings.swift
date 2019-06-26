@@ -1,7 +1,7 @@
 //
-//  UpdateScopeNotificationSettings.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Types of chats for which notification settings were updated
          */
-        public let scope: TDEnum.NotificationSettingsScope
+        public var scope: TDEnum.NotificationSettingsScope
 
         /**
          The new notification settings
          */
-        public let notificationSettings: TDObject.ScopeNotificationSettings
+        public var notificationSettings: TDObject.ScopeNotificationSettings
 
         /**
          Notification settings for some type of chats were updated

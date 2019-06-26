@@ -1,7 +1,7 @@
 //
-//  GetUserPrivacySettingRules.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          The privacy setting
          */
-        public let setting: TDEnum.UserPrivacySetting
+        public var setting: TDEnum.UserPrivacySetting
 
         /**
          Returns the current privacy settings

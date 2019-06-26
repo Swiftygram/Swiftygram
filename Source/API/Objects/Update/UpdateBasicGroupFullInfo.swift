@@ -1,7 +1,7 @@
 //
-//  UpdateBasicGroupFullInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Identifier of a basic group
          */
-        public let basicGroupId: Int
+        public var basicGroupId: Int
 
         /**
          New full information about the group
          */
-        public let basicGroupFullInfo: TDObject.BasicGroupFullInfo
+        public var basicGroupFullInfo: TDObject.BasicGroupFullInfo
 
         /**
          Some data from basicGroupFullInfo has been changed

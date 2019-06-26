@@ -1,7 +1,7 @@
 //
-//  TextEntity.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Offset of the entity in UTF-16 code points
          */
-        public let offset: Int
+        public var offset: Int
 
         /**
          Length of the entity, in UTF-16 code points
          */
-        public let length: Int
+        public var length: Int
 
         /**
          Type of the entity
          */
-        public let type: TDEnum.TextEntityType
+        public var type: TDEnum.TextEntityType
 
         /**
          Represents a part of the text that needs to be formatted in some unusual way

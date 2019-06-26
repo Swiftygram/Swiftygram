@@ -1,7 +1,7 @@
 //
-//  CreateNewSupergroupChat.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Title of the new chat; 1-128 characters
          */
-        public let title: String
+        public var title: String
 
         /**
          True, if a channel chat should be created
          */
-        public let isChannel: Bool
+        public var isChannel: Bool
 
         /**
          Chat description; 0-255 characters
          */
-        public let description: String
+        public var description: String
 
         /**
          Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat

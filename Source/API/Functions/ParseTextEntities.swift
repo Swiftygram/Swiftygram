@@ -1,7 +1,7 @@
 //
-//  ParseTextEntities.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          The text which should be parsed
          */
-        public let text: String
+        public var text: String
 
         /**
          Text parse mode
          */
-        public let parseMode: TDEnum.TextParseMode
+        public var parseMode: TDEnum.TextParseMode
 
         /**
          Parses Bold, Italic, Code, Pre, PreCode and TextUrl entities contained in the text. This is an offline method. Can be called before authorization. Can be called synchronously

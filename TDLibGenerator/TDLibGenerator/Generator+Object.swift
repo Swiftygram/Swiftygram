@@ -38,7 +38,7 @@ extension Generator {
             // property
             properties.append([
                 property.documentation.multilineComment,
-                "public let \(property.name.swiftEscapedIfNeeded): \(outputType.name)\(property.optionalSuffix)"
+                "public var \(property.name.swiftEscapedIfNeeded): \(outputType.name)\(property.optionalSuffix)"
                 ].joined(separator: "\n")
             )
             

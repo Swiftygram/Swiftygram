@@ -1,7 +1,7 @@
 //
-//  CallbackQueryAnswer.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,17 +13,17 @@ public extension TDObject {
         /**
          Text of the answer
          */
-        public let text: String
+        public var text: String
 
         /**
          True, if an alert should be shown to the user instead of a toast notification
          */
-        public let showAlert: Bool
+        public var showAlert: Bool
 
         /**
          URL to be opened
          */
-        public let url: URL
+        public var url: URL
 
         /**
          Contains a bot's answer to a callback query

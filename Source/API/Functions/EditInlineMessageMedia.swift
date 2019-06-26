@@ -1,7 +1,7 @@
 //
-//  EditInlineMessageMedia.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Inline message identifier
          */
-        public let inlineMessageId: String
+        public var inlineMessageId: String
 
         /**
          The new message reply markup; for bots only
          */
-        public let replyMarkup: TDEnum.ReplyMarkup
+        public var replyMarkup: TDEnum.ReplyMarkup
 
         /**
          New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
          */
-        public let inputMessageContent: TDEnum.InputMessageContent
+        public var inputMessageContent: TDEnum.InputMessageContent
 
         /**
          Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only

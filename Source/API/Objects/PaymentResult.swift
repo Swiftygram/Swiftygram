@@ -1,7 +1,7 @@
 //
-//  PaymentResult.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          True, if the payment request was successful; otherwise the verification_url will be not empty
          */
-        public let success: Bool
+        public var success: Bool
 
         /**
          URL for additional payment credentials verification
          */
-        public let verificationUrl: URL
+        public var verificationUrl: URL
 
         /**
          Contains the result of a payment request

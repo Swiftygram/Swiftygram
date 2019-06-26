@@ -1,7 +1,7 @@
 //
-//  PageBlockTableCell.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,32 +13,32 @@ public extension TDObject {
         /**
          Cell text
          */
-        public let text: TDEnum.RichText
+        public var text: TDEnum.RichText
 
         /**
          True, if it is a header cell
          */
-        public let isHeader: Bool
+        public var isHeader: Bool
 
         /**
          The number of columns the cell should span
          */
-        public let colspan: Int
+        public var colspan: Int
 
         /**
          The number of rows the cell should span
          */
-        public let rowspan: Int
+        public var rowspan: Int
 
         /**
          Horizontal cell content alignment
          */
-        public let align: TDEnum.PageBlockHorizontalAlignment
+        public var align: TDEnum.PageBlockHorizontalAlignment
 
         /**
          Vertical cell content alignment
          */
-        public let valign: TDEnum.PageBlockVerticalAlignment
+        public var valign: TDEnum.PageBlockVerticalAlignment
 
         /**
          Represents a cell of a table

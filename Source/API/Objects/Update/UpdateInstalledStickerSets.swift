@@ -1,7 +1,7 @@
 //
-//  UpdateInstalledStickerSets.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          True, if the list of installed mask sticker sets was updated
          */
-        public let isMasks: Bool
+        public var isMasks: Bool
 
         /**
          The new list of installed ordinary sticker sets
          */
-        public let stickerSetIds: [Int64]
+        public var stickerSetIds: [Int64]
 
         /**
          The list of installed sticker sets was updated

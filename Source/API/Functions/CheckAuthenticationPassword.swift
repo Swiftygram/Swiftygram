@@ -1,7 +1,7 @@
 //
-//  CheckAuthenticationPassword.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          The password to check
          */
-        public let password: String
+        public var password: String
 
         /**
          Checks the authentication password for correctness. Works only when the current authorization state is authorizationStateWaitPassword

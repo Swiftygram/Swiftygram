@@ -1,7 +1,7 @@
 //
-//  Message.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,117 +13,117 @@ public extension TDObject {
         /**
          Message identifier, unique for the chat to which the message belongs
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          Identifier of the user who sent the message; 0 if unknown. It is unknown for channel posts
          */
-        public let senderUserId: Int
+        public var senderUserId: Int
 
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Information about the sending state of the message; may be null
          */
-        public let sendingState: TDEnum.MessageSendingState
+        public var sendingState: TDEnum.MessageSendingState?
 
         /**
          True, if the message is outgoing
          */
-        public let isOutgoing: Bool
+        public var isOutgoing: Bool
 
         /**
          True, if the message can be edited. For live location and poll messages this fields shows, whether editMessageLiveLocation or stopPoll can be used with this message by the client
          */
-        public let canBeEdited: Bool
+        public var canBeEdited: Bool
 
         /**
          True, if the message can be forwarded
          */
-        public let canBeForwarded: Bool
+        public var canBeForwarded: Bool
 
         /**
          True, if the message can be deleted only for the current user while other users will continue to see it
          */
-        public let canBeDeletedOnlyForSelf: Bool
+        public var canBeDeletedOnlyForSelf: Bool
 
         /**
          True, if the message can be deleted for all users
          */
-        public let canBeDeletedForAllUsers: Bool
+        public var canBeDeletedForAllUsers: Bool
 
         /**
          True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
          */
-        public let isChannelPost: Bool
+        public var isChannelPost: Bool
 
         /**
          True, if the message contains an unread mention for the current user
          */
-        public let containsUnreadMention: Bool
+        public var containsUnreadMention: Bool
 
         /**
          Point in time (Unix timestamp) when the message was sent
          */
-        public let date: Foundation.Date
+        public var date: Foundation.Date
 
         /**
          Point in time (Unix timestamp) when the message was last edited
          */
-        public let editDate: Foundation.Date
+        public var editDate: Foundation.Date
 
         /**
          Information about the initial message sender; may be null
          */
-        public let forwardInfo: TDObject.MessageForwardInfo
+        public var forwardInfo: TDObject.MessageForwardInfo?
 
         /**
          If non-zero, the identifier of the message this message is replying to; can be the identifier of a deleted message
          */
-        public let replyToMessageId: Int64
+        public var replyToMessageId: Int64
 
         /**
          For self-destructing messages, the message's TTL (Time To Live), in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the TTL expires
          */
-        public let ttl: Int
+        public var ttl: Int
 
         /**
          Time left before the message expires, in seconds
          */
-        public let ttlExpiresIn: Double
+        public var ttlExpiresIn: Double
 
         /**
          If non-zero, the user identifier of the bot through which this message was sent
          */
-        public let viaBotUserId: Int
+        public var viaBotUserId: Int
 
         /**
          For channel posts, optional author signature
          */
-        public let authorSignature: String
+        public var authorSignature: String
 
         /**
          Number of times this message was viewed
          */
-        public let views: Int
+        public var views: Int
 
         /**
          Unique identifier of an album this message belongs to. Only photos and videos can be grouped together in albums
          */
-        public let mediaAlbumId: Int64
+        public var mediaAlbumId: Int64
 
         /**
          Content of the message
          */
-        public let content: TDEnum.MessageContent
+        public var content: TDEnum.MessageContent
 
         /**
          Reply markup for the message; may be null
          */
-        public let replyMarkup: TDEnum.ReplyMarkup
+        public var replyMarkup: TDEnum.ReplyMarkup?
 
         /**
          Describes a message
@@ -152,7 +152,7 @@ public extension TDObject {
          - Parameter content: Content of the message
          - Parameter replyMarkup: Reply markup for the message; may be null
          */
-        public init(id: Int64, senderUserId: Int, chatId: Int64, sendingState: TDEnum.MessageSendingState, isOutgoing: Bool, canBeEdited: Bool, canBeForwarded: Bool, canBeDeletedOnlyForSelf: Bool, canBeDeletedForAllUsers: Bool, isChannelPost: Bool, containsUnreadMention: Bool, date: Foundation.Date, editDate: Foundation.Date, forwardInfo: TDObject.MessageForwardInfo, replyToMessageId: Int64, ttl: Int, ttlExpiresIn: Double, viaBotUserId: Int, authorSignature: String, views: Int, mediaAlbumId: Int64, content: TDEnum.MessageContent, replyMarkup: TDEnum.ReplyMarkup) {
+        public init(id: Int64, senderUserId: Int, chatId: Int64, sendingState: TDEnum.MessageSendingState?, isOutgoing: Bool, canBeEdited: Bool, canBeForwarded: Bool, canBeDeletedOnlyForSelf: Bool, canBeDeletedForAllUsers: Bool, isChannelPost: Bool, containsUnreadMention: Bool, date: Foundation.Date, editDate: Foundation.Date, forwardInfo: TDObject.MessageForwardInfo?, replyToMessageId: Int64, ttl: Int, ttlExpiresIn: Double, viaBotUserId: Int, authorSignature: String, views: Int, mediaAlbumId: Int64, content: TDEnum.MessageContent, replyMarkup: TDEnum.ReplyMarkup?) {
             self.id = id
             self.senderUserId = senderUserId
             self.chatId = chatId
@@ -186,7 +186,7 @@ public extension TDObject {
             id = try container.decodeInt64(forKey: .init(string: "id"))
             senderUserId = try container.decode(Int.self, forKey: .init(string: "senderUserId"))
             chatId = try container.decodeInt64(forKey: .init(string: "chatId"))
-            sendingState = try container.decode(TDEnum.MessageSendingState.self, forKey: .init(string: "sendingState"))
+            sendingState = try container.decodeIfPresent(TDEnum.MessageSendingState.self, forKey: .init(string: "sendingState"))
             isOutgoing = try container.decode(Bool.self, forKey: .init(string: "isOutgoing"))
             canBeEdited = try container.decode(Bool.self, forKey: .init(string: "canBeEdited"))
             canBeForwarded = try container.decode(Bool.self, forKey: .init(string: "canBeForwarded"))
@@ -196,7 +196,7 @@ public extension TDObject {
             containsUnreadMention = try container.decode(Bool.self, forKey: .init(string: "containsUnreadMention"))
             date = try container.decodeDate(forKey: .init(string: "date"))
             editDate = try container.decodeDate(forKey: .init(string: "editDate"))
-            forwardInfo = try container.decode(TDObject.MessageForwardInfo.self, forKey: .init(string: "forwardInfo"))
+            forwardInfo = try container.decodeIfPresent(TDObject.MessageForwardInfo.self, forKey: .init(string: "forwardInfo"))
             replyToMessageId = try container.decodeInt64(forKey: .init(string: "replyToMessageId"))
             ttl = try container.decode(Int.self, forKey: .init(string: "ttl"))
             ttlExpiresIn = try container.decode(Double.self, forKey: .init(string: "ttlExpiresIn"))
@@ -205,7 +205,7 @@ public extension TDObject {
             views = try container.decode(Int.self, forKey: .init(string: "views"))
             mediaAlbumId = try container.decodeInt64(forKey: .init(string: "mediaAlbumId"))
             content = try container.decode(TDEnum.MessageContent.self, forKey: .init(string: "content"))
-            replyMarkup = try container.decode(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
+            replyMarkup = try container.decodeIfPresent(TDEnum.ReplyMarkup.self, forKey: .init(string: "replyMarkup"))
         }
 
         // MARK: - Encodable
@@ -216,7 +216,7 @@ public extension TDObject {
             try container.encodeInt64(id, forKey: .init(string: "id"))
             try container.encode(senderUserId, forKey: .init(string: "senderUserId"))
             try container.encodeInt64(chatId, forKey: .init(string: "chatId"))
-            try container.encode(sendingState, forKey: .init(string: "sendingState"))
+            try container.encodeIfPresent(sendingState, forKey: .init(string: "sendingState"))
             try container.encode(isOutgoing, forKey: .init(string: "isOutgoing"))
             try container.encode(canBeEdited, forKey: .init(string: "canBeEdited"))
             try container.encode(canBeForwarded, forKey: .init(string: "canBeForwarded"))
@@ -226,7 +226,7 @@ public extension TDObject {
             try container.encode(containsUnreadMention, forKey: .init(string: "containsUnreadMention"))
             try container.encodeDate(date, forKey: .init(string: "date"))
             try container.encodeDate(editDate, forKey: .init(string: "editDate"))
-            try container.encode(forwardInfo, forKey: .init(string: "forwardInfo"))
+            try container.encodeIfPresent(forwardInfo, forKey: .init(string: "forwardInfo"))
             try container.encodeInt64(replyToMessageId, forKey: .init(string: "replyToMessageId"))
             try container.encode(ttl, forKey: .init(string: "ttl"))
             try container.encode(ttlExpiresIn, forKey: .init(string: "ttlExpiresIn"))
@@ -235,7 +235,7 @@ public extension TDObject {
             try container.encode(views, forKey: .init(string: "views"))
             try container.encodeInt64(mediaAlbumId, forKey: .init(string: "mediaAlbumId"))
             try container.encode(content, forKey: .init(string: "content"))
-            try container.encode(replyMarkup, forKey: .init(string: "replyMarkup"))
+            try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
         }
     }
 }

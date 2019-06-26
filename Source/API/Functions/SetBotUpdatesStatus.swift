@@ -1,7 +1,7 @@
 //
-//  SetBotUpdatesStatus.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          The number of pending updates
          */
-        public let pendingUpdateCount: Int
+        public var pendingUpdateCount: Int
 
         /**
          The last error message
          */
-        public let errorMessage: String
+        public var errorMessage: String
 
         /**
          Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only

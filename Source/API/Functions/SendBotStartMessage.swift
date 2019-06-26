@@ -1,7 +1,7 @@
 //
-//  SendBotStartMessage.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Identifier of the bot
          */
-        public let botUserId: Int
+        public var botUserId: Int
 
         /**
          Identifier of the target chat
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          A hidden parameter sent to the bot for deep linking purposes (https://api.telegram.org/bots#deep-linking)
          */
-        public let parameter: String
+        public var parameter: String
 
         /**
          Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message

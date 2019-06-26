@@ -1,7 +1,7 @@
 //
-//  GetPassportAuthorizationFormAvailableElements.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Authorization form identifier
          */
-        public let autorizationFormId: Int
+        public var autorizationFormId: Int
 
         /**
          Password of the current user
          */
-        public let password: String
+        public var password: String
 
         /**
          Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form

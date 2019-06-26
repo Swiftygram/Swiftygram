@@ -1,7 +1,7 @@
 //
-//  CheckDatabaseEncryptionKey.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Encryption key to check or set up
          */
-        public let encryptionKey: String
+        public var encryptionKey: String
 
         /**
          Checks the database encryption key for correctness. Works only when the current authorization state is authorizationStateWaitEncryptionKey

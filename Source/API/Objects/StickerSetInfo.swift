@@ -1,7 +1,7 @@
 //
-//  StickerSetInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,52 +13,52 @@ public extension TDObject {
         /**
          Identifier of the sticker set
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          Title of the sticker set
          */
-        public let title: String
+        public var title: String
 
         /**
          Name of the sticker set
          */
-        public let name: String
+        public var name: String
 
         /**
          True, if the sticker set has been installed by current user
          */
-        public let isInstalled: Bool
+        public var isInstalled: Bool
 
         /**
          True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
          */
-        public let isArchived: Bool
+        public var isArchived: Bool
 
         /**
          True, if the sticker set is official
          */
-        public let isOfficial: Bool
+        public var isOfficial: Bool
 
         /**
          True, if the stickers in the set are masks
          */
-        public let isMasks: Bool
+        public var isMasks: Bool
 
         /**
          True for already viewed trending sticker sets
          */
-        public let isViewed: Bool
+        public var isViewed: Bool
 
         /**
          Total number of stickers in the set
          */
-        public let size: Int
+        public var size: Int
 
         /**
          Contains up to the first 5 stickers from the set, depending on the context. If the client needs more stickers the full set should be requested
          */
-        public let covers: [TDObject.Sticker]
+        public var covers: [TDObject.Sticker]
 
         /**
          Represents short information about a sticker set

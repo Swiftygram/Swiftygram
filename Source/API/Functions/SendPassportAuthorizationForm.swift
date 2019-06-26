@@ -1,7 +1,7 @@
 //
-//  SendPassportAuthorizationForm.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Authorization form identifier
          */
-        public let autorizationFormId: Int
+        public var autorizationFormId: Int
 
         /**
          Types of Telegram Passport elements chosen by user to complete the authorization form
          */
-        public let types: [TDEnum.PassportElementType]
+        public var types: [TDEnum.PassportElementType]
 
         /**
          Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements need to be used

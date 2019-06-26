@@ -1,7 +1,7 @@
 //
-//  DeleteLanguagePack.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Identifier of the language pack to delete
          */
-        public let languagePackId: String
+        public var languagePackId: String
 
         /**
          Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization

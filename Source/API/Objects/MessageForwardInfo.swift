@@ -1,7 +1,7 @@
 //
-//  MessageForwardInfo.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          Origin of a forwarded message
          */
-        public let origin: TDEnum.MessageForwardOrigin
+        public var origin: TDEnum.MessageForwardOrigin
 
         /**
          Point in time (Unix timestamp) when the message was originally sent
          */
-        public let date: Foundation.Date
+        public var date: Foundation.Date
 
         /**
          For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded last time; 0 if unknown
          */
-        public let fromChatId: Int64
+        public var fromChatId: Int64
 
         /**
          For messages forwarded to the chat with the current user (saved messages), the identifier of the original message from which the new message was forwarded last time; 0 if unknown
          */
-        public let fromMessageId: Int64
+        public var fromMessageId: Int64
 
         /**
          Contains information about a forwarded message

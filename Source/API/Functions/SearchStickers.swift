@@ -1,7 +1,7 @@
 //
-//  SearchStickers.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          String representation of emoji; must be non-empty
          */
-        public let emoji: String
+        public var emoji: String
 
         /**
          Maximum number of stickers to be returned
          */
-        public let limit: Int
+        public var limit: Int
 
         /**
          Searches for stickers from public sticker sets that correspond to a given emoji

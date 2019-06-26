@@ -1,7 +1,7 @@
 //
-//  SendMessage.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,32 +20,32 @@ public extension TDFunction {
         /**
          Target chat
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Identifier of the message to reply to or 0
          */
-        public let replyToMessageId: Int64
+        public var replyToMessageId: Int64
 
         /**
          Pass true to disable notification for the message. Not supported in secret chats
          */
-        public let disableNotification: Bool
+        public var disableNotification: Bool
 
         /**
          Pass true if the message is sent from the background
          */
-        public let fromBackground: Bool
+        public var fromBackground: Bool
 
         /**
          Markup for replying to the message; for bots only
          */
-        public let replyMarkup: TDEnum.ReplyMarkup
+        public var replyMarkup: TDEnum.ReplyMarkup
 
         /**
          The content of the message to be sent
          */
-        public let inputMessageContent: TDEnum.InputMessageContent
+        public var inputMessageContent: TDEnum.InputMessageContent
 
         /**
          Sends a message. Returns the sent message

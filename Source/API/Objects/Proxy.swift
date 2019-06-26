@@ -1,7 +1,7 @@
 //
-//  Proxy.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,32 +13,32 @@ public extension TDObject {
         /**
          Unique identifier of the proxy
          */
-        public let id: Int
+        public var id: Int
 
         /**
          Proxy server IP address
          */
-        public let server: String
+        public var server: String
 
         /**
          Proxy server port
          */
-        public let port: Int
+        public var port: Int
 
         /**
          Point in time (Unix timestamp) when the proxy was last used; 0 if never
          */
-        public let lastUsedDate: Foundation.Date
+        public var lastUsedDate: Foundation.Date
 
         /**
          True, if the proxy is enabled now
          */
-        public let isEnabled: Bool
+        public var isEnabled: Bool
 
         /**
          Type of the proxy
          */
-        public let type: TDEnum.ProxyType
+        public var type: TDEnum.ProxyType
 
         /**
          Contains information about a proxy server

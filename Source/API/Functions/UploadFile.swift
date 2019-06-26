@@ -1,7 +1,7 @@
 //
-//  UploadFile.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          File to upload
          */
-        public let file: TDEnum.InputFile
+        public var file: TDEnum.InputFile
 
         /**
          File type
          */
-        public let fileType: TDEnum.FileType
+        public var fileType: TDEnum.FileType
 
         /**
          Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first
          */
-        public let priority: Int
+        public var priority: Int
 
         /**
          Asynchronously uploads a file to the cloud without sending it in a message. updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message

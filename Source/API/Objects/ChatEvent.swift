@@ -1,7 +1,7 @@
 //
-//  ChatEvent.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          Chat event identifier
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          Point in time (Unix timestamp) when the event happened
          */
-        public let date: Foundation.Date
+        public var date: Foundation.Date
 
         /**
          Identifier of the user who performed the action that triggered the event
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          Action performed by the user
          */
-        public let action: TDEnum.ChatEventAction
+        public var action: TDEnum.ChatEventAction
 
         /**
          Represents a chat event

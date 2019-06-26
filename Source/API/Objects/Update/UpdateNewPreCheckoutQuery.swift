@@ -1,7 +1,7 @@
 //
-//  UpdateNewPreCheckoutQuery.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,37 +13,37 @@ public extension TDObject {
         /**
          Unique query identifier
          */
-        public let id: Int64
+        public var id: Int64
 
         /**
          Identifier of the user who sent the query
          */
-        public let senderUserId: Int
+        public var senderUserId: Int
 
         /**
          Currency for the product price
          */
-        public let currency: String
+        public var currency: String
 
         /**
          Total price for the product, in the minimal quantity of the currency
          */
-        public let totalAmount: Int64
+        public var totalAmount: Int64
 
         /**
          Invoice payload
          */
-        public let invoicePayload: String
+        public var invoicePayload: String
 
         /**
          Identifier of a shipping option chosen by the user; may be empty if not applicable
          */
-        public let shippingOptionId: String
+        public var shippingOptionId: String
 
         /**
          Information about the order; may be null
          */
-        public let orderInfo: TDObject.OrderInfo
+        public var orderInfo: TDObject.OrderInfo?
 
         /**
          A new incoming pre-checkout query; for bots only. Contains full information about a checkout
@@ -56,7 +56,7 @@ public extension TDObject {
          - Parameter shippingOptionId: Identifier of a shipping option chosen by the user; may be empty if not applicable
          - Parameter orderInfo: Information about the order; may be null
          */
-        public init(id: Int64, senderUserId: Int, currency: String, totalAmount: Int64, invoicePayload: String, shippingOptionId: String, orderInfo: TDObject.OrderInfo) {
+        public init(id: Int64, senderUserId: Int, currency: String, totalAmount: Int64, invoicePayload: String, shippingOptionId: String, orderInfo: TDObject.OrderInfo?) {
             self.id = id
             self.senderUserId = senderUserId
             self.currency = currency
@@ -77,7 +77,7 @@ public extension TDObject {
             totalAmount = try container.decodeInt64(forKey: .init(string: "totalAmount"))
             invoicePayload = try container.decode(String.self, forKey: .init(string: "invoicePayload"))
             shippingOptionId = try container.decode(String.self, forKey: .init(string: "shippingOptionId"))
-            orderInfo = try container.decode(TDObject.OrderInfo.self, forKey: .init(string: "orderInfo"))
+            orderInfo = try container.decodeIfPresent(TDObject.OrderInfo.self, forKey: .init(string: "orderInfo"))
         }
 
         // MARK: - Encodable
@@ -91,7 +91,7 @@ public extension TDObject {
             try container.encodeInt64(totalAmount, forKey: .init(string: "totalAmount"))
             try container.encode(invoicePayload, forKey: .init(string: "invoicePayload"))
             try container.encode(shippingOptionId, forKey: .init(string: "shippingOptionId"))
-            try container.encode(orderInfo, forKey: .init(string: "orderInfo"))
+            try container.encodeIfPresent(orderInfo, forKey: .init(string: "orderInfo"))
         }
     }
 }

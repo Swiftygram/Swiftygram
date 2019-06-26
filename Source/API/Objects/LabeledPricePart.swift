@@ -1,7 +1,7 @@
 //
-//  LabeledPricePart.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Label for this portion of the product price
          */
-        public let label: String
+        public var label: String
 
         /**
          Currency amount in minimal quantity of the currency
          */
-        public let amount: Int64
+        public var amount: Int64
 
         /**
          Portion of the price of a product (e.g., "delivery cost", "tax amount")

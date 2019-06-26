@@ -1,7 +1,7 @@
 //
-//  SendCallRating.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Call identifier
          */
-        public let callId: Int
+        public var callId: Int
 
         /**
          Call rating; 1-5
          */
-        public let rating: Int
+        public var rating: Int
 
         /**
          An optional user comment if the rating is less than 5
          */
-        public let comment: String
+        public var comment: String
 
         /**
          Sends a call rating

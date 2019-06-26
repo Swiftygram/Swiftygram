@@ -1,7 +1,7 @@
 //
-//  SetCustomLanguagePackString.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Identifier of a previously added custom local language pack in the current localization target
          */
-        public let languagePackId: String
+        public var languagePackId: String
 
         /**
          New language pack string
          */
-        public let newString: TDObject.LanguagePackString
+        public var newString: TDObject.LanguagePackString
 
         /**
          Adds, edits or deletes a string in a custom local language pack. Can be called before authorization

@@ -1,7 +1,7 @@
 //
-//  RemoveTopChat.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Category of frequently used chats
          */
-        public let category: TDEnum.TopChatCategory
+        public var category: TDEnum.TopChatCategory
 
         /**
          Chat identifier
          */
-        public let chatId: Int64
+        public var chatId: Int64
 
         /**
          Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled

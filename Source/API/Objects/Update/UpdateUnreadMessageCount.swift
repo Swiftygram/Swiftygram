@@ -1,7 +1,7 @@
 //
-//  UpdateUnreadMessageCount.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          Total number of unread messages
          */
-        public let unreadCount: Int
+        public var unreadCount: Int
 
         /**
          Total number of unread messages in unmuted chats
          */
-        public let unreadUnmutedCount: Int
+        public var unreadUnmutedCount: Int
 
         /**
          Number of unread messages has changed. This update is sent only if a message database is used

@@ -1,7 +1,7 @@
 //
-//  PaymentForm.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,37 +13,37 @@ public extension TDObject {
         /**
          Full information of the invoice
          */
-        public let invoice: TDObject.Invoice
+        public var invoice: TDObject.Invoice
 
         /**
          Payment form URL
          */
-        public let url: URL
+        public var url: URL
 
         /**
          Contains information about the payment provider, if available, to support it natively without the need for opening the URL; may be null
          */
-        public let paymentsProvider: TDObject.PaymentsProviderStripe?
+        public var paymentsProvider: TDObject.PaymentsProviderStripe?
 
         /**
          Saved server-side order information; may be null
          */
-        public let savedOrderInfo: TDObject.OrderInfo
+        public var savedOrderInfo: TDObject.OrderInfo?
 
         /**
          Contains information about saved card credentials; may be null
          */
-        public let savedCredentials: TDObject.SavedCredentials
+        public var savedCredentials: TDObject.SavedCredentials?
 
         /**
          True, if the user can choose to save credentials
          */
-        public let canSaveCredentials: Bool
+        public var canSaveCredentials: Bool
 
         /**
          True, if the user will be able to save credentials protected by a password they set up
          */
-        public let needPassword: Bool
+        public var needPassword: Bool
 
         /**
          Contains information about an invoice payment form
@@ -56,7 +56,7 @@ public extension TDObject {
          - Parameter canSaveCredentials: True, if the user can choose to save credentials
          - Parameter needPassword: True, if the user will be able to save credentials protected by a password they set up
          */
-        public init(invoice: TDObject.Invoice, url: URL, paymentsProvider: TDObject.PaymentsProviderStripe?, savedOrderInfo: TDObject.OrderInfo, savedCredentials: TDObject.SavedCredentials, canSaveCredentials: Bool, needPassword: Bool) {
+        public init(invoice: TDObject.Invoice, url: URL, paymentsProvider: TDObject.PaymentsProviderStripe?, savedOrderInfo: TDObject.OrderInfo?, savedCredentials: TDObject.SavedCredentials?, canSaveCredentials: Bool, needPassword: Bool) {
             self.invoice = invoice
             self.url = url
             self.paymentsProvider = paymentsProvider

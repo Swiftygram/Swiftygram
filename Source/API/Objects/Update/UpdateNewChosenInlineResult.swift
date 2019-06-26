@@ -1,7 +1,7 @@
 //
-//  UpdateNewChosenInlineResult.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,27 +13,27 @@ public extension TDObject {
         /**
          Identifier of the user who sent the query
          */
-        public let senderUserId: Int
+        public var senderUserId: Int
 
         /**
          User location, provided by the client; may be null
          */
-        public let userLocation: TDObject.Location
+        public var userLocation: TDObject.Location?
 
         /**
          Text of the query
          */
-        public let query: String
+        public var query: String
 
         /**
          Identifier of the chosen result
          */
-        public let resultId: String
+        public var resultId: String
 
         /**
          Identifier of the sent inline message, if known
          */
-        public let inlineMessageId: String
+        public var inlineMessageId: String
 
         /**
          The user has chosen a result of an inline query; for bots only
@@ -44,7 +44,7 @@ public extension TDObject {
          - Parameter resultId: Identifier of the chosen result
          - Parameter inlineMessageId: Identifier of the sent inline message, if known
          */
-        public init(senderUserId: Int, userLocation: TDObject.Location, query: String, resultId: String, inlineMessageId: String) {
+        public init(senderUserId: Int, userLocation: TDObject.Location?, query: String, resultId: String, inlineMessageId: String) {
             self.senderUserId = senderUserId
             self.userLocation = userLocation
             self.query = query

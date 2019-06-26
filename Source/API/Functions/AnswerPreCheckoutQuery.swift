@@ -1,7 +1,7 @@
 //
-//  AnswerPreCheckoutQuery.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Identifier of the pre-checkout query
          */
-        public let preCheckoutQueryId: Int64
+        public var preCheckoutQueryId: Int64
 
         /**
          An error message, empty on success
          */
-        public let errorMessage: String
+        public var errorMessage: String
 
         /**
          Sets the result of a pre-checkout query; for bots only

@@ -1,7 +1,7 @@
 //
-//  PhotoSize.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,22 +13,22 @@ public extension TDObject {
         /**
          Thumbnail type (see https://core.telegram.org/constructor/photoSize)
          */
-        public let type: String
+        public var type: String
 
         /**
          Information about the photo file
          */
-        public let photo: TDObject.File
+        public var photo: TDObject.File
 
         /**
          Photo width
          */
-        public let width: Int
+        public var width: Int
 
         /**
          Photo height
          */
-        public let height: Int
+        public var height: Int
 
         /**
          Photo description

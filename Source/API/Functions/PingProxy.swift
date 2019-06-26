@@ -1,7 +1,7 @@
 //
-//  PingProxy.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ public extension TDFunction {
         /**
          Proxy identifier. Use 0 to ping a Telegram server without a proxy
          */
-        public let proxyId: Int
+        public var proxyId: Int
 
         /**
          Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization

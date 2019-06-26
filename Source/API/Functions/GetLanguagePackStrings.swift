@@ -1,7 +1,7 @@
 //
-//  GetLanguagePackStrings.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ public extension TDFunction {
         /**
          Language pack identifier of the strings to be returned
          */
-        public let languagePackId: String
+        public var languagePackId: String
 
         /**
          Language pack keys of the strings to be returned; leave empty to request all available strings
          */
-        public let keys: [String]
+        public var keys: [String]
 
         /**
          Returns strings from a language pack in the current localization target by their keys. Can be called before authorization

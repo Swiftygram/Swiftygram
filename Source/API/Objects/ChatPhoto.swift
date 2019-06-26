@@ -1,7 +1,7 @@
 //
-//  ChatPhoto.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -13,12 +13,12 @@ public extension TDObject {
         /**
          A small (160x160) chat photo
          */
-        public let small: TDObject.File
+        public var small: TDObject.File
 
         /**
          A big (640x640) chat photo
          */
-        public let big: TDObject.File
+        public var big: TDObject.File
 
         /**
          Describes the photo of a chat

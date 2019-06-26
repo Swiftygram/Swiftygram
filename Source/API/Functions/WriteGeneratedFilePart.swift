@@ -1,7 +1,7 @@
 //
-//  WriteGeneratedFilePart.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          The identifier of the generation process
          */
-        public let generationId: Int64
+        public var generationId: Int64
 
         /**
          The offset from which to write the data to the file
          */
-        public let offset: Int
+        public var offset: Int
 
         /**
          The data to write
          */
-        public let data: String
+        public var data: String
 
         /**
          Writes a part of a generated file. This method is intended to be used only if the client has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file

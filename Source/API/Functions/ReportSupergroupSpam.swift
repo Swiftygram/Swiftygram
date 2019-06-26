@@ -1,7 +1,7 @@
 //
-//  ReportSupergroupSpam.swift
+//  API
 //  Swiftygram
-//  Created by ky1vstar on 6/26/19.
+//  Created by ky1vstar on 26.06.2019.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -20,17 +20,17 @@ public extension TDFunction {
         /**
          Supergroup identifier
          */
-        public let supergroupId: Int
+        public var supergroupId: Int
 
         /**
          User identifier
          */
-        public let userId: Int
+        public var userId: Int
 
         /**
          Identifiers of messages sent in the supergroup by the user. This list must be non-empty
          */
-        public let messageIds: [Int64]
+        public var messageIds: [Int64]
 
         /**
          Reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup
