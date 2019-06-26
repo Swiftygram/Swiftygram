@@ -14,6 +14,7 @@ extension Generator {
         var cases = [String]()
         var decoders = [String]()
         var encoders = [String]()
+        var isIndirect = false
         
         for subclass in object.subclasses {
             let caseName = self.caseName(for: object.name, subclass: subclass.name)
@@ -41,6 +42,10 @@ extension Generator {
                 
                 for property in subclass.properties {
                     let outputType = outputPropertyType(for: property.type)
+                    
+                    if object.name == property.type.nestedTdlibType {
+                        isIndirect = true
+                    }
                     
                     // case
                     enumProperties.append("\(property.name): \(outputType.name)\(property.optionalSuffix)")
@@ -81,7 +86,7 @@ extension Generator {
         
         var output = ["public extension \(enumNamespace) {"]
         
-        output.append("\(docsForType(object))\nenum \(object.name): \(enumProtocol) {")
+        output.append("\(docsForType(object))\n\(isIndirect ? "indirect " : "")enum \(object.name): \(enumProtocol) {")
         
         // cases
         output.append(contentsOf: cases)

@@ -52,6 +52,10 @@ extension ObjectContainer {
         }
         
         if let className = params["class"] {
+            guard shouldParseClassName(className) else {
+                return nil
+            }
+            
             return ObjectContainer(documentation: documentation, name: className.uppercasedFirstLetter, superclassName: "Object", properties: [], isAbstract: true, returnType: nil)
         }
         
@@ -69,6 +73,10 @@ extension ObjectContainer {
         }
         
         let className = match[1].uppercasedFirstLetter
+        guard shouldParseClassName(className) else {
+            return nil
+        }
+        
         let properties = PropertyContainer.parse(with: tdLibProperties, parameters: params, className: className)
         
         let superclassName: String
@@ -115,6 +123,10 @@ extension ObjectContainer {
         }
         
         return params
+    }
+    
+    private class func shouldParseClassName(_ className: String) -> Bool {
+        return !ignoredClasses.contains(className.uppercasedFirstLetter)
     }
     
 }

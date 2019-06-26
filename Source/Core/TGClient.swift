@@ -11,14 +11,17 @@ import tdjson
 
 typealias UpdateObserverInfo = (nextId: UInt64, handlers: [UInt64: Any])
 
-public class TGClient {
+final public class TGClient {
     
     private let client = td_json_client_create()
-    private let codableQueue = DispatchQueue(label: "TGClient.codableQueue", qos: .background, attributes: .concurrent)
-    private let runLoopQueue = DispatchQueue(label: "TGClient.runLoopQueue")
+    private let codableQueue = DispatchQueue(label: "TDClient.codableQueue", qos: .background, attributes: .concurrent)
+    private let runLoopQueue = DispatchQueue(label: "TDClient.runLoopQueue")
+    
+    private static let anyUpdateNotification = Notification.Name(rawValue: "anyUpdate")
+    private let notificationCenter = NotificationCenter()
     
     private let queryLock = NSRecursiveLock()
-    private var completionHandlers = [UInt64: TGCompletableResultHandler]()
+    private var completionHandlers = [UInt64: TDDataResultHandler]()
     private var nextQueryId: UInt64 = 0
     
     private let updateLock = NSRecursiveLock()
@@ -32,22 +35,27 @@ public class TGClient {
         td_json_client_destroy(client)
     }
     
-    // MARK: - Functions executor
-    public func execute<Function>(_ function: Function, completionHandler: ((TGResult<Function.ReturnType>) -> ())? = nil) where Function: TDFunctionProtocol {
+    /**
+     Sends a request to the TDLib.
+     
+     - Parameter function:
+     */
+    public func execute<Function>(_ function: Function, completionHandler: TDResultHandler<Function.ReturnType>? = nil) where Function: TDFunctionProtocol {
         codableQueue.async {
             var queryId: UInt64?
-            var responseHandler: TGCompletableResultHandler?
+            var responseHandler: TDDataResultHandler?
 
+            // response parser
             if let completionHandler = completionHandler {
                 responseHandler = { result in
                     switch result {
-                    case .data(let data):
+                    case .success(let data):
                         do {
                             let object = try JSONDecoder.swiftygram.decode(Function.ReturnType.self, from: data)
                             
-                            completionHandler(.success(object: object))
+                            completionHandler(.success(object))
                         } catch {
-                            completionHandler(.failure(error))
+                            completionHandler(.failure(.decoding(error)))
                         }
                         
                     case .failure(let error):
@@ -58,26 +66,26 @@ public class TGClient {
                 queryId = self.pushCompletionHandler(responseHandler!)
             }
             
+            // encoding and executing
             let wrappedFunction = FunctionWrapper(function: function, queryId: queryId)
             
             do {
                 let data = try JSONEncoder.swiftygram.encode(wrappedFunction)
                 
-                self.execute(data)
+                self.send(data: data)
+                
             } catch {
                 if let queryId = queryId, let completionHandler = self.completionHandler(for: queryId) {
-                    completionHandler(.failure(error))
+                    completionHandler(.failure(.encoding(error)))
                 }
             }
         }
     }
     
-    public func execute(_ data: Data) {
-        codableQueue.async {
-            data.withUnsafeBytes({
-                td_json_client_send(self.client, $0)
-            })
-        }
+    private func send(data: Data) {
+        data.withUnsafeBytes({
+            td_json_client_send(self.client, $0)
+        })
     }
     
     // MARK: - Run loop
@@ -98,7 +106,21 @@ public class TGClient {
     }
     
     // MARK: - Update observation
-//    public func observerUpdate(_ )
+    public func observeUpdates<Update>(for update: Update.Type, updateHandler: @escaping ((Update) -> ())) -> TDObservation where Update: TDObject.Update {
+        return TDObservation(notificationCenter: notificationCenter, name: .init(update.type), notificationHandler: { payload in
+            if let update = payload as? Update {
+                updateHandler(update)
+            }
+        })
+    }
+    
+    public func observerUpdates(with updateHandler: @escaping ((TDObject.Update) -> ())) -> TDObservation {
+        return TDObservation(notificationCenter: notificationCenter, name: type(of: self).anyUpdateNotification, notificationHandler: { payload in
+            if let update = payload as? TDObject.Update {
+                updateHandler(update)
+            }
+        })
+    }
     
     // MARK: - Data processing
     private func processData(_ data: Data) {
@@ -125,15 +147,15 @@ public class TGClient {
             do {
                 let error = try JSONDecoder.swiftygram.decode(TDObject.Error.self, from: data)
 
-                completionHandler(.failure(error))
+                completionHandler(.failure(.tdLib(error)))
             } catch {
-                completionHandler(.failure(error))
+                completionHandler(.failure(.decoding(error)))
             }
 
             return
         }
         
-        completionHandler(.data(data))
+        completionHandler(.success(data))
     }
     
     // MARK: - Update processing
@@ -142,14 +164,24 @@ public class TGClient {
         
         do {
             updateObject = try JSONDecoder.swiftygram.decode(SubclassCodable<TDObject.Update>.self, from: data).value
-            print(updateObject)
         } catch {
             print("Failed to parse Update")
+            return
         }
+        
+        let userInfo = [TDObservation.payload: updateObject]
+        
+        notificationCenter.post(name: type(of: self).anyUpdateNotification,
+                                object: nil,
+                                userInfo: userInfo)
+        
+        notificationCenter.post(name: .init(type(of: updateObject).type),
+                                object: nil,
+                                userInfo: userInfo)
     }
     
     // MARK: - Utils
-    private func pushCompletionHandler(_ completionHandler: @escaping TGCompletableResultHandler) -> UInt64 {
+    private func pushCompletionHandler(_ completionHandler: @escaping TDDataResultHandler) -> UInt64 {
         queryLock.lock(); defer { queryLock.unlock() }
         
         completionHandlers[nextQueryId] = completionHandler
@@ -159,7 +191,7 @@ public class TGClient {
         return initialQueryId
     }
     
-    private func completionHandler(for queryId: UInt64) -> TGCompletableResultHandler? {
+    private func completionHandler(for queryId: UInt64) -> TDDataResultHandler? {
         queryLock.lock(); defer { queryLock.unlock() }
         
         return completionHandlers.removeValue(forKey: queryId)

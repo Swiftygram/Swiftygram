@@ -1,7 +1,7 @@
 //
 //  Error.swift
 //  Swiftygram
-//  Created by ky1vstar on 6/25/19.
+//  Created by ky1vstar on 6/26/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -9,7 +9,7 @@ public extension TDObject {
     /**
      An object of this type can be returned on every function call, in case of an error
      */
-    struct Error: TDObjectProtocol, Swift.Error {
+    struct Error: TDObjectProtocol {
         /**
          Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user
          */

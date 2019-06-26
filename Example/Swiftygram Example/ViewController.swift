@@ -12,9 +12,15 @@ import Swiftygram
 class ViewController: UIViewController {
     
     let client = TGClient()
+    var observation: TDObservation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        observation = client.observeUpdates(for: TDObject.UpdateAuthorizationState.self) { update in
+            print(update)
+            print()
+        }
         
 //        let f = TGFunction.SetTdlibParameters(parameters: TGObject.TdlibParameters())
 //        

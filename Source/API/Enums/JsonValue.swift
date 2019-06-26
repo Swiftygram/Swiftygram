@@ -1,7 +1,7 @@
 //
 //  JsonValue.swift
 //  Swiftygram
-//  Created by ky1vstar on 6/25/19.
+//  Created by ky1vstar on 6/26/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -9,7 +9,7 @@ public extension TDEnum {
     /**
      Represents a JSON value
      */
-    enum JsonValue: TDEnumProtocol {
+    indirect enum JsonValue: TDEnumProtocol {
         /**
          Represents a null JSON value
          */

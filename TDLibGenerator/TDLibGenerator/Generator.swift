@@ -76,6 +76,11 @@ class Generator {
             
             try! code.write(to: functionsDirectory.appendingPathComponent("\(function.name).swift"), atomically: true, encoding: .utf8)
         }
+        
+        // Subclass container
+        let subclassContainer = generateSubclassContainer()
+        
+        try! subclassContainer.write(to: outputFolderURL.appendingPathComponent("SubclassContainer.swift"), atomically: true, encoding: .utf8)
     }
     
     // MARK: - Docs
@@ -110,6 +115,22 @@ class Generator {
             
             return OutputPropertyType(name: "[\(type.name)]", isSubclass: type.isSubclass)
         }
+    }
+    
+    // MARK: - Subclass container
+    
+    private func generateSubclassContainer() -> String {
+        return "let subclassContainer: [HashableType: [TDObjectProtocol.Type]] = [" +
+            container.subclasses.map({
+                let type = outputPropertyType(for: .tdlib($0.name))
+                
+                return "HashableType(\(type.name).self): [" +
+                    $0.subclasses.map({
+                        let type = outputPropertyType(for: .tdlib($0.name))
+                        
+                        return "\(type.name).self"
+                    }).joined(separator: ", ") + "]"
+            }).joined(separator: ", ") + "]"
     }
     
     // MARK: - Decoders

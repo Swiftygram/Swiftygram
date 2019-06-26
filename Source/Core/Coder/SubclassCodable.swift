@@ -8,7 +8,27 @@
 
 import Foundation
 
-struct SubclassCodable<T>: Codable {
+private func typeForSuperclass(_ superclass: Any.Type, type: String) -> TDObjectProtocol.Type? {
+    return (subclassContainer[HashableType(superclass)] ?? []).first(where: { $0.type == type })
+}
+
+// MARK: - Array of SubclassCodable
+
+protocol SubclassCodableMarker {
+    associatedtype T
+    
+    var value: T { get }
+}
+
+extension Array where Element: SubclassCodableMarker {
+    var value: [Element.T] {
+        return map { $0.value }
+    }
+}
+
+// MARK: - SubclassCodable
+
+struct SubclassCodable<T>: Codable, SubclassCodableMarker {
     
     let value: T
     
@@ -20,15 +40,10 @@ struct SubclassCodable<T>: Codable {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
         let type = try container.decode(String.self, forKey: .type)
         
-        for subclass in TGClassContainer.codableSubclasses(for: T.self) {
-            guard let objectType = subclass as? TDObjectProtocol.Type, objectType.type == type else {
-                continue
-            }
-            
-            if let value = (try subclass.init(from: decoder)) as? T {
-                self.value = value
-                return
-            }
+        if let subclass = typeForSuperclass(T.self, type: type),
+            let value = (try subclass.init(from: decoder)) as? T {
+            self.value = value
+            return
         }
         
         throw DecodingError.typeMismatch(T.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Undefined generic \(T.self)"))

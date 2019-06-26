@@ -8,18 +8,20 @@
 
 import Foundation
 
-public typealias TGCompletableResultHandler = (TGCompletableResult) -> ()
+typealias TDDataResultHandler = (TDDataResult) -> ()
 
-public enum TGCompletableResult {
+public typealias TDResultHandler<T: TDObjectProtocol> = (TDResult<T>) -> ()
+
+enum TDDataResult {
     
-    case data(Data)
-    case failure(Error)
+    case success(Data)
+    case failure(TDError)
     
 }
 
-public enum TGResult<T> {
+public enum TDResult<T: TDObjectProtocol> {
     
-    case success(object: T)
-    case failure(Error)
+    case success(T)
+    case failure(TDError)
     
 }
