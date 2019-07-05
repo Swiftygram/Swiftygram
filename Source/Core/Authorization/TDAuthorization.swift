@@ -49,5 +49,23 @@ public final class TDAuthorization: NSObject, Codable, NSSecureCoding {
         aCoder.encode(usesTestEnvironment, forKey: CodingKeys.usesTestEnvironment.stringValue)
         aCoder.encode(appGroupId, forKey: CodingKeys.appGroupId.stringValue)
     }
+    
+    var tdlibParameters: TDObject.TdlibParameters {
+        return .init(useTestDc: usesTestEnvironment,
+                     databaseDirectory: <#T##String#>,
+                     filesDirectory: <#T##String#>,
+                     useFileDatabase: <#T##Bool#>,
+                     useChatInfoDatabase: <#T##Bool#>,
+                     useMessageDatabase: <#T##Bool#>,
+                     useSecretChats: <#T##Bool#>,
+                     apiId: apiId,
+                     apiHash: apiHash,
+                     systemLanguageCode: <#T##String#>,
+                     deviceModel: <#T##String#>,
+                     systemVersion: <#T##String#>,
+                     applicationVersion: <#T##String#>,
+                     enableStorageOptimizer: <#T##Bool#>,
+                     ignoreFileNames: <#T##Bool#>)
+    }
 
 }

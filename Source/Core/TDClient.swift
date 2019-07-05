@@ -35,6 +35,10 @@ final public class TDClient {
         start()
     }
     
+    public init(authorization: TDAuthorization) {
+        
+    }
+    
     deinit {
         td_json_client_destroy(client)
     }
