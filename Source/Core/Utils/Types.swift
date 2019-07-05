@@ -8,9 +8,13 @@
 
 import Foundation
 
+// MARK: - Internal types
+
 typealias TDDataResultHandler = (TDDataResult) -> ()
 
-public typealias TDResultHandler<T: TDObjectProtocol> = (TDResult<T>) -> ()
+typealias UpdateHandler = (TDObject.Update) -> ()
+
+typealias UpdateObserverInfo = (nextId: UInt64, handlers: [UInt64: UpdateHandler])
 
 enum TDDataResult {
     
@@ -18,6 +22,10 @@ enum TDDataResult {
     case failure(TDError)
     
 }
+
+// MARK: - Public types
+
+public typealias TDResultHandler<T: TDObjectProtocol> = (TDResult<T>) -> ()
 
 public enum TDResult<T: TDObjectProtocol> {
     

@@ -11,17 +11,30 @@ import Swiftygram
 
 class ViewController: UIViewController {
     
-    let client = TGClient()
-    var observation: TDObservation?
+    let client1 = TDClient()
+    let client2 = TDClient()
+    var observation1: TDCancellable?
+    var observation2: TDCancellable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/Swiftygram"
+        observation1 = kek(client1)
+        observation2 = kek(client2)
+    }
+
+    func kek(_ client: TDClient) -> TDCancellable {
+        let f = TDFunction.SetLogStream(logStream: .empty)
         
-        let parameters = TDObject.TdlibParameters(useTestDc: true,
+        client.execute(f)
+        
+        let isSecondClient = client === client2
+        
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/Swiftygram\(isSecondClient ? "" : "")"
+        
+        let parameters = TDObject.TdlibParameters(useTestDc: false,
                                                   databaseDirectory: path,
-                                                  filesDirectory: path,
+                                                  filesDirectory: path + (isSecondClient ? "2" : ""),
                                                   useFileDatabase: true,
                                                   useChatInfoDatabase: true,
                                                   useMessageDatabase: true,
@@ -35,20 +48,20 @@ class ViewController: UIViewController {
                                                   enableStorageOptimizer: false,
                                                   ignoreFileNames: true)
         
-        observation = client.observeUpdates(for: TDObject.UpdateAuthorizationState.self) { update in
+        return client.observeUpdates(for: TDObject.UpdateAuthorizationState.self) { update in
             switch update.authorizationState {
             case .waitTdlibParameters:
                 let query = TDFunction.SetTdlibParameters(parameters: parameters)
                 
-                self.client.execute(query, completionHandler: { result in
+                client.execute(query, completionHandler: { result in
                     print(result)
                     print()
                 })
                 
             case .waitEncryptionKey:
-                let query = TDFunction.CheckDatabaseEncryptionKey(encryptionKey: "kekLol21312323123132")
+                let query = TDFunction.CheckDatabaseEncryptionKey(encryptionKey: "kekLol21312323123136")
                 
-                self.client.execute(query, completionHandler: { result in
+                client.execute(query, completionHandler: { result in
                     print(result)
                     print()
                 })
@@ -56,20 +69,29 @@ class ViewController: UIViewController {
             case .waitPhoneNumber:
                 let query = TDFunction.SetAuthenticationPhoneNumber(phoneNumber: "380957965942", allowFlashCall: false, isCurrentPhoneNumber: true)
                 
-                self.client.execute(query, completionHandler: { result in
+                client.execute(query, completionHandler: { result in
                     print(result)
                     print()
                 })
                 
             case .waitCode:
-                let code = "82975"
+                let code = "96917"
                 
                 print()
                 print(code)
                 print()
                 let query = TDFunction.CheckAuthenticationCode(code: code, firstName: "", lastName: "")
                 
-                self.client.execute(query, completionHandler: { result in
+                client.execute(query, completionHandler: { result in
+                    print(result)
+                    print()
+                })
+                
+            case .ready:
+                let query = TDFunction.GetMe()
+                
+                client.execute(query, completionHandler: { result in
+//                    assert(!isSecondClient)
                     print(result)
                     print()
                 })
@@ -79,20 +101,7 @@ class ViewController: UIViewController {
                 print()
             }
         }
-        
-//        let f = TGFunction.SetTdlibParameters(parameters: TGObject.TdlibParameters())
-//        
-//        client.execute(f) { result in
-//            switch result {
-//            case .success(_, _):
-//                break
-//                
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
     }
-
 
 }
 

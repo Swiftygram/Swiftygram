@@ -9,25 +9,29 @@
 import Foundation
 import tdjson
 
-typealias UpdateObserverInfo = (nextId: UInt64, handlers: [UInt64: Any])
-
-final public class TGClient {
+final public class TDClient {
     
     private let client = td_json_client_create()
-    private let codableQueue = DispatchQueue(label: "TDClient.codableQueue", qos: .background, attributes: .concurrent)
+    private let executionQueue = DispatchQueue(label: "TDClient.executionQueue", qos: .background, attributes: .concurrent)
     private let runLoopQueue = DispatchQueue(label: "TDClient.runLoopQueue")
     
-    private static let anyUpdateNotification = Notification.Name(rawValue: "anyUpdate")
-    private let notificationCenter = NotificationCenter()
-    
-    private let queryLock = NSRecursiveLock()
+    private let queryLock = MutexLock()
     private var completionHandlers = [UInt64: TDDataResultHandler]()
     private var nextQueryId: UInt64 = 0
     
-    private let updateLock = NSRecursiveLock()
+    private let updateLock = MutexLock()
     private var updateHandlers = [HashableType: UpdateObserverInfo]()
+    private var anyUpdateHandlers = [UInt64: UpdateHandler]()
+    private var anyUpdateNextId: UInt64 = 0
+    
+    var authorizationStateObservation: TDCancellable?
+    public let internalAuthorizationState = TDSubject<TDEnum.AuthorizationState?>(nil)
     
     public init() {
+        authorizationStateObservation = observeUpdates(for: TDObject.UpdateAuthorizationState.self, updateHandler: { [weak self] update in
+            self?.internalAuthorizationState.value = update.authorizationState
+        })
+        
         start()
     }
     
@@ -41,7 +45,7 @@ final public class TGClient {
      - Parameter function:
      */
     public func execute<Function>(_ function: Function, completionHandler: TDResultHandler<Function.ReturnType>? = nil) where Function: TDFunctionProtocol {
-        codableQueue.async {
+        executionQueue.async {
             var queryId: UInt64?
             var responseHandler: TDDataResultHandler?
 
@@ -97,12 +101,12 @@ final public class TGClient {
         runLoopQueue.async { [weak self] in
             while let self = self {
                 guard let result = td_json_client_receive(self.client, 10) else { continue }
-                
-                // FIXME
+
                 let string = String(cString: result)
-                let data = string.data(using: .utf8)!
-                
-                self.codableQueue.async {
+
+                self.executionQueue.async {
+                    guard let data = string.data(using: .utf8) else { return }
+                    
                     self.processData(data)
                 }
             }
@@ -110,20 +114,48 @@ final public class TGClient {
     }
     
     // MARK: - Update observation
-    public func observeUpdates<Update>(for update: Update.Type, updateHandler: @escaping ((Update) -> ())) -> TDObservation where Update: TDObject.Update {
-        return TDObservation(notificationCenter: notificationCenter, name: .init(update.type), notificationHandler: { payload in
-            if let update = payload as? Update {
+    public func observeUpdates<Update>(for update: Update.Type, updateHandler: @escaping ((Update) -> ())) -> TDCancellable where Update: TDObject.Update {
+        updateLock.lock(); defer { updateLock.unlock() }
+        
+        let hashableType = HashableType(Update.self)
+        
+        if updateHandlers[hashableType] == nil {
+            updateHandlers[hashableType] = (0, [:])
+        }
+        
+        let id = updateHandlers[hashableType]!.nextId
+        updateHandlers[hashableType]!.nextId += 1
+        updateHandlers[hashableType]!.handlers[id] = { update in
+            if let update = update as? Update {
                 updateHandler(update)
             }
-        })
+        }
+        
+        return TDCancellable { [weak self] in
+            guard let self = self else { return }
+            
+            self.updateLock.lock(); defer { self.updateLock.unlock() }
+            
+            self.updateHandlers[hashableType]?.handlers[id] = nil
+        }
     }
     
-    public func observerUpdates(with updateHandler: @escaping ((TDObject.Update) -> ())) -> TDObservation {
-        return TDObservation(notificationCenter: notificationCenter, name: type(of: self).anyUpdateNotification, notificationHandler: { payload in
-            if let update = payload as? TDObject.Update {
-                updateHandler(update)
-            }
-        })
+    public func observerUpdates(with updateHandler: @escaping ((TDObject.Update) -> ())) -> TDCancellable {
+        updateLock.lock(); defer { updateLock.unlock() }
+        
+        let id = anyUpdateNextId
+        anyUpdateNextId += 1
+        anyUpdateHandlers[id] = { update in
+            updateHandler(update)
+        }
+        
+        return TDCancellable { [weak self] in
+            guard let self = self else { return }
+            
+            self.updateLock.lock(); defer { self.updateLock.unlock() }
+            
+            self.anyUpdateHandlers[id] = nil
+        }
     }
     
     // MARK: - Data processing
@@ -175,15 +207,20 @@ final public class TGClient {
             return
         }
         
-        let userInfo = [TDObservation.payload: updateObject]
+        updateLock.lock(); defer { updateLock.unlock() }
         
-        notificationCenter.post(name: type(of: self).anyUpdateNotification,
-                                object: nil,
-                                userInfo: userInfo)
+        let updateHandlers = self.updateHandlers[HashableType(type(of: updateObject))]?.handlers ?? [:]
+        let anyUpdateHandlers = self.anyUpdateHandlers
         
-        notificationCenter.post(name: .init(type(of: updateObject).type),
-                                object: nil,
-                                userInfo: userInfo)
+        executionQueue.async {
+            for (_, handler) in updateHandlers {
+                handler(updateObject)
+            }
+            
+            for (_, handler) in anyUpdateHandlers {
+                handler(updateObject)
+            }
+        }
     }
     
     // MARK: - Utils
