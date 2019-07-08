@@ -23,12 +23,28 @@ public struct TDAuthorizerConfiguration {
     public var apiHash: String
     public var usesTestEnvironment: Bool
     public var appGroupId: String?
+
+    public init(apiId: Int, apiHash: String, usesTestEnvironment: Bool, appGroupId: String?) {
+        self.apiId = apiId
+        self.apiHash = apiHash
+        self.usesTestEnvironment = usesTestEnvironment
+        self.appGroupId = appGroupId
+    }
 }
 
 // MARK: - TDAuthorizerDelegate
 
 public protocol TDAuthorizerDelegate: class {
+    func authorizerRequestsPhoneNumber(_ authorizer: TDAuthorizer)
+    func authorizer(_ authorizer: TDAuthorizer, didFailToSet phoneNumber: String, withError error: TDAuthorizationError)
     
+    func authorizerDidCancelAuthorizationFlow(_ authorizer: TDAuthorizer)
+}
+
+// MARK: - TDAuthorizationError
+
+public enum TDAuthorizationError: Error {
+    case invalidAppGroupId
 }
 
 // MARK: - TDAuthorizer
@@ -37,8 +53,8 @@ public final class TDAuthorizer {
     
     // MARK: - Static scope
     
-    public class func authorization(with configuration: TDAuthorizerConfiguration, delegate: TDAuthorizerDelegate, completion: @escaping TDAuthorizationResultHandler) {
-        
+    public class func authorization(with configuration: TDAuthorizerConfiguration, delegate: TDAuthorizerDelegate, completion: @escaping TDAuthorizationResultHandler) -> TDAuthorizer {
+        return .init(configuration: configuration, delegate: delegate, completion: completion)
     }
     
     // MARK: - Instance scope
@@ -55,9 +71,18 @@ public final class TDAuthorizer {
         self.delegate = delegate
         self.completion = completion
         
+        let databaseEncryptionKey = String(
+            UUID()
+                .uuidString
+                .components(separatedBy: "-")
+                .joined()
+                .prefix(20)
+        )
+        
         authorization = TDAuthorization(apiId: configuration.apiId,
                                         apiHash: configuration.apiHash,
                                         accountId: UUID().uuidString,
+                                        databaseEncryptionKey: databaseEncryptionKey,
                                         usesTestEnvironment: configuration.usesTestEnvironment,
                                         appGroupId: configuration.appGroupId)
         
@@ -76,26 +101,17 @@ public final class TDAuthorizer {
     }
     
     private func handleAuthorizationState(_ authorizationState: TDEnum.AuthorizationState) {
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/Swiftygram"
-        
-        let parameters = TDObject.TdlibParameters(useTestDc: false,
-                                                  databaseDirectory: path,
-                                                  filesDirectory: path,
-                                                  useFileDatabase: true,
-                                                  useChatInfoDatabase: true,
-                                                  useMessageDatabase: true,
-                                                  useSecretChats: false,
-                                                  apiId: 110110,
-                                                  apiHash: "2e4f47c07d66d4461943d47f4f18a555",
-                                                  systemLanguageCode: "ru",
-                                                  deviceModel: "iPhone",
-                                                  systemVersion: "11.1",
-                                                  applicationVersion: "1.0",
-                                                  enableStorageOptimizer: false,
-                                                  ignoreFileNames: true)
-        
         switch authorizationState {
         case .waitTdlibParameters:
+            let parameters: TDObject.TdlibParameters
+            do {
+                parameters = try client.generateTdlibParameters()
+            }
+            catch {
+                completion(.failure(error as! TDError))
+                return
+            }
+            
             let query = TDFunction.SetTdlibParameters(parameters: parameters)
             
             client.execute(query, completionHandler: { [weak self] result in
@@ -107,7 +123,7 @@ public final class TDAuthorizer {
             })
             
         case .waitEncryptionKey:
-            let query = TDFunction.CheckDatabaseEncryptionKey(encryptionKey: "kekLol21312323123136")
+            let query = TDFunction.CheckDatabaseEncryptionKey(encryptionKey: authorization.databaseEncryptionKey)
             
             client.execute(query, completionHandler: { [weak self] result in
                 DispatchQueue.main.async {
@@ -118,20 +134,24 @@ public final class TDAuthorizer {
             })
             
         case .waitPhoneNumber:
-            let query = TDFunction.SetAuthenticationPhoneNumber(phoneNumber: "380957965942", allowFlashCall: false, isCurrentPhoneNumber: true)
+            delegate?.authorizerRequestsPhoneNumber(self)
             
-            client.execute(query, completionHandler: { result in
-                print(result)
-                print()
-            })
+            
             
         case .waitCode:
-            let code = "96917"
+//            let code = "96917"
+//
+//            print()
+//            print(code)
+//            print()
+//            let query = TDFunction.CheckAuthenticationCode(code: code, firstName: "", lastName: "")
+//
+//            client.execute(query, completionHandler: { result in
+//                print(result)
+//                print()
+//            })
             
-            print()
-            print(code)
-            print()
-            let query = TDFunction.CheckAuthenticationCode(code: code, firstName: "", lastName: "")
+            let query = TDFunction.SetAuthenticationPhoneNumber(phoneNumber: "380957", allowFlashCall: false, isCurrentPhoneNumber: true)
             
             client.execute(query, completionHandler: { result in
                 print(result)
@@ -151,6 +171,18 @@ public final class TDAuthorizer {
             print(authorizationState)
             print()
         }
+    }
+    
+    public func setPhoneNumber(_ phoneNumber: String) {
+        let query = TDFunction.SetAuthenticationPhoneNumber(phoneNumber: phoneNumber, allowFlashCall: false, isCurrentPhoneNumber: true)
+        
+        client.execute(query, completionHandler: { [weak self] result in
+            DispatchQueue.main.async {
+                if case .failure(let error) = result, let self = self {
+                    self.delegate?.authorizer(self, didFailToSet: phoneNumber, withError: TDAuthorizationError.invalidAppGroupId)
+                }
+            }
+        })
     }
     
 }

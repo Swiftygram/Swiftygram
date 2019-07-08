@@ -11,6 +11,9 @@ import tdjson
 
 final public class TDClient {
     
+    public let authorization: TDAuthorization
+    public let configuration: Configuration
+    
     private let client = td_json_client_create()
     private let executionQueue = DispatchQueue(label: "TDClient.executionQueue", qos: .background, attributes: .concurrent)
     private let runLoopQueue = DispatchQueue(label: "TDClient.runLoopQueue")
@@ -27,16 +30,15 @@ final public class TDClient {
     var authorizationStateObservation: TDCancellable?
     public let internalAuthorizationState = TDSubject<TDEnum.AuthorizationState?>(nil)
     
-    public init() {
+    public init(authorization: TDAuthorization, configuration: Configuration = .default) {
+        self.authorization = authorization
+        self.configuration = configuration
+        
         authorizationStateObservation = observeUpdates(for: TDObject.UpdateAuthorizationState.self, updateHandler: { [weak self] update in
             self?.internalAuthorizationState.value = update.authorizationState
         })
         
         start()
-    }
-    
-    public init(authorization: TDAuthorization) {
-        
     }
     
     deinit {
@@ -242,6 +244,47 @@ final public class TDClient {
         queryLock.lock(); defer { queryLock.unlock() }
         
         return completionHandlers.removeValue(forKey: queryId)
+    }
+    
+    func generateTdlibParameters() throws -> TDObject.TdlibParameters {
+        let fileManager = FileManager.default
+        var databaseURL: URL
+        var filesURL: URL
+        
+        if let appGroupId = authorization.appGroupId {
+            guard let appGroupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: appGroupId) else {
+                throw TDAuthorizationError.invalidAppGroupId
+            }
+            
+            databaseURL = appGroupURL
+            filesURL = appGroupURL.appendingPathComponent("Library/Caches")
+        } else {
+            databaseURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+            filesURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        }
+        
+        let pathComponent = ".Swiftygram/\(authorization.accountId)"
+        databaseURL.appendPathComponent(pathComponent)
+        filesURL.appendPathComponent(pathComponent)
+        
+//        try fileManager.createDirectory(at: databaseURL, withIntermediateDirectories: true, attributes: nil)
+//        try fileManager.createDirectory(at: filesURL, withIntermediateDirectories: true, attributes: nil)
+        
+        return .init(useTestDc: authorization.usesTestEnvironment,
+                     databaseDirectory: databaseURL.path,
+                     filesDirectory: filesURL.path,
+                     useFileDatabase: configuration.usesFileDatabase,
+                     useChatInfoDatabase: configuration.usesChatInfoDatabase,
+                     useMessageDatabase: configuration.usesMessageDatabase,
+                     useSecretChats: configuration.usesSecretChats,
+                     apiId: authorization.apiId,
+                     apiHash: authorization.apiHash,
+                     systemLanguageCode: configuration.systemLanguageCode,
+                     deviceModel: configuration.deviceModel,
+                     systemVersion: configuration.systemVersion,
+                     applicationVersion: configuration.applicationVersion,
+                     enableStorageOptimizer: configuration.enableStorageOptimizer,
+                     ignoreFileNames: configuration.ignoresFileNames)
     }
     
 }

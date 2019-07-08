@@ -76,6 +76,16 @@ let main = command { (tdApiPath: String, typeDecisionsFolder: String, outputFold
           "--header", headers)
 }
 
+var systemInfo = utsname()
+uname(&systemInfo)
+let machineMirror = Mirror(reflecting: systemInfo.machine)
+let identifier = machineMirror.children.reduce("") { identifier, element in
+    guard let value = element.value as? Int8, value != 0 else { return identifier }
+    return identifier + String(UnicodeScalar(UInt8(value)))
+}
+
+print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
+
 main.run()
 
 
