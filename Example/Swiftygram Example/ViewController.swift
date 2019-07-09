@@ -29,6 +29,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: TDAuthorizerDelegate {
+    func authorizer(_ authorizer: TDAuthorizerSession, didReceivePreferred countryCode: String) {
+        print(countryCode)
+    }
+    
     func authorizerRequestsPhoneNumber(_ authorizer: TDAuthorizerSession) {
         authorizer.setPhoneNumber("380986570880", completionHandler: nil)
     }

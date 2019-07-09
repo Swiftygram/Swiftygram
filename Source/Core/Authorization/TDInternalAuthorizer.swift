@@ -39,7 +39,7 @@ class TDInternalAuthorizer {
         var configuration = TDClient.Configuration.default
         configuration.callbackQueue = .main
         
-        client = TDClient(authorization: authorization, configuration: configuration)
+        client = TDClient(authorization: authorization, configuration: configuration, shouldHandleAuthorizationState: false)
         
         cancellableBag.append(
             client
@@ -51,6 +51,18 @@ class TDInternalAuthorizer {
                     self.handleAuthorizationState(authorizationState)
             }
         )
+        
+        fetchCountryCode()
+    }
+    
+    private func fetchCountryCode() {
+        let query = TDFunction.GetCountryCode()
+        
+        client.execute(query) { [weak self] result in
+            if case .success(let countryCode) = result, let self = self {
+                self.delegate?.authorizer(self, didReceivePreferred: countryCode.text)
+            }
+        }
     }
     
     private func handleAuthorizationState(_ authorizationState: TDEnum.AuthorizationState) {

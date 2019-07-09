@@ -29,12 +29,20 @@ final public class TDClient {
     private var anyUpdateHandlers = [UInt64: UpdateHandler]()
     private var anyUpdateNextId: UInt64 = 0
     
+    private let shouldHandleAuthorizationState: Bool
     var authorizationStateObservation: TDCancellable?
     let internalAuthorizationState = TDSubject<TDEnum.AuthorizationState?>(nil)
     
-    public init(authorization: TDAuthorization, configuration: Configuration = .default) {
+    public let authorizationState = TDSubject<TDAuthorizationState>(.initializing)
+    
+    public convenience init(authorization: TDAuthorization, configuration: Configuration = .default) {
+        self.init(authorization: authorization, configuration: configuration, shouldHandleAuthorizationState: true)
+    }
+    
+    init(authorization: TDAuthorization, configuration: Configuration, shouldHandleAuthorizationState: Bool) {
         self.authorization = authorization
         self.configuration = configuration
+        self.shouldHandleAuthorizationState = shouldHandleAuthorizationState
         
         authorizationStateObservation = observeUpdates(for: TDObject.UpdateAuthorizationState.self, updateHandler: { [weak self] update in
             self?.internalAuthorizationState.value = update.authorizationState
@@ -46,7 +54,7 @@ final public class TDClient {
     deinit {
         td_json_client_destroy(client)
         
-        // notify all completion handlers
+        // notify all pending completion handlers
         queryLock.lock()
         
         let completionHandlers = self.completionHandlers
@@ -61,6 +69,39 @@ final public class TDClient {
                 .forEach { _, completion in
                     completion(.failure(.cancelled))
                 }
+        }
+    }
+    
+    private func handleAuthorizationState(_ authorizationState: TDEnum.AuthorizationState) {
+        switch authorizationState {
+        case .waitTdlibParameters:
+            guard let parameters = try? generateTdlibParameters() else {
+                self.authorizationState.value = .unauthorized
+                return
+            }
+            
+            let query = TDFunction.SetTdlibParameters(parameters: parameters)
+            
+            execute(query) { [weak self] result in
+                if case .failure = result {
+                    self?.authorizationState.value = .unauthorized
+                }
+            }
+            
+        case .waitEncryptionKey:
+            let query = TDFunction.CheckDatabaseEncryptionKey(encryptionKey: authorization.databaseEncryptionKey)
+            
+            execute(query) { [weak self] result in
+                if case .failure = result {
+                    self?.authorizationState.value = .unauthorized
+                }
+            }
+            
+        case .ready:
+            self.authorizationState.value = .authorized
+            
+        default:
+            self.authorizationState.value = .unauthorized
         }
     }
     
@@ -149,12 +190,13 @@ final public class TDClient {
     // MARK: - Update observation
     public func observeUpdates<Update>(
         for update: Update.Type,
+        callbackQueue: DispatchQueue? = nil,
         updateHandler: @escaping ((Update) -> ())
         ) -> TDCancellable where Update: TDObject.Update {
         
         updateLock.lock(); defer { updateLock.unlock() }
         
-        let updateHandler = configuration.callbackQueue.wrap(updateHandler)
+        let updateHandler = (callbackQueue ?? configuration.callbackQueue).wrap(updateHandler)
         let hashableType = HashableType(Update.self)
         
         if updateHandlers[hashableType] == nil {
@@ -179,14 +221,15 @@ final public class TDClient {
     }
     
     public func observerUpdates(
-        with updateHandler: @escaping ((TDObject.Update) -> ())
+        on callbackQueue: DispatchQueue? = nil,
+        updateHandler: @escaping ((TDObject.Update) -> ())
         ) -> TDCancellable {
         
         updateLock.lock(); defer { updateLock.unlock() }
         
         let id = anyUpdateNextId
         anyUpdateNextId += 1
-        anyUpdateHandlers[id] = configuration.callbackQueue.wrap(updateHandler)
+        anyUpdateHandlers[id] = (callbackQueue ?? configuration.callbackQueue).wrap(updateHandler)
         
         return TDCancellable { [weak self] in
             guard let self = self else { return }
