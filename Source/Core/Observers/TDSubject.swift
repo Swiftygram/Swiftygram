@@ -21,6 +21,12 @@ public final class TDSubject<Element> {
             let newValue = _value
             observers.values.forEach { observer, dispatchQueue in
                 if let dispatchQueue = dispatchQueue {
+                    // main thread optimization
+                    if dispatchQueue == .main, Thread.isMainThread {
+                        observer(newValue, oldValue)
+                        return
+                    }
+                    
                     dispatchQueue.async {
                         observer(newValue, oldValue)
                     }

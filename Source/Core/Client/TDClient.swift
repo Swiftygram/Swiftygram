@@ -16,10 +16,12 @@ final public class TDClient {
     
     private let client = td_json_client_create()
     private let executionQueue = DispatchQueue(label: "TDClient.executionQueue", qos: .background, attributes: .concurrent)
+    private let processingQueue = DispatchQueue(label: "TDClient.processingQueue")
     private let runLoopQueue = DispatchQueue(label: "TDClient.runLoopQueue")
     
     private let queryLock = MutexLock()
     private var completionHandlers = [UInt64: TDDataResultHandler]()
+    private var queryTimers = [UInt64: DispatchOnceTimer]()
     private var nextQueryId: UInt64 = 0
     
     private let updateLock = MutexLock()
@@ -28,7 +30,7 @@ final public class TDClient {
     private var anyUpdateNextId: UInt64 = 0
     
     var authorizationStateObservation: TDCancellable?
-    public let internalAuthorizationState = TDSubject<TDEnum.AuthorizationState?>(nil)
+    let internalAuthorizationState = TDSubject<TDEnum.AuthorizationState?>(nil)
     
     public init(authorization: TDAuthorization, configuration: Configuration = .default) {
         self.authorization = authorization
@@ -43,6 +45,23 @@ final public class TDClient {
     
     deinit {
         td_json_client_destroy(client)
+        
+        // notify all completion handlers
+        queryLock.lock()
+        
+        let completionHandlers = self.completionHandlers
+        self.completionHandlers = [:]
+        queryTimers = [:]
+        
+        queryLock.unlock()
+        
+        processingQueue.async {
+            completionHandlers
+                .sorted(by: { $0.key < $1.key })
+                .forEach { _, completion in
+                    completion(.failure(.cancelled))
+                }
+        }
     }
     
     /**
@@ -50,13 +69,21 @@ final public class TDClient {
      
      - Parameter function:
      */
-    public func execute<Function>(_ function: Function, completionHandler: TDResultHandler<Function.ReturnType>? = nil) where Function: TDFunctionProtocol {
+    public func execute<Function>(
+        _ function: Function,
+        callbackQueue: DispatchQueue? = nil,
+        timeoutInterval: TimeInterval? = nil,
+        completionHandler: TDResultHandler<Function.ReturnType>? = nil
+        ) where Function: TDFunctionProtocol {
+        
         executionQueue.async {
             var queryId: UInt64?
             var responseHandler: TDDataResultHandler?
-
+            
             // response parser
-            if let completionHandler = completionHandler {
+            if var completionHandler = completionHandler {
+                completionHandler = (callbackQueue ?? self.configuration.callbackQueue).wrap(completionHandler)
+                
                 responseHandler = { result in
                     switch result {
                     case .success(let data):
@@ -73,7 +100,7 @@ final public class TDClient {
                     }
                 }
                 
-                queryId = self.pushCompletionHandler(responseHandler!)
+                queryId = self.pushCompletionHandler(responseHandler!, timeoutInterval: timeoutInterval ?? self.configuration.timeoutInterval)
             }
             
             // encoding and executing
@@ -110,7 +137,7 @@ final public class TDClient {
 
                 let string = String(cString: result)
 
-                self.executionQueue.async {
+                self.processingQueue.async {
                     guard let data = string.data(using: .utf8) else { return }
                     
                     self.processData(data)
@@ -120,9 +147,14 @@ final public class TDClient {
     }
     
     // MARK: - Update observation
-    public func observeUpdates<Update>(for update: Update.Type, updateHandler: @escaping ((Update) -> ())) -> TDCancellable where Update: TDObject.Update {
+    public func observeUpdates<Update>(
+        for update: Update.Type,
+        updateHandler: @escaping ((Update) -> ())
+        ) -> TDCancellable where Update: TDObject.Update {
+        
         updateLock.lock(); defer { updateLock.unlock() }
         
+        let updateHandler = configuration.callbackQueue.wrap(updateHandler)
         let hashableType = HashableType(Update.self)
         
         if updateHandlers[hashableType] == nil {
@@ -146,14 +178,15 @@ final public class TDClient {
         }
     }
     
-    public func observerUpdates(with updateHandler: @escaping ((TDObject.Update) -> ())) -> TDCancellable {
+    public func observerUpdates(
+        with updateHandler: @escaping ((TDObject.Update) -> ())
+        ) -> TDCancellable {
+        
         updateLock.lock(); defer { updateLock.unlock() }
         
         let id = anyUpdateNextId
         anyUpdateNextId += 1
-        anyUpdateHandlers[id] = { update in
-            updateHandler(update)
-        }
+        anyUpdateHandlers[id] = configuration.callbackQueue.wrap(updateHandler)
         
         return TDCancellable { [weak self] in
             guard let self = self else { return }
@@ -213,35 +246,44 @@ final public class TDClient {
             return
         }
         
-        updateLock.lock(); defer { updateLock.unlock() }
+        updateLock.lock()
         
         let updateHandlers = self.updateHandlers[HashableType(type(of: updateObject))]?.handlers ?? [:]
         let anyUpdateHandlers = self.anyUpdateHandlers
         
-        executionQueue.async {
-            for (_, handler) in updateHandlers {
-                handler(updateObject)
-            }
-            
-            for (_, handler) in anyUpdateHandlers {
-                handler(updateObject)
-            }
+        updateLock.unlock()
+        
+        for (_, handler) in updateHandlers {
+            handler(updateObject)
+        }
+        
+        for (_, handler) in anyUpdateHandlers {
+            handler(updateObject)
         }
     }
     
     // MARK: - Utils
-    private func pushCompletionHandler(_ completionHandler: @escaping TDDataResultHandler) -> UInt64 {
+    private func pushCompletionHandler(_ completionHandler: @escaping TDDataResultHandler, timeoutInterval: TimeInterval) -> UInt64 {
         queryLock.lock(); defer { queryLock.unlock() }
         
-        completionHandlers[nextQueryId] = completionHandler
         let initialQueryId = nextQueryId
         nextQueryId += 1
+        
+        completionHandlers[initialQueryId] = completionHandler
+        
+        if timeoutInterval > 0 {
+            queryTimers[initialQueryId] = DispatchOnceTimer(queue: processingQueue, delay: timeoutInterval, eventHandler: { [weak self] in
+                self?.completionHandler(for: initialQueryId)?(.failure(.timedOut))
+            })
+        }
         
         return initialQueryId
     }
     
     private func completionHandler(for queryId: UInt64) -> TDDataResultHandler? {
         queryLock.lock(); defer { queryLock.unlock() }
+        
+        queryTimers[queryId] = nil
         
         return completionHandlers.removeValue(forKey: queryId)
     }

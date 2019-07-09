@@ -94,6 +94,8 @@ public extension TDClient {
         
         public var timeoutInterval: TimeInterval
         
+        public var callbackQueue: DispatchQueue
+        
         /**
          If set to true, original file names will be ignored. Otherwise, downloaded files will be saved under names as close as possible to the original name
          */
@@ -125,8 +127,9 @@ public extension TDClient {
                     usesSecretChats: Bool,
                     enableStorageOptimizer: Bool,
                     ignoresFileNames: Bool,
-                    timeoutInterval: TimeInterval = 20) {
-
+                    timeoutInterval: TimeInterval = 20,
+                    callbackQueue: DispatchQueue = .init(label: "Swiftygram.callbackQueue")) {
+            
             self.init(usesFileDatabase: usesFileDatabase,
                       usesChatInfoDatabase: usesChatInfoDatabase,
                       usesMessageDatabase: usesMessageDatabase,
@@ -146,7 +149,8 @@ public extension TDClient {
                     usesSecretChats: Bool,
                     enableStorageOptimizer: Bool,
                     ignoresFileNames: Bool,
-                    timeoutInterval: TimeInterval,
+                    timeoutInterval: TimeInterval = 20,
+                    callbackQueue: DispatchQueue = .init(label: "Swiftygram.callbackQueue"),
                     systemLanguageCode: String,
                     deviceModel: String,
                     systemVersion: String,
@@ -159,6 +163,7 @@ public extension TDClient {
             self.enableStorageOptimizer = enableStorageOptimizer
             self.ignoresFileNames = ignoresFileNames
             self.timeoutInterval = timeoutInterval
+            self.callbackQueue = callbackQueue
             self.systemLanguageCode = systemLanguageCode
             self.deviceModel = deviceModel
             self.systemVersion = systemVersion

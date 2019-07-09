@@ -33,3 +33,12 @@ public enum TDResult<T: TDObjectProtocol> {
     case failure(TDError)
     
 }
+
+public enum TDAuthorizationResult {
+    
+    case success(TDAuthorization)
+    case failure(TDAuthorizationError)
+    
+}
+
+public typealias TDAuthorizationResultHandler = (TDAuthorizationResult) -> ()
