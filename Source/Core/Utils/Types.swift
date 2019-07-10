@@ -16,6 +16,8 @@ typealias UpdateHandler = (TDObject.Update) -> ()
 
 typealias UpdateObserverInfo = (nextId: UInt64, handlers: [UInt64: UpdateHandler])
 
+typealias PendingFunction = (TDClient, UInt64?) -> ()
+
 enum TDDataResult {
     
     case success(Data)

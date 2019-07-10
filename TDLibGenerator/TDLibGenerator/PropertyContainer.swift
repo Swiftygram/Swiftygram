@@ -115,7 +115,7 @@ extension PropertyContainer {
     
     private class func isOptional(documentation: String, propertyType: PropertyType) -> Bool {
         return documentation.range(of: "\\Wnull(\\w|$)", options: [.caseInsensitive, .regularExpression]) != nil ||
-            documentation.range(of: "optional\\w", options: [.caseInsensitive, .regularExpression]) != nil ||
+            documentation.range(of: "optional(\\w|$)", options: [.caseInsensitive, .regularExpression]) != nil ||
             documentation.range(of: "\\wif it exists\\w", options: [.caseInsensitive, .regularExpression]) != nil ||
             documentation.range(of: "if applicable") != nil ||
             documentation.range(of: "if available") != nil ||

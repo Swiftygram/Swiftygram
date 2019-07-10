@@ -57,18 +57,23 @@ extension Generator {
         }
         
         let namespace: String
-        let superclass: String
+        var superclass: String
         
         if object.superclassName == "Function" {
             namespace = functionNamespace
             superclass = functionProtocol
+            
+            if object.documentation.contains("Can be called before authorization") {
+                superclass += ", \(authorizationIndependentFunction)"
+            }
         } else {
             namespace = objectNamespace
             
             superclass = object.superclassName == "Object" ? objectProtocol : "\(objectNamespace).\(object.superclassName)"
         }
         
-        var output = ["public extension \(namespace) {"]
+        let isPublic = internalTypes.contains(object.name) ? "" : "public "
+        var output = ["\(isPublic)extension \(namespace) {"]
         
         output.append("\(docsForType(object))\nstruct \(object.name): \(superclass) {")
         

@@ -22,6 +22,7 @@ final public class TDClient {
     private let queryLock = MutexLock()
     private var completionHandlers = [UInt64: TDDataResultHandler]()
     private var queryTimers = [UInt64: DispatchOnceTimer]()
+    private var pendingFunctions = [UInt64: PendingFunction]()
     private var nextQueryId: UInt64 = 0
     
     private let updateLock = MutexLock()
@@ -30,7 +31,7 @@ final public class TDClient {
     private var anyUpdateNextId: UInt64 = 0
     
     private let shouldHandleAuthorizationState: Bool
-    var authorizationStateObservation: TDCancellable?
+    private var authorizationStateObservation: TDCancellable?
     let internalAuthorizationState = TDSubject<TDEnum.AuthorizationState?>(nil)
     
     public let authorizationState = TDSubject<TDAuthorizationState>(.initializing)
@@ -63,6 +64,10 @@ final public class TDClient {
         
         queryLock.unlock()
         
+        if completionHandlers.isEmpty {
+            return
+        }
+        
         processingQueue.async {
             completionHandlers
                 .sorted(by: { $0.key < $1.key })
@@ -75,6 +80,8 @@ final public class TDClient {
     private func handleAuthorizationState(_ authorizationState: TDEnum.AuthorizationState) {
         switch authorizationState {
         case .waitTdlibParameters:
+            guard shouldHandleAuthorizationState else { return }
+            
             guard let parameters = try? generateTdlibParameters() else {
                 self.authorizationState.value = .unauthorized
                 return
@@ -89,6 +96,8 @@ final public class TDClient {
             }
             
         case .waitEncryptionKey:
+            guard shouldHandleAuthorizationState else { return }
+            
             let query = TDFunction.CheckDatabaseEncryptionKey(encryptionKey: authorization.databaseEncryptionKey)
             
             execute(query) { [weak self] result in
@@ -99,6 +108,8 @@ final public class TDClient {
             
         case .ready:
             self.authorizationState.value = .authorized
+            
+            executePendingFunctions()
             
         default:
             self.authorizationState.value = .unauthorized
@@ -117,9 +128,27 @@ final public class TDClient {
         completionHandler: TDResultHandler<Function.ReturnType>? = nil
         ) where Function: TDFunctionProtocol {
         
+        // encoding and executing
+        let execution: PendingFunction = { client, queryId in
+            let wrappedFunction = FunctionWrapper(function: function, queryId: queryId)
+            
+            do {
+                let data = try JSONEncoder.swiftygram.encode(wrappedFunction)
+                
+                client.send(data: data)
+                
+            } catch {
+                if let queryId = queryId, let completionHandler = client.completionHandler(for: queryId) {
+                    completionHandler(.failure(.encoding(error)))
+                }
+            }
+        }
+        
         executionQueue.async {
             var queryId: UInt64?
             var responseHandler: TDDataResultHandler?
+            
+            self.queryLock.lock()
             
             // response parser
             if var completionHandler = completionHandler {
@@ -141,22 +170,49 @@ final public class TDClient {
                     }
                 }
                 
-                queryId = self.pushCompletionHandler(responseHandler!, timeoutInterval: timeoutInterval ?? self.configuration.timeoutInterval)
+                queryId = self.pushCompletionHandlerLocked(responseHandler!, timeoutInterval: timeoutInterval ?? self.configuration.timeoutInterval)
+                
             }
             
-            // encoding and executing
-            let wrappedFunction = FunctionWrapper(function: function, queryId: queryId)
-            
-            do {
-                let data = try JSONEncoder.swiftygram.encode(wrappedFunction)
+            if self.canExecuteFunction(Function.self) {
+                self.queryLock.unlock()
                 
-                self.send(data: data)
+                execution(self, queryId)
                 
-            } catch {
-                if let queryId = queryId, let completionHandler = self.completionHandler(for: queryId) {
-                    completionHandler(.failure(.encoding(error)))
+            } else {
+                // enqueue function to future execution
+                if queryId == nil {
+                    queryId = self.nextQueryId
+                    self.nextQueryId += 1
                 }
+                
+                self.pendingFunctions[queryId!] = execution
+                
+                self.queryLock.unlock()
             }
+        }
+    }
+    
+    private func canExecuteFunction(_ function: Any.Type) -> Bool {
+        return !shouldHandleAuthorizationState ||
+            function is AuthorizationIndependentFunction.Type
+    }
+    
+    private func executePendingFunctions() {
+        queryLock.lock(); defer { queryLock.unlock() }
+        
+        let functions = pendingFunctions
+        
+        if functions.isEmpty {
+            return
+        }
+        
+        executionQueue.async {
+            functions
+                .sorted(by: { $0.key < $1.key })
+                .forEach { queryId, execution in
+                    execution(self, queryId)
+                }
         }
     }
     
@@ -306,9 +362,7 @@ final public class TDClient {
     }
     
     // MARK: - Utils
-    private func pushCompletionHandler(_ completionHandler: @escaping TDDataResultHandler, timeoutInterval: TimeInterval) -> UInt64 {
-        queryLock.lock(); defer { queryLock.unlock() }
-        
+    private func pushCompletionHandlerLocked(_ completionHandler: @escaping TDDataResultHandler, timeoutInterval: TimeInterval) -> UInt64 {
         let initialQueryId = nextQueryId
         nextQueryId += 1
         
@@ -327,6 +381,7 @@ final public class TDClient {
         queryLock.lock(); defer { queryLock.unlock() }
         
         queryTimers[queryId] = nil
+        pendingFunctions[queryId] = nil
         
         return completionHandlers.removeValue(forKey: queryId)
     }

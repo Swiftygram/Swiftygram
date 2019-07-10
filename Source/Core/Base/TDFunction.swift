@@ -15,3 +15,5 @@ public class TDFunction {}
 public protocol TDFunctionProtocol: TDObjectProtocol {
     associatedtype ReturnType: TDObjectProtocol
 }
+
+protocol AuthorizationIndependentFunction {}

@@ -84,7 +84,8 @@ extension Generator {
             cases.append(caseString)
         }
         
-        var output = ["public extension \(enumNamespace) {"]
+        let isPublic = internalTypes.contains(object.name) ? "" : "public "
+        var output = ["\(isPublic)extension \(enumNamespace) {"]
         
         output.append("\(docsForType(object))\n\(isIndirect ? "indirect " : "")enum \(object.name): \(enumProtocol) {")
         

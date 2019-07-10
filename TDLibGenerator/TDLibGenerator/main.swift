@@ -19,6 +19,7 @@ let objectProtocol = "TDObjectProtocol"
 
 let functionNamespace = "TDFunction"
 let functionProtocol = "TDFunctionProtocol"
+let authorizationIndependentFunction = "AuthorizationIndependentFunction"
 
 let anyCodingKey = "AnyCodingKey"
 let subclassCodable = "SubclassCodable"
@@ -28,6 +29,19 @@ let maxPropertyCount = 5
 let forceSubclass = ["Update"]
 let ignoredClasses = ["TestUseUpdate"]
 let returnTypeDocumentation = "Type of return value for this function".multilineComment
+
+let internalTypes = ["TdlibParameters",
+                     "SetTdlibParameters",
+                     
+                     "AuthorizationState",
+                     "GetAuthorizationState",
+                     "UpdateAuthorizationState",
+                     
+                     "CheckDatabaseEncryptionKey",
+                     "SetDatabaseEncryptionKey",
+                     "SetAuthenticationPhoneNumber",
+                     "CheckAuthenticationCode",
+                     "ResendAuthenticationCode"]
 
 // MARK: - Global
 
@@ -76,43 +90,4 @@ let main = command { (tdApiPath: String, typeDecisionsFolder: String, outputFold
           "--header", headers)
 }
 
-var systemInfo = utsname()
-uname(&systemInfo)
-let machineMirror = Mirror(reflecting: systemInfo.machine)
-let identifier = machineMirror.children.reduce("") { identifier, element in
-    guard let value = element.value as? Int8, value != 0 else { return identifier }
-    return identifier + String(UnicodeScalar(UInt8(value)))
-}
-
-print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
-
 main.run()
-
-
-struct AcceptCall {
-    /**
-     Type of return value for this function
-     */
-    typealias ReturnType = Int
-    
-    /**
-     Call identifier
-     */
-    public let callId: Int
-    
-    /**
-     Description of the call protocols supported by the client
-     */
-    public let `protocol`: Int
-    
-    /**
-     Accepts an incoming call
-     
-     - Parameter callId: Call identifier
-     - Parameter protocol: Description of the call protocols supported by the client
-     */
-    public init(callId: Int, protocol: Int) {
-        self.callId = callId
-        self.protocol = `protocol`
-    }
-}

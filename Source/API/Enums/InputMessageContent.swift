@@ -1,7 +1,7 @@
 //
-//  API
+//  InputMessageContent.swift
 //  Swiftygram
-//  Created by ky1vstar on 26.06.2019.
+//  Created by ky1vstar on 7/10/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -155,7 +155,7 @@ public extension TDEnum {
          - providerData: JSON-encoded data about the invoice, which will be shared with the payment provider
          - startParameter: Unique invoice bot start_parameter for the generation of this invoice
          */
-        case invoice(invoice: TDObject.Invoice, title: String, description: String, photoUrl: URL, photoSize: Int, photoWidth: Int, photoHeight: Int, payload: String, providerToken: String, providerData: String, startParameter: String)
+        case invoice(invoice: TDObject.Invoice, title: String, description: String, photoUrl: URL?, photoSize: Int, photoWidth: Int, photoHeight: Int, payload: String, providerToken: String, providerData: String, startParameter: String)
 
         /**
          A message with a poll. Polls can't be sent to private or secret chats
@@ -289,7 +289,7 @@ public extension TDEnum {
                 let invoice = try container.decode(TDObject.Invoice.self, forKey: .init(string: "invoice"))
                 let title = try container.decode(String.self, forKey: .init(string: "title"))
                 let description = try container.decode(String.self, forKey: .init(string: "description"))
-                let photoUrl = try container.decode(URL.self, forKey: .init(string: "photoUrl"))
+                let photoUrl = try container.decodeIfPresent(URL.self, forKey: .init(string: "photoUrl"))
                 let photoSize = try container.decode(Int.self, forKey: .init(string: "photoSize"))
                 let photoWidth = try container.decode(Int.self, forKey: .init(string: "photoWidth"))
                 let photoHeight = try container.decode(Int.self, forKey: .init(string: "photoHeight"))
@@ -434,7 +434,7 @@ public extension TDEnum {
                 try container.encode(invoice, forKey: .init(string: "invoice"))
                 try container.encode(title, forKey: .init(string: "title"))
                 try container.encode(description, forKey: .init(string: "description"))
-                try container.encode(photoUrl, forKey: .init(string: "photoUrl"))
+                try container.encodeIfPresent(photoUrl, forKey: .init(string: "photoUrl"))
                 try container.encode(photoSize, forKey: .init(string: "photoSize"))
                 try container.encode(photoWidth, forKey: .init(string: "photoWidth"))
                 try container.encode(photoHeight, forKey: .init(string: "photoHeight"))

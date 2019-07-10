@@ -7,6 +7,8 @@
 
 import Foundation
 
+internal protocol KekLol {}
+
 public protocol TDAuthorizerSession {
     func setPhoneNumber(_ phoneNumber: String, completionHandler: ((TDError?) -> ())?)
     

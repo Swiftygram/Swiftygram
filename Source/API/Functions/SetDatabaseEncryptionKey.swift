@@ -1,11 +1,11 @@
 //
-//  API
+//  SetDatabaseEncryptionKey.swift
 //  Swiftygram
-//  Created by ky1vstar on 26.06.2019.
+//  Created by ky1vstar on 7/10/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
-public extension TDFunction {
+extension TDFunction {
     /**
      Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
 
