@@ -15,15 +15,21 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    @IBAction func authorizeButtonTapped() {
         let configuration = TDAuthorizerConfiguration(apiId: 110110,
-                                  apiHash: "2e4f47c07d66d4461943d47f4f18a555",
-                                  usesTestEnvironment: true,
-                                  appGroupId: nil)
-
-        authorizationFlow = TDAuthorizer.authorization(with: configuration, delegate: self, completion: { result in
+                                                      apiHash: "2e4f47c07d66d4461943d47f4f18a555",
+                                                      usesTestEnvironment: true,
+                                                      appGroupId: nil)
+        
+        authorizationFlow = TDAuthorizer.authorization(with: configuration, presentingViewController: self, completion: { result in
 
         })
+//
+//        let controller = Test2ViewController()
+//
+//        navigationController!.pushViewController(controller, animated: true)
     }
 
 }

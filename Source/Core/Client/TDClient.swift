@@ -61,6 +61,7 @@ final public class TDClient {
         let completionHandlers = self.completionHandlers
         self.completionHandlers = [:]
         queryTimers = [:]
+        pendingFunctions = [:]
         
         queryLock.unlock()
         
