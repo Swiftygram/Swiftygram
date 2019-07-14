@@ -12,9 +12,10 @@ Pod::Spec.new do |s|
 
     s.platform = :ios
     s.source_files = 'Source/**/*.{swift}'
+    s.resources = 'Source/**/*.{plist,xib,strings}'
     s.requires_arc = true
 
-    s.ios.deployment_target = '8.0'
+    s.ios.deployment_target = '9.0'
     s.ios.dependency 'tdjson'
 
     s.frameworks = ['Foundation']

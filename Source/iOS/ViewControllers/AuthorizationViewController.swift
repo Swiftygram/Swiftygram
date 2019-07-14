@@ -12,6 +12,8 @@ class AuthorizationViewController: UINavigationController {
     
     private var phoneEntryViewController: PhoneEntryViewController?
     
+    private var preferredCountryCode: String?
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         

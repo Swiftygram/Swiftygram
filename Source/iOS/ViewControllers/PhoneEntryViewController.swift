@@ -23,4 +23,20 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.title = "Telegram"
+        
+        contentView.countryButton.addTarget(self, action: #selector(countryButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func countryButtonTapped() {
+        let controller = CountrySelectionViewController(countryManager: countryManager) { country in
+            
+        }
+        
+        present(controller, animated: true, completion: nil)
+    }
+    
 }
