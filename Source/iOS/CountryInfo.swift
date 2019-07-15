@@ -14,7 +14,7 @@ class CountryInfo: Codable {
     let defaultCountryName: String
 
     private(set) lazy var localizedCountryName: String = {
-        if let countryName = Locale(identifier: Locale.preferredLanguages[0]).localizedString(forRegionCode: countryCode) {
+        if let countryName = Locale.swiftygram.localizedString(forRegionCode: countryCode) {
             return countryName
         } else {
             return defaultCountryName

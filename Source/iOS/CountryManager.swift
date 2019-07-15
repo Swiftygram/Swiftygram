@@ -26,6 +26,9 @@ class CountryManager {
         }
     }
     
+    private let phoneCodeCountryInfo: [String: CountryInfo]
+    private let countryCodeCountryInfo: [String: CountryInfo]
+    
     let allCountries: [CountryInfo] = {
         let countries: [CountryInfo]
         
@@ -64,14 +67,25 @@ class CountryManager {
         return infoForCountryCode(code)
     }()
     
-    func infoForCountryCode(_ countryCode: String) -> CountryInfo {
-        let countryCode = countryCode.uppercased()
+    private init() {
+        var phoneCodeCountryInfo = [String: CountryInfo]()
+        var countryCodeCountryInfo = [String: CountryInfo]()
+            
+        allCountries.forEach {
+            phoneCodeCountryInfo[$0.phoneCode] = $0
+            countryCodeCountryInfo[$0.countryCode] = $0
+        }
         
-        return allCountries.first(where: { $0.countryCode == countryCode }) ?? CountryManager.unitedStates
+        self.phoneCodeCountryInfo = phoneCodeCountryInfo
+        self.countryCodeCountryInfo = countryCodeCountryInfo
+    }
+    
+    func infoForCountryCode(_ countryCode: String) -> CountryInfo {
+        return countryCodeCountryInfo[countryCode.uppercased()] ?? CountryManager.unitedStates
     }
     
     func infoForPhoneCode(_ phoneCode: String) -> CountryInfo? {
-        return allCountries.first(where: { $0.phoneCode == phoneCode })
+        return phoneCodeCountryInfo[phoneCode]
     }
     
 }

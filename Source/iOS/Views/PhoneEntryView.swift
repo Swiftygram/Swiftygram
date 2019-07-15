@@ -7,8 +7,8 @@
 
 import UIKit
 
-private let separatorColor = UIColor(red:0.78, green:0.78, blue:0.80, alpha:1.0)
-private let highlightedBackgroundColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.0)
+private let separatorColor = UIColor(red: 0.78, green: 0.78, blue: 0.80, alpha: 1.0)
+private let highlightedBackgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
 
 class PhoneEntryView: UIView, NibBasedView {
     
@@ -59,7 +59,6 @@ class PhoneEntryView: UIView, NibBasedView {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         let context = UIGraphicsGetCurrentContext()!
         
-//        context.clear(CGRect(origin: CGPoint(), size: size))
         context.setStrokeColor(separatorColor.cgColor)
         context.setLineWidth(lineWidth)
         context.move(to: CGPoint(x: 15.0, y: lineWidth / 2.0))
@@ -85,7 +84,6 @@ class PhoneEntryView: UIView, NibBasedView {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         let context = UIGraphicsGetCurrentContext()!
         
-//        context.clear(CGRect(origin: CGPoint(), size: size))
         context.setFillColor(highlightedBackgroundColor.cgColor)
         context.fill(CGRect(origin: CGPoint(), size: CGSize(width: size.width, height: size.height - arrowSize)))
         context.move(to: CGPoint(x: size.width, y: size.height - arrowSize))

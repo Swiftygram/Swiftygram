@@ -11,7 +11,12 @@ class CountrySelectionViewController: UIViewController {
     
     private typealias DataSource = (title: String, countries: [CountryInfo])
     
-    @IBOutlet private var searchBar: UISearchBar!
+    @IBOutlet private var searchBar: UISearchBar! {
+        didSet {
+            setupSearchBar()
+        }
+    }
+    
     @IBOutlet private var tableView: UITableView!
     
     @IBOutlet private var separatorHeightConstraint: NSLayoutConstraint! {
@@ -20,11 +25,12 @@ class CountrySelectionViewController: UIViewController {
         }
     }
     
-    private let usesSubtitles = false
+    private let usesSubtitles = Localizations.Locale.lowercased() != "en"
     private let countries: [CountryInfo]
     private let initialDataSource: [DataSource]
     private var dataSource = [DataSource]()
     private let completion: (CountryInfo) -> ()
+    private var cancelButtonObservation: NSKeyValueObservation?
     
     init(countryManager: CountryManager, completion: @escaping (CountryInfo) -> ()) {
         countries = countryManager.allCountries.sorted(by: { $0.displayedName < $1.displayedName })
@@ -42,6 +48,8 @@ class CountrySelectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        automaticallyAdjustsScrollViewInsets = false
+        
         searchBar.becomeFirstResponder()
     }
     
@@ -78,6 +86,21 @@ class CountrySelectionViewController: UIViewController {
         dataSource = [("", result)]
     }
     
+    private func setupSearchBar() {
+        let cancelButtonSelector = "cancelButton"
+        
+        if searchBar.responds(to: NSSelectorFromString(cancelButtonSelector)),
+            let cancelButton = searchBar.value(forKey: cancelButtonSelector) as? UIButton {
+            cancelButton.isEnabled = true
+            
+            cancelButtonObservation = cancelButton.observe(\.isEnabled, changeHandler: { button, _ in
+                if !button.isEnabled {
+                    button.isEnabled = true
+                }
+            })
+        }
+    }
+    
     private func finish() {
         searchBar.resignFirstResponder()
         
@@ -88,17 +111,6 @@ class CountrySelectionViewController: UIViewController {
 // MARK: - UISearchBarDelegate
 
 extension CountrySelectionViewController: UISearchBarDelegate {
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        let cancelButtonSelector = "cancelButton"
-        
-        if searchBar.responds(to: NSSelectorFromString(cancelButtonSelector)),
-            let cancelButton = searchBar.value(forKey: cancelButtonSelector) as? UIButton {
-            cancelButton.isEnabled = true
-        }
-        
-        return true
-    }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         finish()
     }

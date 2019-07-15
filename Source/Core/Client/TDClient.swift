@@ -231,14 +231,16 @@ final public class TDClient {
     private func start() {
         runLoopQueue.async { [weak self] in
             while let self = self {
-                guard let result = td_json_client_receive(self.client, 10) else { continue }
-
-                let string = String(cString: result)
-
-                self.processingQueue.async {
-                    guard let data = string.data(using: .utf8) else { return }
+                autoreleasepool {
+                    guard let result = td_json_client_receive(self.client, 10) else { return }
                     
-                    self.processData(data)
+                    let string = String(cString: result)
+                    
+                    self.processingQueue.async {
+                        guard let data = string.data(using: .utf8) else { return }
+                        
+                        self.processData(data)
+                    }
                 }
             }
         }
