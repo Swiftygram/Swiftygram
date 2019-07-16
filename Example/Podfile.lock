@@ -1,5 +1,7 @@
 PODS:
+  - libPhoneNumber-iOS (0.9.15)
   - Swiftygram (0.0.1):
+    - libPhoneNumber-iOS
     - tdjson
   - tdjson (1.4.0)
 
@@ -8,6 +10,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - libPhoneNumber-iOS
     - tdjson
 
 EXTERNAL SOURCES:
@@ -15,7 +18,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Swiftygram: a9bf3a1a014b59b3a8705214da6c7839688a0b7e
+  libPhoneNumber-iOS: 0a32a9525cf8744fe02c5206eb30d571e38f7d75
+  Swiftygram: 7e7e2989651184a6aa5fc0e3d738022adad8a327
   tdjson: 17a689e2c61199b7dac0de9310b3f53e00c14a8a
 
 PODFILE CHECKSUM: 71472979c3ce76ac57c1b12d9ed94391185e5d6b

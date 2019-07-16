@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
 
     s.ios.deployment_target = '9.0'
     s.ios.dependency 'tdjson'
+    s.ios.dependency 'libPhoneNumber-iOS'
 
     s.frameworks = ['Foundation']
 end

@@ -7,17 +7,22 @@
 
 import Foundation
 import CoreTelephony
+import libPhoneNumber_iOS
+
+private typealias PhoneCodeTree = [String: Any]
 
 class CountryManager {
-    
-    static let unitedStates = CountryInfo(phoneCode: "1", countryCode: "US", defaultCountryName: "United States")
     
     static let shared = CountryManager()
     
     class func load(with completionHandler: ((CountryManager) -> ())?) {
         DispatchQueue.global().async {
-            let manager = shared
+            // optimization
+            _ = NBPhoneNumberUtil.sharedInstance()
+            _ = NBMetadataHelper.cCode2CNMap()
             
+            let manager = shared
+
             guard let completionHandler = completionHandler else { return }
             
             DispatchQueue.main.async {
@@ -28,6 +33,7 @@ class CountryManager {
     
     private let phoneCodeCountryInfo: [String: CountryInfo]
     private let countryCodeCountryInfo: [String: CountryInfo]
+    private let phoneCodeTree: PhoneCodeTree
     
     let allCountries: [CountryInfo] = {
         let countries: [CountryInfo]
@@ -37,7 +43,7 @@ class CountryManager {
             let array = try? PropertyListDecoder().decode([CountryInfo].self, from: data) {
             countries = array
         } else {
-            countries = [CountryManager.unitedStates]
+            countries = [.unitedStates]
         }
         
         countries.forEach {
@@ -61,10 +67,10 @@ class CountryManager {
         }
 
         guard let code = countryCode else {
-            return CountryManager.unitedStates
+            return .unitedStates
         }
         
-        return infoForCountryCode(code)
+        return infoForCountryCode(code) ?? .unitedStates
     }()
     
     private init() {
@@ -78,14 +84,81 @@ class CountryManager {
         
         self.phoneCodeCountryInfo = phoneCodeCountryInfo
         self.countryCodeCountryInfo = countryCodeCountryInfo
+        phoneCodeTree = type(of: self).phoneCodeTree(for: allCountries)
     }
     
-    func infoForCountryCode(_ countryCode: String) -> CountryInfo {
-        return countryCodeCountryInfo[countryCode.uppercased()] ?? CountryManager.unitedStates
+    private class func phoneCodeTree(for countries: [CountryInfo]) -> PhoneCodeTree {
+        let time = Date(); defer { print(#function, -time.timeIntervalSinceNow) }
+        
+        let tree = NSMutableDictionary()
+        
+        for country in countries {
+            var nextBranch = tree
+            
+            for digit in country.phoneCode {
+                let digit = String(digit)
+                
+                var branch = nextBranch[digit] as? NSMutableDictionary
+                if branch == nil {
+                    branch = NSMutableDictionary()
+                    nextBranch[digit] = branch
+                }
+                nextBranch = branch!
+            }
+            
+            nextBranch["country"] = country
+        }
+        
+        return tree as! PhoneCodeTree
+    }
+    
+    func infoForCountryCode(_ countryCode: String) -> CountryInfo? {
+        return countryCodeCountryInfo[countryCode.uppercased()]
     }
     
     func infoForPhoneCode(_ phoneCode: String) -> CountryInfo? {
         return phoneCodeCountryInfo[phoneCode]
+    }
+    
+    func infoForPhoneNumber(_ phoneNumber: String) -> CountryInfo? {
+        let time = Date(); defer { print(#function, -time.timeIntervalSinceNow) }
+        
+        var previousCountry: CountryInfo?
+        var nextTree = phoneCodeTree
+        
+        for digit in phoneNumber {
+            let digit = String(digit)
+            
+            guard let tree = nextTree[digit] as? PhoneCodeTree else {
+                break
+            }
+            nextTree = tree
+            
+            if let country = tree["country"] as? CountryInfo {
+                previousCountry = country
+            }
+        }
+        
+        guard let country = previousCountry else {
+            return nil
+        }
+        
+        // use libPhoneNumber to resove i.e. US or CA
+        do {
+            let phoneNumberUtil = NBPhoneNumberUtil.sharedInstance()!
+            
+            let number = try phoneNumberUtil.parse(phoneNumber, defaultRegion: country.countryCode)
+            
+            if let countryCode = phoneNumberUtil.getRegionCode(for: number),
+                let country = infoForCountryCode(countryCode) {
+                return country
+            } else {
+                return country
+            }
+        }
+        catch {
+            return country
+        }
     }
     
 }

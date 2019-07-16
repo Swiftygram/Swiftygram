@@ -10,6 +10,7 @@ import UIKit
 class AuthorizationBaseViewController<ContentView>: UIViewController {
     
     let scrollView = UIScrollView()
+    private var scrollViewBottomConstraint: NSLayoutConstraint!
     
     var contentView: ContentView {
         didSet {
@@ -54,7 +55,7 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
         if isFinalStep {
             nextButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(nextButtonTapped))
         } else {
-            nextButtonItem = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(nextButtonTapped))
+            nextButtonItem = UIBarButtonItem(title: L.Common.Next, style: .done, target: self, action: #selector(nextButtonTapped))
         }
         
         navigationItem.rightBarButtonItem = nextButtonItem
@@ -73,6 +74,9 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
         
         setupScrollView()
         setupContentView(contentView, oldContentView: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIApplication.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIApplication.keyboardWillHideNotification, object: nil)
     }
     
     private func setupScrollView() {
@@ -95,23 +99,26 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
         
         let containerViewHeightConstraint = containerView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         containerViewHeightConstraint.priority = .defaultLow
-        
         if #available(iOS 11.0, *) {
+            scrollViewBottomConstraint = scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            
             NSLayoutConstraint.activate([
                 
                 // constrain all 4 sides of the scroll view to the safe area
                 scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                scrollViewBottomConstraint,
                 scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                 scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
             ])
         } else {
+            scrollViewBottomConstraint = scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            
             NSLayoutConstraint.activate([
                 
                 // constrain all 4 sides of the scroll view to view's edges
                 scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-                scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                scrollViewBottomConstraint,
                 scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 
@@ -157,11 +164,46 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
         }
     }
     
+    // MARK: - Actions
+    
     @objc func nextButtonTapped() {
     }
     
     @objc private func cancelButtonTapped() {
         authorizationViewController?.cancelButtonTapped()
+    }
+    
+    // MARK: - Keyboard
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        handleKeyboard(notification: notification, willShow: true)
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        handleKeyboard(notification: notification, willShow: false)
+    }
+    
+    private func handleKeyboard(notification: Notification, willShow: Bool) {
+        guard let window = view.window,
+            
+            let userInfo = notification.userInfo,
+            
+            let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject?)?.cgRectValue,
+            
+            let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue,
+            
+            let animationCurve = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.intValue else {
+                
+                return
+        }
+        
+        let keyboardHeight = window.frame.intersection(keyboardFrame).height
+        
+        scrollViewBottomConstraint.constant = -keyboardHeight
+        
+        UIView.animate(withDuration: animationDuration, delay: 0, options: .init(rawValue: UInt(animationCurve)), animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 
 }

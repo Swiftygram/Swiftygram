@@ -7,3 +7,80 @@
 */
 
 "locale" = "en";
+
+// Common
+"Common.OK" = "OK";
+"Common.Cancel" = "Cancel";
+"Common.Done" = "Done";
+"Common.Next" = "Next";
+"Common.Delete" = "Delete";
+"Common.Create" = "Create";
+"Common.Back" = "Back";
+"Common.Close" = "Close";
+"Common.of" = "of";
+"Common.Search" = "Search";
+
+// Login
+"Login.PhoneAndCountryHelp" = "Please confirm your country code and enter your phone number.";
+"Login.CodeSentInternal" = "We've sent the code to the **Telegram** app on your other device";
+"Login.HaveNotReceivedCodeInternal" = "Haven't received the code?";
+"Login.CodeSentSms" = "We have sent you an SMS with the code";
+"Login.Code" = "Code";
+"Login.WillCallYou" = "Telegram will call you in %@";
+"Login.CallRequestState2" = "Requesting a call from Telegram...";
+"Login.CallRequestState3" = "Telegram dialed your number\n[Didn't get the code?]";
+
+"Login.UnknownError" = "An error occurred. Please try again later";
+"Login.InvalidCodeError" = "You have entered an invalid code. Please try again.";
+"Login.NetworkError" = "Please check your internet connection and try again.";
+"Login.CodeExpiredError" = "Code expired. Please try again.";
+"Login.CodeFloodError" = "Limit exceeded. Please try again later.";
+"Login.InvalidPhoneError" = "Invalid phone number. Please try again.";
+"Login.InvalidFirstNameError" = "Invalid first name. Please try again.";
+"Login.InvalidLastNameError" = "Invalid last name. Please try again.";
+"Login.PhoneFloodError" = "Sorry, you have deleted and re-created your account too many times recently. Please wait for a few days before signing up again.";
+"Login.PhoneBannedError" = "Your phone was banned.";
+
+"Login.PhoneTitle" = "Your Phone";
+"Login.PhonePlaceholder" = "Your phone number";
+"Login.CountryCode" = "Country Code";
+"Login.InvalidCountryCode" = "Invalid Country Code";
+
+"Login.InfoTitle" = "Your Info";
+"Login.InfoFirstNamePlaceholder" = "First Name";
+"Login.InfoLastNamePlaceholder" = "Last Name";
+"Login.InfoHelp" = "Enter your name and add a profile picture.";
+
+// Login.SelectCountry
+"Login.SelectCountry.Title" = "Country";
+
+
+
+"Login.TermsOfServiceLabel" = "By signing up,\nyou agree to the [Terms of Service].";
+"Login.TermsOfServiceHeader" = "Terms of Service";
+
+
+"Login.ResetAccountProtected.Title" = "Reset Account";
+"Login.ResetAccountProtected.Text" = "Since the account %@ is active and protected by a password, we will delete it in 1 week for security purposes.\n\nYou can cancel this process at any time.";
+"Login.ResetAccountProtected.TimerTitle" = "You'll be able to reset your account in:";
+"Login.ResetAccountProtected.Reset" = "Reset";
+"Login.ResetAccountProtected.LimitExceeded" = "Your recent attempts to reset this account have been cancelled by its active user. Please try again in 7 days.";
+
+"Login.CodeSentCall" = "We are calling your phone to dictate a code.";
+
+"Login.WillSendSms" = "Telegram will send you an SMS in %@";
+"Login.SmsRequestState2" = "Requesting an SMS from Telegram...";
+"Login.SmsRequestState3" = "Telegram sent you an SMS\n[Didn't get the code?]";
+
+"Login.TermsOfServiceDecline" = "Decline";
+"Login.TermsOfServiceAgree" = "Agree & Continue";
+
+"Login.TermsOfServiceSignupDecline" = "We're very sorry, but this means you can't sign up for Telegram.\n\nUnlike others, we don't use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.\n\nBut if you're generally not OK with Telegram's modest needs, it won't be possible for us to provide this service.";
+
+"Login.CheckOtherSessionMessages" = "Check your Telegram messages";
+"Login.SendCodeViaSms" = "Send the code as an SMS";
+"Login.CancelPhoneVerification" = "Do you want to stop the phone number verification process?";
+"Login.CancelPhoneVerificationStop" = "Stop";
+"Login.CancelPhoneVerificationContinue" = "Continue";
+"Login.CodeExpired" = "Code expired, please login again.";
+"Login.CancelSignUpConfirmation" = "Do you want to stop the registration process?";

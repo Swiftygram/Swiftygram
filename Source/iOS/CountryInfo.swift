@@ -9,6 +9,8 @@ import Foundation
 
 class CountryInfo: Codable {
     
+    static let unitedStates = CountryInfo(phoneCode: "1", countryCode: "US", defaultCountryName: "United States")
+    
     let phoneCode: String
     let countryCode: String
     let defaultCountryName: String

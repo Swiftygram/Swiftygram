@@ -14,20 +14,18 @@ class PhoneEntryView: UIView, NibBasedView {
     
     @IBOutlet var titleLabel: UILabel! {
         didSet {
-            titleLabel.text = "Your Phone"
+            titleLabel.text = L.Login.PhoneTitle
         }
     }
     
     @IBOutlet var subtitleLabel: UILabel! {
         didSet {
-            subtitleLabel.text = "Please confirm your country code and enter your phone number."
+            subtitleLabel.text = L.Login.PhoneAndCountryHelp
         }
     }
     
     @IBOutlet var countryButton: UIButton! {
         didSet {
-            countryButton.setTitle("United States", for: [])
-            
             countryButton.setBackgroundImage(countryButtonBackgroundImage(), for: [])
             countryButton.setBackgroundImage(countryButtonHighlightedBackgroundImage(), for: .highlighted)
         }
@@ -39,15 +37,11 @@ class PhoneEntryView: UIView, NibBasedView {
         }
     }
     
-    @IBOutlet var countryCodeTextField: UITextField! {
-        didSet {
-            countryCodeTextField.text = "+1"
-        }
-    }
+    @IBOutlet var countryCodeTextField: UITextField!
     
     @IBOutlet var numberTextField: UITextField! {
         didSet {
-            numberTextField.placeholder = "Your phone number"
+            numberTextField.placeholder = L.Login.PhonePlaceholder
         }
     }
     
@@ -74,7 +68,7 @@ class PhoneEntryView: UIView, NibBasedView {
         
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        return image.stretchableImage(withLeftCapWidth: 61, topCapHeight: 1)
+        return image.resizableImage(withCapInsets: UIEdgeInsets(top: 1, left: size.width - 1, bottom: size.height - 2, right: 1))
     }
     
     private func countryButtonHighlightedBackgroundImage() -> UIImage {

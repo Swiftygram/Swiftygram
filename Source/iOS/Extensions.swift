@@ -8,5 +8,5 @@
 import Foundation
 
 extension Locale {
-    static let swiftygram = Locale(identifier: Localizations.Locale)
+    static let swiftygram = Locale(identifier: L.locale)
 }

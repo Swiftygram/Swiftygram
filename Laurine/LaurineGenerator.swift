@@ -972,7 +972,7 @@ import Foundation
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 //MARK: - Definitions
 
-private var BASE_CLASS_NAME : String = "Localizations"
+private var BASE_CLASS_NAME : String = "L"
 private let OBJC_CLASS_PREFIX : String = "_"
 private var OBJC_CUSTOM_SUPERCLASS: String?
 

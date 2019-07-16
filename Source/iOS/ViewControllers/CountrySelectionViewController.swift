@@ -25,7 +25,7 @@ class CountrySelectionViewController: UIViewController {
         }
     }
     
-    private let usesSubtitles = Localizations.Locale.lowercased() != "en"
+    private let usesSubtitles = L.locale.lowercased() != "en"
     private let countries: [CountryInfo]
     private let initialDataSource: [DataSource]
     private var dataSource = [DataSource]()
@@ -137,9 +137,22 @@ extension CountrySelectionViewController: UITableViewDataSource {
         
         if cell == nil {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
+            
+            let label = UILabel()
+            label.font = .systemFont(ofSize: 17, weight: .medium)
+            cell.accessoryView = label
         }
         
         cell.textLabel?.text = country.localizedCountryName
+        
+        if usesSubtitles {
+            cell.detailTextLabel?.text = country.defaultCountryName
+        }
+        
+        if let phoneCodeLabel = cell.accessoryView as? UILabel {
+            phoneCodeLabel.text = "+\(country.phoneCode)"
+            phoneCodeLabel.sizeToFit()
+        }
         
         return cell
     }
@@ -154,6 +167,10 @@ extension CountrySelectionViewController: UITableViewDataSource {
         }
         
         return [UITableView.indexSearch] + dataSource.map({ $0.title })
+    }
+    
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return index == 0 ? 0 : max(0, index - 1)
     }
 }
 
