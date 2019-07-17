@@ -149,19 +149,21 @@ class TDInternalAuthorizer {
 // MARK: - TDAuthorizerSession
 
 extension TDInternalAuthorizer: TDAuthorizerSession {
-    func setPhoneNumber(_ phoneNumber: String, completionHandler: ((TDError?) -> ())?) {
+    func setPhoneNumber(_ phoneNumber: String, completionHandler: ((TDPhoneNumberError?) -> ())?) {
         let query = TDFunction.SetAuthenticationPhoneNumber(phoneNumber: phoneNumber, allowFlashCall: false, isCurrentPhoneNumber: true)
         
         client.execute(query, completionHandler: { result in
             if case .failure(let error) = result {
-                completionHandler?(error)
+                if let newError = TDPhoneNumberError(error: error) {
+                    completionHandler?(newError)
+                }
             } else {
                 completionHandler?(nil)
             }
         })
     }
     
-    func setAuthCode(_ authCode: String, completionHandler: ((TDError?) -> ())?) {
+    func setAuthenticationCode(_ authCode: String, completionHandler: ((TDAuthenticationCodeError?) -> ())?) {
         let query = TDFunction.CheckAuthenticationCode(code: authCode, firstName: "", lastName: "")
         
         client.execute(query, completionHandler: { [weak self] result in
@@ -173,8 +175,9 @@ extension TDInternalAuthorizer: TDAuthorizerSession {
                     }
                     
                     completionHandler?(nil)
-                } else {
-                    completionHandler?(error)
+                    
+                } else if let newError = TDAuthenticationCodeError(error: error) {
+                    completionHandler?(newError)
                 }
             } else {
                 completionHandler?(nil)
@@ -182,24 +185,28 @@ extension TDInternalAuthorizer: TDAuthorizerSession {
         })
     }
     
-    func resendAuthCode(with completionHandler: ((TDError?) -> ())?) {
+    func resendAuthenticationCode(with completionHandler: ((TDAuthenticationCodeError?) -> ())?) {
         let query = TDFunction.ResendAuthenticationCode()
         
         client.execute(query, completionHandler: { result in
             if case .failure(let error) = result {
-                completionHandler?(error)
+                if let newError = TDAuthenticationCodeError(error: error) {
+                    completionHandler?(newError)
+                }
             } else {
                 completionHandler?(nil)
             }
         })
     }
     
-    func setFirstName(_ firstName: String, lastName: String, completionHandler: ((TDError?) -> ())?) {
+    func signUp(with firstName: String, lastName: String, completionHandler: ((TDSignUpError?) -> ())?) {
         let query = TDFunction.CheckAuthenticationCode(code: "11111", firstName: firstName, lastName: lastName)
         
         client.execute(query, completionHandler: { result in
             if case .failure(let error) = result {
-                completionHandler?(error)
+                if let newError = TDSignUpError(error: error) {
+                    completionHandler?(newError)
+                }
             } else {
                 completionHandler?(nil)
             }

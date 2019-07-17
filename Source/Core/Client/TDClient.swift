@@ -140,7 +140,7 @@ final public class TDClient {
                 
             } catch {
                 if let queryId = queryId, let completionHandler = client.completionHandler(for: queryId) {
-                    completionHandler(.failure(.encoding(error)))
+                    completionHandler(.failure(.internalInconsistency(error)))
                 }
             }
         }
@@ -163,7 +163,7 @@ final public class TDClient {
                             
                             completionHandler(.success(object))
                         } catch {
-                            completionHandler(.failure(.decoding(error)))
+                            completionHandler(.failure(.internalInconsistency(error)))
                         }
                         
                     case .failure(let error):
@@ -326,7 +326,7 @@ final public class TDClient {
 
                 completionHandler(.failure(.tdLib(error)))
             } catch {
-                completionHandler(.failure(.decoding(error)))
+                completionHandler(.failure(.internalInconsistency(error)))
             }
 
             return

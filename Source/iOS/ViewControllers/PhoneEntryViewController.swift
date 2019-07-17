@@ -21,11 +21,15 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
             if let country = currentCountry {
                 let title = "\(country.emojiFlag) \(country.displayedName)"
                 
-                contentView.countryButton.setTitle(title, for: [])
-                contentView.countryButton.titleLabel?.textColor = .black
+                let attrStr = NSAttributedString(string: title, attributes: [.foregroundColor: UIColor.black])
+                
+                contentView.countryButton.setAttributedTitle(attrStr, for: [])
+//                contentView.countryButton.titleLabel?.textColor = .black
             } else {
-                contentView.countryButton.setTitle(L.Login.SelectCountry.Title, for: [])
-                contentView.countryButton.titleLabel?.textColor = placeholderColor
+                let attrStr = NSAttributedString(string: L.Login.SelectCountry.Title, attributes: [.foregroundColor: placeholderColor])
+                
+                contentView.countryButton.setAttributedTitle(attrStr, for: [])
+//                contentView.countryButton.titleLabel?.textColor = placeholderColor
             }
         }
     }
@@ -80,7 +84,7 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
             if phoneNumber.count > 3 {
                 let startIndex = phoneNumber.index(phoneNumber.startIndex, offsetBy: 3)
                 
-                contentView.numberTextField.text = phoneNumber.substring(from: startIndex)
+                contentView.numberTextField.text = String(phoneNumber[startIndex...])
             } else {
                 contentView.numberTextField.text = ""
             }
@@ -90,7 +94,15 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
         
         currentCountry = country
         
-        var formattedPhoneNumber = NBAsYouTypeFormatter(regionCode: country.countryCode)!.inputString(phoneNumber)!
+        
+        
+        var formattedPhoneNumber = phoneNumber
+        
+        NBPhoneNumberUtil.sharedInstance()!
+        if let number = try? NBPhoneNumberUtil.sharedInstance()!.parse("+" + phoneNumber, defaultRegion: country.countryCode),
+            let string = try? NBPhoneNumberUtil.sharedInstance()!.format(number, numberFormat: .INTERNATIONAL) {
+            formattedPhoneNumber = string.trimmingCharacters(in: CharacterSet(charactersIn: "+")).trimmingCharacters(in: .whitespaces)
+        }
         
         let range = formattedPhoneNumber.range(of: country.phoneCode) ??
             formattedPhoneNumber.startIndex..<formattedPhoneNumber.index(formattedPhoneNumber.startIndex, offsetBy: 3)
@@ -105,8 +117,8 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
     // MARK: - Actions
     
     @objc private func countryButtonTapped() {
-        let controller = CountrySelectionViewController(countryManager: countryManager) { country in
-            
+        let controller = CountrySelectionViewController(countryManager: countryManager) { [weak self] country in
+            self?.processPhoneNumber(country.phoneCode)
         }
         
         present(controller, animated: true, completion: nil)

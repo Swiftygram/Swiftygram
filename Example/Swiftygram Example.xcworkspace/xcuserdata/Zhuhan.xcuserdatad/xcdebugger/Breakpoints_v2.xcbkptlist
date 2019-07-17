@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "168"
             endingLineNumber = "168"
-            landmarkName = "setAuthCode(_:completionHandler:)"
+            landmarkName = "setAuthenticationCode(_:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,12 +41,28 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Source/iOS/ViewControllers/PhoneEntryViewController.swift"
-            timestampString = "584983602.472092"
+            filePath = "Pods/libPhoneNumber-iOS/libPhoneNumber/NBPhoneNumberUtil.h"
+            timestampString = "585051470.6742049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-getNumberType:"
+            landmarkType = "6">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Source/iOS/ViewControllers/PhoneEntryViewController.swift"
+            timestampString = "585051722.305311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "processPhoneNumber(_:)"
             landmarkType = "7">
          </BreakpointContent>

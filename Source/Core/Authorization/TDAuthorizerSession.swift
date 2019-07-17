@@ -7,14 +7,12 @@
 
 import Foundation
 
-internal protocol KekLol {}
-
 public protocol TDAuthorizerSession {
-    func setPhoneNumber(_ phoneNumber: String, completionHandler: ((TDError?) -> ())?)
+    func setPhoneNumber(_ phoneNumber: String, completionHandler: ((TDPhoneNumberError?) -> ())?)
     
-    func setAuthCode(_ authCode: String, completionHandler: ((TDError?) -> ())?)
+    func setAuthenticationCode(_ authCode: String, completionHandler: ((TDAuthenticationCodeError?) -> ())?)
     
-    func resendAuthCode(with completionHandler: ((TDError?) -> ())?)
+    func resendAuthenticationCode(with completionHandler: ((TDAuthenticationCodeError?) -> ())?)
     
-    func setFirstName(_ firstName: String, lastName: String, completionHandler: ((TDError?) -> ())?)
+    func signUp(with firstName: String, lastName: String, completionHandler: ((TDSignUpError?) -> ())?)
 }

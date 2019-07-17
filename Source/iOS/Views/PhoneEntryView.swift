@@ -10,7 +10,7 @@ import UIKit
 private let separatorColor = UIColor(red: 0.78, green: 0.78, blue: 0.80, alpha: 1.0)
 private let highlightedBackgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
 
-class PhoneEntryView: UIView, NibBasedView {
+class PhoneEntryView: UIView, NibBasedView, AuthorizationContentView {
     
     @IBOutlet var titleLabel: UILabel! {
         didSet {
@@ -42,6 +42,12 @@ class PhoneEntryView: UIView, NibBasedView {
     @IBOutlet var numberTextField: UITextField! {
         didSet {
             numberTextField.placeholder = L.Login.PhonePlaceholder
+        }
+    }
+    
+    var isProcessing = false {
+        didSet {
+            
         }
     }
     

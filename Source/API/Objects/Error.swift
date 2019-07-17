@@ -9,7 +9,7 @@ public extension TDObject {
     /**
      An object of this type can be returned on every function call, in case of an error
      */
-    struct Error: TDObjectProtocol {
+    struct Error: TDObjectProtocol, Swift.Error {
         /**
          Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user
          */

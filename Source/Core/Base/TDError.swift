@@ -10,7 +10,6 @@ import Foundation
 public enum TDError: Error {
     case tdLib(TDObject.Error)
     case timedOut
-    case encoding(Error)
-    case decoding(Error)
+    case internalInconsistency(Error)
     case cancelled
 }

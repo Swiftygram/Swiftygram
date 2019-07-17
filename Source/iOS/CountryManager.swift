@@ -82,6 +82,9 @@ class CountryManager {
             countryCodeCountryInfo[$0.countryCode] = $0
         }
         
+        phoneCodeCountryInfo["1"] = countryCodeCountryInfo["US"]
+        phoneCodeCountryInfo["7"] = countryCodeCountryInfo["RU"]
+        
         self.phoneCodeCountryInfo = phoneCodeCountryInfo
         self.countryCodeCountryInfo = countryCodeCountryInfo
         phoneCodeTree = type(of: self).phoneCodeTree(for: allCountries)
@@ -106,7 +109,13 @@ class CountryManager {
                 nextBranch = branch!
             }
             
-            nextBranch["country"] = country
+            if country.phoneCode == "1" || country.phoneCode == "7" {
+                if country.countryCode == "US" || country.countryCode == "RU" {
+                    nextBranch["country"] = country
+                }
+            } else {
+                nextBranch["country"] = country
+            }
         }
         
         return tree as! PhoneCodeTree
@@ -123,7 +132,7 @@ class CountryManager {
     func infoForPhoneNumber(_ phoneNumber: String) -> CountryInfo? {
         let time = Date(); defer { print(#function, -time.timeIntervalSinceNow) }
         
-        var previousCountry: CountryInfo?
+//        var previousCountry: CountryInfo?
         var nextTree = phoneCodeTree
         
         for digit in phoneNumber {
@@ -135,30 +144,32 @@ class CountryManager {
             nextTree = tree
             
             if let country = tree["country"] as? CountryInfo {
-                previousCountry = country
-            }
-        }
-        
-        guard let country = previousCountry else {
-            return nil
-        }
-        
-        // use libPhoneNumber to resove i.e. US or CA
-        do {
-            let phoneNumberUtil = NBPhoneNumberUtil.sharedInstance()!
-            
-            let number = try phoneNumberUtil.parse(phoneNumber, defaultRegion: country.countryCode)
-            
-            if let countryCode = phoneNumberUtil.getRegionCode(for: number),
-                let country = infoForCountryCode(countryCode) {
-                return country
-            } else {
                 return country
             }
         }
-        catch {
-            return country
-        }
+        
+        return nil
+        
+//        guard let country = previousCountry else {
+//            return nil
+//        }
+//
+//        // use libPhoneNumber to resove i.e. US or CA
+//        do {
+//            let phoneNumberUtil = NBPhoneNumberUtil.sharedInstance()!
+//
+//            let number = try phoneNumberUtil.parse(phoneNumber, defaultRegion: country.countryCode)
+//
+//            if let countryCode = phoneNumberUtil.getRegionCode(for: number),
+//                let country = infoForCountryCode(countryCode) {
+//                return country
+//            } else {
+//                return country
+//            }
+//        }
+//        catch {
+//            return country
+//        }
     }
     
 }

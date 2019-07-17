@@ -40,6 +40,8 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
             } else {
                 navigationItem.setRightBarButton(nextButtonItem, animated: true)
             }
+            
+            (contentView as? AuthorizationContentView).isProcessing = isProcessing
         }
     }
     

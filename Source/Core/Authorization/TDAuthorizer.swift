@@ -45,16 +45,6 @@ public protocol TDAuthorizerDelegate: class {
     func authorizerDidCancelAuthorizationFlow(_ authorizer: TDAuthorizerSession)
 }
 
-// MARK: - TDAuthorizationError
-
-public enum TDAuthorizationError: Error {
-    case internalInconsistency
-    case invalidAppGroupId
-    case tdLib(TDObject.Error)
-    case timedOut
-    case cancelled
-}
-
 // MARK: - TDAuthorizer
 
 public class TDAuthorizer {
