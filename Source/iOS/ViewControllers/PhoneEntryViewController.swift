@@ -8,8 +8,6 @@
 import UIKit
 import libPhoneNumber_iOS
 
-private let placeholderColor = UIColor(red: 0.78, green: 0.78, blue: 0.81, alpha: 1.0)
-
 class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> {
 
     private let countryManager: CountryManager
@@ -26,7 +24,7 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
                 contentView.countryButton.setAttributedTitle(attrStr, for: [])
 //                contentView.countryButton.titleLabel?.textColor = .black
             } else {
-                let attrStr = NSAttributedString(string: L.Login.SelectCountry.Title, attributes: [.foregroundColor: placeholderColor])
+                let attrStr = NSAttributedString(string: L.Login.SelectCountry.Title, attributes: [.foregroundColor: Constants.placeholderColor])
                 
                 contentView.countryButton.setAttributedTitle(attrStr, for: [])
 //                contentView.countryButton.titleLabel?.textColor = placeholderColor
@@ -98,7 +96,6 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
         
         var formattedPhoneNumber = phoneNumber
         
-        NBPhoneNumberUtil.sharedInstance()!
         if let number = try? NBPhoneNumberUtil.sharedInstance()!.parse("+" + phoneNumber, defaultRegion: country.countryCode),
             let string = try? NBPhoneNumberUtil.sharedInstance()!.format(number, numberFormat: .INTERNATIONAL) {
             formattedPhoneNumber = string.trimmingCharacters(in: CharacterSet(charactersIn: "+")).trimmingCharacters(in: .whitespaces)

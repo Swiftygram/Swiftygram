@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol AuthorizationContentView {
+protocol AuthorizationContentView: class {
     var isProcessing: Bool { get set }
 }

@@ -8,13 +8,57 @@
 import UIKit
 
 class CodeEntryView: UIView, NibBasedView, AuthorizationContentView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    @IBOutlet var imageView: UIImageView! {
+        didSet {
+            
+        }
     }
-    */
+    
+    @IBOutlet var imageBottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet var titleLabel: UILabel! {
+        didSet {
+            
+        }
+    }
+    
+    @IBOutlet var titleTopEdgeConstraint: NSLayoutConstraint!
+    
+    @IBOutlet var subtitleLabel: UILabel! {
+        didSet {
+            
+        }
+    }
+    
+    @IBOutlet var codeTextField: UITextField! {
+        didSet {
+            
+        }
+    }
+    
+    @IBOutlet var separatorView: UIView! {
+        didSet {
+            separatorView.backgroundColor = Constants.separatorColor
+        }
+    }
+    
+    @IBOutlet var separatorHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            separatorHeightConstraint.constant = Constants.separatorSize
+        }
+    }
+    
+    @IBOutlet var resendButton: UIButton! {
+        didSet {
+            
+        }
+    }
+    
+    var isProcessing = false {
+        didSet {
+            
+        }
+    }
 
 }

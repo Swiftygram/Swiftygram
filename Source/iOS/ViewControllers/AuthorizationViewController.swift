@@ -67,8 +67,9 @@ extension AuthorizationViewController: TDAuthorizerDelegate {
         CountryManager.load { [weak self] countryManager in
             guard let self = self else { return }
             
-            let controller = PhoneEntryViewController(countryManager: countryManager, authorizerSession: authorizer)
-            self.phoneEntryViewController = controller
+//            let controller = PhoneEntryViewController(countryManager: countryManager, authorizerSession: authorizer)
+//            self.phoneEntryViewController = controller
+            let controller = CodeEntryViewController()
             
             self.viewControllers = [controller]
         }

@@ -21,7 +21,7 @@ class CountrySelectionViewController: UIViewController {
     
     @IBOutlet private var separatorHeightConstraint: NSLayoutConstraint! {
         didSet {
-            separatorHeightConstraint.constant = 1 / UIScreen.main.scale
+            separatorHeightConstraint.constant = Constants.separatorSize
         }
     }
     
