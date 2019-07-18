@@ -27,13 +27,25 @@ public struct L {
     public static var locale : String = NSLocalizedString("locale", bundle: currentBundle, comment: "")
 
 
-    public struct Login {
+    public struct ChangePhoneNumberCode {
 
-        /// Base translation: We're very sorry, but this means you can't sign up for Telegram.  Unlike others, we don't use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.  But if you're generally not OK with Telegram's modest needs, it won't be possible for us to provide this service.
-        public static var TermsOfServiceSignupDecline : String = NSLocalizedString("Login.TermsOfServiceSignupDecline", bundle: currentBundle, comment: "")
+        /// Base translation: Telegram dialed your number
+        public static var Called : String = NSLocalizedString("ChangePhoneNumberCode.Called", bundle: currentBundle, comment: "")
+
+        /// Base translation: Telegram will call you in %@
+        public static func CallTimer(_ value1 : String) -> String {
+            return String(format: NSLocalizedString("ChangePhoneNumberCode.CallTimer", bundle: currentBundle, comment: ""), value1)
+        }
+
+    }
+
+    public struct Login {
 
         /// Base translation: Your phone number
         public static var PhonePlaceholder : String = NSLocalizedString("Login.PhonePlaceholder", bundle: currentBundle, comment: "")
+
+        /// Base translation: We're very sorry, but this means you can't sign up for Telegram.  Unlike others, we don't use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.  But if you're generally not OK with Telegram's modest needs, it won't be possible for us to provide this service.
+        public static var TermsOfServiceSignupDecline : String = NSLocalizedString("Login.TermsOfServiceSignupDecline", bundle: currentBundle, comment: "")
 
         /// Base translation: Code expired, please login again.
         public static var CodeExpired : String = NSLocalizedString("Login.CodeExpired", bundle: currentBundle, comment: "")
@@ -53,8 +65,8 @@ public struct L {
         /// Base translation: Please check your internet connection and try again.
         public static var NetworkError : String = NSLocalizedString("Login.NetworkError", bundle: currentBundle, comment: "")
 
-        /// Base translation: You have entered an invalid code. Please try again.
-        public static var InvalidCodeError : String = NSLocalizedString("Login.InvalidCodeError", bundle: currentBundle, comment: "")
+        /// Base translation: First Name
+        public static var InfoFirstNamePlaceholder : String = NSLocalizedString("Login.InfoFirstNamePlaceholder", bundle: currentBundle, comment: "")
 
         /// Base translation: By signing up, you agree to the [Terms of Service].
         public static var TermsOfServiceLabel : String = NSLocalizedString("Login.TermsOfServiceLabel", bundle: currentBundle, comment: "")
@@ -62,8 +74,8 @@ public struct L {
         /// Base translation: Invalid phone number. Please try again.
         public static var InvalidPhoneError : String = NSLocalizedString("Login.InvalidPhoneError", bundle: currentBundle, comment: "")
 
-        /// Base translation: First Name
-        public static var InfoFirstNamePlaceholder : String = NSLocalizedString("Login.InfoFirstNamePlaceholder", bundle: currentBundle, comment: "")
+        /// Base translation: You have entered an invalid code. Please try again.
+        public static var InvalidCodeError : String = NSLocalizedString("Login.InvalidCodeError", bundle: currentBundle, comment: "")
 
         /// Base translation: Your Info
         public static var InfoTitle : String = NSLocalizedString("Login.InfoTitle", bundle: currentBundle, comment: "")
@@ -80,16 +92,16 @@ public struct L {
         /// Base translation: We've sent the code to the **Telegram** app on your other device
         public static var CodeSentInternal : String = NSLocalizedString("Login.CodeSentInternal", bundle: currentBundle, comment: "")
 
-        /// Base translation: Telegram will call you in %@
-        public static func WillCallYou(_ value1 : String) -> String {
-            return String(format: NSLocalizedString("Login.WillCallYou", bundle: currentBundle, comment: ""), value1)
-        }
+        /// Base translation: We are calling your phone to dictate a code.
+        public static var CodeSentCall : String = NSLocalizedString("Login.CodeSentCall", bundle: currentBundle, comment: "")
 
         /// Base translation: Send the code as an SMS
         public static var SendCodeViaSms : String = NSLocalizedString("Login.SendCodeViaSms", bundle: currentBundle, comment: "")
 
-        /// Base translation: We are calling your phone to dictate a code.
-        public static var CodeSentCall : String = NSLocalizedString("Login.CodeSentCall", bundle: currentBundle, comment: "")
+        /// Base translation: Telegram will call you in %@
+        public static func WillCallYou(_ value1 : String) -> String {
+            return String(format: NSLocalizedString("Login.WillCallYou", bundle: currentBundle, comment: ""), value1)
+        }
 
         /// Base translation: Do you want to stop the phone number verification process?
         public static var CancelPhoneVerification : String = NSLocalizedString("Login.CancelPhoneVerification", bundle: currentBundle, comment: "")
@@ -123,11 +135,11 @@ public struct L {
         /// Base translation: Telegram sent you an SMS [Didn't get the code?]
         public static var SmsRequestState3 : String = NSLocalizedString("Login.SmsRequestState3", bundle: currentBundle, comment: "")
 
-        /// Base translation: Agree & Continue
-        public static var TermsOfServiceAgree : String = NSLocalizedString("Login.TermsOfServiceAgree", bundle: currentBundle, comment: "")
-
         /// Base translation: Code expired. Please try again.
         public static var CodeExpiredError : String = NSLocalizedString("Login.CodeExpiredError", bundle: currentBundle, comment: "")
+
+        /// Base translation: Agree & Continue
+        public static var TermsOfServiceAgree : String = NSLocalizedString("Login.TermsOfServiceAgree", bundle: currentBundle, comment: "")
 
         /// Base translation: Enter your name and add a profile picture.
         public static var InfoHelp : String = NSLocalizedString("Login.InfoHelp", bundle: currentBundle, comment: "")
@@ -216,8 +228,14 @@ public struct L {
 
     public struct Common {
 
+        /// Base translation: Cancel
+        public static var Cancel : String = NSLocalizedString("Common.Cancel", bundle: currentBundle, comment: "")
+
         /// Base translation: Create
         public static var Create : String = NSLocalizedString("Common.Create", bundle: currentBundle, comment: "")
+
+        /// Base translation: Search
+        public static var Search : String = NSLocalizedString("Common.Search", bundle: currentBundle, comment: "")
 
         /// Base translation: Delete
         public static var Delete : String = NSLocalizedString("Common.Delete", bundle: currentBundle, comment: "")
@@ -228,23 +246,17 @@ public struct L {
         /// Base translation: Next
         public static var Next : String = NSLocalizedString("Common.Next", bundle: currentBundle, comment: "")
 
-        /// Base translation: Search
-        public static var Search : String = NSLocalizedString("Common.Search", bundle: currentBundle, comment: "")
-
-        /// Base translation: Cancel
-        public static var Cancel : String = NSLocalizedString("Common.Cancel", bundle: currentBundle, comment: "")
-
         /// Base translation: Back
         public static var Back : String = NSLocalizedString("Common.Back", bundle: currentBundle, comment: "")
 
         /// Base translation: of
         public static var of : String = NSLocalizedString("Common.of", bundle: currentBundle, comment: "")
 
-        /// Base translation: OK
-        public static var OK : String = NSLocalizedString("Common.OK", bundle: currentBundle, comment: "")
-
         /// Base translation: Done
         public static var Done : String = NSLocalizedString("Common.Done", bundle: currentBundle, comment: "")
+
+        /// Base translation: OK
+        public static var OK : String = NSLocalizedString("Common.OK", bundle: currentBundle, comment: "")
 
     }
 

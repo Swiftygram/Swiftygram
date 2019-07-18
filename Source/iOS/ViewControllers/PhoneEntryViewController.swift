@@ -18,16 +18,12 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
         didSet {
             if let country = currentCountry {
                 let title = "\(country.emojiFlag) \(country.displayedName)"
-                
-                let attrStr = NSAttributedString(string: title, attributes: [.foregroundColor: UIColor.black])
-                
-                contentView.countryButton.setAttributedTitle(attrStr, for: [])
-//                contentView.countryButton.titleLabel?.textColor = .black
+
+                contentView.countryButton.setTitle(title, for: [])
+                contentView.countryButton.setTitleColor(.black, for: [])
             } else {
-                let attrStr = NSAttributedString(string: L.Login.SelectCountry.Title, attributes: [.foregroundColor: Constants.placeholderColor])
-                
-                contentView.countryButton.setAttributedTitle(attrStr, for: [])
-//                contentView.countryButton.titleLabel?.textColor = placeholderColor
+                contentView.countryButton.setTitle(L.Login.SelectCountry.Title, for: [])
+                contentView.countryButton.setTitleColor(Constants.placeholderColor, for: [])
             }
         }
     }

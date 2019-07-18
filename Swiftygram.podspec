@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
     s.platform = :ios
     s.source_files = 'Source/**/*.{swift}'
-    s.resources = 'Source/**/*.{plist,xib,strings}'
+    s.resources = 'Source/**/*.{plist,xib,strings,xcassets}'
     s.requires_arc = true
 
     s.ios.deployment_target = '9.0'

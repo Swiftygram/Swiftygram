@@ -26,13 +26,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Source/Core/Authorization/TDInternalAuthorizer.swift"
-            timestampString = "584450069.549312"
+            timestampString = "585156982.17103"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "168"
             endingLineNumber = "168"
             landmarkName = "setAuthenticationCode(_:completionHandler:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swiftygram.TDInternalAuthorizer.setAuthenticationCode(_: Swift.String, completionHandler: Swift.Optional&lt;(Swift.Optional&lt;Swiftygram.TDAuthenticationCodeError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "Swiftygram"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Zhuhan/Desktop/Xcode/Swiftygram/Source/Core/Authorization/TDInternalAuthorizer.swift"
+                  timestampString = "585156982.6875089"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "169"
+                  endingLineNumber = "169"
+                  offsetFromSymbolStart = "389">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swiftygram.TDResult&lt;Swiftygram.TDObject.Ok&gt;) -&gt; () in Swiftygram.TDInternalAuthorizer.setAuthenticationCode(_: Swift.String, completionHandler: Swift.Optional&lt;(Swift.Optional&lt;Swiftygram.TDAuthenticationCodeError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "Swiftygram"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Zhuhan/Desktop/Xcode/Swiftygram/Source/Core/Authorization/TDInternalAuthorizer.swift"
+                  timestampString = "585156982.689496"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "169"
+                  endingLineNumber = "169"
+                  offsetFromSymbolStart = "421">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Source/iOS/ViewControllers/PhoneEntryViewController.swift"
-            timestampString = "585051722.305311"
+            timestampString = "585156982.171379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "processPhoneNumber(_:)"
             landmarkType = "7">
          </BreakpointContent>

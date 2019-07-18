@@ -27,7 +27,7 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
         return view
     }()
     
-    private var nextButtonItem: UIBarButtonItem!
+    private(set) var nextButtonItem: UIBarButtonItem!
     
     private let indicatorView = UIActivityIndicatorView(style: .gray)
     private lazy var processingButtonItem = UIBarButtonItem(customView: indicatorView)
@@ -85,6 +85,7 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
         // to make interactive keyboard dismissing work
         scrollView.contentInset.bottom = 0.0001
         scrollView.keyboardDismissMode = .interactive
+        scrollView.clipsToBounds = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         
@@ -101,6 +102,7 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
         
         let containerViewHeightConstraint = containerView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         containerViewHeightConstraint.priority = .defaultLow
+        
         if #available(iOS 11.0, *) {
             scrollViewBottomConstraint = scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             

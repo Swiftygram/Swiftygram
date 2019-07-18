@@ -10,3 +10,9 @@ import Foundation
 extension Locale {
     static let swiftygram = Locale(identifier: L.locale)
 }
+
+extension UIImage {
+    convenience init?(frameworkNamed named: String) {
+        self.init(named: named, in: .swiftygram, compatibleWith: nil)
+    }
+}

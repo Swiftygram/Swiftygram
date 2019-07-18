@@ -9,31 +9,15 @@ import UIKit
 
 class CodeEntryView: UIView, NibBasedView, AuthorizationContentView {
     
-    @IBOutlet var imageView: UIImageView! {
-        didSet {
-            
-        }
-    }
+    @IBOutlet weak var imageView: UIImageView?
     
-    @IBOutlet var imageBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var titleLabel: UILabel!
     
-    @IBOutlet var titleLabel: UILabel! {
-        didSet {
-            
-        }
-    }
-    
-    @IBOutlet var titleTopEdgeConstraint: NSLayoutConstraint!
-    
-    @IBOutlet var subtitleLabel: UILabel! {
-        didSet {
-            
-        }
-    }
+    @IBOutlet var subtitleLabel: UILabel!
     
     @IBOutlet var codeTextField: UITextField! {
         didSet {
-            
+            codeTextField.placeholder = L.Login.Code
         }
     }
     
@@ -49,15 +33,18 @@ class CodeEntryView: UIView, NibBasedView, AuthorizationContentView {
         }
     }
     
+    @IBOutlet var resendButtonContainerView: UIView!
+    
     @IBOutlet var resendButton: UIButton! {
         didSet {
-            
+            resendButton.titleLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 16, weight: .regular)
         }
     }
     
     var isProcessing = false {
         didSet {
-            
+            codeTextField.alpha = isProcessing ? 0.6 : 1
+            resendButton.isEnabled = !isProcessing
         }
     }
 

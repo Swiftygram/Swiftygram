@@ -97,5 +97,13 @@ public extension TDEnum {
                 try container.encode(pattern, forKey: .init(string: "pattern"))
             }
         }
+        
+        public var isTelegramMessage: Bool {
+            if case .telegramMessage = self {
+                return true
+            } else {
+                return false
+            }
+        }
     }
 }

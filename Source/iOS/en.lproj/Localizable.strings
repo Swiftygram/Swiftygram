@@ -65,6 +65,9 @@
 "TwoStepAuth.RecoveryUnavailable" = "Since you haven't provided a recovery e-mail when setting up your password, your remaining options are either to remember your password or to reset your account.";
 "TwoStepAuth.FloodError" = "Limit exceeded. Please try again later.";
 
+"ChangePhoneNumberCode.Called" = "Telegram dialed your number";
+"ChangePhoneNumberCode.CallTimer" = "Telegram will call you in %@";
+
 
 
 "Login.TermsOfServiceLabel" = "By signing up,\nyou agree to the [Terms of Service].";

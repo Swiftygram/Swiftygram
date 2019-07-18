@@ -69,7 +69,10 @@ extension AuthorizationViewController: TDAuthorizerDelegate {
             
 //            let controller = PhoneEntryViewController(countryManager: countryManager, authorizerSession: authorizer)
 //            self.phoneEntryViewController = controller
-            let controller = CodeEntryViewController()
+            let codeInfo = TDObject.AuthenticationCodeInfo(phoneNumber: "380957965942", type: .telegramMessage(length: 5), nextType: .sms(length: 5), timeout: 60)
+//            let codeInfo = TDObject.AuthenticationCodeInfo(phoneNumber: "380957965942", type: .sms(length: 5), nextType: .call(length: 5), timeout: 60)
+            
+            let controller = CodeEntryViewController(codeInfo: codeInfo)
             
             self.viewControllers = [controller]
         }

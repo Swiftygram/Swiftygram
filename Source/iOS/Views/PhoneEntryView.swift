@@ -44,7 +44,9 @@ class PhoneEntryView: UIView, NibBasedView, AuthorizationContentView {
     
     var isProcessing = false {
         didSet {
-            
+            countryButton.isEnabled = !isProcessing
+            countryCodeTextField.alpha = isProcessing ? 0.6 : 1
+            numberTextField.alpha = isProcessing ? 0.6 : 1
         }
     }
     
