@@ -64,6 +64,12 @@
 
 "TwoStepAuth.RecoveryUnavailable" = "Since you haven't provided a recovery e-mail when setting up your password, your remaining options are either to remember your password or to reset your account.";
 "TwoStepAuth.FloodError" = "Limit exceeded. Please try again later.";
+"TwoStepAuth.EnterPasswordHelp" = "You have enabled Two-Step Verification, so your account is protected with an additional password.";
+"TwoStepAuth.EnterPasswordForgot" = "Forgot password?";
+
+"TwoStepAuth.RecoveryTitle" = "E-Mail Code";
+"TwoStepAuth.RecoveryCode" = "Code";
+"TwoStepAuth.RecoveryCodeHelp" = "Please check your e-mail and enter the 6-digit code we've sent there to deactivate your cloud password.";
 
 "ChangePhoneNumberCode.Called" = "Telegram dialed your number";
 "ChangePhoneNumberCode.CallTimer" = "Telegram will call you in %@";

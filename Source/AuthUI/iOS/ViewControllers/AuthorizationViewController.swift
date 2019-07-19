@@ -12,6 +12,7 @@ class AuthorizationViewController: UINavigationController {
     
     private var phoneEntryViewController: PhoneEntryViewController?
     
+    private(set) var authorizer: TDAuthorizerSession?
     private var preferredCountryCode: String?
     
     init() {
@@ -49,6 +50,14 @@ class AuthorizationViewController: UINavigationController {
     func cancelButtonTapped() {
         dismiss(animated: true, completion: nil)
     }
+    
+    func showErrorAlert(with message: String) {
+        let controller = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
+        controller.addAction(UIAlertAction(title: L.Common.OK, style: .cancel, handler: nil))
+        
+        present(controller, animated: true, completion: nil)
+    }
 
 }
 
@@ -63,6 +72,8 @@ extension AuthorizationViewController: TDAuthorizerDelegate {
         if phoneEntryViewController != nil {
             return
         }
+        
+        self.authorizer = authorizer
         
         CountryManager.load { [weak self] countryManager in
             guard let self = self else { return }

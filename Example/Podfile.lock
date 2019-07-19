@@ -1,7 +1,11 @@
 PODS:
   - libPhoneNumber-iOS (0.9.15)
   - Swiftygram (0.0.1):
+    - Swiftygram/Core (= 0.0.1)
+  - Swiftygram/AuthUI (0.0.1):
     - libPhoneNumber-iOS
+  - Swiftygram/Core (0.0.1):
+    - Swiftygram/AuthUI
     - tdjson
   - tdjson (1.4.0)
 
@@ -19,7 +23,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   libPhoneNumber-iOS: 0a32a9525cf8744fe02c5206eb30d571e38f7d75
-  Swiftygram: b5b6ecd56aef0115b18e1237b06fac122c36d930
+  Swiftygram: 44690d3253f65cc12823cc05281a3259e4768172
   tdjson: 17a689e2c61199b7dac0de9310b3f53e00c14a8a
 
 PODFILE CHECKSUM: 71472979c3ce76ac57c1b12d9ed94391185e5d6b

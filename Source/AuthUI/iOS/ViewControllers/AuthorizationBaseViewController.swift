@@ -49,6 +49,10 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
         return navigationController as? AuthorizationViewController
     }
     
+    var authorizer: TDAuthorizerSession? {
+        return authorizationViewController?.authorizer
+    }
+    
     init(contentView: ContentView, isFinalStep: Bool) {
         self.contentView = contentView
         

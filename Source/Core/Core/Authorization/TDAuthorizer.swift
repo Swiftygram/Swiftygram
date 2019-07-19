@@ -40,6 +40,10 @@ public protocol TDAuthorizerDelegate: class {
      */
     func authorizer(_ authorizer: TDAuthorizerSession, requestsAuthCodeWith codeInfo: TDObject.AuthenticationCodeInfo, isRegistered: Bool, termsOfService: TDObject.TermsOfService?)
     
+    func authorizer(_ authorizer: TDAuthorizerSession, requestsPasswordWith hint: String?)
+    
+    func authorizer(_ authorizer: TDAuthorizerSession, requestsPasswordRecoveryCodeWith emailPattern: String)
+    
     func authorizerRequestsUsername(_ authorizer: TDAuthorizerSession)
     
     func authorizerDidCancelAuthorizationFlow(_ authorizer: TDAuthorizerSession)

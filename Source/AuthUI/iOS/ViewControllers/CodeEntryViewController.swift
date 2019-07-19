@@ -10,11 +10,23 @@ import UIKit
 class CodeEntryViewController: AuthorizationBaseViewController<CodeEntryView> {
     private let codeInfo: TDObject.AuthenticationCodeInfo
     private var currentTimeout: Int
+    private let codeLength: Int?
     private var timer: Timer?
     
     init(codeInfo: TDObject.AuthenticationCodeInfo) {
         self.codeInfo = codeInfo
         currentTimeout = codeInfo.timeout
+        
+        switch codeInfo.type {
+        case .telegramMessage(let length):
+            codeLength = length
+        case .sms(let length):
+            codeLength = length
+        case .call(let length):
+            codeLength = length
+        case .flashCall:
+            codeLength = nil
+        }
         
         super.init(contentView: .instantiateFromNib(), isFinalStep: false)
     }
@@ -135,19 +147,6 @@ class CodeEntryViewController: AuthorizationBaseViewController<CodeEntryView> {
     private func processCode(_ code: String) {
         nextButtonItem.isEnabled = !code.isEmpty
         
-        let codeLength: Int
-        
-        switch codeInfo.type {
-        case .telegramMessage(let length):
-            codeLength = length
-        case .sms(let length):
-            codeLength = length
-        case .call(let length):
-            codeLength = length
-        case .flashCall:
-            return
-        }
-        
         if code.count == codeLength {
             confirmCode(code)
         }
@@ -158,11 +157,36 @@ class CodeEntryViewController: AuthorizationBaseViewController<CodeEntryView> {
     private func confirmCode(_ code: String? = nil) {
         let code = code ?? contentView.codeTextField.text ?? ""
         
+        if let codeLength = codeLength, code.count != codeLength {
+            contentView.codeTextField.layer.addShakeAnimation()
+            return
+        }
         
+        guard let authorizer = authorizer else { return }
+        
+        isProcessing = true
+        
+        authorizer.setAuthenticationCode(code) { [weak self] error in
+            guard let error = error, let self = self else { return }
+            
+            self.isProcessing = false
+            
+            self.authorizationViewController?.showErrorAlert(with: error.localizedMessage)
+        }
     }
     
     private func resendCode() {
+        guard let authorizer = authorizer else { return }
         
+        isProcessing = true
+        
+        authorizer.resendAuthenticationCode { [weak self] error in
+            guard let error = error, let self = self else { return }
+            
+            self.isProcessing = false
+            
+            self.authorizationViewController?.showErrorAlert(with: error.localizedMessage)
+        }
     }
     
     override func nextButtonTapped() {
@@ -199,7 +223,7 @@ extension CodeEntryViewController: UITextFieldDelegate {
         }
         
         let initialText = ((textField.text ?? "") as NSString).replacingCharacters(in: range, with: string)
-        let filtredText = String(initialText.filter("0123456789".contains))
+        let filtredText = initialText.removingNonDigits
         
         processCode(filtredText)
         

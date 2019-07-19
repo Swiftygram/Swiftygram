@@ -10,14 +10,26 @@ Pod::Spec.new do |s|
     s.author           = { 'ky1vstar' => 'ky1vstar@yandex.ru' }
     s.source           = { :git => 'https://github.com/ky1vstar/PiPhone.git', :tag => s.version.to_s }
 
-    s.platform = :ios
-    s.source_files = 'Source/**/*.{swift}'
-    s.resources = 'Source/**/*.{plist,xib,strings,xcassets}'
+
     s.requires_arc = true
+    s.default_subspec = 'Core'
 
     s.ios.deployment_target = '9.0'
-    s.ios.dependency 'tdjson'
-    s.ios.dependency 'libPhoneNumber-iOS'
 
-    s.frameworks = ['Foundation']
+    s.subspec 'Core' do |ss|
+        ss.source_files = 'Source/Core/**/*.{swift}'
+        ss.frameworks = ['Foundation']
+
+        ss.ios.dependency 'tdjson'
+        ss.ios.dependency 'Swiftygram/AuthUI'
+    end
+    
+    s.subspec 'AuthUI' do |ss|
+        ss.platform = :ios
+
+        ss.ios.source_files = 'Source/AuthUI/iOS/**/*.{swift}'
+        ss.ios.resources = 'SourceUI/AuthUI/iOS/**/*.{plist,xib,strings,xcassets}'
+        ss.ios.dependency 'libPhoneNumber-iOS'
+        ss.ios.frameworks = ['UIKit', 'CoreTelephony']
+    end
 end

@@ -52,28 +52,6 @@ public enum TDPhoneNumberError: Error {
             return nil
         }
     }
-    
-    public var localizedMessage: String {
-        switch self {
-        case .invalidPhoneNumber:
-            return L.Login.InvalidPhoneError
-            
-        case .limitExceeded:
-            return L.Login.CodeFloodError
-            
-        case .phoneLimitExceeded:
-            return L.Login.PhoneFloodError
-            
-        case .phoneBanned:
-            return L.Login.PhoneBannedError
-            
-        case .timedOut:
-            return L.Login.NetworkError
-            
-        case .generic:
-            return L.Login.UnknownError
-        }
-    }
 }
 
 // MARK: - TDAuthenticationCodeError
@@ -109,25 +87,6 @@ public enum TDAuthenticationCodeError: Error {
             return nil
         }
     }
-    
-    public var localizedMessage: String {
-        switch self {
-        case .invalidCode:
-            return L.Login.InvalidCodeError
-            
-        case .limitExceeded:
-            return L.Login.CodeFloodError
-            
-        case .codeExpired:
-            return L.Login.CodeExpired
-            
-        case .timedOut:
-            return L.Login.NetworkError
-            
-        case .generic:
-            return L.Login.UnknownError
-        }
-    }
 }
 
 // MARK: - TDAuthorizationPasswordError
@@ -157,22 +116,6 @@ public enum TDAuthorizationPasswordError: Error {
             
         case .cancelled:
             return nil
-        }
-    }
-    
-    public var localizedMessage: String {
-        switch self {
-        case .limitExceeded:
-            return L.LoginPassword.FloodError
-            
-        case .invalidPassword:
-            return L.LoginPassword.InvalidPasswordError
-            
-        case .timedOut:
-            return L.Login.NetworkError
-            
-        case .generic:
-            return L.Login.UnknownError
         }
     }
 }
@@ -206,22 +149,6 @@ public enum TDPasswordRecoveryRequestError: Error {
             return nil
         }
     }
-    
-    public var localizedMessage: String {
-        switch self {
-        case .limitExceeded:
-            return L.TwoStepAuth.FloodError
-            
-        case .unavailable:
-            return L.TwoStepAuth.RecoveryUnavailable
-            
-        case .timedOut:
-            return L.Login.NetworkError
-            
-        case .generic:
-            return L.Login.UnknownError
-        }
-    }
 }
 
 // MARK: - TDPasswordRecoveryError
@@ -251,22 +178,6 @@ public enum TDPasswordRecoveryError: Error {
             
         case .cancelled:
             return nil
-        }
-    }
-    
-    public var localizedMessage: String {
-        switch self {
-        case .limitExceeded:
-            return L.LoginPassword.FloodError
-            
-        case .invalidCode:
-            return L.Login.InvalidCodeError
-            
-        case .codeExpired:
-            return L.Login.CodeExpiredError
-            
-        case .timedOut:
-            return L.Login.NetworkError
         }
     }
 }
@@ -301,25 +212,6 @@ public enum TDSignUpError: Error {
             
         case .cancelled:
             return nil
-        }
-    }
-    
-    public var localizedMessage: String {
-        switch self {
-        case .limitExceeded:
-            return L.Login.CodeFloodError
-            
-        case .invalidFirstName:
-            return L.Login.InvalidFirstNameError
-            
-        case .invalidLastName:
-            return L.Login.InvalidLastNameError
-            
-        case .timedOut:
-            return L.Login.NetworkError
-            
-        case .generic:
-            return L.Login.UnknownError
         }
     }
 }

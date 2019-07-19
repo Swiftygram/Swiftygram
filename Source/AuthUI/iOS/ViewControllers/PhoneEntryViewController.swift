@@ -68,7 +68,7 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
     private func processPhoneNumber(_ phoneNumber: String) {
         shouldSetPreferredCountry = false
         
-        let phoneNumber = String(phoneNumber.filter("0123456789".contains))
+        let phoneNumber = phoneNumber.removingNonDigits
         
         guard let country = countryManager.infoForPhoneNumber(phoneNumber) else {
             currentCountry = nil
