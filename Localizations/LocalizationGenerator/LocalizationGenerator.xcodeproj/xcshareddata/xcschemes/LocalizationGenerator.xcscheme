@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "60CB29D4228CC548000E711A"
-               BuildableName = "Swiftygram Example.app"
-               BlueprintName = "Swiftygram Example"
-               ReferencedContainer = "container:Swiftygram Example.xcodeproj">
+               BlueprintIdentifier = "60B6E00E22E4F0120086AC38"
+               BuildableName = "LocalizationGenerator"
+               BlueprintName = "LocalizationGenerator"
+               ReferencedContainer = "container:LocalizationGenerator.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "60CB29D4228CC548000E711A"
-            BuildableName = "Swiftygram Example.app"
-            BlueprintName = "Swiftygram Example"
-            ReferencedContainer = "container:Swiftygram Example.xcodeproj">
+            BlueprintIdentifier = "60B6E00E22E4F0120086AC38"
+            BuildableName = "LocalizationGenerator"
+            BlueprintName = "LocalizationGenerator"
+            ReferencedContainer = "container:LocalizationGenerator.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -45,7 +45,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = "ru"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -56,12 +55,18 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "60CB29D4228CC548000E711A"
-            BuildableName = "Swiftygram Example.app"
-            BlueprintName = "Swiftygram Example"
-            ReferencedContainer = "container:Swiftygram Example.xcodeproj">
+            BlueprintIdentifier = "60B6E00E22E4F0120086AC38"
+            BuildableName = "LocalizationGenerator"
+            BlueprintName = "LocalizationGenerator"
+            ReferencedContainer = "container:LocalizationGenerator.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "&quot;$PROJECT_DIR/../..&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -75,10 +80,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "60CB29D4228CC548000E711A"
-            BuildableName = "Swiftygram Example.app"
-            BlueprintName = "Swiftygram Example"
-            ReferencedContainer = "container:Swiftygram Example.xcodeproj">
+            BlueprintIdentifier = "60B6E00E22E4F0120086AC38"
+            BuildableName = "LocalizationGenerator"
+            BlueprintName = "LocalizationGenerator"
+            ReferencedContainer = "container:LocalizationGenerator.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

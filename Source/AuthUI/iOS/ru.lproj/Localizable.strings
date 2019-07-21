@@ -1,9 +1,49 @@
-/* 
-  Localizable.strings
-  Pods
-
-  Created by KY1VSTAR on 7/14/19.
-  
-*/
-
+"UserInfo.LastNamePlaceholder" = "Фамилия";
+"Login.InvalidLastNameError" = "Некорректная фамилия. Попробуйте ещё раз.";
+"Login.InvalidCodeError" = "Вы ввели неправильный код. Попробуйте ещё раз.";
+"Common.OK" = "ОК";
+"Login.CodeSentSms" = "Мы отправили вам SMS\nс проверочным кодом";
+"ChangePhoneNumberCode.CallTimer" = "Telegram позвонит вам через %@";
+"Login.PhoneTitle" = "Телефон";
+"TwoStepAuth.RecoveryCodeHelp" = "Чтобы отключить двухэтапную аутентификацию, введите шестизначный код, отправленный вам по электронной почте.";
+"Login.CancelPhoneVerificationContinue" = "Продолжить";
+"Common.Cancel" = "Отмена";
+"Login.SendCodeViaSms" = "Отправить код через SMS";
+"Common.Next" = "Далее";
+"Login.UnknownError" = "Произошла ошибка. Пожалуйста, попробуйте позже.";
+"Login.CodeExpired" = "Время действия кода истекло. Попробуйте снова.";
+"Login.CodeSentInternal" = "Мы отправили код через **Telegram** на Ваши другие устройства";
+"Login.InfoTitle" = "Информация о Вас";
+"Login.CodeFloodError" = "Лимит попыток превышен. Пожалуйста, подождите и попробуйте позже.";
+"TwoStepAuth.RecoveryUnavailable" = "Поскольку Вы не указали резервный адрес электронной почты, Вам остаётся либо вспомнить пароль, либо сбросить аккаунт и начать с чистого листа.";
+"LoginPassword.FloodError" = "Лимит попыток превышен. Попробуйте ещё раз позже.";
+"Login.InvalidPhoneError" = "Некорректный номер телефона. Попробуйте ещё раз.";
+"Login.TermsOfServiceAgree" = "Принять и продолжить";
+"Login.CancelPhoneVerificationStop" = "Остановить";
+"Login.SelectCountry.Title" = "Страна";
+"Login.NetworkError" = "Пожалуйста, проверьте соединение с интернетом и повторите попытку.";
+"UserInfo.FirstNamePlaceholder" = "Имя";
+"Login.CancelSignUpConfirmation" = "Вы действительно хотите прервать регистрацию?";
+"Login.Code" = "Код проверки";
 "locale" = "ru";
+"Login.PhoneBannedError" = "Этот номер телефона заблокирован.";
+"Login.PhonePlaceholder" = "Номер телефона";
+"Login.CheckOtherSessionMessages" = "Проверьте сообщения в Telegram";
+"TwoStepAuth.FloodError" = "Лимит попыток исчерпан. Попробуйте чуть позже.";
+"Login.PhoneFloodError" = "К сожалению, Вы слишком часто удаляли и пересоздавали аккаунт в последнее время. Пожалуйста, подождите несколько дней, прежде чем регистрироваться снова.";
+"Login.CodeExpiredError" = "Время действия кода истекло. Попробуйте ещё раз.";
+"Login.InvalidFirstNameError" = "Некорректное имя. Попробуйте ещё раз.";
+"ChangePhoneNumberCode.Called" = "Telegram набирает Ваш номер";
+"TwoStepAuth.EnterPasswordHelp" = "Вы включили двухэтапную аутентификацию. Теперь ваш аккаунт защищён дополнительным паролем.";
+"Login.TermsOfServiceHeader" = "Пользовательское соглашение";
+"LoginPassword.InvalidPasswordError" = "Неверный пароль. Пожалуйста, попробуйте снова.";
+"Login.WillSendSms" = "Telegram отправит вам СМС через %@";
+"Login.PhoneAndCountryHelp" = "Проверьте код страны и введите свой номер телефона.";
+"Login.TermsOfServiceSignupDecline" = "К сожалению, это означает, что Вы не сможете зарегистрироваться в Telegram.\n\nВ отличие от других сервисов, мы не используем Ваши данные для рекламы и других коммерческих целей. На серверах хранится только та информация, которая позволяет Вам полноценно пользоваться Telegram. Вы можете регулировать доступ к своим данным в настройках приложения, в разделе Конфиденциальность и безопасность.\n\nЕсли Вы не готовы предоставить минимальные нужные данные , увы, мы не сможем обеспечить работу Telegram.";
+"LoginPassword.Title" = "Ваш пароль";
+"TwoStepAuth.RecoveryCode" = "Код";
+"Login.TermsOfServiceLabel" = "Регистрируясь,\nвы принимаете [Пользовательское соглашение]";
+"Login.CancelPhoneVerification" = "Вы действительно хотите остановить подтверждение номера телефона?";
+"TwoStepAuth.EnterPasswordForgot" = "Забыли пароль?";
+"TwoStepAuth.RecoveryTitle" = "Код из письма";
+"Login.TermsOfServiceDecline" = "Отклонить";

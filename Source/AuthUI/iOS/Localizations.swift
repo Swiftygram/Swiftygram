@@ -29,191 +29,111 @@ public struct L {
 
     public struct Common {
 
-        /// Base translation: Create
-        public static var Create : String = NSLocalizedString("Common.Create", bundle: currentBundle, comment: "")
-
-        /// Base translation: Close
-        public static var Close : String = NSLocalizedString("Common.Close", bundle: currentBundle, comment: "")
-
-        /// Base translation: Delete
-        public static var Delete : String = NSLocalizedString("Common.Delete", bundle: currentBundle, comment: "")
-
         /// Base translation: Next
         public static var Next : String = NSLocalizedString("Common.Next", bundle: currentBundle, comment: "")
-
-        /// Base translation: Search
-        public static var Search : String = NSLocalizedString("Common.Search", bundle: currentBundle, comment: "")
 
         /// Base translation: Cancel
         public static var Cancel : String = NSLocalizedString("Common.Cancel", bundle: currentBundle, comment: "")
 
-        /// Base translation: Back
-        public static var Back : String = NSLocalizedString("Common.Back", bundle: currentBundle, comment: "")
-
-        /// Base translation: of
-        public static var of : String = NSLocalizedString("Common.of", bundle: currentBundle, comment: "")
-
         /// Base translation: OK
         public static var OK : String = NSLocalizedString("Common.OK", bundle: currentBundle, comment: "")
-
-        /// Base translation: Done
-        public static var Done : String = NSLocalizedString("Common.Done", bundle: currentBundle, comment: "")
 
     }
 
     public struct Login {
 
-        /// Base translation: We're very sorry, but this means you can't sign up for Telegram.  Unlike others, we don't use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.  But if you're generally not OK with Telegram's modest needs, it won't be possible for us to provide this service.
-        public static var TermsOfServiceSignupDecline : String = NSLocalizedString("Login.TermsOfServiceSignupDecline", bundle: currentBundle, comment: "")
-
         /// Base translation: Your phone number
         public static var PhonePlaceholder : String = NSLocalizedString("Login.PhonePlaceholder", bundle: currentBundle, comment: "")
-
-        /// Base translation: Code expired, please login again.
-        public static var CodeExpired : String = NSLocalizedString("Login.CodeExpired", bundle: currentBundle, comment: "")
-
-        /// Base translation: Please confirm your country code and enter your phone number.
-        public static var PhoneAndCountryHelp : String = NSLocalizedString("Login.PhoneAndCountryHelp", bundle: currentBundle, comment: "")
-
-        /// Base translation: Invalid last name. Please try again.
-        public static var InvalidLastNameError : String = NSLocalizedString("Login.InvalidLastNameError", bundle: currentBundle, comment: "")
 
         /// Base translation: Code
         public static var Code : String = NSLocalizedString("Login.Code", bundle: currentBundle, comment: "")
 
-        /// Base translation: Decline
-        public static var TermsOfServiceDecline : String = NSLocalizedString("Login.TermsOfServiceDecline", bundle: currentBundle, comment: "")
+        /// Base translation: An error occurred. Please try again later
+        public static var UnknownError : String = NSLocalizedString("Login.UnknownError", bundle: currentBundle, comment: "")
 
         /// Base translation: Please check your internet connection and try again.
         public static var NetworkError : String = NSLocalizedString("Login.NetworkError", bundle: currentBundle, comment: "")
 
-        /// Base translation: First Name
-        public static var InfoFirstNamePlaceholder : String = NSLocalizedString("Login.InfoFirstNamePlaceholder", bundle: currentBundle, comment: "")
+        /// Base translation: Stop
+        public static var CancelPhoneVerificationStop : String = NSLocalizedString("Login.CancelPhoneVerificationStop", bundle: currentBundle, comment: "")
 
-        /// Base translation: Invalid phone number. Please try again.
-        public static var InvalidPhoneError : String = NSLocalizedString("Login.InvalidPhoneError", bundle: currentBundle, comment: "")
+        /// Base translation: Please confirm your country code and enter your phone number.
+        public static var PhoneAndCountryHelp : String = NSLocalizedString("Login.PhoneAndCountryHelp", bundle: currentBundle, comment: "")
 
-        /// Base translation: You have entered an invalid code. Please try again.
-        public static var InvalidCodeError : String = NSLocalizedString("Login.InvalidCodeError", bundle: currentBundle, comment: "")
+        /// Base translation: Sorry, this last name can't be used.
+        public static var InvalidLastNameError : String = NSLocalizedString("Login.InvalidLastNameError", bundle: currentBundle, comment: "")
 
-        /// Base translation: By signing up, you agree to the [Terms of Service].
-        public static var TermsOfServiceLabel : String = NSLocalizedString("Login.TermsOfServiceLabel", bundle: currentBundle, comment: "")
-
-        /// Base translation: Your Info
-        public static var InfoTitle : String = NSLocalizedString("Login.InfoTitle", bundle: currentBundle, comment: "")
-
-        /// Base translation: Do you want to stop the registration process?
-        public static var CancelSignUpConfirmation : String = NSLocalizedString("Login.CancelSignUpConfirmation", bundle: currentBundle, comment: "")
-
-        /// Base translation: Invalid first name. Please try again.
-        public static var InvalidFirstNameError : String = NSLocalizedString("Login.InvalidFirstNameError", bundle: currentBundle, comment: "")
-
-        /// Base translation: We have sent you an SMS with the code
-        public static var CodeSentSms : String = NSLocalizedString("Login.CodeSentSms", bundle: currentBundle, comment: "")
-
-        /// Base translation: We've sent the code to the **Telegram** app on your other device
-        public static var CodeSentInternal : String = NSLocalizedString("Login.CodeSentInternal", bundle: currentBundle, comment: "")
-
-        /// Base translation: Telegram will call you in %@
-        public static func WillCallYou(_ value1 : String) -> String {
-            return String(format: NSLocalizedString("Login.WillCallYou", bundle: currentBundle, comment: ""), value1)
-        }
-
-        /// Base translation: Send the code as an SMS
-        public static var SendCodeViaSms : String = NSLocalizedString("Login.SendCodeViaSms", bundle: currentBundle, comment: "")
-
-        /// Base translation: We are calling your phone to dictate a code.
-        public static var CodeSentCall : String = NSLocalizedString("Login.CodeSentCall", bundle: currentBundle, comment: "")
-
-        /// Base translation: Do you want to stop the phone number verification process?
-        public static var CancelPhoneVerification : String = NSLocalizedString("Login.CancelPhoneVerification", bundle: currentBundle, comment: "")
-
-        /// Base translation: Haven't received the code?
-        public static var HaveNotReceivedCodeInternal : String = NSLocalizedString("Login.HaveNotReceivedCodeInternal", bundle: currentBundle, comment: "")
-
-        /// Base translation: Last Name
-        public static var InfoLastNamePlaceholder : String = NSLocalizedString("Login.InfoLastNamePlaceholder", bundle: currentBundle, comment: "")
+        /// Base translation: Decline
+        public static var TermsOfServiceDecline : String = NSLocalizedString("Login.TermsOfServiceDecline", bundle: currentBundle, comment: "")
 
         /// Base translation: Check your Telegram messages
         public static var CheckOtherSessionMessages : String = NSLocalizedString("Login.CheckOtherSessionMessages", bundle: currentBundle, comment: "")
 
-        /// Base translation: Continue
-        public static var CancelPhoneVerificationContinue : String = NSLocalizedString("Login.CancelPhoneVerificationContinue", bundle: currentBundle, comment: "")
+        /// Base translation: Do you want to stop the phone number verification process?
+        public static var CancelPhoneVerification : String = NSLocalizedString("Login.CancelPhoneVerification", bundle: currentBundle, comment: "")
 
-        /// Base translation: Requesting an SMS from Telegram...
-        public static var SmsRequestState2 : String = NSLocalizedString("Login.SmsRequestState2", bundle: currentBundle, comment: "")
+        /// Base translation: Your Info
+        public static var InfoTitle : String = NSLocalizedString("Login.InfoTitle", bundle: currentBundle, comment: "")
 
-        /// Base translation: Invalid Country Code
-        public static var InvalidCountryCode : String = NSLocalizedString("Login.InvalidCountryCode", bundle: currentBundle, comment: "")
+        /// Base translation: Invalid first name. Please try again.
+        public static var InvalidFirstNameError : String = NSLocalizedString("Login.InvalidFirstNameError", bundle: currentBundle, comment: "")
 
-        /// Base translation: Limit exceeded. Please try again later.
-        public static var CodeFloodError : String = NSLocalizedString("Login.CodeFloodError", bundle: currentBundle, comment: "")
+        /// Base translation: We've sent the code to the **Telegram** app on your other device
+        public static var CodeSentInternal : String = NSLocalizedString("Login.CodeSentInternal", bundle: currentBundle, comment: "")
+
+        /// Base translation: This phone number is banned.
+        public static var PhoneBannedError : String = NSLocalizedString("Login.PhoneBannedError", bundle: currentBundle, comment: "")
 
         /// Base translation: Telegram will send you an SMS in %@
         public static func WillSendSms(_ value1 : String) -> String {
             return String(format: NSLocalizedString("Login.WillSendSms", bundle: currentBundle, comment: ""), value1)
         }
 
-        /// Base translation: Telegram sent you an SMS [Didn't get the code?]
-        public static var SmsRequestState3 : String = NSLocalizedString("Login.SmsRequestState3", bundle: currentBundle, comment: "")
-
         /// Base translation: Agree & Continue
         public static var TermsOfServiceAgree : String = NSLocalizedString("Login.TermsOfServiceAgree", bundle: currentBundle, comment: "")
 
-        /// Base translation: Code expired. Please try again.
-        public static var CodeExpiredError : String = NSLocalizedString("Login.CodeExpiredError", bundle: currentBundle, comment: "")
+        /// Base translation: Send the code as an SMS
+        public static var SendCodeViaSms : String = NSLocalizedString("Login.SendCodeViaSms", bundle: currentBundle, comment: "")
 
-        /// Base translation: Enter your name and add a profile picture.
-        public static var InfoHelp : String = NSLocalizedString("Login.InfoHelp", bundle: currentBundle, comment: "")
+        /// Base translation: Continue
+        public static var CancelPhoneVerificationContinue : String = NSLocalizedString("Login.CancelPhoneVerificationContinue", bundle: currentBundle, comment: "")
 
-        /// Base translation: Requesting a call from Telegram...
-        public static var CallRequestState2 : String = NSLocalizedString("Login.CallRequestState2", bundle: currentBundle, comment: "")
+        /// Base translation: Invalid phone number. Please try again.
+        public static var InvalidPhoneError : String = NSLocalizedString("Login.InvalidPhoneError", bundle: currentBundle, comment: "")
 
-        /// Base translation: Sorry, you have deleted and re-created your account too many times recently. Please wait for a few days before signing up again.
-        public static var PhoneFloodError : String = NSLocalizedString("Login.PhoneFloodError", bundle: currentBundle, comment: "")
+        /// Base translation: Limit exceeded. Please try again later.
+        public static var CodeFloodError : String = NSLocalizedString("Login.CodeFloodError", bundle: currentBundle, comment: "")
 
-        /// Base translation: An error occurred. Please try again later
-        public static var UnknownError : String = NSLocalizedString("Login.UnknownError", bundle: currentBundle, comment: "")
+        /// Base translation: Do you want to stop the registration process?
+        public static var CancelSignUpConfirmation : String = NSLocalizedString("Login.CancelSignUpConfirmation", bundle: currentBundle, comment: "")
 
-        /// Base translation: Country Code
-        public static var CountryCode : String = NSLocalizedString("Login.CountryCode", bundle: currentBundle, comment: "")
+        /// Base translation: We're very sorry, but this means you can't sign up for Telegram.  Unlike others, we don't use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.  But if you're generally not OK with Telegram's modest requirements, it won't be possible for us to provide you with this service.
+        public static var TermsOfServiceSignupDecline : String = NSLocalizedString("Login.TermsOfServiceSignupDecline", bundle: currentBundle, comment: "")
 
-        /// Base translation: Your phone was banned.
-        public static var PhoneBannedError : String = NSLocalizedString("Login.PhoneBannedError", bundle: currentBundle, comment: "")
+        /// Base translation: We have sent you an SMS with the code
+        public static var CodeSentSms : String = NSLocalizedString("Login.CodeSentSms", bundle: currentBundle, comment: "")
+
+        /// Base translation: By signing up, you agree to the [Terms of Service].
+        public static var TermsOfServiceLabel : String = NSLocalizedString("Login.TermsOfServiceLabel", bundle: currentBundle, comment: "")
 
         /// Base translation: Terms of Service
         public static var TermsOfServiceHeader : String = NSLocalizedString("Login.TermsOfServiceHeader", bundle: currentBundle, comment: "")
 
-        /// Base translation: Telegram dialed your number [Didn't get the code?]
-        public static var CallRequestState3 : String = NSLocalizedString("Login.CallRequestState3", bundle: currentBundle, comment: "")
+        /// Base translation: You have entered an invalid code. Please try again.
+        public static var InvalidCodeError : String = NSLocalizedString("Login.InvalidCodeError", bundle: currentBundle, comment: "")
+
+        /// Base translation: Sorry, you have deleted and re-created your account too many times recently. Please wait for a few days before signing up again.
+        public static var PhoneFloodError : String = NSLocalizedString("Login.PhoneFloodError", bundle: currentBundle, comment: "")
+
+        /// Base translation: Code expired, please login again.
+        public static var CodeExpired : String = NSLocalizedString("Login.CodeExpired", bundle: currentBundle, comment: "")
 
         /// Base translation: Your Phone
         public static var PhoneTitle : String = NSLocalizedString("Login.PhoneTitle", bundle: currentBundle, comment: "")
 
-        /// Base translation: Stop
-        public static var CancelPhoneVerificationStop : String = NSLocalizedString("Login.CancelPhoneVerificationStop", bundle: currentBundle, comment: "")
+        /// Base translation: Code expired. Please try again.
+        public static var CodeExpiredError : String = NSLocalizedString("Login.CodeExpiredError", bundle: currentBundle, comment: "")
 
-
-        public struct ResetAccountProtected {
-
-            /// Base translation: Your recent attempts to reset this account have been cancelled by its active user. Please try again in 7 days.
-            public static var LimitExceeded : String = NSLocalizedString("Login.ResetAccountProtected.LimitExceeded", bundle: currentBundle, comment: "")
-
-            /// Base translation: Reset
-            public static var Reset : String = NSLocalizedString("Login.ResetAccountProtected.Reset", bundle: currentBundle, comment: "")
-
-            /// Base translation: Reset Account
-            public static var Title : String = NSLocalizedString("Login.ResetAccountProtected.Title", bundle: currentBundle, comment: "")
-
-            /// Base translation: Since the account %@ is active and protected by a password, we will delete it in 1 week for security purposes.  You can cancel this process at any time.
-            public static func Text(_ value1 : String) -> String {
-                return String(format: NSLocalizedString("Login.ResetAccountProtected.Text", bundle: currentBundle, comment: ""), value1)
-            }
-
-            /// Base translation: You'll be able to reset your account in:
-            public static var TimerTitle : String = NSLocalizedString("Login.ResetAccountProtected.TimerTitle", bundle: currentBundle, comment: "")
-
-        }
 
         public struct SelectCountry {
 
@@ -225,26 +145,14 @@ public struct L {
 
     public struct LoginPassword {
 
-        /// Base translation: Invalid password. Please try again.
-        public static var InvalidPasswordError : String = NSLocalizedString("LoginPassword.InvalidPasswordError", bundle: currentBundle, comment: "")
-
-        /// Base translation: Forgot password?
-        public static var ForgotPassword : String = NSLocalizedString("LoginPassword.ForgotPassword", bundle: currentBundle, comment: "")
+        /// Base translation: Your Password
+        public static var Title : String = NSLocalizedString("LoginPassword.Title", bundle: currentBundle, comment: "")
 
         /// Base translation: Limit exceeded. Please try again later.
         public static var FloodError : String = NSLocalizedString("LoginPassword.FloodError", bundle: currentBundle, comment: "")
 
-        /// Base translation: Password
-        public static var PasswordPlaceholder : String = NSLocalizedString("LoginPassword.PasswordPlaceholder", bundle: currentBundle, comment: "")
-
-        /// Base translation: Two-Step verification enabled. Your account is protected with an additional password.
-        public static var PasswordHelp : String = NSLocalizedString("LoginPassword.PasswordHelp", bundle: currentBundle, comment: "")
-
-        /// Base translation: Reset Account
-        public static var ResetAccount : String = NSLocalizedString("LoginPassword.ResetAccount", bundle: currentBundle, comment: "")
-
-        /// Base translation: Your Password
-        public static var Title : String = NSLocalizedString("LoginPassword.Title", bundle: currentBundle, comment: "")
+        /// Base translation: Invalid password. Please try again.
+        public static var InvalidPasswordError : String = NSLocalizedString("LoginPassword.InvalidPasswordError", bundle: currentBundle, comment: "")
 
     }
 
@@ -272,10 +180,10 @@ public struct L {
 
     public struct TwoStepAuth {
 
-        /// Base translation: Please check your e-mail and enter the 6-digit code we've sent there to deactivate your cloud password.
+        /// Base translation: Please check your email and enter the 6-digit code we've sent there to deactivate your cloud password.
         public static var RecoveryCodeHelp : String = NSLocalizedString("TwoStepAuth.RecoveryCodeHelp", bundle: currentBundle, comment: "")
 
-        /// Base translation: Since you haven't provided a recovery e-mail when setting up your password, your remaining options are either to remember your password or to reset your account.
+        /// Base translation: Since you didn't provide a recovery email when setting up your password, your remaining options are either to remember your password or to reset your account.
         public static var RecoveryUnavailable : String = NSLocalizedString("TwoStepAuth.RecoveryUnavailable", bundle: currentBundle, comment: "")
 
         /// Base translation: Limit exceeded. Please try again later.
@@ -287,10 +195,10 @@ public struct L {
         /// Base translation: Forgot password?
         public static var EnterPasswordForgot : String = NSLocalizedString("TwoStepAuth.EnterPasswordForgot", bundle: currentBundle, comment: "")
 
-        /// Base translation: You have enabled Two-Step Verification, so your account is protected with an additional password.
+        /// Base translation: You have Two-Step Verification enabled, so your account is protected with an additional password.
         public static var EnterPasswordHelp : String = NSLocalizedString("TwoStepAuth.EnterPasswordHelp", bundle: currentBundle, comment: "")
 
-        /// Base translation: E-Mail Code
+        /// Base translation: Email Code
         public static var RecoveryTitle : String = NSLocalizedString("TwoStepAuth.RecoveryTitle", bundle: currentBundle, comment: "")
 
     }
