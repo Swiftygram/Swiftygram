@@ -41,7 +41,10 @@ let internalTypes = ["TdlibParameters",
                      "SetDatabaseEncryptionKey",
                      "SetAuthenticationPhoneNumber",
                      "CheckAuthenticationCode",
-                     "ResendAuthenticationCode"]
+                     "ResendAuthenticationCode",
+                     "CheckAuthenticationPassword",
+                     "RequestAuthenticationPasswordRecovery",
+                     "RecoverAuthenticationPassword"]
 
 // MARK: - Global
 

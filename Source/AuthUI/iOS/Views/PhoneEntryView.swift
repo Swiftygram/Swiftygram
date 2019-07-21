@@ -50,6 +50,10 @@ class PhoneEntryView: UIView, NibBasedView, AuthorizationContentView {
         }
     }
     
+    func activateInput() {
+        numberTextField.becomeFirstResponder()
+    }
+    
     private func countryButtonBackgroundImage() -> UIImage {
         let size = CGSize(width: 61, height: 67)
         let arrowSize: CGFloat = 10

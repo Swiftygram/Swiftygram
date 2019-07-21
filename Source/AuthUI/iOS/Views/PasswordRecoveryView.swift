@@ -11,19 +11,19 @@ class PasswordRecoveryView: UIView, NibBasedView, AuthorizationContentView {
     
     @IBOutlet var titleLabel: UILabel! {
         didSet {
-            titleLabel.text = L.LoginPassword.RecoveryTitle
+            titleLabel.text = L.TwoStepAuth.RecoveryTitle
         }
     }
     
     @IBOutlet var subtitleLabel: UILabel! {
         didSet {
-            titleLabel.text = L.TwoStepAuth.RecoveryCodeHelp
+            subtitleLabel.text = L.TwoStepAuth.RecoveryCodeHelp
         }
     }
     
-    @IBOutlet var passwordTextField: UITextField! {
+    @IBOutlet var codeTextField: UITextField! {
         didSet {
-            passwordTextField.placeholder = L.TwoStepAuth.RecoveryCode
+            codeTextField.placeholder = L.TwoStepAuth.RecoveryCode
         }
     }
     
@@ -43,8 +43,12 @@ class PasswordRecoveryView: UIView, NibBasedView, AuthorizationContentView {
     
     var isProcessing = false {
         didSet {
-            
+            codeTextField.alpha = isProcessing ? 0.6 : 1
         }
+    }
+    
+    func activateInput() {
+        codeTextField.becomeFirstResponder()
     }
 
 }

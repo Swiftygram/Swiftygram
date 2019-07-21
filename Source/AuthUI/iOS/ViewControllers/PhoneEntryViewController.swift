@@ -11,7 +11,6 @@ import libPhoneNumber_iOS
 class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> {
 
     private let countryManager: CountryManager
-    private let authorizerSession: TDAuthorizerSession
     private var shouldSetPreferredCountry = true
     
     private var currentCountry: CountryInfo? {
@@ -28,11 +27,10 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
         }
     }
     
-    init(countryManager: CountryManager, authorizerSession: TDAuthorizerSession) {
+    init(countryManager: CountryManager) {
         self.countryManager = countryManager
-        self.authorizerSession = authorizerSession
         
-        super.init(contentView: .instantiateFromNib(), isFinalStep: false)
+        super.init(contentView: .instantiateFromNib(), showsCancelButton: false)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,12 +46,10 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
         
         processPhoneNumber(countryManager.defaultCountry.phoneCode)
         shouldSetPreferredCountry = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        contentView.numberTextField.becomeFirstResponder()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.authorizer?.setPhoneNumber("+48727870346", completionHandler: self.genericErrorHandler())
+        }
     }
     
     private func setupViews() {

@@ -67,10 +67,12 @@ extension CALayer {
     }
 }
 
+// MARK: - LocalizableError
+
 // MARK: - TDPhoneNumberError
 
-extension TDPhoneNumberError {
-    var localizedMessage: String {
+extension TDPhoneNumberError: LocalizedError {
+    public var errorDescription: String? {
         switch self {
         case .invalidPhoneNumber:
             return L.Login.InvalidPhoneError
@@ -95,8 +97,8 @@ extension TDPhoneNumberError {
 
 // MARK: - TDAuthenticationCodeError
 
-extension TDAuthenticationCodeError {
-    var localizedMessage: String {
+extension TDAuthenticationCodeError: LocalizedError {
+    public var errorDescription: String? {
         switch self {
         case .invalidCode:
             return L.Login.InvalidCodeError
@@ -118,8 +120,8 @@ extension TDAuthenticationCodeError {
 
 // MARK: - TDAuthorizationPasswordError
 
-extension TDAuthorizationPasswordError {
-    var localizedMessage: String {
+extension TDAuthenticationPasswordError: LocalizedError {
+    public var errorDescription: String? {
         switch self {
         case .limitExceeded:
             return L.LoginPassword.FloodError
@@ -138,8 +140,8 @@ extension TDAuthorizationPasswordError {
 
 // MARK: - TDPasswordRecoveryRequestError
 
-extension TDPasswordRecoveryRequestError {
-    var localizedMessage: String {
+extension TDPasswordRecoveryRequestError: LocalizedError {
+    public var errorDescription: String? {
         switch self {
         case .limitExceeded:
             return L.TwoStepAuth.FloodError
@@ -158,8 +160,8 @@ extension TDPasswordRecoveryRequestError {
 
 // MARK: - TDPasswordRecoveryError
 
-extension TDPasswordRecoveryError {
-    var localizedMessage: String {
+extension TDPasswordRecoveryError: LocalizedError {
+    public var errorDescription: String? {
         switch self {
         case .limitExceeded:
             return L.LoginPassword.FloodError
@@ -178,8 +180,8 @@ extension TDPasswordRecoveryError {
 
 // MARK: - TDSignUpError
 
-extension TDSignUpError {
-    var localizedMessage: String {
+extension TDSignUpError: LocalizedError {
+    public var errorDescription: String? {
         switch self {
         case .limitExceeded:
             return L.Login.CodeFloodError

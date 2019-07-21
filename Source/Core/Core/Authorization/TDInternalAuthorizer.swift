@@ -15,6 +15,7 @@ class TDInternalAuthorizer {
     private var completion: TDAuthorizationResultHandler?
     private let authorization: TDAuthorization
     private let client: TDClient
+    private var hasRecoveryEmailAddress = false
     
     init(configuration: TDAuthorizerConfiguration, delegate: TDAuthorizerDelegate, completion: @escaping TDAuthorizationResultHandler) {
         self.configuration = configuration
@@ -40,6 +41,8 @@ class TDInternalAuthorizer {
         configuration.callbackQueue = .main
         
         client = TDClient(authorization: authorization, configuration: configuration, shouldHandleAuthorizationState: false)
+        
+        delegate.authorizerDidStartAuthorization(self)
         
         cancellableBag.append(
             client
@@ -100,6 +103,15 @@ class TDInternalAuthorizer {
         case let .waitCode(isRegistred, termsOfService, codeInfo):
             delegate?.authorizer(self, requestsAuthCodeWith: codeInfo, isRegistered: isRegistred, termsOfService: termsOfService)
             
+        case let .waitPassword(passwordHint, hasRecoveryEmailAddress, recoveryEmailAddressPattern):
+            self.hasRecoveryEmailAddress = hasRecoveryEmailAddress
+            
+            if recoveryEmailAddressPattern.isEmpty {
+                delegate?.authorizer(self, requestsPasswordWith: passwordHint.isEmpty ? nil : passwordHint)
+            } else {
+                delegate?.authorizer(self, requestsPasswordRecoveryCodeWith: recoveryEmailAddressPattern)
+            }
+            
         case .ready:
             let query = TDFunction.GetMe()
 //            let query = TDFunction.DeleteAccount(reason: "")
@@ -142,6 +154,8 @@ class TDInternalAuthorizer {
         }
         
         completion(.failure(finalError))
+        
+        delegate?.authorizer(self, didCompleteWithError: finalError)
     }
     
 }
@@ -171,7 +185,7 @@ extension TDInternalAuthorizer: TDAuthorizerSession {
                 if case .tdLib(let tdLibError) = error,
                     tdLibError.message == "PHONE_NUMBER_UNOCCUPIED" {
                     if let self = self {
-                        self.delegate?.authorizerRequestsUsername(self)
+                        self.delegate?.authorizerRequestsSignUp(self)
                     }
                     
                     completionHandler?(nil)
@@ -199,6 +213,53 @@ extension TDInternalAuthorizer: TDAuthorizerSession {
         })
     }
     
+    func setAuthenticationPassword(_ password: String, completionHandler: ((TDAuthenticationPasswordError?) -> ())?) {
+        let query = TDFunction.CheckAuthenticationPassword(password: password)
+        
+        client.execute(query, completionHandler: { result in
+            if case .failure(let error) = result {
+                if let newError = TDAuthenticationPasswordError(error: error) {
+                    completionHandler?(newError)
+                }
+            } else {
+                completionHandler?(nil)
+            }
+        })
+    }
+    
+    func requestPasswordRecovery(with completionHandler: ((TDPasswordRecoveryRequestError?) -> ())?) {
+        guard hasRecoveryEmailAddress else {
+            completionHandler?(.unavailable)
+            return
+        }
+        
+        let query = TDFunction.RequestAuthenticationPasswordRecovery()
+        
+        client.execute(query, completionHandler: { result in
+            if case .failure(let error) = result {
+                if let newError = TDPasswordRecoveryRequestError(error: error) {
+                    completionHandler?(newError)
+                }
+            } else {
+                completionHandler?(nil)
+            }
+        })
+    }
+    
+    func setPasswordRecoveryCode(_ code: String, completionHandler: ((TDPasswordRecoveryError?) -> ())?) {
+        let query = TDFunction.RecoverAuthenticationPassword(recoveryCode: code)
+        
+        client.execute(query, completionHandler: { result in
+            if case .failure(let error) = result {
+                if let newError = TDPasswordRecoveryError(error: error) {
+                    completionHandler?(newError)
+                }
+            } else {
+                completionHandler?(nil)
+            }
+        })
+    }
+    
     func signUp(with firstName: String, lastName: String, completionHandler: ((TDSignUpError?) -> ())?) {
         let query = TDFunction.CheckAuthenticationCode(code: "11111", firstName: firstName, lastName: lastName)
         
@@ -212,12 +273,16 @@ extension TDInternalAuthorizer: TDAuthorizerSession {
             }
         })
     }
+    
+    func cancelSession() {
+        handleError(TDAuthorizationError.cancelled)
+    }
 }
 
 // MARK: - TDAuthorizationFlow
 
 extension TDInternalAuthorizer: TDAuthorizationFlow {
     func cancelFlow() {
-        
+        cancelSession()
     }
 }

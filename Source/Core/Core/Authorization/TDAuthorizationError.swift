@@ -91,7 +91,7 @@ public enum TDAuthenticationCodeError: Error {
 
 // MARK: - TDAuthorizationPasswordError
 
-public enum TDAuthorizationPasswordError: Error {
+public enum TDAuthenticationPasswordError: Error {
     case limitExceeded
     case invalidPassword
     case timedOut

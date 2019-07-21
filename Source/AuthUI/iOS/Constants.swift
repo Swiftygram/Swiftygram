@@ -14,6 +14,8 @@ enum Constants {
     
     static let highlightedBackgroundColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
     
+    static let accentColor = UIColor(red: 0, green: 0.48, blue: 1, alpha: 1)
+    
     static let separatorSize = 1 / UIScreen.main.scale
     
     static let screenSize: CGSize = {

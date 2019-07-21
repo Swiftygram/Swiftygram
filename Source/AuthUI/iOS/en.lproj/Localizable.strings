@@ -74,6 +74,9 @@
 "ChangePhoneNumberCode.Called" = "Telegram dialed your number";
 "ChangePhoneNumberCode.CallTimer" = "Telegram will call you in %@";
 
+"UserInfo.FirstNamePlaceholder" = "First Name";
+"UserInfo.LastNamePlaceholder" = "Last Name";
+
 
 
 "Login.TermsOfServiceLabel" = "By signing up,\nyou agree to the [Terms of Service].";

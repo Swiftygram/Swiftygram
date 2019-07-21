@@ -27,7 +27,7 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
         return view
     }()
     
-    private(set) var nextButtonItem: UIBarButtonItem!
+    private(set) lazy var nextButtonItem = UIBarButtonItem(title: L.Common.Next, style: .done, target: self, action: #selector(nextButtonTapped))
     
     private let indicatorView = UIActivityIndicatorView(style: .gray)
     private lazy var processingButtonItem = UIBarButtonItem(customView: indicatorView)
@@ -53,20 +53,16 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
         return authorizationViewController?.authorizer
     }
     
-    init(contentView: ContentView, isFinalStep: Bool) {
+    init(contentView: ContentView, showsCancelButton: Bool) {
         self.contentView = contentView
         
         super.init(nibName: nil, bundle: nil)
         
-        if isFinalStep {
-            nextButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(nextButtonTapped))
-        } else {
-            nextButtonItem = UIBarButtonItem(title: L.Common.Next, style: .done, target: self, action: #selector(nextButtonTapped))
-        }
-        
         navigationItem.rightBarButtonItem = nextButtonItem
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+        if showsCancelButton {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -84,6 +80,34 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIApplication.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIApplication.keyboardWillHideNotification, object: nil)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        (contentView as? AuthorizationContentView)?.activateInput()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        (contentView as? AuthorizationContentView)?.activateInput()
+    }
+    
+    func genericErrorHandler<E: Error>() -> ((E?) -> ())? {
+        guard authorizer != nil else { return nil }
+        
+        isProcessing = true
+        
+        return { [weak self] error in
+            guard let error = error, let self = self else { return }
+            
+            self.isProcessing = false
+            
+            self.authorizationViewController?.showErrorAlert(with: error.localizedDescription)
+        }
+    }
+    
+    // MARK: - Setup
     
     private func setupScrollView() {
         // to make interactive keyboard dismissing work
@@ -177,7 +201,7 @@ class AuthorizationBaseViewController<ContentView>: UIViewController {
     @objc func nextButtonTapped() {
     }
     
-    @objc private func cancelButtonTapped() {
+    @objc func cancelButtonTapped() {
         authorizationViewController?.cancelButtonTapped()
     }
     

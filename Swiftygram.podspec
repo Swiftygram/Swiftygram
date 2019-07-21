@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
         ss.platform = :ios
 
         ss.ios.source_files = 'Source/AuthUI/iOS/**/*.{swift}'
-        ss.ios.resources = 'SourceUI/AuthUI/iOS/**/*.{plist,xib,strings,xcassets}'
+        ss.ios.resources = 'Source/AuthUI/iOS/**/*.{plist,xib,strings,xcassets}'
         ss.ios.dependency 'libPhoneNumber-iOS'
         ss.ios.frameworks = ['UIKit', 'CoreTelephony']
     end

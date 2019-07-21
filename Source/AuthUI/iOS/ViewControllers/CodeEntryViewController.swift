@@ -28,7 +28,7 @@ class CodeEntryViewController: AuthorizationBaseViewController<CodeEntryView> {
             codeLength = nil
         }
         
-        super.init(contentView: .instantiateFromNib(), isFinalStep: false)
+        super.init(contentView: .instantiateFromNib(), showsCancelButton: false)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -162,31 +162,11 @@ class CodeEntryViewController: AuthorizationBaseViewController<CodeEntryView> {
             return
         }
         
-        guard let authorizer = authorizer else { return }
-        
-        isProcessing = true
-        
-        authorizer.setAuthenticationCode(code) { [weak self] error in
-            guard let error = error, let self = self else { return }
-            
-            self.isProcessing = false
-            
-            self.authorizationViewController?.showErrorAlert(with: error.localizedMessage)
-        }
+        authorizer?.setAuthenticationCode(code, completionHandler: genericErrorHandler())
     }
     
     private func resendCode() {
-        guard let authorizer = authorizer else { return }
-        
-        isProcessing = true
-        
-        authorizer.resendAuthenticationCode { [weak self] error in
-            guard let error = error, let self = self else { return }
-            
-            self.isProcessing = false
-            
-            self.authorizationViewController?.showErrorAlert(with: error.localizedMessage)
-        }
+        authorizer?.resendAuthenticationCode(with: genericErrorHandler())
     }
     
     override func nextButtonTapped() {

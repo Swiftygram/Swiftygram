@@ -47,5 +47,9 @@ class CodeEntryView: UIView, NibBasedView, AuthorizationContentView {
             resendButton.isEnabled = !isProcessing
         }
     }
+    
+    func activateInput() {
+        codeTextField.becomeFirstResponder()
+    }
 
 }

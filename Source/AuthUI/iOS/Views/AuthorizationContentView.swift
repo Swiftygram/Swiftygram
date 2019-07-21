@@ -9,4 +9,6 @@ import Foundation
 
 protocol AuthorizationContentView: class {
     var isProcessing: Bool { get set }
+    
+    func activateInput()
 }

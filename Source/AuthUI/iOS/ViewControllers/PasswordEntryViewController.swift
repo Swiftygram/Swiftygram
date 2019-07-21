@@ -8,22 +8,56 @@
 import UIKit
 
 class PasswordEntryViewController: AuthorizationBaseViewController<PasswordEntryView> {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    init(passwordHint: String?) {
+        super.init(contentView: .instantiateFromNib(), showsCancelButton: true)
+        
+        contentView.passwordTextField.placeholder = passwordHint
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        nextButtonItem.isEnabled = false
 
+        contentView.recoveryButton.addTarget(self, action: #selector(recoveryButtonTapped), for: .touchUpInside)
+        
+        contentView.passwordTextField.delegate = self
+        contentView.passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    }
+    
+    // MARK: - Actions
+    
+    private func confirmPassword() {
+        authorizer?.setAuthenticationPassword(contentView.passwordTextField.text ?? "", completionHandler: genericErrorHandler())
+    }
+    
+    override func nextButtonTapped() {
+        confirmPassword()
+    }
+    
+    @objc private func recoveryButtonTapped() {
+        authorizer?.requestPasswordRecovery(with: genericErrorHandler())
+    }
+    
+    @objc private func textFieldDidChange() {
+        nextButtonItem.isEnabled = !(contentView.passwordTextField.text ?? "").isEmpty
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension PasswordEntryViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return !isProcessing
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        confirmPassword()
+        return false
+    }
 }

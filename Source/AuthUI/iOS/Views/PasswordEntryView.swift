@@ -17,7 +17,7 @@ class PasswordEntryView: UIView, NibBasedView, AuthorizationContentView {
     
     @IBOutlet var subtitleLabel: UILabel! {
         didSet {
-            titleLabel.text = L.TwoStepAuth.EnterPasswordHelp
+            subtitleLabel.text = L.TwoStepAuth.EnterPasswordHelp
         }
     }
     
@@ -43,8 +43,13 @@ class PasswordEntryView: UIView, NibBasedView, AuthorizationContentView {
     
     var isProcessing = false {
         didSet {
-            
+            passwordTextField.alpha = isProcessing ? 0.6 : 1
+            recoveryButton.isEnabled = !isProcessing
         }
+    }
+    
+    func activateInput() {
+        passwordTextField.becomeFirstResponder()
     }
 
 }
