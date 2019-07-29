@@ -1,7 +1,7 @@
 //
 //  SearchMessagesFilter.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -203,6 +203,134 @@ public extension TDEnum {
 
             case .unreadMention:
                 try container.encode("searchMessagesFilterUnreadMention", forKey: .type)
+            }
+        }
+
+        public var isEmpty: Bool {
+            if case .empty = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAnimation: Bool {
+            if case .animation = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAudio: Bool {
+            if case .audio = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDocument: Bool {
+            if case .document = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhoto: Bool {
+            if case .photo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideo: Bool {
+            if case .video = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVoiceNote: Bool {
+            if case .voiceNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhotoAndVideo: Bool {
+            if case .photoAndVideo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUrl: Bool {
+            if case .url = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChatPhoto: Bool {
+            if case .chatPhoto = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCall: Bool {
+            if case .call = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMissedCall: Bool {
+            if case .missedCall = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideoNote: Bool {
+            if case .videoNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVoiceAndVideoNote: Bool {
+            if case .voiceAndVideoNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMention: Bool {
+            if case .mention = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUnreadMention: Bool {
+            if case .unreadMention = self {
+                return true
+            } else {
+                return false
             }
         }
     }

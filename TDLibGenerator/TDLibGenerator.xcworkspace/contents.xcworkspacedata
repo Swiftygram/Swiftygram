@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:TDLibGenerator.xcodeproj">
+      location = "group:TDLibGenerator.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Dependencies/Dependencies.xcodeproj">
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

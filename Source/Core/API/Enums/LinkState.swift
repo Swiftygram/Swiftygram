@@ -1,7 +1,7 @@
 //
 //  LinkState.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -60,6 +60,30 @@ public extension TDEnum {
 
             case .isContact:
                 try container.encode("linkStateIsContact", forKey: .type)
+            }
+        }
+
+        public var isNone: Bool {
+            if case .none = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isKnowsPhoneNumber: Bool {
+            if case .knowsPhoneNumber = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isIsContact: Bool {
+            if case .isContact = self {
+                return true
+            } else {
+                return false
             }
         }
     }

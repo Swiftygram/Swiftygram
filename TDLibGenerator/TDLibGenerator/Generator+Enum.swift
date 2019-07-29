@@ -14,12 +14,16 @@ extension Generator {
         var cases = [String]()
         var decoders = [String]()
         var encoders = [String]()
+        var quickCheckers = [String]()
         var isIndirect = false
         
         for subclass in object.subclasses {
             let caseName = self.caseName(for: object.name, subclass: subclass.name)
             let docs = docsForCase(subclass)
             let tdlibType = subclass.name.lowercasedFirstLetter
+            
+            // quick checker
+            quickCheckers.append(quickCheckerFor(caseName: caseName))
             
             // case
             var caseString = "\(docs)\ncase \(caseName.swiftEscapedIfNeeded)"
@@ -98,6 +102,9 @@ extension Generator {
         // encoder
         output.append(encoderBody(with: encoders, type: object.name))
         
+        // quick checker
+        output.append(quickCheckers.joined(separator: "\n\n"))
+        
         output.append("}")
         output.append("}")
         
@@ -157,6 +164,7 @@ extension Generator {
         
         return output.joined(separator: "\n")
     }
+    
     private func encoderBody(with encoders: [String], type: String) -> String {
         var output =
             ["// MARK: - Encodable",
@@ -176,4 +184,15 @@ extension Generator {
         return output.joined(separator: "\n")
     }
     
+    private func quickCheckerFor(caseName: String) -> String {
+        return [
+            "public var is\(caseName.uppercasedFirstLetter): Bool {",
+            "if case .\(caseName) = self {",
+            "return true",
+            "} else {",
+            "return false",
+            "}",
+            "}"
+        ].joined(separator: "\n")
+    }
 }

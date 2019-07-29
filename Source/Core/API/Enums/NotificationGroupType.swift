@@ -1,7 +1,7 @@
 //
 //  NotificationGroupType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -71,6 +71,38 @@ public extension TDEnum {
 
             case .calls:
                 try container.encode("notificationGroupTypeCalls", forKey: .type)
+            }
+        }
+
+        public var isMessages: Bool {
+            if case .messages = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMentions: Bool {
+            if case .mentions = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSecretChat: Bool {
+            if case .secretChat = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCalls: Bool {
+            if case .calls = self {
+                return true
+            } else {
+                return false
             }
         }
     }

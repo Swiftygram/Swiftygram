@@ -1,7 +1,7 @@
 //
 //  PageBlockVerticalAlignment.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -60,6 +60,30 @@ public extension TDEnum {
 
             case .bottom:
                 try container.encode("pageBlockVerticalAlignmentBottom", forKey: .type)
+            }
+        }
+
+        public var isTop: Bool {
+            if case .top = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMiddle: Bool {
+            if case .middle = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBottom: Bool {
+            if case .bottom = self {
+                return true
+            } else {
+                return false
             }
         }
     }

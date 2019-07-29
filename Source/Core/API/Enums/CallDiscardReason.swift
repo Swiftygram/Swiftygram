@@ -1,7 +1,7 @@
 //
 //  CallDiscardReason.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -82,6 +82,46 @@ public extension TDEnum {
 
             case .hungUp:
                 try container.encode("callDiscardReasonHungUp", forKey: .type)
+            }
+        }
+
+        public var isEmpty: Bool {
+            if case .empty = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMissed: Bool {
+            if case .missed = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDeclined: Bool {
+            if case .declined = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDisconnected: Bool {
+            if case .disconnected = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHungUp: Bool {
+            if case .hungUp = self {
+                return true
+            } else {
+                return false
             }
         }
     }

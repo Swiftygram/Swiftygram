@@ -1,7 +1,7 @@
 //
 //  ChatEventAction.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -331,6 +331,142 @@ public extension TDEnum {
                 try container.encode("chatEventIsAllHistoryAvailableToggled", forKey: .type)
 
                 try container.encode(isAllHistoryAvailable, forKey: .init(string: "isAllHistoryAvailable"))
+            }
+        }
+
+        public var isMessageEdited: Bool {
+            if case .messageEdited = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMessageDeleted: Bool {
+            if case .messageDeleted = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMessagePinned: Bool {
+            if case .messagePinned = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMessageUnpinned: Bool {
+            if case .messageUnpinned = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMemberJoined: Bool {
+            if case .memberJoined = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMemberLeft: Bool {
+            if case .memberLeft = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMemberInvited: Bool {
+            if case .memberInvited = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMemberPromoted: Bool {
+            if case .memberPromoted = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMemberRestricted: Bool {
+            if case .memberRestricted = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isTitleChanged: Bool {
+            if case .titleChanged = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDescriptionChanged: Bool {
+            if case .descriptionChanged = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUsernameChanged: Bool {
+            if case .usernameChanged = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhotoChanged: Bool {
+            if case .photoChanged = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isInvitesToggled: Bool {
+            if case .invitesToggled = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSignMessagesToggled: Bool {
+            if case .signMessagesToggled = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isStickerSetChanged: Bool {
+            if case .stickerSetChanged = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isIsAllHistoryAvailableToggled: Bool {
+            if case .isAllHistoryAvailableToggled = self {
+                return true
+            } else {
+                return false
             }
         }
     }

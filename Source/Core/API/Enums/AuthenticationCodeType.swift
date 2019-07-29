@@ -1,7 +1,7 @@
 //
 //  AuthenticationCodeType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -97,9 +97,33 @@ public extension TDEnum {
                 try container.encode(pattern, forKey: .init(string: "pattern"))
             }
         }
-        
+
         public var isTelegramMessage: Bool {
             if case .telegramMessage = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSms: Bool {
+            if case .sms = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCall: Bool {
+            if case .call = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isFlashCall: Bool {
+            if case .flashCall = self {
                 return true
             } else {
                 return false

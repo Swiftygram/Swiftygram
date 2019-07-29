@@ -1,7 +1,7 @@
 //
 //  MaskPoint.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -71,6 +71,38 @@ public extension TDEnum {
 
             case .chin:
                 try container.encode("maskPointChin", forKey: .type)
+            }
+        }
+
+        public var isForehead: Bool {
+            if case .forehead = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isEyes: Bool {
+            if case .eyes = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMouth: Bool {
+            if case .mouth = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChin: Bool {
+            if case .chin = self {
+                return true
+            } else {
+                return false
             }
         }
     }

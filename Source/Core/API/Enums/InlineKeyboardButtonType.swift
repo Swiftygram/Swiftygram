@@ -1,7 +1,7 @@
 //
 //  InlineKeyboardButtonType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -103,6 +103,46 @@ public extension TDEnum {
 
             case .buy:
                 try container.encode("inlineKeyboardButtonTypeBuy", forKey: .type)
+            }
+        }
+
+        public var isUrl: Bool {
+            if case .url = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCallback: Bool {
+            if case .callback = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCallbackGame: Bool {
+            if case .callbackGame = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSwitchInline: Bool {
+            if case .switchInline = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBuy: Bool {
+            if case .buy = self {
+                return true
+            } else {
+                return false
             }
         }
     }

@@ -1,7 +1,7 @@
 //
 //  InputInlineQueryResult.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -521,6 +521,110 @@ public extension TDEnum {
                 try container.encode(voiceNoteDuration, forKey: .init(string: "voiceNoteDuration"))
                 try container.encodeIfPresent(replyMarkup, forKey: .init(string: "replyMarkup"))
                 try container.encode(inputMessageContent, forKey: .init(string: "inputMessageContent"))
+            }
+        }
+
+        public var isAnimatedGif: Bool {
+            if case .animatedGif = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAnimatedMpeg4: Bool {
+            if case .animatedMpeg4 = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isArticle: Bool {
+            if case .article = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAudio: Bool {
+            if case .audio = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isContact: Bool {
+            if case .contact = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDocument: Bool {
+            if case .document = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isGame: Bool {
+            if case .game = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isLocation: Bool {
+            if case .location = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhoto: Bool {
+            if case .photo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSticker: Bool {
+            if case .sticker = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVenue: Bool {
+            if case .venue = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideo: Bool {
+            if case .video = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVoiceNote: Bool {
+            if case .voiceNote = self {
+                return true
+            } else {
+                return false
             }
         }
     }

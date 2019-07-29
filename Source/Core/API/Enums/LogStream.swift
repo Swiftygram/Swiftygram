@@ -1,7 +1,7 @@
 //
 //  LogStream.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -69,6 +69,30 @@ public extension TDEnum {
 
             case .empty:
                 try container.encode("logStreamEmpty", forKey: .type)
+            }
+        }
+
+        public var isDefault: Bool {
+            if case .default = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isFile: Bool {
+            if case .file = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isEmpty: Bool {
+            if case .empty = self {
+                return true
+            } else {
+                return false
             }
         }
     }

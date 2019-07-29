@@ -1,7 +1,7 @@
 //
 //  InputMessageContent.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -455,6 +455,134 @@ public extension TDEnum {
                 try container.encodeInt64(fromChatId, forKey: .init(string: "fromChatId"))
                 try container.encodeInt64(messageId, forKey: .init(string: "messageId"))
                 try container.encode(inGameShare, forKey: .init(string: "inGameShare"))
+            }
+        }
+
+        public var isText: Bool {
+            if case .text = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAnimation: Bool {
+            if case .animation = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAudio: Bool {
+            if case .audio = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDocument: Bool {
+            if case .document = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhoto: Bool {
+            if case .photo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSticker: Bool {
+            if case .sticker = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideo: Bool {
+            if case .video = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideoNote: Bool {
+            if case .videoNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVoiceNote: Bool {
+            if case .voiceNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isLocation: Bool {
+            if case .location = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVenue: Bool {
+            if case .venue = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAct: Bool {
+            if case .act = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isGame: Bool {
+            if case .game = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isInvoice: Bool {
+            if case .invoice = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPoll: Bool {
+            if case .poll = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isForwarded: Bool {
+            if case .forwarded = self {
+                return true
+            } else {
+                return false
             }
         }
     }

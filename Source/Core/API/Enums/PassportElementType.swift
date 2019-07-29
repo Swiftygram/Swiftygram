@@ -1,7 +1,7 @@
 //
 //  PassportElementType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -170,6 +170,110 @@ public extension TDEnum {
 
             case .emailAddress:
                 try container.encode("passportElementTypeEmailAddress", forKey: .type)
+            }
+        }
+
+        public var isPersonalDetails: Bool {
+            if case .personalDetails = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPassport: Bool {
+            if case .passport = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDriverLicense: Bool {
+            if case .driverLicense = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isIdentityCard: Bool {
+            if case .identityCard = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isInternalPassport: Bool {
+            if case .internalPassport = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAddress: Bool {
+            if case .address = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUtilityBill: Bool {
+            if case .utilityBill = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBankStatement: Bool {
+            if case .bankStatement = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRentalAgreement: Bool {
+            if case .rentalAgreement = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPassportRegistration: Bool {
+            if case .passportRegistration = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isTemporaryRegistration: Bool {
+            if case .temporaryRegistration = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhoneNumber: Bool {
+            if case .phoneNumber = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isEmailAddress: Bool {
+            if case .emailAddress = self {
+                return true
+            } else {
+                return false
             }
         }
     }

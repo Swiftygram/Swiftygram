@@ -1,7 +1,7 @@
 //
 //  DeviceToken.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -232,6 +232,94 @@ public extension TDEnum {
                 try container.encode("deviceTokenTizenPush", forKey: .type)
 
                 try container.encode(regId, forKey: .init(string: "regId"))
+            }
+        }
+
+        public var isFirebaseCloudMessaging: Bool {
+            if case .firebaseCloudMessaging = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isApplePush: Bool {
+            if case .applePush = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isApplePushVoIP: Bool {
+            if case .applePushVoIP = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isWindowsPush: Bool {
+            if case .windowsPush = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMicrosoftPush: Bool {
+            if case .microsoftPush = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMicrosoftPushVoIP: Bool {
+            if case .microsoftPushVoIP = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isWebPush: Bool {
+            if case .webPush = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSimplePush: Bool {
+            if case .simplePush = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUbuntuPush: Bool {
+            if case .ubuntuPush = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBlackBerryPush: Bool {
+            if case .blackBerryPush = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isTizenPush: Bool {
+            if case .tizenPush = self {
+                return true
+            } else {
+                return false
             }
         }
     }

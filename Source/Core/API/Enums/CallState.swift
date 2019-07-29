@@ -1,7 +1,7 @@
 //
 //  CallState.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -141,6 +141,54 @@ public extension TDEnum {
                 try container.encode("callStateError", forKey: .type)
 
                 try container.encode(error, forKey: .init(string: "error"))
+            }
+        }
+
+        public var isPending: Bool {
+            if case .pending = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isExchangingKeys: Bool {
+            if case .exchangingKeys = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isReady: Bool {
+            if case .ready = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHangingUp: Bool {
+            if case .hangingUp = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDiscarded: Bool {
+            if case .discarded = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isError: Bool {
+            if case .error = self {
+                return true
+            } else {
+                return false
             }
         }
     }

@@ -1,7 +1,7 @@
 //
 //  PageBlock.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -611,6 +611,230 @@ public extension TDEnum {
                 try container.encode(width, forKey: .init(string: "width"))
                 try container.encode(height, forKey: .init(string: "height"))
                 try container.encode(caption, forKey: .init(string: "caption"))
+            }
+        }
+
+        public var isTitle: Bool {
+            if case .title = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSubtitle: Bool {
+            if case .subtitle = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAuthorDate: Bool {
+            if case .authorDate = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHeader: Bool {
+            if case .header = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSubheader: Bool {
+            if case .subheader = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isKicker: Bool {
+            if case .kicker = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isParagraph: Bool {
+            if case .paragraph = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPreformatted: Bool {
+            if case .preformatted = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isFooter: Bool {
+            if case .footer = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDivider: Bool {
+            if case .divider = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAnchor: Bool {
+            if case .anchor = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isList: Bool {
+            if case .list = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBlockQuote: Bool {
+            if case .blockQuote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPullQuote: Bool {
+            if case .pullQuote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAnimation: Bool {
+            if case .animation = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAudio: Bool {
+            if case .audio = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhoto: Bool {
+            if case .photo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideo: Bool {
+            if case .video = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCover: Bool {
+            if case .cover = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isEmbedded: Bool {
+            if case .embedded = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isEmbeddedPost: Bool {
+            if case .embeddedPost = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCollage: Bool {
+            if case .collage = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSlideshow: Bool {
+            if case .slideshow = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChatLink: Bool {
+            if case .chatLink = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isTable: Bool {
+            if case .table = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDetails: Bool {
+            if case .details = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRelatedArticles: Bool {
+            if case .relatedArticles = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMap: Bool {
+            if case .map = self {
+                return true
+            } else {
+                return false
             }
         }
     }

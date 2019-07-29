@@ -1,7 +1,7 @@
 //
 //  NotificationSettingsScope.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -60,6 +60,30 @@ public extension TDEnum {
 
             case .channelChats:
                 try container.encode("notificationSettingsScopeChannelChats", forKey: .type)
+            }
+        }
+
+        public var isPrivateChats: Bool {
+            if case .privateChats = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isGroupChats: Bool {
+            if case .groupChats = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChannelChats: Bool {
+            if case .channelChats = self {
+                return true
+            } else {
+                return false
             }
         }
     }

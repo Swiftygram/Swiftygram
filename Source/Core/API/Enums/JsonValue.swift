@@ -1,7 +1,7 @@
 //
 //  JsonValue.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -123,6 +123,54 @@ public extension TDEnum {
                 try container.encode("jsonValueObject", forKey: .type)
 
                 try container.encode(members, forKey: .init(string: "members"))
+            }
+        }
+
+        public var isNull: Bool {
+            if case .null = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBoolean: Bool {
+            if case .boolean = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isNumber: Bool {
+            if case .number = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isString: Bool {
+            if case .string = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isArray: Bool {
+            if case .array = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isObject: Bool {
+            if case .object = self {
+                return true
+            } else {
+                return false
             }
         }
     }

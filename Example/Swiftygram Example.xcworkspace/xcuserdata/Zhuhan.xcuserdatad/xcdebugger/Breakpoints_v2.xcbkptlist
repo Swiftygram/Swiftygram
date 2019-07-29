@@ -33,38 +33,6 @@
             endingLineNumber = "168"
             landmarkName = "setAuthenticationCode(_:completionHandler:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Swiftygram.TDInternalAuthorizer.setAuthenticationCode(_: Swift.String, completionHandler: Swift.Optional&lt;(Swift.Optional&lt;Swiftygram.TDAuthenticationCodeError&gt;) -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "Swiftygram"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Zhuhan/Desktop/Xcode/Swiftygram/Source/Core/Authorization/TDInternalAuthorizer.swift"
-                  timestampString = "585216210.2186641"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
-                  offsetFromSymbolStart = "389">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swiftygram.TDResult&lt;Swiftygram.TDObject.Ok&gt;) -&gt; () in Swiftygram.TDInternalAuthorizer.setAuthenticationCode(_: Swift.String, completionHandler: Swift.Optional&lt;(Swift.Optional&lt;Swiftygram.TDAuthenticationCodeError&gt;) -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "Swiftygram"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Zhuhan/Desktop/Xcode/Swiftygram/Source/Core/Authorization/TDInternalAuthorizer.swift"
-                  timestampString = "585216210.220645"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
-                  offsetFromSymbolStart = "421">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

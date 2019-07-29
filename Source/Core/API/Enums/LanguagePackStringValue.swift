@@ -1,7 +1,7 @@
 //
 //  LanguagePackStringValue.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -87,6 +87,30 @@ public extension TDEnum {
 
             case .deleted:
                 try container.encode("languagePackStringValueDeleted", forKey: .type)
+            }
+        }
+
+        public var isOrdinary: Bool {
+            if case .ordinary = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPluralized: Bool {
+            if case .pluralized = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDeleted: Bool {
+            if case .deleted = self {
+                return true
+            } else {
+                return false
             }
         }
     }

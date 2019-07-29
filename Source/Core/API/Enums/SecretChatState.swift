@@ -1,7 +1,7 @@
 //
 //  SecretChatState.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -60,6 +60,30 @@ public extension TDEnum {
 
             case .closed:
                 try container.encode("secretChatStateClosed", forKey: .type)
+            }
+        }
+
+        public var isPending: Bool {
+            if case .pending = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isReady: Bool {
+            if case .ready = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isClosed: Bool {
+            if case .closed = self {
+                return true
+            } else {
+                return false
             }
         }
     }

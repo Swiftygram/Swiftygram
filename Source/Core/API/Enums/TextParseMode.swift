@@ -1,7 +1,7 @@
 //
 //  TextParseMode.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -49,6 +49,22 @@ public extension TDEnum {
 
             case .hTML:
                 try container.encode("textParseModeHTML", forKey: .type)
+            }
+        }
+
+        public var isMarkdown: Bool {
+            if case .markdown = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHTML: Bool {
+            if case .hTML = self {
+                return true
+            } else {
+                return false
             }
         }
     }

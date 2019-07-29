@@ -1,7 +1,7 @@
 //
 //  MessageForwardOrigin.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -84,6 +84,30 @@ public extension TDEnum {
                 try container.encodeInt64(chatId, forKey: .init(string: "chatId"))
                 try container.encodeInt64(messageId, forKey: .init(string: "messageId"))
                 try container.encode(authorSignature, forKey: .init(string: "authorSignature"))
+            }
+        }
+
+        public var isUser: Bool {
+            if case .user = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHiddenUser: Bool {
+            if case .hiddenUser = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChannel: Bool {
+            if case .channel = self {
+                return true
+            } else {
+                return false
             }
         }
     }

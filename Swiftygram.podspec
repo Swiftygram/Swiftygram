@@ -12,15 +12,15 @@ Pod::Spec.new do |s|
 
 
     s.requires_arc = true
+    s.platforms = { :ios => "9.0", :osx => "10.10", :watchos => "2.0" }
+    
+    s.frameworks = ['Foundation']
+    s.dependency 'tdjson'
     s.default_subspec = 'Core'
-
-    s.ios.deployment_target = '9.0'
 
     s.subspec 'Core' do |ss|
         ss.source_files = 'Source/Core/**/*.{swift}'
-        ss.frameworks = ['Foundation']
-
-        ss.ios.dependency 'tdjson'
+        
         ss.ios.dependency 'Swiftygram/AuthUI'
     end
     

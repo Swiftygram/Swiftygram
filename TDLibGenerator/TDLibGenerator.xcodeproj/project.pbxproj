@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		30168AD522A104B30070F0F2 /* ObjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30168AD422A104B30070F0F2 /* ObjectContainer.swift */; };
-		3064E19C22AA82BB00118CD0 /* Commander.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3064E19B22AA82BB00118CD0 /* Commander.framework */; };
-		3064E19E22AA82BB00118CD0 /* Dependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3064E19D22AA82BB00118CD0 /* Dependencies.framework */; };
 		30679567229FE44700D3D519 /* TLContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30679566229FE44700D3D519 /* TLContainer.swift */; };
 		30679569229FE66D00D3D519 /* PropertyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30679568229FE66D00D3D519 /* PropertyContainer.swift */; };
 		3067956B229FF8D400D3D519 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067956A229FF8D400D3D519 /* Utils.swift */; };
@@ -19,7 +17,7 @@
 		60049CD622A1B429006B5AEF /* Generator+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60049CD522A1B429006B5AEF /* Generator+Enum.swift */; };
 		605D8EE422A27D55004C1784 /* TypeDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605D8EE322A27D55004C1784 /* TypeDecider.swift */; };
 		60A72785229F196D00CEBD72 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A72784229F196D00CEBD72 /* main.swift */; };
-		60A7278D229F19D800CEBD72 /* td_api.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60A7278C229F19D300CEBD72 /* td_api.h */; };
+		9B427F64A65D6E2BD249B606 /* libPods-TDLibGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A01948EEFA884FCED91FB82 /* libPods-TDLibGenerator.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,7 +27,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				60A7278D229F19D800CEBD72 /* td_api.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -37,11 +34,13 @@
 
 /* Begin PBXFileReference section */
 		30168AD422A104B30070F0F2 /* ObjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectContainer.swift; sourceTree = "<group>"; };
+		3063F3A922EF05730084AFDF /* td_api.tl */ = {isa = PBXFileReference; lastKnownFileType = text; path = td_api.tl; sourceTree = SOURCE_ROOT; };
 		3064E19B22AA82BB00118CD0 /* Commander.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Commander.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3064E19D22AA82BB00118CD0 /* Dependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dependencies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30679566229FE44700D3D519 /* TLContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLContainer.swift; sourceTree = "<group>"; };
 		30679568229FE66D00D3D519 /* PropertyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyContainer.swift; sourceTree = "<group>"; };
 		3067956A229FF8D400D3D519 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5A01948EEFA884FCED91FB82 /* libPods-TDLibGenerator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TDLibGenerator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60049CCF22A1B09E006B5AEF /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		60049CD122A1B400006B5AEF /* Generator+Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Generator+Function.swift"; sourceTree = "<group>"; };
 		60049CD322A1B41D006B5AEF /* Generator+Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Generator+Object.swift"; sourceTree = "<group>"; };
@@ -49,7 +48,8 @@
 		605D8EE322A27D55004C1784 /* TypeDecider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDecider.swift; sourceTree = "<group>"; };
 		60A72781229F196D00CEBD72 /* TDLibGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TDLibGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		60A72784229F196D00CEBD72 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		60A7278C229F19D300CEBD72 /* td_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = td_api.h; sourceTree = "<group>"; };
+		AB8C683E803A2EE462D1AF0C /* Pods-TDLibGenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDLibGenerator.release.xcconfig"; path = "Target Support Files/Pods-TDLibGenerator/Pods-TDLibGenerator.release.xcconfig"; sourceTree = "<group>"; };
+		FCEB2B0988DFBFF4AB2B6A54 /* Pods-TDLibGenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDLibGenerator.debug.xcconfig"; path = "Target Support Files/Pods-TDLibGenerator/Pods-TDLibGenerator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3064E19C22AA82BB00118CD0 /* Commander.framework in Frameworks */,
-				3064E19E22AA82BB00118CD0 /* Dependencies.framework in Frameworks */,
+				9B427F64A65D6E2BD249B606 /* libPods-TDLibGenerator.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,8 +69,18 @@
 			children = (
 				3064E19B22AA82BB00118CD0 /* Commander.framework */,
 				3064E19D22AA82BB00118CD0 /* Dependencies.framework */,
+				5A01948EEFA884FCED91FB82 /* libPods-TDLibGenerator.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		520D29761FDC06E1DD8FBA61 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FCEB2B0988DFBFF4AB2B6A54 /* Pods-TDLibGenerator.debug.xcconfig */,
+				AB8C683E803A2EE462D1AF0C /* Pods-TDLibGenerator.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		60A72778229F196D00CEBD72 = {
@@ -80,6 +89,7 @@
 				60A72783229F196D00CEBD72 /* TDLibGenerator */,
 				60A72782229F196D00CEBD72 /* Products */,
 				3064E19A22AA82BB00118CD0 /* Frameworks */,
+				520D29761FDC06E1DD8FBA61 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,7 +114,7 @@
 				60049CD322A1B41D006B5AEF /* Generator+Object.swift */,
 				60049CD522A1B429006B5AEF /* Generator+Enum.swift */,
 				3067956A229FF8D400D3D519 /* Utils.swift */,
-				60A7278C229F19D300CEBD72 /* td_api.h */,
+				3063F3A922EF05730084AFDF /* td_api.tl */,
 			);
 			path = TDLibGenerator;
 			sourceTree = "<group>";
@@ -116,6 +126,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60A72788229F196D00CEBD72 /* Build configuration list for PBXNativeTarget "TDLibGenerator" */;
 			buildPhases = (
+				84DD0037A8F202B513E73C38 /* [CP] Check Pods Manifest.lock */,
 				60A7277D229F196D00CEBD72 /* Sources */,
 				60A7277E229F196D00CEBD72 /* Frameworks */,
 				60A7277F229F196D00CEBD72 /* CopyFiles */,
@@ -160,6 +171,31 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		84DD0037A8F202B513E73C38 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TDLibGenerator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		60A7277D229F196D00CEBD72 /* Sources */ = {
@@ -299,6 +335,7 @@
 		};
 		60A72789229F196D00CEBD72 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCEB2B0988DFBFF4AB2B6A54 /* Pods-TDLibGenerator.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -311,6 +348,7 @@
 		};
 		60A7278A229F196D00CEBD72 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB8C683E803A2EE462D1AF0C /* Pods-TDLibGenerator.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;

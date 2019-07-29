@@ -1,7 +1,7 @@
 //
 //  UserStatus.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -105,6 +105,54 @@ public extension TDEnum {
 
             case .lastMonth:
                 try container.encode("userStatusLastMonth", forKey: .type)
+            }
+        }
+
+        public var isEmpty: Bool {
+            if case .empty = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isOnline: Bool {
+            if case .online = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isOffline: Bool {
+            if case .offline = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRecently: Bool {
+            if case .recently = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isLastWeek: Bool {
+            if case .lastWeek = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isLastMonth: Bool {
+            if case .lastMonth = self {
+                return true
+            } else {
+                return false
             }
         }
     }

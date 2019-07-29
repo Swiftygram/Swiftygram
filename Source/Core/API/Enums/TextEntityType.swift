@@ -1,7 +1,7 @@
 //
 //  TextEntityType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -199,6 +199,118 @@ public extension TDEnum {
 
             case .phoneNumber:
                 try container.encode("textEntityTypePhoneNumber", forKey: .type)
+            }
+        }
+
+        public var isMention: Bool {
+            if case .mention = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHashtag: Bool {
+            if case .hashtag = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCashtag: Bool {
+            if case .cashtag = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBotCommand: Bool {
+            if case .botCommand = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUrl: Bool {
+            if case .url = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isEmailAddress: Bool {
+            if case .emailAddress = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBold: Bool {
+            if case .bold = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isItalic: Bool {
+            if case .italic = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCode: Bool {
+            if case .code = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPre: Bool {
+            if case .pre = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPreCode: Bool {
+            if case .preCode = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isTextUrl: Bool {
+            if case .textUrl = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMentionName: Bool {
+            if case .mentionName = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhoneNumber: Bool {
+            if case .phoneNumber = self {
+                return true
+            } else {
+                return false
             }
         }
     }

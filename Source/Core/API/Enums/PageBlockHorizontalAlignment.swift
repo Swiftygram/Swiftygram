@@ -1,7 +1,7 @@
 //
 //  PageBlockHorizontalAlignment.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -60,6 +60,30 @@ public extension TDEnum {
 
             case .right:
                 try container.encode("pageBlockHorizontalAlignmentRight", forKey: .type)
+            }
+        }
+
+        public var isLeft: Bool {
+            if case .left = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCenter: Bool {
+            if case .center = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRight: Bool {
+            if case .right = self {
+                return true
+            } else {
+                return false
             }
         }
     }

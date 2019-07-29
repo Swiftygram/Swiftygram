@@ -1,7 +1,7 @@
 //
 //  ReplyMarkup.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -104,6 +104,38 @@ public extension TDEnum {
                 try container.encode("replyMarkupInlineKeyboard", forKey: .type)
 
                 try container.encode(rows, forKey: .init(string: "rows"))
+            }
+        }
+
+        public var isRemoveKeyboard: Bool {
+            if case .removeKeyboard = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isForceReply: Bool {
+            if case .forceReply = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isShowKeyboard: Bool {
+            if case .showKeyboard = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isInlineKeyboard: Bool {
+            if case .inlineKeyboard = self {
+                return true
+            } else {
+                return false
             }
         }
     }

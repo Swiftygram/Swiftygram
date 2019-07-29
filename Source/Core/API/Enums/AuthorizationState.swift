@@ -1,7 +1,7 @@
 //
 //  AuthorizationState.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -156,6 +156,78 @@ extension TDEnum {
 
             case .closed:
                 try container.encode("authorizationStateClosed", forKey: .type)
+            }
+        }
+
+        public var isWaitTdlibParameters: Bool {
+            if case .waitTdlibParameters = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isWaitEncryptionKey: Bool {
+            if case .waitEncryptionKey = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isWaitPhoneNumber: Bool {
+            if case .waitPhoneNumber = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isWaitCode: Bool {
+            if case .waitCode = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isWaitPassword: Bool {
+            if case .waitPassword = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isReady: Bool {
+            if case .ready = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isLoggingOut: Bool {
+            if case .loggingOut = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isClosing: Bool {
+            if case .closing = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isClosed: Bool {
+            if case .closed = self {
+                return true
+            } else {
+                return false
             }
         }
     }

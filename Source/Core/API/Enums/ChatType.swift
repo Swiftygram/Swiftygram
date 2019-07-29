@@ -1,7 +1,7 @@
 //
 //  ChatType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -101,6 +101,38 @@ public extension TDEnum {
 
                 try container.encode(secretChatId, forKey: .init(string: "secretChatId"))
                 try container.encode(userId, forKey: .init(string: "userId"))
+            }
+        }
+
+        public var isPrivate: Bool {
+            if case .private = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBasicGroup: Bool {
+            if case .basicGroup = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSupergroup: Bool {
+            if case .supergroup = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSecret: Bool {
+            if case .secret = self {
+                return true
+            } else {
+                return false
             }
         }
     }

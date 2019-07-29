@@ -1,7 +1,7 @@
 //
 //  NotificationType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -95,6 +95,38 @@ public extension TDEnum {
                 try container.encodeInt64(messageId, forKey: .init(string: "messageId"))
                 try container.encode(senderUserId, forKey: .init(string: "senderUserId"))
                 try container.encode(content, forKey: .init(string: "content"))
+            }
+        }
+
+        public var isNewMessage: Bool {
+            if case .newMessage = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isNewSecretChat: Bool {
+            if case .newSecretChat = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isNewCall: Bool {
+            if case .newCall = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isNewPushMessage: Bool {
+            if case .newPushMessage = self {
+                return true
+            } else {
+                return false
             }
         }
     }

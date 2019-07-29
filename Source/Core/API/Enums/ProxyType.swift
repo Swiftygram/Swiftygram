@@ -1,7 +1,7 @@
 //
 //  ProxyType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -87,6 +87,30 @@ public extension TDEnum {
                 try container.encode("proxyTypeMtproto", forKey: .type)
 
                 try container.encode(secret, forKey: .init(string: "secret"))
+            }
+        }
+
+        public var isSocks5: Bool {
+            if case .socks5 = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHttp: Bool {
+            if case .http = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMtproto: Bool {
+            if case .mtproto = self {
+                return true
+            } else {
+                return false
             }
         }
     }

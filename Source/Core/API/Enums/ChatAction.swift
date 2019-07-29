@@ -1,7 +1,7 @@
 //
 //  ChatAction.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -200,6 +200,110 @@ public extension TDEnum {
 
             case .cancel:
                 try container.encode("chatActionCancel", forKey: .type)
+            }
+        }
+
+        public var isTyping: Bool {
+            if case .typing = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRecordingVideo: Bool {
+            if case .recordingVideo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUploadingVideo: Bool {
+            if case .uploadingVideo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRecordingVoiceNote: Bool {
+            if case .recordingVoiceNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUploadingVoiceNote: Bool {
+            if case .uploadingVoiceNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUploadingPhoto: Bool {
+            if case .uploadingPhoto = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUploadingDocument: Bool {
+            if case .uploadingDocument = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChoosingLocation: Bool {
+            if case .choosingLocation = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChoosingContact: Bool {
+            if case .choosingContact = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isStartPlayingGame: Bool {
+            if case .startPlayingGame = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRecordingVideoNote: Bool {
+            if case .recordingVideoNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUploadingVideoNote: Bool {
+            if case .uploadingVideoNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCancel: Bool {
+            if case .cancel = self {
+                return true
+            } else {
+                return false
             }
         }
     }

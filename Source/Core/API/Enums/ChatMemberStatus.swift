@@ -1,7 +1,7 @@
 //
 //  ChatMemberStatus.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -156,6 +156,54 @@ public extension TDEnum {
                 try container.encode("chatMemberStatusBanned", forKey: .type)
 
                 try container.encodeDate(bannedUntilDate, forKey: .init(string: "bannedUntilDate"))
+            }
+        }
+
+        public var isCreator: Bool {
+            if case .creator = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAdministrator: Bool {
+            if case .administrator = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMember: Bool {
+            if case .member = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRestricted: Bool {
+            if case .restricted = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isLeft: Bool {
+            if case .left = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBanned: Bool {
+            if case .banned = self {
+                return true
+            } else {
+                return false
             }
         }
     }

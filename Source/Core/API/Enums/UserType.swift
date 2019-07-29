@@ -1,7 +1,7 @@
 //
 //  UserType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -89,6 +89,38 @@ public extension TDEnum {
 
             case .unknown:
                 try container.encode("userTypeUnknown", forKey: .type)
+            }
+        }
+
+        public var isRegular: Bool {
+            if case .regular = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDeleted: Bool {
+            if case .deleted = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBot: Bool {
+            if case .bot = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUnknown: Bool {
+            if case .unknown = self {
+                return true
+            } else {
+                return false
             }
         }
     }

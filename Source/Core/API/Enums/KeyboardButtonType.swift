@@ -1,7 +1,7 @@
 //
 //  KeyboardButtonType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -60,6 +60,30 @@ public extension TDEnum {
 
             case .requestLocation:
                 try container.encode("keyboardButtonTypeRequestLocation", forKey: .type)
+            }
+        }
+
+        public var isText: Bool {
+            if case .text = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRequestPhoneNumber: Bool {
+            if case .requestPhoneNumber = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRequestLocation: Bool {
+            if case .requestLocation = self {
+                return true
+            } else {
+                return false
             }
         }
     }

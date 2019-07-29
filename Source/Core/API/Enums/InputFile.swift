@@ -1,7 +1,7 @@
 //
 //  InputFile.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -101,6 +101,38 @@ public extension TDEnum {
                 try container.encode(originalPath, forKey: .init(string: "originalPath"))
                 try container.encode(conversion, forKey: .init(string: "conversion"))
                 try container.encode(expectedSize, forKey: .init(string: "expectedSize"))
+            }
+        }
+
+        public var isId: Bool {
+            if case .id = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRemote: Bool {
+            if case .remote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isLocal: Bool {
+            if case .local = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isGenerated: Bool {
+            if case .generated = self {
+                return true
+            } else {
+                return false
             }
         }
     }

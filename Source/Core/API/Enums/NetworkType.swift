@@ -1,7 +1,7 @@
 //
 //  NetworkType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -82,6 +82,46 @@ public extension TDEnum {
 
             case .other:
                 try container.encode("networkTypeOther", forKey: .type)
+            }
+        }
+
+        public var isNone: Bool {
+            if case .none = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMobile: Bool {
+            if case .mobile = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMobileRoaming: Bool {
+            if case .mobileRoaming = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isWiFi: Bool {
+            if case .wiFi = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isOther: Bool {
+            if case .other = self {
+                return true
+            } else {
+                return false
             }
         }
     }

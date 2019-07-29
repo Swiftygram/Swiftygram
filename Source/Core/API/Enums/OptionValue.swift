@@ -1,7 +1,7 @@
 //
 //  OptionValue.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -89,6 +89,38 @@ public extension TDEnum {
                 try container.encode("optionValueString", forKey: .type)
 
                 try container.encode(value, forKey: .init(string: "value"))
+            }
+        }
+
+        public var isBoolean: Bool {
+            if case .boolean = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isEmpty: Bool {
+            if case .empty = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isInteger: Bool {
+            if case .integer = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isString: Bool {
+            if case .string = self {
+                return true
+            } else {
+                return false
             }
         }
     }

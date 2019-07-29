@@ -1,11 +1,11 @@
 //
 //  RecoverAuthenticationPassword.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
-public extension TDFunction {
+extension TDFunction {
     /**
      Recovers the password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
 

@@ -99,8 +99,11 @@ extension PropertyContainer {
         case "int64", "int53":
             return .swift("Int64")
             
-        case "string", "bytes":
+        case "string":
             return .swift("String")
+            
+        case "bytes":
+            return .swift("Data")
             
         case "Bool":
             return .swift("Bool")

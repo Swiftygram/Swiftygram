@@ -1,7 +1,7 @@
 //
 //  InputPassportElementErrorSource.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -183,6 +183,78 @@ public extension TDEnum {
                 try container.encode("inputPassportElementErrorSourceFiles", forKey: .type)
 
                 try container.encode(fileHashes, forKey: .init(string: "fileHashes"))
+            }
+        }
+
+        public var isUnspecified: Bool {
+            if case .unspecified = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDataField: Bool {
+            if case .dataField = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isFrontSide: Bool {
+            if case .frontSide = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isReverseSide: Bool {
+            if case .reverseSide = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSelfie: Bool {
+            if case .selfie = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isTranslationFile: Bool {
+            if case .translationFile = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isTranslationFiles: Bool {
+            if case .translationFiles = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isFile: Bool {
+            if case .file = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isFiles: Bool {
+            if case .files = self {
+                return true
+            } else {
+                return false
             }
         }
     }

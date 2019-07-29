@@ -1,7 +1,7 @@
 //
 //  MessageSendingState.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -49,6 +49,22 @@ public extension TDEnum {
 
             case .failed:
                 try container.encode("messageSendingStateFailed", forKey: .type)
+            }
+        }
+
+        public var isPending: Bool {
+            if case .pending = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isFailed: Bool {
+            if case .failed = self {
+                return true
+            } else {
+                return false
             }
         }
     }

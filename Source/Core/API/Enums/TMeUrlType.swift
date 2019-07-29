@@ -1,7 +1,7 @@
 //
 //  TMeUrlType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -95,6 +95,38 @@ public extension TDEnum {
                 try container.encode("tMeUrlTypeStickerSet", forKey: .type)
 
                 try container.encodeInt64(stickerSetId, forKey: .init(string: "stickerSetId"))
+            }
+        }
+
+        public var isUser: Bool {
+            if case .user = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSupergroup: Bool {
+            if case .supergroup = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChatInvite: Bool {
+            if case .chatInvite = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isStickerSet: Bool {
+            if case .stickerSet = self {
+                return true
+            } else {
+                return false
             }
         }
     }

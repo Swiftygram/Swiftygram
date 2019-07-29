@@ -1,7 +1,7 @@
 //
 //  UserPrivacySettingRule.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -105,6 +105,54 @@ public extension TDEnum {
                 try container.encode("userPrivacySettingRuleRestrictUsers", forKey: .type)
 
                 try container.encode(userIds, forKey: .init(string: "userIds"))
+            }
+        }
+
+        public var isAllowAll: Bool {
+            if case .allowAll = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAllowContacts: Bool {
+            if case .allowContacts = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAllowUsers: Bool {
+            if case .allowUsers = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRestrictAll: Bool {
+            if case .restrictAll = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRestrictContacts: Bool {
+            if case .restrictContacts = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRestrictUsers: Bool {
+            if case .restrictUsers = self {
+                return true
+            } else {
+                return false
             }
         }
     }

@@ -1,7 +1,7 @@
 //
 //  ConnectionState.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -82,6 +82,46 @@ public extension TDEnum {
 
             case .ready:
                 try container.encode("connectionStateReady", forKey: .type)
+            }
+        }
+
+        public var isWaitingForNetwork: Bool {
+            if case .waitingForNetwork = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isConnectingToProxy: Bool {
+            if case .connectingToProxy = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isConnecting: Bool {
+            if case .connecting = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUpdating: Bool {
+            if case .updating = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isReady: Bool {
+            if case .ready = self {
+                return true
+            } else {
+                return false
             }
         }
     }

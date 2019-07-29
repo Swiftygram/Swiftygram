@@ -1,12 +1,12 @@
-use_frameworks!
-platform :ios, '9.0'
+target 'Swiftygram Example iOS' do
+  use_frameworks!
+  platform :ios, '9.0'
+  
+  pod 'Swiftygram', :path => '../'
+end
 
-#workspace 'Swiftygram Example'
-
-#xcodeproj 'Swiftygram/Swiftygram.xcodeproj'
-
-target 'Swiftygram Example' do
-    pod 'Swiftygram', :path => '../'
-    #pod 'tdjson', :git => 'https://bitbucket.org/ky1vstar_ios/tdjson.git'#, :path => '../tdjson'
-    #pod 'tdjson'
+target 'Swiftygram Example macOS' do
+  platform :osx, '10.10'
+  
+  pod 'Swiftygram', :path => '../'
 end

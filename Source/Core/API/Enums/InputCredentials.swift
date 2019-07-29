@@ -1,7 +1,7 @@
 //
 //  InputCredentials.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -98,6 +98,38 @@ public extension TDEnum {
                 try container.encode("inputCredentialsApplePay", forKey: .type)
 
                 try container.encode(data, forKey: .init(string: "data"))
+            }
+        }
+
+        public var isSaved: Bool {
+            if case .saved = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isNew: Bool {
+            if case .new = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAndroidPay: Bool {
+            if case .androidPay = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isApplePay: Bool {
+            if case .applePay = self {
+                return true
+            } else {
+                return false
             }
         }
     }

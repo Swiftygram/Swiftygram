@@ -1,7 +1,7 @@
 //
 //  CheckChatUsernameResult.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -82,6 +82,46 @@ public extension TDEnum {
 
             case .publicGroupsUnavailable:
                 try container.encode("checkChatUsernameResultPublicGroupsUnavailable", forKey: .type)
+            }
+        }
+
+        public var isOk: Bool {
+            if case .ok = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUsernameInvalid: Bool {
+            if case .usernameInvalid = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUsernameOccupied: Bool {
+            if case .usernameOccupied = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPublicChatsTooMuch: Bool {
+            if case .publicChatsTooMuch = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPublicGroupsUnavailable: Bool {
+            if case .publicGroupsUnavailable = self {
+                return true
+            } else {
+                return false
             }
         }
     }

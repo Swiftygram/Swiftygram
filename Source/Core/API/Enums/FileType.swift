@@ -1,7 +1,7 @@
 //
 //  FileType.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -203,6 +203,134 @@ public extension TDEnum {
 
             case .wallpaper:
                 try container.encode("fileTypeWallpaper", forKey: .type)
+            }
+        }
+
+        public var isNone: Bool {
+            if case .none = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAnimation: Bool {
+            if case .animation = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAudio: Bool {
+            if case .audio = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDocument: Bool {
+            if case .document = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhoto: Bool {
+            if case .photo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isProfilePhoto: Bool {
+            if case .profilePhoto = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSecret: Bool {
+            if case .secret = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSecretThumbnail: Bool {
+            if case .secretThumbnail = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSecure: Bool {
+            if case .secure = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSticker: Bool {
+            if case .sticker = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isThumbnail: Bool {
+            if case .thumbnail = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUnknown: Bool {
+            if case .unknown = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideo: Bool {
+            if case .video = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideoNote: Bool {
+            if case .videoNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVoiceNote: Bool {
+            if case .voiceNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isWallpaper: Bool {
+            if case .wallpaper = self {
+                return true
+            } else {
+                return false
             }
         }
     }

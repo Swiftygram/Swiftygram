@@ -1,7 +1,7 @@
 //
 //  MessageContent.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -779,6 +779,326 @@ public extension TDEnum {
 
             case .unsupported:
                 try container.encode("messageUnsupported", forKey: .type)
+            }
+        }
+
+        public var isText: Bool {
+            if case .text = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAnimation: Bool {
+            if case .animation = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAudio: Bool {
+            if case .audio = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDocument: Bool {
+            if case .document = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhoto: Bool {
+            if case .photo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isExpiredPhoto: Bool {
+            if case .expiredPhoto = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSticker: Bool {
+            if case .sticker = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideo: Bool {
+            if case .video = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isExpiredVideo: Bool {
+            if case .expiredVideo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideoNote: Bool {
+            if case .videoNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVoiceNote: Bool {
+            if case .voiceNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isLocation: Bool {
+            if case .location = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVenue: Bool {
+            if case .venue = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAct: Bool {
+            if case .act = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isGame: Bool {
+            if case .game = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPoll: Bool {
+            if case .poll = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isInvoice: Bool {
+            if case .invoice = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAll: Bool {
+            if case .all = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBasicGroupChatCreate: Bool {
+            if case .basicGroupChatCreate = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSupergroupChatCreate: Bool {
+            if case .supergroupChatCreate = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHatChangeTitle: Bool {
+            if case .hatChangeTitle = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHatChangePhoto: Bool {
+            if case .hatChangePhoto = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHatDeletePhoto: Bool {
+            if case .hatDeletePhoto = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHatAddMembers: Bool {
+            if case .hatAddMembers = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHatJoinByLink: Bool {
+            if case .hatJoinByLink = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHatDeleteMember: Bool {
+            if case .hatDeleteMember = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHatUpgradeTo: Bool {
+            if case .hatUpgradeTo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHatUpgradeFrom: Bool {
+            if case .hatUpgradeFrom = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPinMessage: Bool {
+            if case .pinMessage = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isScreenshotTaken: Bool {
+            if case .screenshotTaken = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isHatSetTtl: Bool {
+            if case .hatSetTtl = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUstomServiceAction: Bool {
+            if case .ustomServiceAction = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isGameScore: Bool {
+            if case .gameScore = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPaymentSuccessful: Bool {
+            if case .paymentSuccessful = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPaymentSuccessfulBot: Bool {
+            if case .paymentSuccessfulBot = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isActRegistered: Bool {
+            if case .actRegistered = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isWebsiteConnected: Bool {
+            if case .websiteConnected = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPassportDataSent: Bool {
+            if case .passportDataSent = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPassportDataReceived: Bool {
+            if case .passportDataReceived = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUnsupported: Bool {
+            if case .unsupported = self {
+                return true
+            } else {
+                return false
             }
         }
     }

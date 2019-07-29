@@ -1,7 +1,7 @@
 //
 //  CallbackQueryPayload.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -61,6 +61,22 @@ public extension TDEnum {
                 try container.encode("callbackQueryPayloadGame", forKey: .type)
 
                 try container.encode(gameShortName, forKey: .init(string: "gameShortName"))
+            }
+        }
+
+        public var isData: Bool {
+            if case .data = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isGame: Bool {
+            if case .game = self {
+                return true
+            } else {
+                return false
             }
         }
     }

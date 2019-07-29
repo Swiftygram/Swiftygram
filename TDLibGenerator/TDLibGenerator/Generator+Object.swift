@@ -75,7 +75,8 @@ extension Generator {
         let isPublic = internalTypes.contains(object.name) ? "" : "public "
         var output = ["\(isPublic)extension \(namespace) {"]
         
-        output.append("\(docsForType(object))\nstruct \(object.name): \(superclass) {")
+        let error = object.name == "Error" ? ", Swift.Error" : ""
+        output.append("\(docsForType(object))\nstruct \(object.name): \(superclass)\(error) {")
         
         // returnType
         if let returnType = object.returnType {

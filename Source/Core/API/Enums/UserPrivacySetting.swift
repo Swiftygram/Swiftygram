@@ -1,7 +1,7 @@
 //
 //  UserPrivacySetting.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -71,6 +71,38 @@ public extension TDEnum {
 
             case .allowPeerToPeerCalls:
                 try container.encode("userPrivacySettingAllowPeerToPeerCalls", forKey: .type)
+            }
+        }
+
+        public var isShowStatus: Bool {
+            if case .showStatus = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAllowChatInvites: Bool {
+            if case .allowChatInvites = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAllowCalls: Bool {
+            if case .allowCalls = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAllowPeerToPeerCalls: Bool {
+            if case .allowPeerToPeerCalls = self {
+                return true
+            } else {
+                return false
             }
         }
     }

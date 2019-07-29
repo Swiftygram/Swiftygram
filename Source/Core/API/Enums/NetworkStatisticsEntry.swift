@@ -1,7 +1,7 @@
 //
 //  NetworkStatisticsEntry.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -79,6 +79,22 @@ public extension TDEnum {
                 try container.encodeInt64(sentBytes, forKey: .init(string: "sentBytes"))
                 try container.encodeInt64(receivedBytes, forKey: .init(string: "receivedBytes"))
                 try container.encode(duration, forKey: .init(string: "duration"))
+            }
+        }
+
+        public var isFile: Bool {
+            if case .file = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCall: Bool {
+            if case .call = self {
+                return true
+            } else {
+                return false
             }
         }
     }

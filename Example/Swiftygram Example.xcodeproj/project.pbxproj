@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28E65DB19F4965A077A52F5C /* libPods-Swiftygram Example macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C0F30CD22CF500DB427357 /* libPods-Swiftygram Example macOS.a */; };
+		3063F39B22EEDAAC0084AFDF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3063F39A22EEDAAC0084AFDF /* main.swift */; };
 		603204E622DA15AC00DA0270 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603204E522DA15AC00DA0270 /* TestViewController.swift */; };
 		603204E822DA165300DA0270 /* Test2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603204E722DA165300DA0270 /* Test2ViewController.swift */; };
 		60CB29D9228CC548000E711A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CB29D8228CC548000E711A /* AppDelegate.swift */; };
@@ -14,10 +16,19 @@
 		60CB29DE228CC548000E711A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60CB29DC228CC548000E711A /* Main.storyboard */; };
 		60CB29E0228CC548000E711A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60CB29DF228CC548000E711A /* Assets.xcassets */; };
 		60CB29E3228CC548000E711A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60CB29E1228CC548000E711A /* LaunchScreen.storyboard */; };
-		D3F3AF12BE4D8EAD33F3DC25 /* Pods_Swiftygram_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AAC91E6119315F54EAAE10 /* Pods_Swiftygram_Example.framework */; };
+		95241F3AE42E68F2A118C280 /* Pods_Swiftygram_Example_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C907798F7EBF7AFC41AB6979 /* Pods_Swiftygram_Example_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3063F39622EEDAAC0084AFDF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		60B17D67228D91D1005D3A80 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -31,10 +42,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00E8EA5F7CB6E3E649DCFF22 /* Pods-Swiftygram Example iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swiftygram Example iOS.debug.xcconfig"; path = "Target Support Files/Pods-Swiftygram Example iOS/Pods-Swiftygram Example iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		3063F39822EEDAAC0084AFDF /* Swiftygram Example macOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Swiftygram Example macOS"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3063F39A22EEDAAC0084AFDF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3376F2E41BC49B5AE274AEA9 /* Pods-Swiftygram Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swiftygram Example.debug.xcconfig"; path = "Target Support Files/Pods-Swiftygram Example/Pods-Swiftygram Example.debug.xcconfig"; sourceTree = "<group>"; };
+		5BC35CA65405755CB5CDCE03 /* Pods-Swiftygram Example macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swiftygram Example macOS.release.xcconfig"; path = "Target Support Files/Pods-Swiftygram Example macOS/Pods-Swiftygram Example macOS.release.xcconfig"; sourceTree = "<group>"; };
 		603204E522DA15AC00DA0270 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		603204E722DA165300DA0270 /* Test2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2ViewController.swift; sourceTree = "<group>"; };
-		60CB29D5228CC548000E711A /* Swiftygram Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swiftygram Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60CB29D5228CC548000E711A /* Swiftygram Example iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swiftygram Example iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60CB29D8228CC548000E711A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60CB29DA228CC548000E711A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		60CB29DD228CC548000E711A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,25 +57,45 @@
 		60CB29E2228CC548000E711A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60CB29E4228CC548000E711A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		828E96745F8F78E33E734B69 /* Pods-Swiftygram Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swiftygram Example.release.xcconfig"; path = "Target Support Files/Pods-Swiftygram Example/Pods-Swiftygram Example.release.xcconfig"; sourceTree = "<group>"; };
-		B3AAC91E6119315F54EAAE10 /* Pods_Swiftygram_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swiftygram_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91C0F30CD22CF500DB427357 /* libPods-Swiftygram Example macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Swiftygram Example macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0965D633BF5C00C54A286FA /* Pods-Swiftygram Example macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swiftygram Example macOS.debug.xcconfig"; path = "Target Support Files/Pods-Swiftygram Example macOS/Pods-Swiftygram Example macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		B8EE3C276F722EEE928663FD /* Pods-Swiftygram Example iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swiftygram Example iOS.release.xcconfig"; path = "Target Support Files/Pods-Swiftygram Example iOS/Pods-Swiftygram Example iOS.release.xcconfig"; sourceTree = "<group>"; };
+		C907798F7EBF7AFC41AB6979 /* Pods_Swiftygram_Example_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swiftygram_Example_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3063F39522EEDAAC0084AFDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28E65DB19F4965A077A52F5C /* libPods-Swiftygram Example macOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		60CB29D2228CC548000E711A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3F3AF12BE4D8EAD33F3DC25 /* Pods_Swiftygram_Example.framework in Frameworks */,
+				95241F3AE42E68F2A118C280 /* Pods_Swiftygram_Example_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3063F39922EEDAAC0084AFDF /* Swiftygram Example macOS */ = {
+			isa = PBXGroup;
+			children = (
+				3063F39A22EEDAAC0084AFDF /* main.swift */,
+			);
+			path = "Swiftygram Example macOS";
+			sourceTree = "<group>";
+		};
 		57AEBCE4BE0357824B328314 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B3AAC91E6119315F54EAAE10 /* Pods_Swiftygram_Example.framework */,
+				C907798F7EBF7AFC41AB6979 /* Pods_Swiftygram_Example_iOS.framework */,
+				91C0F30CD22CF500DB427357 /* libPods-Swiftygram Example macOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -68,7 +103,8 @@
 		60CB29CC228CC548000E711A = {
 			isa = PBXGroup;
 			children = (
-				60CB29D7228CC548000E711A /* Swiftygram Example */,
+				60CB29D7228CC548000E711A /* Swiftygram Example iOS */,
+				3063F39922EEDAAC0084AFDF /* Swiftygram Example macOS */,
 				60CB29D6228CC548000E711A /* Products */,
 				6D44F8C80DA2787890D897BE /* Pods */,
 				57AEBCE4BE0357824B328314 /* Frameworks */,
@@ -78,12 +114,13 @@
 		60CB29D6228CC548000E711A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				60CB29D5228CC548000E711A /* Swiftygram Example.app */,
+				60CB29D5228CC548000E711A /* Swiftygram Example iOS.app */,
+				3063F39822EEDAAC0084AFDF /* Swiftygram Example macOS */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		60CB29D7228CC548000E711A /* Swiftygram Example */ = {
+		60CB29D7228CC548000E711A /* Swiftygram Example iOS */ = {
 			isa = PBXGroup;
 			children = (
 				60CB29D8228CC548000E711A /* AppDelegate.swift */,
@@ -95,7 +132,7 @@
 				60CB29E1228CC548000E711A /* LaunchScreen.storyboard */,
 				60CB29E4228CC548000E711A /* Info.plist */,
 			);
-			path = "Swiftygram Example";
+			path = "Swiftygram Example iOS";
 			sourceTree = "<group>";
 		};
 		6D44F8C80DA2787890D897BE /* Pods */ = {
@@ -103,6 +140,10 @@
 			children = (
 				3376F2E41BC49B5AE274AEA9 /* Pods-Swiftygram Example.debug.xcconfig */,
 				828E96745F8F78E33E734B69 /* Pods-Swiftygram Example.release.xcconfig */,
+				00E8EA5F7CB6E3E649DCFF22 /* Pods-Swiftygram Example iOS.debug.xcconfig */,
+				B8EE3C276F722EEE928663FD /* Pods-Swiftygram Example iOS.release.xcconfig */,
+				B0965D633BF5C00C54A286FA /* Pods-Swiftygram Example macOS.debug.xcconfig */,
+				5BC35CA65405755CB5CDCE03 /* Pods-Swiftygram Example macOS.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -110,9 +151,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		60CB29D4228CC548000E711A /* Swiftygram Example */ = {
+		3063F39722EEDAAC0084AFDF /* Swiftygram Example macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 60CB29E7228CC548000E711A /* Build configuration list for PBXNativeTarget "Swiftygram Example" */;
+			buildConfigurationList = 3063F39C22EEDAAC0084AFDF /* Build configuration list for PBXNativeTarget "Swiftygram Example macOS" */;
+			buildPhases = (
+				AE72B7AE343DF3E0821C9148 /* [CP] Check Pods Manifest.lock */,
+				3063F39422EEDAAC0084AFDF /* Sources */,
+				3063F39522EEDAAC0084AFDF /* Frameworks */,
+				3063F39622EEDAAC0084AFDF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Swiftygram Example macOS";
+			productName = "Swiftygram Example macOS";
+			productReference = 3063F39822EEDAAC0084AFDF /* Swiftygram Example macOS */;
+			productType = "com.apple.product-type.tool";
+		};
+		60CB29D4228CC548000E711A /* Swiftygram Example iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60CB29E7228CC548000E711A /* Build configuration list for PBXNativeTarget "Swiftygram Example iOS" */;
 			buildPhases = (
 				344998C0825A0654BDA0E93C /* [CP] Check Pods Manifest.lock */,
 				60CB29D1228CC548000E711A /* Sources */,
@@ -125,9 +184,9 @@
 			);
 			dependencies = (
 			);
-			name = "Swiftygram Example";
+			name = "Swiftygram Example iOS";
 			productName = "Swiftygram Example";
-			productReference = 60CB29D5228CC548000E711A /* Swiftygram Example.app */;
+			productReference = 60CB29D5228CC548000E711A /* Swiftygram Example iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -136,10 +195,13 @@
 		60CB29CD228CC548000E711A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = KY1VSTAR;
 				TargetAttributes = {
+					3063F39722EEDAAC0084AFDF = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
 					60CB29D4228CC548000E711A = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -158,7 +220,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				60CB29D4228CC548000E711A /* Swiftygram Example */,
+				60CB29D4228CC548000E711A /* Swiftygram Example iOS */,
+				3063F39722EEDAAC0084AFDF /* Swiftygram Example macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -192,7 +255,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Swiftygram Example-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Swiftygram Example iOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -205,20 +268,50 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swiftygram Example/Pods-Swiftygram Example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Swiftygram Example iOS/Pods-Swiftygram Example iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Swiftygram Example/Pods-Swiftygram Example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Swiftygram Example iOS/Pods-Swiftygram Example iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swiftygram Example/Pods-Swiftygram Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swiftygram Example iOS/Pods-Swiftygram Example iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE72B7AE343DF3E0821C9148 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Swiftygram Example macOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3063F39422EEDAAC0084AFDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3063F39B22EEDAAC0084AFDF /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		60CB29D1228CC548000E711A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -252,6 +345,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3063F39D22EEDAAC0084AFDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0965D633BF5C00C54A286FA /* Pods-Swiftygram Example macOS.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2AMWN7U7M9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3063F39E22EEDAAC0084AFDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BC35CA65405755CB5CDCE03 /* Pods-Swiftygram Example macOS.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2AMWN7U7M9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		60CB29E5228CC548000E711A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -370,13 +491,13 @@
 		};
 		60CB29E8228CC548000E711A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3376F2E41BC49B5AE274AEA9 /* Pods-Swiftygram Example.debug.xcconfig */;
+			baseConfigurationReference = 00E8EA5F7CB6E3E649DCFF22 /* Pods-Swiftygram Example iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q78J22N7UT;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "Swiftygram Example/Info.plist";
+				INFOPLIST_FILE = "Swiftygram Example iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -391,13 +512,13 @@
 		};
 		60CB29E9228CC548000E711A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 828E96745F8F78E33E734B69 /* Pods-Swiftygram Example.release.xcconfig */;
+			baseConfigurationReference = B8EE3C276F722EEE928663FD /* Pods-Swiftygram Example iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q78J22N7UT;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "Swiftygram Example/Info.plist";
+				INFOPLIST_FILE = "Swiftygram Example iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -413,6 +534,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3063F39C22EEDAAC0084AFDF /* Build configuration list for PBXNativeTarget "Swiftygram Example macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3063F39D22EEDAAC0084AFDF /* Debug */,
+				3063F39E22EEDAAC0084AFDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		60CB29D0228CC548000E711A /* Build configuration list for PBXProject "Swiftygram Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -422,7 +552,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		60CB29E7228CC548000E711A /* Build configuration list for PBXNativeTarget "Swiftygram Example" */ = {
+		60CB29E7228CC548000E711A /* Build configuration list for PBXNativeTarget "Swiftygram Example iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				60CB29E8228CC548000E711A /* Debug */,

@@ -1,7 +1,7 @@
 //
 //  PushMessageContent.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -523,6 +523,214 @@ public extension TDEnum {
                 try container.encode(totalCount, forKey: .init(string: "totalCount"))
                 try container.encode(hasPhotos, forKey: .init(string: "hasPhotos"))
                 try container.encode(hasVideos, forKey: .init(string: "hasVideos"))
+            }
+        }
+
+        public var isHidden: Bool {
+            if case .hidden = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAnimation: Bool {
+            if case .animation = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAudio: Bool {
+            if case .audio = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isContact: Bool {
+            if case .contact = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isContactRegistered: Bool {
+            if case .contactRegistered = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isDocument: Bool {
+            if case .document = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isGame: Bool {
+            if case .game = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isGameScore: Bool {
+            if case .gameScore = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isInvoice: Bool {
+            if case .invoice = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isLocation: Bool {
+            if case .location = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhoto: Bool {
+            if case .photo = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPoll: Bool {
+            if case .poll = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isScreenshotTaken: Bool {
+            if case .screenshotTaken = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSticker: Bool {
+            if case .sticker = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isText: Bool {
+            if case .text = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideo: Bool {
+            if case .video = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVideoNote: Bool {
+            if case .videoNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isVoiceNote: Bool {
+            if case .voiceNote = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBasicGroupChatCreate: Bool {
+            if case .basicGroupChatCreate = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChatAddMembers: Bool {
+            if case .chatAddMembers = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChatChangePhoto: Bool {
+            if case .chatChangePhoto = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChatChangeTitle: Bool {
+            if case .chatChangeTitle = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChatDeleteMember: Bool {
+            if case .chatDeleteMember = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChatJoinByLink: Bool {
+            if case .chatJoinByLink = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMessageForwards: Bool {
+            if case .messageForwards = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMediaAlbum: Bool {
+            if case .mediaAlbum = self {
+                return true
+            } else {
+                return false
             }
         }
     }

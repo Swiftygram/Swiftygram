@@ -30,15 +30,5 @@ public class TDAuthorizer {
     public class func authorization(with configuration: TDAuthorizerConfiguration, delegate: TDAuthorizerDelegate, completion: @escaping TDAuthorizationResultHandler) -> TDAuthorizationFlow {
         return TDInternalAuthorizer(configuration: configuration, delegate: delegate, completion: completion)
     }
-    
-    #if os(iOS)
-    public class func authorization(with configuration: TDAuthorizerConfiguration, presentingViewController: UIViewController, completion: @escaping TDAuthorizationResultHandler) -> TDAuthorizationFlow {
-        let controller = AuthorizationViewController()
-        
-        presentingViewController.present(controller, animated: true, completion: nil)
-        
-        return TDInternalAuthorizer(configuration: configuration, delegate: controller, completion: completion)
-    }
-    #endif
 
 }

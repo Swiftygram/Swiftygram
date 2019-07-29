@@ -1,0 +1,6 @@
+target 'TDLibGenerator' do
+  platform :osx, '10.13'
+  
+  pod 'Commander'
+end
+

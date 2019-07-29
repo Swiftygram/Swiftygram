@@ -1,7 +1,7 @@
 //
 //  SupergroupMembersFilter.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -111,6 +111,54 @@ public extension TDEnum {
 
             case .bots:
                 try container.encode("supergroupMembersFilterBots", forKey: .type)
+            }
+        }
+
+        public var isRecent: Bool {
+            if case .recent = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAdministrators: Bool {
+            if case .administrators = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSearch: Bool {
+            if case .search = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isRestricted: Bool {
+            if case .restricted = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBanned: Bool {
+            if case .banned = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBots: Bool {
+            if case .bots = self {
+                return true
+            } else {
+                return false
             }
         }
     }

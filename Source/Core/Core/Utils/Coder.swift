@@ -128,11 +128,43 @@ extension KeyedDecodingContainerProtocol {
     }
     
     func decodeInt64ArrayIfPresent(forKey key: Self.Key) throws -> [Int64]? {
+        var occuredError: Error?
+        
+        do {
+            if let values = try decodeIfPresent([Int64].self, forKey: key) {
+                return values
+            }
+        } catch {
+            occuredError = error
+        }
+        
+        do {
+            if let values = try decodeIfPresent([String].self, forKey: key) {
+                return try values.map {
+                    if let intValue = Int64($0) {
+                        return intValue
+                    }
+                    
+                    throw DecodingError.dataCorruptedError(forKey: key, in: self, debugDescription: "Failed to convert `\($0)` to Int64")
+                }
+            }
+        } catch {
+            occuredError = error
+        }
+        
+        if let error = occuredError {
+            throw error
+        }
+        
         return nil
     }
     
     func decodeInt64Array(forKey key: Self.Key) throws -> [Int64] {
-        return []
+        if let value = try decodeInt64ArrayIfPresent(forKey: key) {
+            return value
+        }
+        
+        throw DecodingError.keyNotFound(key, DecodingError.Context(codingPath: codingPath, debugDescription: "Failed to parse [Int64]"))
     }
     
     func decodeDateIfPresent(forKey key: Self.Key) throws -> Date? {
@@ -169,9 +201,11 @@ extension KeyedEncodingContainerProtocol {
     }
     
     mutating func encodeInt64ArrayIfPresent(_ value: [Int64]?, forKey key: Self.Key) throws {
+        try encodeIfPresent(value?.map { "\($0)" }, forKey: key)
     }
     
     mutating func encodeInt64Array(_ value: [Int64], forKey key: Self.Key) throws {
+        try encode(value.map { "\($0)" }, forKey: key)
     }
     
     mutating func encodeDateIfPresent(_ value: Date?, forKey key: Self.Key) throws {

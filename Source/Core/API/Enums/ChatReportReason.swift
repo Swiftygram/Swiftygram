@@ -1,7 +1,7 @@
 //
 //  ChatReportReason.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -99,6 +99,54 @@ public extension TDEnum {
                 try container.encode("chatReportReasonCustom", forKey: .type)
 
                 try container.encode(text, forKey: .init(string: "text"))
+            }
+        }
+
+        public var isSpam: Bool {
+            if case .spam = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isViolence: Bool {
+            if case .violence = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPornography: Bool {
+            if case .pornography = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChildAbuse: Bool {
+            if case .childAbuse = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCopyright: Bool {
+            if case .copyright = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCustom: Bool {
+            if case .custom = self {
+                return true
+            } else {
+                return false
             }
         }
     }

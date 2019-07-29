@@ -1,7 +1,7 @@
 //
 //  RichText.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -300,6 +300,126 @@ public extension TDEnum {
                 try container.encode("richTexts", forKey: .type)
 
                 try container.encode(texts, forKey: .init(string: "texts"))
+            }
+        }
+
+        public var isPlain: Bool {
+            if case .plain = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBold: Bool {
+            if case .bold = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isItalic: Bool {
+            if case .italic = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUnderline: Bool {
+            if case .underline = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isStrikethrough: Bool {
+            if case .strikethrough = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isFixed: Bool {
+            if case .fixed = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isUrl: Bool {
+            if case .url = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isEmailAddress: Bool {
+            if case .emailAddress = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSubscript: Bool {
+            if case .subscript = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isSuperscript: Bool {
+            if case .superscript = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isMarked: Bool {
+            if case .marked = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isPhoneNumber: Bool {
+            if case .phoneNumber = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isIcon: Bool {
+            if case .icon = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isAnchor: Bool {
+            if case .anchor = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isS: Bool {
+            if case .s = self {
+                return true
+            } else {
+                return false
             }
         }
     }

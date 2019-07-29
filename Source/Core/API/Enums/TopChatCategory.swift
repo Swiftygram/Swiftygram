@@ -1,7 +1,7 @@
 //
 //  TopChatCategory.swift
 //  Swiftygram
-//  Created by ky1vstar on 7/10/19.
+//  Created by ky1vstar on 7/29/19.
 //  Copyright © 2019 ky1vstar. All rights reserved.
 //
 
@@ -93,6 +93,54 @@ public extension TDEnum {
 
             case .calls:
                 try container.encode("topChatCategoryCalls", forKey: .type)
+            }
+        }
+
+        public var isUsers: Bool {
+            if case .users = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isBots: Bool {
+            if case .bots = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isGroups: Bool {
+            if case .groups = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isChannels: Bool {
+            if case .channels = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isInlineBots: Bool {
+            if case .inlineBots = self {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        public var isCalls: Bool {
+            if case .calls = self {
+                return true
+            } else {
+                return false
             }
         }
     }
