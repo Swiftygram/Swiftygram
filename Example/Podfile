@@ -5,8 +5,8 @@ target 'Swiftygram Example iOS' do
   pod 'Swiftygram', :path => '../'
 end
 
-target 'Swiftygram Example macOS' do
-  platform :osx, '10.10'
-  
-  pod 'Swiftygram', :path => '../'
-end
+#target 'Swiftygram Example macOS' do
+#  platform :osx, '10.10'
+#
+#  pod 'Swiftygram', :path => '../'
+#end
