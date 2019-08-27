@@ -47,9 +47,9 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
         processPhoneNumber(countryManager.defaultCountry.phoneCode)
         shouldSetPreferredCountry = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.authorizer?.setPhoneNumber("+48727870346", completionHandler: self.genericErrorHandler())
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            self.authorizer?.setPhoneNumber("+48727870346", completionHandler: self.genericErrorHandler())
+//        }
     }
     
     private func setupViews() {
@@ -87,6 +87,11 @@ class PhoneEntryViewController: AuthorizationBaseViewController<PhoneEntryView> 
         
         
         var formattedPhoneNumber = phoneNumber
+        
+//        if let example = try? NBPhoneNumberUtil.sharedInstance()!.getExampleNumber(forType: country.countryCode, type: .MOBILE),
+//            let exampleNumber = try? NBPhoneNumberUtil.sharedInstance()!.format(example, numberFormat: .INTERNATIONAL) {
+//            print("kek:", exampleNumber)
+//        }
         
         if let number = try? NBPhoneNumberUtil.sharedInstance()!.parse("+" + phoneNumber, defaultRegion: country.countryCode),
             let string = try? NBPhoneNumberUtil.sharedInstance()!.format(number, numberFormat: .INTERNATIONAL) {

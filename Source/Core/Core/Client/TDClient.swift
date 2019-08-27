@@ -139,7 +139,8 @@ final public class TDClient {
                 client.send(data: data)
                 
             } catch {
-                if let queryId = queryId, let completionHandler = client.completionHandler(for: queryId) {
+                if let queryId = queryId,
+                    let completionHandler = client.completionHandler(for: queryId) {
                     completionHandler(.failure(.internalInconsistency(error)))
                 }
             }
@@ -172,7 +173,6 @@ final public class TDClient {
                 }
                 
                 queryId = self.pushCompletionHandlerLocked(responseHandler!, timeoutInterval: timeoutInterval ?? self.configuration.timeoutInterval)
-                
             }
             
             if self.canExecuteFunction(Function.self) {
@@ -208,7 +208,15 @@ final public class TDClient {
             return
         }
         
-        executionQueue.async {
+        // remove all pending function and it's timers
+        pendingFunctions = [:]
+        
+        for queryId in pendingFunctions.keys {
+            queryTimers[queryId] = nil
+        }
+        
+        // execute in background thread
+        processingQueue.async {
             functions
                 .sorted(by: { $0.key < $1.key })
                 .forEach { queryId, execution in
@@ -232,7 +240,7 @@ final public class TDClient {
         runLoopQueue.async { [weak self] in
             while let self = self {
                 autoreleasepool {
-                    guard let result = td_json_client_receive(self.client, 10) else { return }
+                    guard let result = td_json_client_receive(self.client, 2) else { return }
                     
                     let string = String(cString: result)
                     

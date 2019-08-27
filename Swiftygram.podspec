@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
     s.homepage         = 'https://github.com/ky1vstar/Swiftygram'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'ky1vstar' => 'ky1vstar@yandex.ru' }
-    s.source           = { :git => 'https://github.com/ky1vstar/PiPhone.git', :tag => s.version.to_s }
+    s.source           = { :git => 'https://github.com/ky1vstar/Swiftygram.git', :tag => s.version.to_s }
 
 
     s.requires_arc = true
